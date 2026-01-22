@@ -16,7 +16,10 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
-    }
+    },
+    ...(process.env.SMTP_ALLOW_SELF_SIGNED === 'true'
+        ? { tls: { rejectUnauthorized: false } }
+        : {})
 });
 
 // Verify transporter connection
@@ -199,6 +202,10 @@ const getEstimateEmailTemplate = (data) => {
 // Contact Form Endpoint
 app.post('/api/contact', async (req, res) => {
     try {
+        if (!process.env.MAIL_USER || !process.env.MAIL_PASS || !process.env.MAIL_RECIPIENT) {
+            return res.status(500).json({ success: false, message: 'Server configuration error.' });
+        }
+
         const { name, email, phone, message } = req.body;
 
         if (!name || !email) {
@@ -223,6 +230,10 @@ app.post('/api/contact', async (req, res) => {
 // Estimate Form Endpoint
 app.post('/api/estimate', async (req, res) => {
     try {
+        if (!process.env.MAIL_USER || !process.env.MAIL_PASS || !process.env.MAIL_RECIPIENT) {
+            return res.status(500).json({ success: false, message: 'Server configuration error.' });
+        }
+
         const { name, email, phone, service, subService, subject } = req.body;
 
         if (!name || !email || !phone) {

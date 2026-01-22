@@ -19,7 +19,10 @@ export default async function handler(req, res) {
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
-            auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS }
+            auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
+            ...(process.env.SMTP_ALLOW_SELF_SIGNED === 'true'
+                ? { tls: { rejectUnauthorized: false } }
+                : {})
         });
 
         await transporter.sendMail({

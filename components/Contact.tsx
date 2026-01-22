@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, Calendar, MessageSquare, MessageCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, Send, Calendar, MessageSquare, MessageCircle, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'message' | 'call'>('message');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [service, setService] = useState('Web Development');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Remove non-digit characters
@@ -25,6 +32,51 @@ const Contact: React.FC = () => {
       setPhoneError(`Enter 10 digits (remaining: ${10 - value.length})`);
     } else {
       setPhoneError('');
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError('');
+
+    if (!name || !email) {
+      setSubmitError('Please fill in your name and email');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone ? `+91 ${phone}` : '',
+          message: `Service: ${service}\n\n${message}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        setName('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        setSubmitError(data.message || 'Failed to send. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitError('Failed to send. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -118,88 +170,122 @@ const Contact: React.FC = () => {
               </div>
 
               {activeTab === 'message' ? (
-                <form className="space-y-6 animate-fade-in flex-grow" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                isSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-16 animate-fade-in">
+                    <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
+                      <CheckCircle className="w-8 h-8 text-emerald-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                    <p className="text-gray-400 text-center">Thank you for reaching out. We'll get back to you shortly.</p>
+                  </div>
+                ) : (
+                  <form className="space-y-6 animate-fade-in flex-grow" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium text-gray-400">Your Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="John Doe"
+                          className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="phone" className="text-sm font-medium text-gray-400">Mobile Number</label>
+                        <div className="relative">
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium pointer-events-none select-none">
+                            +91
+                          </div>
+                          <input
+                            type="tel"
+                            id="phone"
+                            value={phone}
+                            onChange={handlePhoneChange}
+                            placeholder="98765 43210"
+                            maxLength={10}
+                            className={`w-full bg-navy-900/50 border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-1 transition-all ${phoneError
+                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                              : 'border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50'
+                              }`}
+                          />
+                        </div>
+                        {phoneError && (
+                          <div className="flex items-center gap-1.5 mt-1.5 text-red-400 animate-fade-in">
+                            <AlertCircle size={14} />
+                            <span className="text-xs font-medium">{phoneError}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-gray-400">Your Name</label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        placeholder="John Doe"
+                      <label htmlFor="email" className="text-sm font-medium text-gray-400">Email Address</label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="john@company.com"
                         className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
                       />
                     </div>
+
                     <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium text-gray-400">Mobile Number</label>
-                      <div className="relative">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium pointer-events-none select-none">
-                          +91
-                        </div>
-                        <input 
-                          type="tel" 
-                          id="phone" 
-                          value={phone}
-                          onChange={handlePhoneChange}
-                          placeholder="98765 43210"
-                          maxLength={10}
-                          className={`w-full bg-navy-900/50 border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-1 transition-all ${
-                            phoneError 
-                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' 
-                              : 'border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50'
-                          }`}
-                        />
-                      </div>
-                      {phoneError && (
-                        <div className="flex items-center gap-1.5 mt-1.5 text-red-400 animate-fade-in">
-                          <AlertCircle size={14} />
-                          <span className="text-xs font-medium">{phoneError}</span>
-                        </div>
-                      )}
+                      <label htmlFor="service" className="text-sm font-medium text-gray-400">Service Interested In</label>
+                      <select
+                        id="service"
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none"
+                      >
+                        <option>Web Development</option>
+                        <option>UI/UX Design</option>
+                        <option>SEO & Marketing</option>
+                        <option>Mobile App</option>
+                        <option>Other</option>
+                      </select>
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-400">Email Address</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      placeholder="john@company.com"
-                      className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
-                    />
-                  </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-gray-400">Project Details</label>
+                      <textarea
+                        id="message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        rows={4}
+                        placeholder="Tell us about your project goals and timeline..."
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all resize-none"
+                      ></textarea>
+                    </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="service" className="text-sm font-medium text-gray-400">Service Interested In</label>
-                    <select 
-                      id="service" 
-                      className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none"
+                    {submitError && (
+                      <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2">
+                        <AlertCircle size={16} />
+                        {submitError}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 font-bold text-lg hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 group mt-auto disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option>Web Development</option>
-                      <option>UI/UX Design</option>
-                      <option>SEO & Marketing</option>
-                      <option>Mobile App</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-400">Project Details</label>
-                    <textarea 
-                      id="message" 
-                      rows={4}
-                      placeholder="Tell us about your project goals and timeline..."
-                      className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all resize-none"
-                    ></textarea>
-                  </div>
-
-                  <button 
-                    type="submit"
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 font-bold text-lg hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 group mt-auto"
-                  >
-                    Send Message
-                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
-                </form>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )
               ) : (
                 <div className="w-full bg-white rounded-xl overflow-hidden animate-fade-in h-[700px]">
                    <iframe 
