@@ -68,9 +68,9 @@ const WordpressDevPage: React.FC = () => {
     ];
 
     const pricing = [
-        { name: 'Business Website', price: '₹29,999', features: ['5-10 pages', 'Premium theme', 'Contact forms', 'SEO basic', '3 months support'] },
-        { name: 'Custom Development', price: '₹79,999', features: ['Custom theme', 'Custom plugins', 'Advanced features', 'Performance optimization', '6 months support'], popular: true },
-        { name: 'WooCommerce Store', price: '₹59,999', features: ['Up to 100 products', 'Payment gateway', 'Shipping setup', 'Order management', '6 months support'] },
+        { name: 'Business Website', price: '₹19,999', features: ['5-10 pages', 'Premium theme', 'Contact forms', 'SEO basic', '3 months support'] },
+        { name: 'WooCommerce Store', price: '₹24,999', features: ['Up to 100 products', 'Payment gateway', 'Shipping setup', 'Order management', '6 months support'] },
+        { name: 'Custom Development', price: '₹49,999', features: ['Custom theme', 'Custom plugins', 'Advanced features', 'Performance optimization', '6 months support'], popular: true },
     ];
 
     return (
