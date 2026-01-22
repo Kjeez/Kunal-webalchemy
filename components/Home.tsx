@@ -1,10 +1,11 @@
 import React from 'react';
 import Hero from './Hero';
+import AboutSection from './AboutSection';
 import PainPoints from './PainPoints';
-import Stats from './Stats';
 import Services from './Services';
 import Portfolio from './Portfolio';
 import WhyChooseUs from './WhyChooseUs';
+import TechStackScroll from './TechStackScroll';
 import Testimonials from './Testimonials';
 import Pricing from './Pricing';
 import FAQ from './FAQ';
@@ -15,11 +16,12 @@ const Home: React.FC = () => {
   return (
     <>
       <Hero />
+      <AboutSection />
       <PainPoints />
       <Services />
       <Portfolio />
-      <Stats />
       <WhyChooseUs />
+      <TechStackScroll />
       <Testimonials />
       <Pricing />
       <FAQ />

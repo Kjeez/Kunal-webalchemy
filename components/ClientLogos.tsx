@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { projectsData } from '../data/projectsData';
 
 const LogoPlaceholder: React.FC<{ name: string }> = ({ name }) => (
   <div className="flex items-center gap-3 px-8 opacity-30 hover:opacity-100 transition-opacity duration-300 cursor-default select-none grayscale hover:grayscale-0">
@@ -11,25 +12,39 @@ const LogoPlaceholder: React.FC<{ name: string }> = ({ name }) => (
 );
 
 const ClientLogos: React.FC = () => {
-  const clients = [
-    'Webflow', 'Amplitude', 'Airbrake', 'Segment', 'Coinbase', 
-    'Stripe', 'Linear', 'Raycast', 'Vercel', 'Supabase',
-    'Figma', 'Notion', 'Retool', 'Prisma'
-  ];
+  const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollDirection(currentScrollY > lastScrollY.current ? 'down' : 'up');
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Get client names from portfolio projects
+  const clients = projectsData.map(project => project.title);
 
   // Quadruple the list to ensure we have enough content to scroll seamlessly
   const allClients = [...clients, ...clients, ...clients, ...clients];
 
   return (
     <div className="w-full overflow-hidden relative group">
-      
+
       {/* Side Fade Masks */}
       <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-navy-900 to-transparent pointer-events-none"></div>
       <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-navy-900 to-transparent pointer-events-none"></div>
 
-      {/* Marquee Track - Moving Left to Right */}
-      {/* 'animate-marquee-reverse' moves from -50% to 0%, effectively sliding content to the right */}
-      <div className="flex w-max animate-marquee-reverse group-hover:[animation-play-state:paused]" style={{ animationDuration: '80s' }}>
+      {/* Marquee Track - Direction based on scroll */}
+      <div
+        className={`flex w-max group-hover:[animation-play-state:paused] ${scrollDirection === 'down' ? 'animate-marquee-reverse' : 'animate-marquee'
+          }`}
+        style={{ animationDuration: '80s' }}
+      >
         {allClients.map((client, index) => (
           <LogoPlaceholder key={`${client}-${index}`} name={client} />
         ))}

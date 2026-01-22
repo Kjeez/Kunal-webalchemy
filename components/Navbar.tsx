@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, X, Rocket } from 'lucide-react';
+import { Menu, X, Rocket, ChevronDown } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import ServiceFormPopup from './ServiceFormPopup';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const [showEstimatePopup, setShowEstimatePopup] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,24 +24,71 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   };
 
-  const navItems = [
-    { name: 'Results', id: 'results', type: 'scroll' },
+  const navItems: { name: string; path?: string; type: 'link' | 'scroll'; id?: string }[] = [
     { name: 'Services', path: '/services', type: 'link' },
-    { name: 'Process', id: 'process', type: 'scroll' },
-    { name: 'Contact', id: 'contact', type: 'scroll' },
+    { name: 'Blog', path: '/blog', type: 'link' },
+    { name: 'Portfolio', path: '/portfolio', type: 'link' },
+    { name: 'Contact', path: '/contact', type: 'link' },
   ];
+
+  const megaMenuData = {
+    col1: [
+      {
+        title: "Web Development",
+        color: "text-cyan-400",
+        categoryId: "web",
+        items: ['One Page Website', 'Landing Page', 'Business Website', 'Product Showcase', 'E-commerce', 'Agency Website', 'WordPress', 'Shopify', 'Webflow', 'Wix', 'Framer', 'WooCommerce']
+      },
+      {
+        title: "App Development",
+        color: "text-blue-400",
+        categoryId: "app",
+        items: ['iOS Development', 'Android Development', 'Native Development']
+      }
+    ],
+    col2: [
+      {
+        title: "Marketing",
+        color: "text-purple-400",
+        categoryId: "marketing",
+        items: ['Google Ads', 'SEO', 'Google Shopping Ads', 'Facebook Ads', 'Instagram Ads', 'Display Advertising', 'Google Mobile Ads', 'Influencer Marketing', 'Remarketing Ads']
+      }
+    ],
+    col3: [
+      {
+        title: "Design",
+        color: "text-pink-400",
+        categoryId: "design",
+        items: ['UI/UX Design', 'Branding', 'Catalogue', 'Logos', 'Banners', 'Social Media Posts', 'Video Editing', 'Animations', '3D Modeling']
+      },
+      {
+        title: "Content",
+        color: "text-emerald-400",
+        categoryId: "content",
+        items: ['Content Writing', 'Blog Writing', 'Data Entry']
+      }
+    ],
+    col4: [
+      {
+        title: "PR & Advertising",
+        color: "text-orange-400",
+        categoryId: "pr",
+        items: ['Radio Advertising', 'TV Advertising', 'Outdoor Advertising', 'Metro Advertising', 'Auto & Bus Ads', 'Bus Shelter Ads', 'Newspaper Ads', 'Airlines Ads', 'Cinema Ads', 'OTT Advertising', 'Railway Ads', 'Airport Ads']
+      }
+    ]
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 sm:p-6">
-      <div className="glass-panel rounded-full px-6 py-3 sm:px-8 sm:py-4 flex items-center justify-between w-full max-w-6xl shadow-2xl shadow-cyan-900/10 transition-all duration-300">
-        
+      <div className="glass-panel rounded-full px-6 py-3 sm:px-8 sm:py-3 flex items-center justify-between w-full max-w-7xl shadow-2xl shadow-cyan-900/10 transition-all duration-300 relative">
+
         {/* Logo */}
-        <div 
+        <div
           onClick={() => {
             if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
             else navigate('/');
           }}
-          className="flex items-center gap-2 group cursor-pointer"
+          className="flex items-center gap-2 group cursor-pointer z-50"
         >
           <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-lg transform group-hover:rotate-12 transition-transform duration-300">
             <span className="text-white font-bold text-lg sm:text-xl">W</span>
@@ -51,19 +101,113 @@ const Navbar: React.FC = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            item.type === 'link' ? (
-              <Link 
+            item.name === 'Services' ? (
+              <div
+                key={item.name}
+                className="relative group"
+                onMouseEnter={() => setIsServicesHovered(true)}
+                onMouseLeave={() => setIsServicesHovered(false)}
+              >
+                <Link
+                  to={item.path!}
+                  className={`text-sm font-medium transition-all duration-300 flex items-center gap-1 py-4 ${location.pathname === item.path ? 'text-cyan-400' : 'text-gray-300 hover:text-white'}`}
+                >
+                  {item.name}
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesHovered ? 'rotate-180 text-cyan-400' : ''}`} />
+                </Link>
+
+                {/* Mega Menu Dropdown */}
+                <div
+                  className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 w-[900px] bg-[#0a0e27]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 p-8 grid grid-cols-4 gap-8 transition-all duration-300 origin-top z-[60] cursor-default
+                    ${isServicesHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}
+                  `}
+                >
+                  {/* Column 1 */}
+                  <div className="space-y-6">
+                    {megaMenuData.col1.map((section, idx) => (
+                      <div key={idx}>
+                        <h4 className={`${section.color} font-bold mb-3 uppercase text-xs tracking-wider border-b border-white/10 pb-2`}>{section.title}</h4>
+                        <ul className="space-y-2">
+                          {section.items.map(sub => (
+                            <li key={sub}>
+                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                                {sub}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Column 2 */}
+                  <div className="space-y-6">
+                    {megaMenuData.col2.map((section, idx) => (
+                      <div key={idx}>
+                        <h4 className={`${section.color} font-bold mb-3 uppercase text-xs tracking-wider border-b border-white/10 pb-2`}>{section.title}</h4>
+                        <ul className="space-y-2">
+                          {section.items.map(sub => (
+                            <li key={sub}>
+                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                                {sub}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Column 3 */}
+                  <div className="space-y-6">
+                    {megaMenuData.col3.map((section, idx) => (
+                      <div key={idx}>
+                        <h4 className={`${section.color} font-bold mb-3 uppercase text-xs tracking-wider border-b border-white/10 pb-2`}>{section.title}</h4>
+                        <ul className="space-y-2">
+                          {section.items.map(sub => (
+                            <li key={sub}>
+                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                                {sub}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Column 4 */}
+                  <div className="space-y-6">
+                    {megaMenuData.col4.map((section, idx) => (
+                      <div key={idx}>
+                        <h4 className={`${section.color} font-bold mb-3 uppercase text-xs tracking-wider border-b border-white/10 pb-2`}>{section.title}</h4>
+                        <ul className="space-y-2">
+                          {section.items.map(sub => (
+                            <li key={sub}>
+                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                                {sub}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : item.type === 'link' ? (
+              <Link
                 key={item.name}
                 to={item.path!}
-                className={`text-sm font-medium transition-all duration-300 ${location.pathname === item.path ? 'text-cyan-400' : 'text-gray-300 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]'}`}
+                className={`text-sm font-medium transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 ${location.pathname === item.path ? 'text-cyan-400' : 'text-gray-300 hover:text-white hover:[text-shadow:0_0_10px_rgba(255,255,255,0.5)]'}`}
               >
                 {item.name}
               </Link>
             ) : (
               <button
-                key={item.name} 
+                key={item.name}
                 onClick={() => handleScroll(item.id!)}
-                className="text-sm font-medium text-gray-300 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300"
+                className="text-sm font-medium text-gray-300 hover:text-white hover:[text-shadow:0_0_10px_rgba(255,255,255,0.5)] transition-all duration-300 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
               >
                 {item.name}
               </button>
@@ -73,8 +217,8 @@ const Navbar: React.FC = () => {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <button 
-            onClick={() => handleScroll('contact')}
+          <button
+            onClick={() => setShowEstimatePopup(true)}
             className="group relative px-6 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 font-bold text-sm hover:shadow-[0_0_20px_rgba(0,217,255,0.5)] hover:scale-105 transition-all duration-300"
           >
             <span className="flex items-center gap-2">
@@ -86,7 +230,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
           >
@@ -99,33 +243,44 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="absolute top-24 left-4 right-4 glass-card rounded-2xl p-6 flex flex-col gap-4 md:hidden animate-fade-in-down origin-top z-50">
           {navItems.map((item) => (
-             item.type === 'link' ? (
-               <Link
+            item.type === 'link' ? (
+              <Link
                 key={item.name}
                 to={item.path!}
                 className="text-lg font-medium text-gray-200 py-2 border-b border-white/5 hover:text-cyan-400 hover:pl-2 transition-all"
                 onClick={() => setIsMenuOpen(false)}
-               >
-                 {item.name}
-               </Link>
-             ) : (
-               <button 
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <button
                 key={item.name}
                 onClick={() => handleScroll(item.id!)}
                 className="text-lg font-medium text-gray-200 py-2 border-b border-white/5 hover:text-cyan-400 hover:pl-2 transition-all text-left"
-               >
-                 {item.name}
-               </button>
-             )
+              >
+                {item.name}
+              </button>
+            )
           ))}
-          <button 
-            onClick={() => handleScroll('contact')}
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              setShowEstimatePopup(true);
+            }}
             className="mt-4 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 font-bold hover:opacity-90 transition-opacity"
           >
             Get Free Estimate
           </button>
         </div>
       )}
+
+      {/* Estimate Form Popup */}
+      <ServiceFormPopup
+        isOpen={showEstimatePopup}
+        onClose={() => setShowEstimatePopup(false)}
+        serviceName=""
+        subServiceName=""
+      />
     </nav>
   );
 };

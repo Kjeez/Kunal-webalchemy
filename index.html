@@ -1,100 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebAlchemy | Digital Agency</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebAlchemy | Digital Growth Agency - Web Development & Marketing India</title>
+  <meta name="description"
+    content="WebAlchemy is India's leading digital growth agency offering web development, digital marketing, SEO, branding, and UI/UX design services. Get a free estimate today!" />
+  <meta name="keywords"
+    content="web development, digital marketing, SEO, web design, website development India, digital agency, growth agency, branding, UI UX design" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              900: '#0a0e27',
+              800: '#111633',
             },
-            colors: {
-              navy: {
-                900: '#0a0e27',
-                800: '#111633',
-              },
-              cyan: {
-                400: '#00d9ff',
-                500: '#00b8d4',
-              },
-              teal: {
-                400: '#00ffb3',
-              }
+            cyan: {
+              400: '#00d9ff',
+              500: '#00b8d4',
             },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'float-delayed': 'float 6s ease-in-out 3s infinite',
-              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'spin-slow': 'spin 12s linear infinite',
-              'beam': 'beam 8s linear infinite',
-              'beam-delayed': 'beam 8s linear 4s infinite',
-              'marquee': 'marquee 40s linear infinite',
-              'marquee-reverse': 'marquee-reverse 40s linear infinite',
-              'fade-in': 'fadeIn 0.5s ease-out',
-              'zoom-in': 'zoomIn 0.3s ease-out',
+            teal: {
+              400: '#00ffb3',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'beam': 'beam 8s linear infinite',
+            'beam-delayed': 'beam 8s linear 4s infinite',
+            'marquee': 'marquee 40s linear infinite',
+            'marquee-reverse': 'marquee-reverse 40s linear infinite',
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'zoom-in': 'zoomIn 0.3s ease-out',
+            'scroll-left': 'scrollLeft 30s linear infinite',
+            'scroll-right': 'scrollRight 30s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
             },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              beam: {
-                '0%': { strokeDashoffset: '1000' },
-                '100%': { strokeDashoffset: '0' }
-              },
-              marquee: {
-                '0%': { transform: 'translateX(0%)' },
-                '100%': { transform: 'translateX(-50%)' },
-              },
-              'marquee-reverse': {
-                '0%': { transform: 'translateX(-50%)' },
-                '100%': { transform: 'translateX(0%)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              zoomIn: {
-                '0%': { opacity: '0', transform: 'scale(0.95)' },
-                '100%': { opacity: '1', transform: 'scale(1)' },
-              }
+            beam: {
+              '0%': { strokeDashoffset: '1000' },
+              '100%': { strokeDashoffset: '0' }
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            'marquee-reverse': {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            zoomIn: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            scrollLeft: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-33.33%)' },
+            },
+            scrollRight: {
+              '0%': { transform: 'translateX(-33.33%)' },
+              '100%': { transform: 'translateX(0)' },
             }
           }
         }
       }
-    </script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #0a0e27;
-        color: white;
-      }
-      .glass-panel {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .glass-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      }
-      .text-glow {
-        text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
-      }
-      .beam-mask {
-        mask-image: radial-gradient(circle at center, black, transparent 80%);
-        -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
-      }
-    </style>
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0e27;
+      color: white;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0e27;
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #00d9ff 0%, #00b8d4 50%, #0066cc 100%);
+      border-radius: 10px;
+      border: 2px solid #0a0e27;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #00ffff 0%, #00d9ff 50%, #0088ff 100%);
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    }
+
+    /* Firefox Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #00d9ff #0a0e27;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+    }
+
+    .beam-mask {
+      mask-image: radial-gradient(circle at center, black, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -108,7 +157,10 @@
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>
