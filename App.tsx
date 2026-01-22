@@ -8,6 +8,7 @@ import BlogPostPage from './components/BlogPostPage';
 import PortfolioPage from './components/PortfolioPage';
 import ContactPage from './components/ContactPage';
 import LocationLandingPage from './components/LocationLandingPage';
+import WebDevDelhiNCRPage from './components/WebDevDelhiNCRPage';
 import Footer from './components/Footer';
 import PromoPopup from './components/PromoPopup';
 import { BackgroundBeams } from './components/Visuals';
@@ -52,6 +53,7 @@ const App: React.FC = () => {
               <Route path="/website-developer-delhi" element={<LocationLandingPage city="Delhi" />} />
               <Route path="/website-developer-gurgaon" element={<LocationLandingPage city="Gurgaon" />} />
               <Route path="/website-developer-noida" element={<LocationLandingPage city="Noida" />} />
+              <Route path="/web-development-company-delhi-ncr" element={<WebDevDelhiNCRPage />} />
             </Routes>
           </main>
           <Footer />

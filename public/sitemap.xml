@@ -97,4 +97,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Delhi NCR Landing Page -->
+  <url>
+    <loc>https://webalchemy.in/web-development-company-delhi-ncr</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>
