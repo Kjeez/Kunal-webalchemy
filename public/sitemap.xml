@@ -105,4 +105,20 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <!-- E-commerce Development -->
+  <url>
+    <loc>https://webalchemy.in/ecommerce-website-development</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- WordPress Development -->
+  <url>
+    <loc>https://webalchemy.in/wordpress-development</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

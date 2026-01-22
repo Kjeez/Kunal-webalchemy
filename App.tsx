@@ -9,6 +9,8 @@ import PortfolioPage from './components/PortfolioPage';
 import ContactPage from './components/ContactPage';
 import LocationLandingPage from './components/LocationLandingPage';
 import WebDevDelhiNCRPage from './components/WebDevDelhiNCRPage';
+import EcommerceDevPage from './components/EcommerceDevPage';
+import WordpressDevPage from './components/WordpressDevPage';
 import Footer from './components/Footer';
 import PromoPopup from './components/PromoPopup';
 import { BackgroundBeams } from './components/Visuals';
@@ -54,6 +56,8 @@ const App: React.FC = () => {
               <Route path="/website-developer-gurgaon" element={<LocationLandingPage city="Gurgaon" />} />
               <Route path="/website-developer-noida" element={<LocationLandingPage city="Noida" />} />
               <Route path="/web-development-company-delhi-ncr" element={<WebDevDelhiNCRPage />} />
+              <Route path="/ecommerce-website-development" element={<EcommerceDevPage />} />
+              <Route path="/wordpress-development" element={<WordpressDevPage />} />
             </Routes>
           </main>
           <Footer />
