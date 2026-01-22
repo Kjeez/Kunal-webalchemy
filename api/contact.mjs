@@ -1,5 +1,23 @@
 import nodemailer from 'nodemailer';
 
+async function readJsonBody(req) {
+    // Vercel Node Serverless Functions do not guarantee `req.body` is populated.
+    if (req.body && typeof req.body === 'object') return req.body;
+
+    const chunks = [];
+    for await (const chunk of req) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    }
+    const raw = Buffer.concat(chunks).toString('utf8').trim();
+    if (!raw) return {};
+
+    try {
+        return JSON.parse(raw);
+    } catch {
+        return null;
+    }
+}
+
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,7 +32,12 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, email, phone, message } = req.body;
+        const body = await readJsonBody(req);
+        if (body === null) {
+            return res.status(400).json({ success: false, message: 'Invalid JSON body' });
+        }
+
+        const { name, email, phone, message } = body;
         if (!name || !email) return res.status(400).json({ success: false, message: 'Name and email required' });
 
         const transporter = nodemailer.createTransport({
