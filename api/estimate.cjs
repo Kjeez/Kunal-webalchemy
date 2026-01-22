@@ -1,0 +1,60 @@
+const nodemailer = require('nodemailer');
+
+async function readJsonBody(req) {
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  const raw = Buffer.concat(chunks).toString('utf8').trim();
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, message: 'Method not allowed' });
+  }
+
+  if (!process.env.MAIL_USER || !process.env.MAIL_PASS || !process.env.MAIL_RECIPIENT) {
+    return res.status(500).json({ success: false, message: 'Server configuration error.' });
+  }
+
+  try {
+    const body = await readJsonBody(req);
+    if (body === null) return res.status(400).json({ success: false, message: 'Invalid JSON body' });
+
+    const { name, email, phone, service, subService, subject } = body;
+    if (!name || !email || !phone) {
+      return res.status(400).json({ success: false, message: 'Name, email, and phone required' });
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
+      ...(process.env.SMTP_ALLOW_SELF_SIGNED === 'true' ? { tls: { rejectUnauthorized: false } } : {}),
+    });
+
+    await transporter.sendMail({
+      from: `"WebAlchemy" <${process.env.MAIL_USER}>`,
+      to: process.env.MAIL_RECIPIENT,
+      subject: `New Estimate: ${service || 'General'} - ${name}`,
+      html: `<h2>New Estimate Request</h2><p><b>Service:</b> ${service || 'General'} ${subService ? '- ' + subService : ''}</p><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone}</p><p><b>Brief:</b> ${subject || 'N/A'}</p>`,
+    });
+
+    return res.status(200).json({ success: true, message: 'Request submitted!' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: 'Failed to submit.' });
+  }
+};
+
