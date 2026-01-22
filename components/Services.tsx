@@ -222,7 +222,7 @@ const Services: React.FC = () => {
           </div>
 
           {/* Bottom Trust Bar */}
-          <div className="mt-20 pt-8 border-t border-white/5 flex flex-wrap justify-center md:justify-between items-center gap-6 text-sm text-gray-500">
+          <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-4">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map(i => (
@@ -237,31 +237,35 @@ const Services: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8">
               <span className="flex items-center gap-2 group cursor-help">
-                <div className="p-1 rounded bg-yellow-400/10 group-hover:bg-yellow-400/20 transition-colors">
+                <div className="p-1.5 rounded bg-yellow-400/10 group-hover:bg-yellow-400/20 transition-colors">
                   <Zap className="w-4 h-4 text-yellow-400" />
                 </div>
-                Fast Turnaround
+                <span className="text-xs sm:text-sm">Fast Turnaround</span>
               </span>
               <span className="flex items-center gap-2 group cursor-help">
-                <div className="p-1 rounded bg-green-400/10 group-hover:bg-green-400/20 transition-colors">
+                <div className="p-1.5 rounded bg-green-400/10 group-hover:bg-green-400/20 transition-colors">
                   <ShieldCheck className="w-4 h-4 text-green-400" />
                 </div>
-                100% Secure
+                <span className="text-xs sm:text-sm">100% Secure</span>
               </span>
               <span className="flex items-center gap-2 group cursor-help">
-                <div className="p-1 rounded bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
+                <div className="p-1.5 rounded bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
                   <MousePointer2 className="w-4 h-4 text-purple-400" />
                 </div>
-                Dedicated Support
+                <span className="text-xs sm:text-sm">Dedicated Support</span>
               </span>
             </div>
           </div>
 
           {/* Modal Popup */}
           {selectedService && (
-            <div className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center px-4 pt-28 sm:pt-24 pb-4 bg-navy-950/60 backdrop-blur-sm animate-fade-in overflow-y-auto" data-modal="service-details">
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4 bg-navy-950/60 backdrop-blur-sm animate-fade-in overflow-y-auto cursor-pointer"
+              data-modal="service-details"
+              onClick={() => setSelectedService(null)}
+            >
               <div
                 className="relative w-full max-w-2xl bg-navy-800 border border-white/10 rounded-3xl p-1 overflow-hidden shadow-2xl animate-zoom-in"
                 onClick={(e) => e.stopPropagation()}

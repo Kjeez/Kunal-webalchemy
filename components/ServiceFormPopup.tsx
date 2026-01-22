@@ -118,12 +118,12 @@ const ServiceFormPopup: React.FC<ServiceFormPopupProps> = ({
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" data-modal="service-form">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/70 backdrop-blur-sm z-[100]"
                 onClick={handleClose}
             />
 
             {/* Modal */}
-            <div className={`relative w-full ${step === 3 ? 'max-w-2xl' : 'max-w-md'} bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-3xl shadow-2xl shadow-cyan-900/30 overflow-hidden animate-zoom-in transition-all duration-300`}>
+            <div className={`relative z-[101] w-full ${step === 3 ? 'max-w-2xl' : 'max-w-md'} bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-3xl shadow-2xl shadow-cyan-900/30 overflow-hidden animate-zoom-in transition-all duration-300`}>
                 {/* Header */}
                 <div className="relative p-6 pb-4 border-b border-white/5">
                     <button

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
+import ServiceFormPopup from './ServiceFormPopup';
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [showEstimateForm, setShowEstimateForm] = useState(false);
 
   const faqs = [
     {
@@ -32,67 +34,80 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative w-full py-24 bg-navy-950 z-10 border-t border-white/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-           <div className="w-12 h-12 mx-auto bg-navy-800 rounded-xl flex items-center justify-center mb-4 border border-white/5 shadow-inner">
-              <HelpCircle className="text-cyan-400" />
-           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-gray-400">
-            Everything you need to know about working with WebAlchemy.
-          </p>
-        </div>
+    <>
+      <section id="faq" className="relative w-full py-24 bg-navy-950 z-10 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Accordion */}
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div 
-              key={index} 
-              className={`rounded-2xl border transition-all duration-300 overflow-hidden
-                ${openIndex === index 
-                  ? 'bg-navy-800/50 border-cyan-500/30 shadow-[0_4px_20px_rgba(0,0,0,0.2)]' 
-                  : 'bg-navy-900/30 border-white/5 hover:border-white/10'
-                }
-              `}
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="w-12 h-12 mx-auto bg-navy-800 rounded-xl flex items-center justify-center mb-4 border border-white/5 shadow-inner">
+              <HelpCircle className="text-cyan-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-400">
+              Everything you need to know about working with WebAlchemy.
+            </p>
+          </div>
+
+          {/* Accordion */}
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden
+                  ${openIndex === index
+                    ? 'bg-navy-800/50 border-cyan-500/30 shadow-[0_4px_20px_rgba(0,0,0,0.2)]'
+                    : 'bg-navy-900/30 border-white/5 hover:border-white/10'
+                  }
+                `}
               >
-                <span className={`font-semibold text-lg transition-colors ${openIndex === index ? 'text-white' : 'text-gray-300'}`}>
-                  {faq.question}
-                </span>
-                <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === index ? 'bg-cyan-500 text-navy-900 rotate-180' : 'bg-white/5 text-gray-400'}`}>
-                  {openIndex === index ? <Minus size={16} strokeWidth={3} /> : <Plus size={16} strokeWidth={3} />}
-                </div>
-              </button>
-              
-              <div 
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-              >
-                <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2">
-                  {faq.answer}
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                >
+                  <span className={`font-semibold text-lg transition-colors ${openIndex === index ? 'text-white' : 'text-gray-300'}`}>
+                    {faq.question}
+                  </span>
+                  <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === index ? 'bg-cyan-500 text-navy-900 rotate-180' : 'bg-white/5 text-gray-400'}`}>
+                    {openIndex === index ? <Minus size={16} strokeWidth={3} /> : <Plus size={16} strokeWidth={3} />}
+                  </div>
+                </button>
+
+                <div
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                >
+                  <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-white/5 mt-2">
+                    {faq.answer}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Contact CTA */}
-        <div className="mt-12 text-center p-8 rounded-3xl bg-gradient-to-r from-cyan-900/20 to-blue-900/20 border border-white/5">
-           <p className="text-gray-300 mb-4">Still have questions?</p>
-           <button className="px-6 py-3 rounded-xl bg-white text-navy-900 font-bold hover:bg-gray-100 transition-colors">
+          {/* Contact CTA */}
+          <div className="mt-12 text-center p-8 rounded-3xl bg-gradient-to-r from-cyan-900/20 to-blue-900/20 border border-white/5">
+            <p className="text-gray-300 mb-4">Still have questions?</p>
+            <button
+              onClick={() => setShowEstimateForm(true)}
+              className="px-6 py-3 rounded-xl bg-white text-navy-900 font-bold hover:bg-gray-100 transition-colors"
+            >
               Chat with an Expert
-           </button>
-        </div>
+            </button>
+          </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* Estimate Form Popup - Outside section for proper z-index */}
+      <ServiceFormPopup
+        isOpen={showEstimateForm}
+        onClose={() => setShowEstimateForm(false)}
+        serviceName="Expert Consultation"
+        subServiceName=""
+      />
+    </>
   );
 };
 

@@ -34,11 +34,36 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Services</h4>
             <ul className="space-y-4">
-              <FooterLink href="#">Web Development</FooterLink>
-              <FooterLink href="#">UI/UX Design</FooterLink>
-              <FooterLink href="#">E-commerce Solutions</FooterLink>
-              <FooterLink href="#">SEO Optimization</FooterLink>
-              <FooterLink href="#">Performance Tuning</FooterLink>
+              <li>
+                <Link to="/services/web-development" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/design-branding" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  UI/UX Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/digital-marketing" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/content-strategy" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  SEO & Content
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/app-development" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  App Development
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -46,15 +71,30 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4">
-              <FooterLink href="#">About Us</FooterLink>
+              <li>
+                <Link to="/about" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  About Us
+                </Link>
+              </li>
               <li>
                 <Link to="/portfolio" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
                   <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  Case Studies
+                  Portfolio
                 </Link>
               </li>
-              <FooterLink href="#process">Our Process</FooterLink>
-              <FooterLink href="#">Careers</FooterLink>
+              <li>
+                <Link to="/blog" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  All Services
+                </Link>
+              </li>
               <li>
                 <Link to="/contact" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
                   <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
