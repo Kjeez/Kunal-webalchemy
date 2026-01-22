@@ -1,0 +1,20 @@
+# WebAlchemy Robots.txt
+# https://webalchemy.in
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://webalchemy.in/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+
+# Allow crawling of all public pages
+Allow: /services/
+Allow: /blog/
+Allow: /portfolio
+Allow: /contact
+Allow: /website-developer-delhi
+Allow: /website-developer-gurgaon
+Allow: /website-developer-noida
