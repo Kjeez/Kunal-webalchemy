@@ -67,8 +67,8 @@ const EcommerceDevPage: React.FC = () => {
     ];
 
     const pricing = [
-        { name: 'Starter Store', price: '₹49,999', features: ['Up to 50 products', 'Payment integration', 'Mobile responsive', 'Basic SEO', '3 months support'] },
-        { name: 'Growth Store', price: '₹99,999', features: ['Up to 500 products', 'Multi-payment gateways', 'Shipping integration', 'Advanced SEO', '6 months support'], popular: true },
+        { name: 'Starter Store', price: '₹24,999', features: ['Up to 50 products', 'Payment integration', 'Mobile responsive', 'Basic SEO', '3 months support'] },
+        { name: 'Growth Store', price: '₹49,999', features: ['Up to 500 products', 'Multi-payment gateways', 'Shipping integration', 'Advanced SEO', '6 months support'], popular: true },
         { name: 'Enterprise', price: 'Custom', features: ['Unlimited products', 'Custom features', 'Multiple integrations', 'Dedicated support', 'Performance optimization'] },
     ];
 
