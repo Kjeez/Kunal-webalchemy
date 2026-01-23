@@ -182,7 +182,7 @@ const ContactPage: React.FC = () => {
                                                         id="phone"
                                                         value={phone}
                                                         onChange={handlePhoneChange}
-                                                        placeholder="98765 43210"
+                                                        placeholder="96254 29686"
                                                         maxLength={10}
                                                         className={`w-full bg-navy-900/50 border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-1 transition-all ${phoneError
                                                             ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'

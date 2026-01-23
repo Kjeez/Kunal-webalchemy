@@ -16,10 +16,10 @@ const Contact: React.FC = () => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Remove non-digit characters
     const rawValue = e.target.value.replace(/\D/g, '');
-    
+
     // Limit to 10 digits
     const value = rawValue.slice(0, 10);
-    
+
     setPhone(value);
 
     // Validation logic
@@ -82,14 +82,14 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="relative w-full py-24 bg-navy-900 z-10 overflow-hidden">
-      
+
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-cyan-600/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-purple-600/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          
+
           {/* Left Column: Info */}
           <div className="flex flex-col space-y-8">
             <div>
@@ -148,25 +148,25 @@ const Contact: React.FC = () => {
           <div className="relative">
             {/* Glow behind form */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl transform rotate-3 scale-95 opacity-50 pointer-events-none"></div>
-            
+
             <div className="relative bg-navy-800/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl flex flex-col">
-              
+
               {/* Tabs */}
               <div className="flex p-1 bg-navy-900/50 rounded-xl mb-8 border border-white/5 shrink-0">
-                  <button 
-                    onClick={() => setActiveTab('message')}
-                    className={`flex-1 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${activeTab === 'message' ? 'bg-cyan-500 text-navy-900 shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white'}`}
-                  >
-                    <MessageSquare size={16} />
-                    Send Message
-                  </button>
-                  <button 
-                    onClick={() => setActiveTab('call')}
-                    className={`flex-1 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${activeTab === 'call' ? 'bg-cyan-500 text-navy-900 shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white'}`}
-                  >
-                    <Calendar size={16} />
-                    Book Strategy Call
-                  </button>
+                <button
+                  onClick={() => setActiveTab('message')}
+                  className={`flex-1 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${activeTab === 'message' ? 'bg-cyan-500 text-navy-900 shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white'}`}
+                >
+                  <MessageSquare size={16} />
+                  Send Message
+                </button>
+                <button
+                  onClick={() => setActiveTab('call')}
+                  className={`flex-1 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${activeTab === 'call' ? 'bg-cyan-500 text-navy-900 shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white'}`}
+                >
+                  <Calendar size={16} />
+                  Book Strategy Call
+                </button>
               </div>
 
               {activeTab === 'message' ? (
@@ -203,7 +203,7 @@ const Contact: React.FC = () => {
                             id="phone"
                             value={phone}
                             onChange={handlePhoneChange}
-                            placeholder="98765 43210"
+                            placeholder="96254 29686"
                             maxLength={10}
                             className={`w-full bg-navy-900/50 border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-1 transition-all ${phoneError
                               ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -288,14 +288,14 @@ const Contact: React.FC = () => {
                 )
               ) : (
                 <div className="w-full bg-white rounded-xl overflow-hidden animate-fade-in h-[700px]">
-                   <iframe 
-                    src="https://calendly.com/yourtrickster-kg/30min" 
-                    width="100%" 
-                    height="100%" 
-                    frameBorder="0" 
+                  <iframe
+                    src="https://calendly.com/yourtrickster-kg/30min"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
                     title="Schedule Call"
                     className="h-full w-full"
-                   ></iframe>
+                  ></iframe>
                 </div>
               )}
             </div>
