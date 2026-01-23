@@ -300,7 +300,7 @@ const ContactPage: React.FC = () => {
                                 </div>
                                 <h4 className="text-lg font-bold text-white mb-2">Call Us</h4>
                                 <p className="text-gray-400 text-sm mb-1">Mon-Fri from 9am to 6pm</p>
-                                <a href="tel:+917838583051" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">+91 78385 83051</a>
+                                <a href="tel:+919625429686" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">+91 96254 29686</a>
                             </div>
 
                             <div className="bg-navy-800/30 border border-white/5 p-6 rounded-2xl hover:border-cyan-500/30 transition-colors group md:col-span-2 lg:col-span-1 xl:col-span-2">
