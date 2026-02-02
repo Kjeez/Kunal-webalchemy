@@ -1,7 +1,11 @@
 import React from 'react';
 import { Check, X, ArrowRight, Zap, Crown, Rocket } from 'lucide-react';
 
-const Pricing: React.FC = () => {
+interface PricingProps {
+  onSelectPlan?: (planName: string) => void;
+}
+
+const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
   const plans = [
     {
       name: "Starter",
@@ -154,11 +158,13 @@ const Pricing: React.FC = () => {
               </ul>
 
               {/* CTA Button */}
-              <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group
+              <button
+                onClick={() => onSelectPlan?.(plan.name === "Starter" ? "Starter Package" : plan.name === "Growth" ? "Growth Package" : "Enterprise Package")}
+                className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group
                  ${plan.highlight
-                  ? 'bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02]'
-                  : 'bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-cyan-400/50 hover:text-cyan-400'
-                }
+                    ? 'bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02]'
+                    : 'bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-cyan-400/50 hover:text-cyan-400'
+                  }
               `}>
                 {plan.name === "Enterprise" ? "Contact Sales" : plan.name === "Growth" ? "Start Growing" : "Get Started"}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

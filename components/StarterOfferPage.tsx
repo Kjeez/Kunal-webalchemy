@@ -112,29 +112,10 @@ const StarterOfferPage: React.FC = () => {
                 <div className="absolute inset-0 bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]"></div>
             </div>
 
-            {/* Minimal Header - Logo Only */}
-            <div className="fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-white/5">
-                <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-                    <a href="/" className="text-2xl font-black">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Web</span>
-                        <span className="text-white">Alchemy</span>
-                    </a>
-                    <a
-                        href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 rounded-full text-white font-bold text-sm transition-all"
-                    >
-                        <MessageCircle size={16} />
-                        <span className="hidden sm:inline">WhatsApp Us</span>
-                    </a>
-                </div>
-            </div>
-
-            <div className="relative min-h-screen pt-16 z-10">
+            <div className="relative min-h-screen z-10 pt-24">
 
                 {/* HERO SECTION - Homepage Style */}
-                <section className="relative py-12 lg:py-20 overflow-hidden">
+                <section className="relative py-8 lg:py-16 overflow-hidden">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
@@ -215,7 +196,7 @@ const StarterOfferPage: React.FC = () => {
                                 <div className="flex flex-wrap gap-4 sm:gap-6 pt-4 text-sm font-medium text-gray-400">
                                     <div className="flex items-center gap-2">
                                         <Users className="w-5 h-5 text-cyan-400" />
-                                        <span>50+ Happy Clients</span>
+                                        <span>100+ Happy Clients</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Shield className="w-5 h-5 text-green-400" />
@@ -430,7 +411,7 @@ const StarterOfferPage: React.FC = () => {
                         <div className="text-center mb-12">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 mb-4">
                                 <Star className="text-yellow-400 fill-yellow-400" size={14} />
-                                <span className="text-yellow-400 text-sm font-semibold">Trusted by 50+ Businesses</span>
+                                <span className="text-yellow-400 text-sm font-semibold">Trusted by 100+ Businesses</span>
                             </div>
                             <h2 className="text-3xl sm:text-4xl font-bold text-white">
                                 What Our Clients Say
@@ -467,7 +448,7 @@ const StarterOfferPage: React.FC = () => {
                                 <div className="w-14 h-14 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <Users className="text-cyan-400" size={28} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">50+</h3>
+                                <h3 className="text-2xl font-bold text-white mb-2">100+</h3>
                                 <p className="text-gray-400">Happy Clients</p>
                             </div>
                             <div className="p-6 bg-navy-900/50 border border-white/10 rounded-2xl">
@@ -668,15 +649,6 @@ const StarterOfferPage: React.FC = () => {
                         Get Started Now - ₹11,999
                     </a>
                 </div>
-
-                {/* Minimal Footer */}
-                <footer className="relative z-10 py-8 border-t border-white/10 pb-24 sm:pb-8">
-                    <div className="max-w-5xl mx-auto px-4 text-center">
-                        <p className="text-gray-500 text-sm">
-                            © 2024 WebAlchemy. All rights reserved. | Made with ❤️ in India
-                        </p>
-                    </div>
-                </footer>
 
             </div>
 

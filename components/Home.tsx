@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hero from './Hero';
 import AboutSection from './AboutSection';
 import PainPoints from './PainPoints';
@@ -11,8 +11,17 @@ import Pricing from './Pricing';
 import FAQ from './FAQ';
 import Contact from './Contact';
 import Blogs from './Blogs';
+import ServiceFormPopup from './ServiceFormPopup';
 
 const Home: React.FC = () => {
+  const [showServiceForm, setShowServiceForm] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('');
+
+  const handleSelectPlan = (planName: string) => {
+    setSelectedPlan(planName);
+    setShowServiceForm(true);
+  };
+
   return (
     <>
       <Hero />
@@ -23,10 +32,17 @@ const Home: React.FC = () => {
       <WhyChooseUs />
       <TechStackScroll />
       <Testimonials />
-      <Pricing />
+      <Pricing onSelectPlan={handleSelectPlan} />
       <FAQ />
       <Contact />
       <Blogs />
+
+      <ServiceFormPopup
+        isOpen={showServiceForm}
+        onClose={() => setShowServiceForm(false)}
+        serviceName={selectedPlan}
+        subServiceName=""
+      />
     </>
   );
 };

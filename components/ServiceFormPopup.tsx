@@ -71,10 +71,8 @@ const ServiceFormPopup: React.FC<ServiceFormPopupProps> = ({
             const data = await response.json();
 
             if (data.success) {
-                setIsSubmitted(true);
-                setTimeout(() => {
-                    resetForm();
-                }, 2000);
+                // Redirect to thank you page for Google Ads conversion tracking
+                window.location.href = '/thank-you';
             } else {
                 alert(data.message || 'Failed to submit. Please try again.');
             }

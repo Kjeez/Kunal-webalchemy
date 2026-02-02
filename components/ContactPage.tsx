@@ -63,12 +63,8 @@ const ContactPage: React.FC = () => {
             const data = await response.json();
 
             if (data.success) {
-                setIsSubmitted(true);
-                setName('');
-                setEmail('');
-                setPhone('');
-                setMessage('');
-                setTimeout(() => setIsSubmitted(false), 5000);
+                // Redirect to thank you page for Google Ads conversion tracking
+                window.location.href = '/thank-you';
             } else {
                 setSubmitError(data.message || 'Failed to send. Please try again.');
             }
