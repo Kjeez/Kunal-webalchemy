@@ -26,6 +26,23 @@ const Hero: React.FC = () => {
               </span>
             </div>
 
+            {/* Pricing Highlight Badge */}
+            <a
+              href="#pricing"
+              className="group inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-pink-600/20 border border-cyan-400/40 backdrop-blur-sm animate-fade-in hover:border-cyan-400/70 hover:shadow-[0_0_30px_rgba(0,217,255,0.3)] transition-all duration-300 cursor-pointer"
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500">🚀</span>
+              </span>
+              <span className="text-sm sm:text-base font-bold">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Websites from ₹11,999</span>
+                <span className="text-gray-400 font-normal mx-2">•</span>
+                <span className="text-teal-300">Free Domain & Hosting</span>
+              </span>
+              <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white">

@@ -10,6 +10,22 @@ const PromoPopup: React.FC = () => {
 
   const offers = [
     {
+      type: "starter",
+      icon: Zap,
+      badge: "🔥 Limited Time Offer",
+      title: "Launch Your Website at ₹11,999",
+      priceDisplay: (
+        <div className="text-4xl font-bold text-white mb-4">
+          ₹11,999 <span className="text-lg text-gray-500 font-normal line-through">₹25,000</span>
+        </div>
+      ),
+      description: "Get a professional website with Free Domain, SSL, Hosting, SEO-ready design & Mobile Responsive. Everything you need to go online!",
+      cta: "Get Started Now",
+      color: "from-cyan-500 to-teal-400",
+      bgGlow: "bg-cyan-500/20",
+      serviceName: "Starter Package"
+    },
+    {
       type: "audit",
       icon: Zap,
       badge: "Limited Time Offer",
@@ -77,8 +93,13 @@ const PromoPopup: React.FC = () => {
           return;
         }
 
-        // Pick a random offer each time
-        setVariant(Math.floor(Math.random() * offers.length));
+        // Pick an offer: 50% chance for Starter (index 0), 50% for others
+        const randomValue = Math.random();
+        if (randomValue < 0.5) {
+          setVariant(0); // Starter offer
+        } else {
+          setVariant(1 + Math.floor(Math.random() * (offers.length - 1))); // Other offers
+        }
         setIsVisible(true);
         setHasShownFirst(true);
       }, delay);
