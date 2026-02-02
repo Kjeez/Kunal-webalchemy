@@ -6,7 +6,7 @@ const Pricing: React.FC = () => {
     {
       name: "Starter",
       badge: null,
-      price: "₹25,000",
+      price: "₹11,999",
       subtext: "One-time payment",
       tagline: "Perfect for getting started online",
       target: "Best for: Landing pages, portfolios, small business websites",
@@ -17,10 +17,11 @@ const Pricing: React.FC = () => {
         { text: "Up to 5 pages", included: true },
         { text: "Mobile-responsive design", included: true },
         { text: "SEO-ready structure", included: true },
+        { text: "Free Domain & SSL Certificate", included: true },
         { text: "Contact form integration", included: true },
         { text: "Google Analytics setup", included: true },
         { text: "1 month of support", included: true },
-        { text: "Basic hosting setup", included: true },
+        { text: "Free Hosting", included: true },
         { text: "7-day delivery", included: true },
         { text: "E-commerce functionality", included: false },
         { text: "Blog/CMS", included: false },
@@ -31,7 +32,7 @@ const Pricing: React.FC = () => {
     {
       name: "Growth",
       badge: "Most Popular",
-      price: "₹50,000",
+      price: "₹24,999",
       subtext: "One-time payment",
       tagline: "Everything you need to scale",
       target: "Best for: E-commerce stores, content-driven sites, growing brands",
@@ -80,12 +81,12 @@ const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="relative w-full py-24 bg-navy-900 z-10">
-      
+
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80rem] h-[40rem] bg-cyan-900/10 rounded-[100%] blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
           <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -105,11 +106,11 @@ const Pricing: React.FC = () => {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {plans.map((plan, index) => (
-            <div 
+            <div
               key={index}
               className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 h-full
-                ${plan.highlight 
-                  ? 'bg-navy-800/90 border-cyan-500/50 shadow-[0_0_50px_rgba(0,217,255,0.15)] transform lg:-translate-y-4 z-20' 
+                ${plan.highlight
+                  ? 'bg-navy-800/90 border-cyan-500/50 shadow-[0_0_50px_rgba(0,217,255,0.15)] transform lg:-translate-y-4 z-20'
                   : 'bg-navy-900/50 border-white/10 hover:border-white/20 hover:bg-navy-800/50 z-10'
                 }
               `}
@@ -125,13 +126,13 @@ const Pricing: React.FC = () => {
 
               {/* Title & Tagline */}
               <div className="mb-6">
-                 <h3 className={`text-xl font-bold mb-2 ${plan.highlight ? 'text-cyan-400' : 'text-white'}`}>{plan.name}</h3>
-                 <p className="text-sm text-gray-400 h-10">{plan.tagline}</p>
+                <h3 className={`text-xl font-bold mb-2 ${plan.highlight ? 'text-cyan-400' : 'text-white'}`}>{plan.name}</h3>
+                <p className="text-sm text-gray-400 h-10">{plan.tagline}</p>
               </div>
 
               {/* Price */}
               <div className="mb-2">
-                 <span className="text-4xl md:text-4xl font-black text-white">{plan.price}</span>
+                <span className="text-4xl md:text-4xl font-black text-white">{plan.price}</span>
               </div>
               <div className="text-sm text-gray-500 font-medium mb-8">{plan.subtext}</div>
 
@@ -140,45 +141,45 @@ const Pricing: React.FC = () => {
 
               {/* Features */}
               <ul className="space-y-4 mb-8 flex-grow">
-                 {plan.features.map((feature, i) => (
-                    <li key={i} className={`flex items-start gap-3 text-sm ${feature.included ? 'text-gray-300' : 'text-gray-600'}`}>
-                       {feature.included ? (
-                          <Check size={16} className={`mt-0.5 shrink-0 ${plan.highlight ? 'text-cyan-400' : 'text-green-400'}`} strokeWidth={3} />
-                       ) : (
-                          <X size={16} className="mt-0.5 shrink-0 text-gray-700" strokeWidth={3} />
-                       )}
-                       <span className={feature.bold ? 'font-semibold text-white' : ''}>{feature.text}</span>
-                    </li>
-                 ))}
+                {plan.features.map((feature, i) => (
+                  <li key={i} className={`flex items-start gap-3 text-sm ${feature.included ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {feature.included ? (
+                      <Check size={16} className={`mt-0.5 shrink-0 ${plan.highlight ? 'text-cyan-400' : 'text-green-400'}`} strokeWidth={3} />
+                    ) : (
+                      <X size={16} className="mt-0.5 shrink-0 text-gray-700" strokeWidth={3} />
+                    )}
+                    <span className={feature.bold ? 'font-semibold text-white' : ''}>{feature.text}</span>
+                  </li>
+                ))}
               </ul>
 
               {/* CTA Button */}
               <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group
-                 ${plan.highlight 
-                    ? 'bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02]' 
-                    : 'bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-cyan-400/50 hover:text-cyan-400'
-                 }
+                 ${plan.highlight
+                  ? 'bg-gradient-to-r from-cyan-500 to-teal-400 text-navy-900 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] hover:scale-[1.02]'
+                  : 'bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-cyan-400/50 hover:text-cyan-400'
+                }
               `}>
-                 {plan.name === "Enterprise" ? "Contact Sales" : plan.name === "Growth" ? "Start Growing" : "Get Started"}
-                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                {plan.name === "Enterprise" ? "Contact Sales" : plan.name === "Growth" ? "Start Growing" : "Get Started"}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
               {/* Footer Target Info */}
               <div className="mt-6 pt-6 border-t border-white/5 text-center">
-                 <p className="text-xs text-gray-500 italic">
-                    {plan.target}
-                 </p>
+                <p className="text-xs text-gray-500 italic">
+                  {plan.target}
+                </p>
               </div>
 
             </div>
           ))}
         </div>
-        
+
         {/* Enterprise Context */}
         <div className="mt-16 text-center">
-           <p className="text-gray-500 text-sm">
-              Not sure which plan is right for you? <a href="#contact" className="text-cyan-400 hover:underline">Schedule a free consultation</a>.
-           </p>
+          <p className="text-gray-500 text-sm">
+            Not sure which plan is right for you? <a href="#contact" className="text-cyan-400 hover:underline">Schedule a free consultation</a>.
+          </p>
         </div>
 
       </div>
