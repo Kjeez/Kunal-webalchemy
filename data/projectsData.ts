@@ -1,7 +1,7 @@
 export interface Project {
     id: string;
     title: string;
-    category: 'Educational' | 'E-commerce' | 'Corporate' | 'Travel' | 'Creative';
+    category: 'Educational' | 'E-commerce' | 'Corporate' | 'Travel' | 'Creative' | 'Dental';
     image: string;
     link: string;
     metric?: string;
@@ -67,6 +67,32 @@ export const projectsData: Project[] = [
         metric: 'Education'
     },
 
+    // Dental
+    {
+        id: 'dental-1',
+        title: '32 Dental House',
+        category: 'Dental',
+        image: '/portfolio-screenshots/32dentalhouse.jpg',
+        link: 'https://32dentalhouse.com/',
+        metric: 'Dental Clinic'
+    },
+    {
+        id: 'dental-2',
+        title: 'Stunning Dentistry',
+        category: 'Dental',
+        image: '/portfolio-screenshots/stunningdentistry.jpg',
+        link: 'https://www.stunningdentistry.com/',
+        metric: 'Dental Practice'
+    },
+    {
+        id: 'dental-3',
+        title: 'Hardik Dental Clinic',
+        category: 'Dental',
+        image: '/portfolio-screenshots/hardikdentalclinic.jpg',
+        link: 'https://hardikdentalclinic.com/',
+        metric: 'Dental Healthcare'
+    },
+
     // E-commerce & Business
     {
         id: 'comm-1',
@@ -99,6 +125,54 @@ export const projectsData: Project[] = [
         image: '/portfolio-screenshots/noonbrew.jpg',
         link: 'https://noonbrew.co',
         metric: 'Beverage Brand'
+    },
+    {
+        id: 'comm-7',
+        title: 'Kanchi VML',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/kanchivml.jpg',
+        link: 'https://kanchivml.com/',
+        metric: 'Fashion Store'
+    },
+    {
+        id: 'comm-8',
+        title: 'Pothys',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/pothys.jpg',
+        link: 'https://www.pothys.com/',
+        metric: 'Textile Brand'
+    },
+    {
+        id: 'comm-9',
+        title: 'Koskii',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/koskii.jpg',
+        link: 'https://www.koskii.com/',
+        metric: 'Fashion Brand'
+    },
+    {
+        id: 'comm-10',
+        title: 'Sudathi',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/sudathi.jpg',
+        link: 'https://sudathi.com/',
+        metric: 'Fashion Store'
+    },
+    {
+        id: 'comm-11',
+        title: 'Adi Akshoy',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/adiakshoy.jpg',
+        link: 'https://adiakshoy.com/',
+        metric: 'E-commerce Store'
+    },
+    {
+        id: 'comm-12',
+        title: 'Wholesum',
+        category: 'E-commerce',
+        image: '/portfolio-screenshots/wholesum.jpg',
+        link: 'https://dev.wholesum.app/',
+        metric: 'Wellness Platform'
     },
     {
         id: 'travel-4',

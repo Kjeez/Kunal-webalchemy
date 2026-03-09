@@ -5,7 +5,7 @@ import { projectsData, Project } from '../data/projectsData';
 const PortfolioPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('All');
 
-    const categories = ['All', 'Educational', 'E-commerce', 'Corporate', 'Travel', 'Creative'];
+    const categories = ['All', 'Educational', 'E-commerce', 'Dental', 'Corporate', 'Travel', 'Creative'];
 
     const filteredProjects = activeCategory === 'All'
         ? projectsData
@@ -36,8 +36,8 @@ const PortfolioPage: React.FC = () => {
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
                             className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${activeCategory === cat
-                                    ? 'bg-cyan-500 text-navy-900 border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.4)]'
-                                    : 'bg-navy-800/50 text-gray-400 border-white/5 hover:border-cyan-500/50 hover:text-white'
+                                ? 'bg-cyan-500 text-navy-900 border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.4)]'
+                                : 'bg-navy-800/50 text-gray-400 border-white/5 hover:border-cyan-500/50 hover:text-white'
                                 }`}
                         >
                             {cat}

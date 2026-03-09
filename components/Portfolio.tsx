@@ -18,20 +18,21 @@ const Portfolio: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Select top 15 projects for the marquee (3 rows x 5 items)
+  // Select top 18 projects for the marquee (3 rows x 6 items)
   // We'll mix categories for variety
   const featuredProjects = [
     ...projectsData.filter(p => p.category === 'Educational').slice(0, 3),
     ...projectsData.filter(p => p.category === 'E-commerce').slice(0, 3),
+    ...projectsData.filter(p => p.category === 'Dental').slice(0, 3),
     ...projectsData.filter(p => p.category === 'Corporate').slice(0, 3),
     ...projectsData.filter(p => p.category === 'Travel').slice(0, 3),
     ...projectsData.filter(p => p.category === 'Creative').slice(0, 3),
   ];
 
   // Split into rows
-  const row1 = featuredProjects.slice(0, 5);
-  const row2 = featuredProjects.slice(5, 10);
-  const row3 = featuredProjects.slice(10, 15);
+  const row1 = featuredProjects.slice(0, 6);
+  const row2 = featuredProjects.slice(6, 12);
+  const row3 = featuredProjects.slice(12, 18);
 
   return (
     <section id="results" className="relative w-full py-24 bg-navy-900 z-10 overflow-hidden">
