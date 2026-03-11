@@ -363,5 +363,29 @@ export const projectsData: Project[] = [
         image: '/portfolio-screenshots/toaster.jpg',
         link: 'https://toaster.co',
         metric: 'Tech Platform'
+    },
+    {
+        id: 'corp-15',
+        title: 'Allure Space',
+        category: 'Corporate',
+        image: '/portfolio-screenshots/allurespace.png',
+        link: 'https://allure-space.vercel.app/',
+        metric: 'Interior Design'
+    },
+    {
+        id: 'corp-16',
+        title: 'Yash Interior',
+        category: 'Corporate',
+        image: '/portfolio-screenshots/yashinterior.png',
+        link: 'https://www.yashinterior.in/interior-designer-in-delhi-ncr',
+        metric: 'Interior Design'
+    },
+    {
+        id: 'corp-17',
+        title: 'The Interia',
+        category: 'Corporate',
+        image: '/portfolio-screenshots/theinteria.png',
+        link: 'https://www.theinteria.com/luxury-interior-design-company',
+        metric: 'Luxury Interiors'
     }
 ];
