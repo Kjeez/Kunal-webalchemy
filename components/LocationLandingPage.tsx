@@ -87,7 +87,7 @@ const LocationLandingPage: React.FC<LocationLandingPageProps> = ({ city }) => {
             "name": `WebAlchemy - Website Developer in ${city}`,
             "description": data.metaDescription,
             "url": `https://webalchemy.in/website-developer-${city.toLowerCase()}`,
-            "telephone": "+91-9625429686",
+            "telephone": "+91-7838583051",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": city,
@@ -216,7 +216,7 @@ const LocationLandingPage: React.FC<LocationLandingPageProps> = ({ city }) => {
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </button>
-                            <a href="tel:+919625429686" className="px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white font-medium text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                            <a href="tel:+917838583051" className="px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white font-medium text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                                 <Phone className="w-5 h-5" />
                                 Call Now
                             </a>
@@ -373,9 +373,9 @@ const LocationLandingPage: React.FC<LocationLandingPageProps> = ({ city }) => {
                         >
                             Get Free Quote
                         </button>
-                        <a href="tel:+919625429686" className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold flex items-center justify-center gap-2 hover:bg-white/5 transition-colors">
+                        <a href="tel:+917838583051" className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold flex items-center justify-center gap-2 hover:bg-white/5 transition-colors">
                             <Phone className="w-5 h-5" />
-                            +91 96254 29686
+                            +91 78385 83051
                         </a>
                     </div>
                 </div>

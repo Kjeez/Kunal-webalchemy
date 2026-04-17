@@ -37,7 +37,7 @@ const StarterOfferPage: React.FC = () => {
         return () => clearInterval(timer);
     }, []);
 
-    const phoneNumber = "919625429686";
+    const phoneNumber = "917838583051";
     const whatsappMessage = encodeURIComponent("Hi! I'm interested in the ₹11,999 Starter Website Package. Please share more details.");
 
     const features = [
@@ -184,7 +184,7 @@ const StarterOfferPage: React.FC = () => {
                                     </a>
 
                                     <a
-                                        href="tel:+919625429686"
+                                        href="tel:+917838583051"
                                         className="px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white font-medium text-lg hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2"
                                     >
                                         <Phone className="w-5 h-5" />
@@ -550,14 +550,14 @@ const StarterOfferPage: React.FC = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <a
-                                href="tel:+919625429686"
+                                href="tel:+917838583051"
                                 className="p-6 bg-navy-800/50 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all text-center group"
                             >
                                 <div className="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                                     <Phone className="text-blue-400" size={24} />
                                 </div>
                                 <h3 className="text-white font-semibold mb-2">Phone</h3>
-                                <p className="text-cyan-400">+91 96254 29686</p>
+                                <p className="text-cyan-400">+91 78385 83051</p>
                             </a>
 
                             <a
@@ -623,7 +623,7 @@ const StarterOfferPage: React.FC = () => {
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
                             </a>
                             <a
-                                href="tel:+919625429686"
+                                href="tel:+917838583051"
                                 className="flex items-center justify-center gap-3 px-10 py-5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white font-bold text-xl transition-all"
                             >
                                 <Phone size={28} />

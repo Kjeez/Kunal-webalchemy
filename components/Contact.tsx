@@ -124,7 +124,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold mb-1">Call Us</h4>
-                  <a href="tel:+919625429686" className="text-gray-400 hover:text-purple-400 transition-colors">+91 96254 29686</a>
+                  <a href="tel:+917838583051" className="text-gray-400 hover:text-purple-400 transition-colors">+91 78385 83051</a>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold mb-1">WhatsApp</h4>
-                  <a href="https://wa.me/919625429686" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">+91 96254 29686</a>
+                  <a href="https://wa.me/917838583051" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">+91 78385 83051</a>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ const Contact: React.FC = () => {
                             id="phone"
                             value={phone}
                             onChange={handlePhoneChange}
-                            placeholder="96254 29686"
+                            placeholder="78385 83051"
                             maxLength={10}
                             className={`w-full bg-navy-900/50 border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-1 transition-all ${phoneError
                               ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'

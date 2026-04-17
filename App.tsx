@@ -37,7 +37,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Set to false for /starter-offer to use homepage navbar
   const isLandingPage = false; // pathname === '/starter-offer';
 
-  const phoneNumber = "919625429686";
+  const phoneNumber = "917838583051";
   const whatsappMessage = encodeURIComponent("Hi! I'm interested in your web development services. Please share more details.");
 
   return (

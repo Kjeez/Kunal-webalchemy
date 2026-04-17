@@ -3,7 +3,7 @@ import { CheckCircle, ArrowRight, Phone, MessageCircle, Home } from 'lucide-reac
 import { Link } from 'react-router-dom';
 
 const ThankYouPage: React.FC = () => {
-    const phoneNumber = "919625429686";
+    const phoneNumber = "917838583051";
     const whatsappMessage = encodeURIComponent("Hi! I just submitted a form on your website. Looking forward to hearing from you!");
 
     // Optional: Fire Google Ads conversion on page load
@@ -97,7 +97,7 @@ const ThankYouPage: React.FC = () => {
                             WhatsApp Us
                         </a>
                         <a
-                            href="tel:+919625429686"
+                            href="tel:+917838583051"
                             className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-white font-bold transition-all"
                         >
                             <Phone size={20} />
