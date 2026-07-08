@@ -16,6 +16,8 @@ import ThankYouPage from './components/ThankYouPage';
 import Footer from './components/Footer';
 import PromoPopup from './components/PromoPopup';
 import { BackgroundBeams } from './components/Visuals';
+import useCanonical from './components/useCanonical';
+import LocalBusinessSchema from './components/LocalBusinessSchema';
 import ScrollProgress from './components/ScrollProgress';
 
 // Scroll to top component
@@ -40,8 +42,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const phoneNumber = "917838583051";
   const whatsappMessage = encodeURIComponent("Hi! I'm interested in your web development services. Please share more details.");
 
+  // Set self-referencing canonical URL on every route change
+  useCanonical();
+
   return (
     <>
+      <LocalBusinessSchema />
       <ScrollProgress />
       <BackgroundBeams />
       {!isLandingPage && <PromoPopup />}

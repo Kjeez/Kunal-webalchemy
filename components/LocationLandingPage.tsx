@@ -71,15 +71,6 @@ const LocationLandingPage: React.FC<LocationLandingPageProps> = ({ city }) => {
             document.head.appendChild(metaDesc);
         }
 
-        // Add canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', `https://webalchemy.in/website-developer-${city.toLowerCase()}`);
-
         // Add LocalBusiness Schema
         const schema = {
             "@context": "https://schema.org",

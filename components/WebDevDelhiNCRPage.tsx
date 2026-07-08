@@ -19,13 +19,6 @@ const WebDevDelhiNCRPage: React.FC = () => {
             metaDesc.setAttribute('content', 'Leading web development company in Delhi NCR. Custom websites, e-commerce, digital marketing for businesses in Delhi, Gurgaon, Noida. 100+ clients. Free quote!');
         }
 
-        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.rel = 'canonical';
-            document.head.appendChild(canonical);
-        }
-        canonical.href = 'https://webalchemy.in/web-development-company-delhi-ncr';
 
         const schema = {
             "@context": "https://schema.org",

@@ -130,7 +130,7 @@ const Navbar: React.FC = () => {
                         <ul className="space-y-2">
                           {section.items.map(sub => (
                             <li key={sub}>
-                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                              <Link to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
                                 {sub}
                               </Link>
                             </li>
@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
                         <ul className="space-y-2">
                           {section.items.map(sub => (
                             <li key={sub}>
-                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                              <Link to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
                                 {sub}
                               </Link>
                             </li>
@@ -166,7 +166,7 @@ const Navbar: React.FC = () => {
                         <ul className="space-y-2">
                           {section.items.map(sub => (
                             <li key={sub}>
-                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                              <Link to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
                                 {sub}
                               </Link>
                             </li>
@@ -184,7 +184,7 @@ const Navbar: React.FC = () => {
                         <ul className="space-y-2">
                           {section.items.map(sub => (
                             <li key={sub}>
-                              <Link to={`/services?category=${section.categoryId}&service=${encodeURIComponent(sub)}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
+                              <Link to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`} className="text-gray-400 text-sm hover:text-white transition-colors block hover:translate-x-1 duration-200 outline-none focus:outline-none" onClick={() => setIsServicesHovered(false)}>
                                 {sub}
                               </Link>
                             </li>

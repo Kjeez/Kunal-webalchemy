@@ -328,7 +328,8 @@ const Services: React.FC = () => {
                       <button
                         onClick={() => {
                           setSelectedService(null);
-                          navigate(`/services?category=${selectedService.categoryId}`);
+                          const slugMap: Record<string, string> = {web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'};
+                          navigate(`/services/${slugMap[selectedService.categoryId]}`);
                         }}
                         className="flex-1 py-3 sm:py-4 rounded-xl border border-white/10 bg-white/5 text-white font-semibold text-sm sm:text-base hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
                       >

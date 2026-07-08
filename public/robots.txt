@@ -10,6 +10,9 @@ Sitemap: https://webalchemy.in/sitemap.xml
 # Disallow admin and API routes
 Disallow: /api/
 
+# Disallow query-param service URLs (duplicates of clean routes)
+Disallow: /services?
+
 # Allow crawling of all public pages
 Allow: /services/
 Allow: /blog/

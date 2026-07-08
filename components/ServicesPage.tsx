@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import {
   Monitor, Smartphone, PenTool, Type, Megaphone, Radio,
   Tv, Bus, Plane, Train, Film, Newspaper, MapPin,
@@ -13,24 +12,10 @@ interface ServicesPageProps {
 }
 
 const ServicesPage: React.FC<ServicesPageProps> = ({ category: propCategory }) => {
-  const [searchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState(propCategory || 'web');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedService, setSelectedService] = useState('');
   const [selectedSubService, setSelectedSubService] = useState('');
-
-  // Handle category updates from prop or URL
-  useEffect(() => {
-    if (propCategory) {
-      setActiveCategory(propCategory);
-      return;
-    }
-
-    const category = searchParams.get('category');
-    if (category && ['web', 'marketing', 'design', 'content', 'app', 'pr'].includes(category)) {
-      setActiveCategory(category);
-    }
-  }, [searchParams, propCategory]);
 
   const handleStartClick = (serviceName: string, subServiceName: string) => {
     setSelectedService(serviceName);

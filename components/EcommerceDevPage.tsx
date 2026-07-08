@@ -16,14 +16,6 @@ const EcommerceDevPage: React.FC = () => {
             metaDesc.setAttribute('content', 'Expert e-commerce website development in Delhi NCR. Shopify, WooCommerce, custom online stores. Boost your online sales with our proven solutions. Free quote!');
         }
 
-        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.rel = 'canonical';
-            document.head.appendChild(canonical);
-        }
-        canonical.href = 'https://webalchemy.in/ecommerce-website-development';
-
         const schema = {
             "@context": "https://schema.org",
             "@type": "Service",

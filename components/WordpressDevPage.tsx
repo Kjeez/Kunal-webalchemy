@@ -16,14 +16,6 @@ const WordpressDevPage: React.FC = () => {
             metaDesc.setAttribute('content', 'Expert WordPress developer in Delhi NCR. Custom themes, plugins, WooCommerce, speed optimization. 100+ WordPress sites delivered. Free consultation!');
         }
 
-        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.rel = 'canonical';
-            document.head.appendChild(canonical);
-        }
-        canonical.href = 'https://webalchemy.in/wordpress-development';
-
         const schema = {
             "@context": "https://schema.org",
             "@type": "Service",
