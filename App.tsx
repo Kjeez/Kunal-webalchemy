@@ -8,6 +8,7 @@ import BlogPostPage from './components/BlogPostPage';
 import PortfolioPage from './components/PortfolioPage';
 import ContactPage from './components/ContactPage';
 import LocationLandingPage from './components/LocationLandingPage';
+import WebsiteDeveloperDelhiPage from './components/WebsiteDeveloperDelhiPage';
 import WebDevDelhiNCRPage from './components/WebDevDelhiNCRPage';
 import EcommerceDevPage from './components/EcommerceDevPage';
 import WordpressDevPage from './components/WordpressDevPage';
@@ -101,7 +102,7 @@ const App: React.FC = () => {
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/website-developer-delhi" element={<LocationLandingPage city="Delhi" />} />
+            <Route path="/website-developer-delhi" element={<WebsiteDeveloperDelhiPage />} />
             <Route path="/website-developer-gurgaon" element={<LocationLandingPage city="Gurgaon" />} />
             <Route path="/website-developer-noida" element={<LocationLandingPage city="Noida" />} />
             <Route path="/web-development-company-delhi-ncr" element={<WebDevDelhiNCRPage />} />
