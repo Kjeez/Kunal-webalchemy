@@ -2,19 +2,6 @@
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
     "framework": null,
-    "redirects": [
-        {
-            "source": "/:path(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "www.webalchemy.in"
-                }
-            ],
-            "destination": "https://webalchemy.in/:path",
-            "permanent": true
-        }
-    ],
     "rewrites": [
         {
             "source": "/api/(.*)",
