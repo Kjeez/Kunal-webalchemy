@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     <footer className="relative w-full bg-[#05081c] border-t border-white/5 pt-20 pb-10 text-sm z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
 
           {/* Column 1: Brand */}
           <div className="space-y-6">
@@ -104,7 +104,50 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
+          {/* Column 4: Delhi NCR Links */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Web Development in Delhi NCR</h4>
+            <ul className="space-y-4">
+              <li>
+                <Link to="/website-developer-delhi" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Website Developer Delhi
+                </Link>
+              </li>
+              <li>
+                <Link to="/website-developer-gurgaon" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Website Developer Gurgaon
+                </Link>
+              </li>
+              <li>
+                <Link to="/website-developer-noida" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Website Developer Noida
+                </Link>
+              </li>
+              <li>
+                <Link to="/web-development-company-delhi-ncr" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Web Dev Company Delhi NCR
+                </Link>
+              </li>
+              <li>
+                <Link to="/wordpress-development" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  WordPress Development
+                </Link>
+              </li>
+              <li>
+                <Link to="/ecommerce-website-development" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center relative group">
+                  <span className="absolute -left-4 w-1.5 h-1.5 rounded-full bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  E-commerce Development
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Newsletter */}
           <div>
             <h4 className="text-white font-bold mb-6">Stay Updated</h4>
             <p className="text-gray-400 mb-4">Subscribe to our newsletter for the latest design trends and tech insights.</p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import ServiceFormPopup from './ServiceFormPopup';
 import {
   Code2,
@@ -25,6 +25,7 @@ interface Service {
   popular: boolean;
   color: string;
   categoryId: string;
+  link: string;
 }
 
 const Services: React.FC = () => {
@@ -42,7 +43,8 @@ const Services: React.FC = () => {
       features: ["Responsive Design", "Fast Performance", "SEO Optimized", "7-Day Delivery"],
       popular: true,
       color: "from-cyan-400 to-blue-500",
-      categoryId: "web"
+      categoryId: "web",
+      link: "/services/web-development"
     },
     {
       id: "02",
@@ -52,47 +54,52 @@ const Services: React.FC = () => {
       features: ["Google Ads", "Meta Ads", "SEO Strategy", "Analytics & Reporting"],
       popular: false,
       color: "from-purple-400 to-pink-500",
-      categoryId: "marketing"
+      categoryId: "marketing",
+      link: "/services/digital-marketing"
     },
     {
       id: "03",
-      icon: ShieldCheck,
-      title: "Website Maintenance",
-      description: "Keep your website secure, fast, and up-to-date.",
-      features: ["Monthly Updates", "Security Monitoring", "Performance Optimization", "24/7 Support"],
-      popular: false,
-      color: "from-emerald-400 to-teal-500",
-      categoryId: "web"
-    },
-    {
-      id: "04",
-      icon: Mic,
-      title: "PR & Media",
-      description: "Get featured in top publications and build your brand.",
-      features: ["Media Placements", "Press Releases", "Brand Positioning", "Reputation Management"],
-      popular: false,
-      color: "from-orange-400 to-red-500",
-      categoryId: "pr"
-    },
-    {
-      id: "05",
-      icon: Smartphone,
-      title: "Mobile Apps",
-      description: "iOS and Android apps that users love.",
-      features: ["Native Development", "Cross-Platform", "App Store Launch", "Ongoing Support"],
-      popular: false,
-      color: "from-blue-400 to-indigo-500",
-      categoryId: "app"
-    },
-    {
-      id: "06",
       icon: Palette,
-      title: "Branding & Design",
+      title: "Design & Branding",
       description: "Visual identity that makes you memorable.",
       features: ["Logo Design", "Brand Guidelines", "Marketing Materials", "UI/UX Design"],
       popular: false,
       color: "from-pink-400 to-rose-500",
-      categoryId: "design"
+      categoryId: "design",
+      link: "/services/design-branding"
+    },
+    {
+      id: "04",
+      icon: ShieldCheck,
+      title: "Content Strategy",
+      description: "Words that rank on Google and sell to humans.",
+      features: ["SEO Blog Writing", "Website Copy", "Keyword Strategy", "Content Calendar"],
+      popular: false,
+      color: "from-emerald-400 to-teal-500",
+      categoryId: "content",
+      link: "/services/content-strategy"
+    },
+    {
+      id: "05",
+      icon: Smartphone,
+      title: "App Development",
+      description: "iOS and Android apps that users love.",
+      features: ["Native Development", "Cross-Platform", "App Store Launch", "Ongoing Support"],
+      popular: false,
+      color: "from-blue-400 to-indigo-500",
+      categoryId: "app",
+      link: "/services/app-development"
+    },
+    {
+      id: "06",
+      icon: Mic,
+      title: "PR & Advertising",
+      description: "Get featured in top publications and build your brand.",
+      features: ["Media Placements", "Press Releases", "Brand Positioning", "Reputation Management"],
+      popular: false,
+      color: "from-orange-400 to-red-500",
+      categoryId: "pr",
+      link: "/services/pr-advertising"
     }
   ];
 
@@ -128,7 +135,7 @@ const Services: React.FC = () => {
             </div>
 
             <p className="text-gray-400 max-w-sm text-base sm:text-lg leading-relaxed">
-              We combine design, technology, and strategy to build products that win.
+              We combine design, technology, and strategy to build products that win. If you're in Delhi NCR, check out our <Link to="/website-developer-delhi" className="text-cyan-400 hover:underline">Website Developer Delhi</Link> services. You can also explore our <Link to="/portfolio" className="text-cyan-400 hover:underline">Portfolio</Link> of recent work.
             </p>
           </div>
 
@@ -199,16 +206,16 @@ const Services: React.FC = () => {
                       <Zap className="w-4 h-4" />
                       Get Started
                     </button>
-                    <button
+                    <Link
+                      to={service.link}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedService(service);
                       }}
                       className="flex-1 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
                     >
                       Explore
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
 

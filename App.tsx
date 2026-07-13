@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ServicesPage from './components/ServicesPage';
+import WebDevelopmentPage from './components/services/WebDevelopmentPage';
+import DigitalMarketingPage from './components/services/DigitalMarketingPage';
+import DesignBrandingPage from './components/services/DesignBrandingPage';
+import ContentStrategyPage from './components/services/ContentStrategyPage';
+import AppDevelopmentPage from './components/services/AppDevelopmentPage';
+import PrAdvertisingPage from './components/services/PrAdvertisingPage';
 import BlogPage from './components/BlogPage';
 import BlogPostPage from './components/BlogPostPage';
 import PortfolioPage from './components/PortfolioPage';
@@ -92,12 +98,12 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/web-development" element={<ServicesPage category="web" />} />
-            <Route path="/services/digital-marketing" element={<ServicesPage category="marketing" />} />
-            <Route path="/services/design-branding" element={<ServicesPage category="design" />} />
-            <Route path="/services/content-strategy" element={<ServicesPage category="content" />} />
-            <Route path="/services/app-development" element={<ServicesPage category="app" />} />
-            <Route path="/services/pr-advertising" element={<ServicesPage category="pr" />} />
+            <Route path="/services/web-development" element={<WebDevelopmentPage />} />
+            <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
+            <Route path="/services/design-branding" element={<DesignBrandingPage />} />
+            <Route path="/services/content-strategy" element={<ContentStrategyPage />} />
+            <Route path="/services/app-development" element={<AppDevelopmentPage />} />
+            <Route path="/services/pr-advertising" element={<PrAdvertisingPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
