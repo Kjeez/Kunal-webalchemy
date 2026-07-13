@@ -6,6 +6,7 @@ import ServiceFormPopup from './ServiceFormPopup';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [showEstimatePopup, setShowEstimatePopup] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -243,7 +244,38 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="absolute top-24 left-4 right-4 glass-card rounded-2xl p-6 flex flex-col gap-4 md:hidden animate-fade-in-down origin-top z-50">
           {navItems.map((item) => (
-            item.type === 'link' ? (
+            item.name === 'Services' ? (
+              <div key={item.name} className="flex flex-col border-b border-white/5">
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className="flex items-center justify-between text-lg font-medium text-gray-200 py-2 hover:text-cyan-400 transition-all text-left w-full"
+                >
+                  {item.name}
+                  <ChevronDown size={20} className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="pl-3 py-2 flex flex-col gap-5 mb-2 animate-fade-in-down border-l-2 border-cyan-500/20 ml-1 overflow-y-auto max-h-[40vh]">
+                    {[...megaMenuData.col1, ...megaMenuData.col2, ...megaMenuData.col3, ...megaMenuData.col4].map((section, idx) => (
+                      <div key={idx} className="flex flex-col gap-2">
+                        <h4 className={`${section.color} font-bold text-xs uppercase tracking-wider`}>{section.title}</h4>
+                        <div className="flex flex-col gap-2 pl-2">
+                          {section.items.map(sub => (
+                            <Link
+                              key={sub}
+                              to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`}
+                              className="text-sm text-gray-400 hover:text-white transition-colors"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {sub}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : item.type === 'link' ? (
               <Link
                 key={item.name}
                 to={item.path!}
