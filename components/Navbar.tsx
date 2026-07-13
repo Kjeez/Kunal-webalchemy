@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [openMobileSubCategory, setOpenMobileSubCategory] = useState<string | null>(null);
   const [showEstimatePopup, setShowEstimatePopup] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -254,22 +255,30 @@ const Navbar: React.FC = () => {
                   <ChevronDown size={20} className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-cyan-400' : ''}`} />
                 </button>
                 {isMobileServicesOpen && (
-                  <div className="pl-3 py-2 flex flex-col gap-5 mb-2 animate-fade-in-down border-l-2 border-cyan-500/20 ml-1 overflow-y-auto max-h-[40vh]">
+                  <div className="pl-3 py-2 flex flex-col gap-2 mb-2 animate-fade-in-down border-l-2 border-cyan-500/20 ml-1 overflow-y-auto max-h-[50vh]">
                     {[...megaMenuData.col1, ...megaMenuData.col2, ...megaMenuData.col3, ...megaMenuData.col4].map((section, idx) => (
-                      <div key={idx} className="flex flex-col gap-2">
-                        <h4 className={`${section.color} font-bold text-xs uppercase tracking-wider`}>{section.title}</h4>
-                        <div className="flex flex-col gap-2 pl-2">
-                          {section.items.map(sub => (
-                            <Link
-                              key={sub}
-                              to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`}
-                              className="text-sm text-gray-400 hover:text-white transition-colors"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {sub}
-                            </Link>
-                          ))}
-                        </div>
+                      <div key={idx} className="flex flex-col border-b border-white/5 last:border-0 pb-1">
+                        <button
+                          onClick={() => setOpenMobileSubCategory(openMobileSubCategory === section.title ? null : section.title)}
+                          className="flex items-center justify-between w-full py-2 text-left outline-none focus:outline-none"
+                        >
+                          <span className={`${section.color} font-bold text-sm uppercase tracking-wider`}>{section.title}</span>
+                          <ChevronDown size={16} className={`${section.color} transition-transform duration-300 ${openMobileSubCategory === section.title ? 'rotate-180' : ''}`} />
+                        </button>
+                        {openMobileSubCategory === section.title && (
+                          <div className="flex flex-col gap-3 pl-3 py-2 animate-fade-in-down">
+                            {section.items.map(sub => (
+                              <Link
+                                key={sub}
+                                to={`/services/${({web:'web-development',marketing:'digital-marketing',design:'design-branding',content:'content-strategy',app:'app-development',pr:'pr-advertising'} as Record<string,string>)[section.categoryId]}`}
+                                className="text-base text-gray-300 hover:text-white transition-all py-1"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {sub}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
