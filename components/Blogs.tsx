@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ArrowRight, Calendar, User, Clock, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';

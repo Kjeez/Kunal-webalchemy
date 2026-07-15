@@ -28,3 +28,9 @@ server/.env
 *.njsproj
 *.sln
 *.sw?
+
+# Next.js
+.next
+out
+*.tsbuildinfo
+next-env.d.ts

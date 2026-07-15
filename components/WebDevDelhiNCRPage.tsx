@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, MapPin, Phone, Code2, Palette, Target, ShieldCheck, Smartphone, Zap } from 'lucide-react';
 import { MockupInterface } from './Visuals';

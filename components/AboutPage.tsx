@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Rocket, Target, Users, Zap, Award, Heart, Linkedin, Twitter } from 'lucide-react';
 

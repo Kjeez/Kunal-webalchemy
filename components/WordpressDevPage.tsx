@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, Phone, Code2, Palette, Settings, Shield, Zap, Layers, PenTool, Database } from 'lucide-react';
 import Portfolio from './Portfolio';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import {
   Monitor, Smartphone, PenTool, Type, Megaphone, Radio,

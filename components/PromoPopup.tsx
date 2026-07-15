@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { X, Clock, Zap, Phone, Calculator, ArrowRight } from 'lucide-react';
 import ServiceFormPopup from './ServiceFormPopup';

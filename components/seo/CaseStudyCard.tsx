@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, MapPin, Layers, Building2, ArrowRight } from 'lucide-react';

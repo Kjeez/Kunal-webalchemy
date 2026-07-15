@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Calendar, User, Clock, ArrowUpRight, Search, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';

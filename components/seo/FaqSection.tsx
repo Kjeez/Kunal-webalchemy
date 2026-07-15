@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useId } from 'react';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 

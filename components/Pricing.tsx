@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Check, X, ArrowRight, Zap, Crown, Rocket } from 'lucide-react';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, ShoppingCart, Phone, CreditCard, Package, Truck, BarChart3, Shield, Zap, Star } from 'lucide-react';
 import Portfolio from './Portfolio';

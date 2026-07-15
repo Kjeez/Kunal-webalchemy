@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Star, Quote, TrendingUp, Activity, DollarSign, ArrowRight } from 'lucide-react';
 

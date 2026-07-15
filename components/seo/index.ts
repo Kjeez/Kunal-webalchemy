@@ -1,3 +1,5 @@
+'use client';
+
 // Barrel export for all WebAlchemy SEO components.
 // Usage: import { FaqSection, CtaBanner, BreadcrumbNav, ... } from '@/components/seo';
 

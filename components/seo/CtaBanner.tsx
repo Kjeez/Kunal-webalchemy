@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Phone, MessageCircle, ArrowRight } from 'lucide-react';
 

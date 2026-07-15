@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Activity, BarChart2, Globe, Layout, Code2, Cpu } from 'lucide-react';
 import { AreaChart, Area, ResponsiveContainer, Tooltip } from 'recharts';

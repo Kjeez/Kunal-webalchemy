@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, Play } from 'lucide-react';
 import { MockupInterface } from './Visuals';

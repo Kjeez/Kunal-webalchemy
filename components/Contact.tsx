@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Mail, Phone, Send, Calendar, MessageSquare, MessageCircle, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
