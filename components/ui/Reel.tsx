@@ -26,7 +26,8 @@ export interface ReelProps {
 }
 
 /* timeline map, taken from the template's 8-unit GSAP timeline:
-   spin 0–6, side-cards fade 5.4–6.4, fullscreen expand 5.6–8 */
+   spin 0–6, side-cards fade 5.4–6.4, fullscreen expand 5.6–8.
+   Without a finale (no video/caption) the spin covers the whole scrub. */
 const SPIN_END = 6 / 8;
 const FADE_START = 5.4 / 8;
 const FADE_END = 6.4 / 8;
@@ -54,13 +55,14 @@ const Reel: React.FC<ReelProps> = ({
   const stageRef = useRef<HTMLDivElement>(null);
   const cylRef = useRef<HTMLDivElement>(null);
   const fsRef = useRef<HTMLDivElement>(null);
+  const hasFinale = Boolean(videoSrc || caption);
 
   useEffect(() => {
     const pin = pinRef.current;
     const stage = stageRef.current;
     const cyl = cylRef.current;
     const fs = fsRef.current;
-    if (!pin || !stage || !cyl || !fs) return;
+    if (!pin || !stage || !cyl) return;
 
     const mq = window.matchMedia('(min-width: 900px)');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -69,7 +71,7 @@ const Reel: React.FC<ReelProps> = ({
 
     const faceEls = Array.from(cyl.querySelectorAll<HTMLElement>('.face'));
     const sideEls = faceEls.filter((f) => !f.classList.contains('face--video'));
-    const fsVideo = fs.querySelector('video');
+    const fsVideo = fs?.querySelector('video');
 
     const layout = () => {
       const N = faceEls.length;
@@ -83,8 +85,8 @@ const Reel: React.FC<ReelProps> = ({
         f.style.marginTop = `${-cardH / 2}px`;
         f.style.transform = `rotateY(${i * (360 / N)}deg) translateZ(${radius}px)`;
       });
-      // pin length: stage height + 3.6 viewport-heights of scrub
-      pin.style.height = `${window.innerHeight * 4.6}px`;
+      // pin length: stage height + scrub distance (shorter without a finale)
+      pin.style.height = `${window.innerHeight * (hasFinale ? 4.6 : 3.4)}px`;
     };
 
     // Smoothed scrub (GSAP's scrub:1 feel): the animation chases the
@@ -101,15 +103,22 @@ const Reel: React.FC<ReelProps> = ({
     };
 
     const apply = () => {
+      if (!hasFinale) {
+        // spin only — a full revolution across the whole scrub
+        cyl.style.transform = `rotateY(${-360 * p}deg)`;
+        return;
+      }
       cyl.style.transform = `rotateY(${-360 * clamp01(p / SPIN_END)}deg)`;
 
       const fade = 1 - clamp01((p - FADE_START) / (FADE_END - FADE_START));
       sideEls.forEach((f) => { f.style.opacity = String(fade); });
 
       const k = smooth(clamp01((p - FS_START) / (1 - FS_START)));
-      fs.style.opacity = String(k);
-      fs.style.transform = `scale(${0.24 + 0.76 * k})`;
-      fs.style.borderRadius = `${26 * (1 - k)}px`;
+      if (fs) {
+        fs.style.opacity = String(k);
+        fs.style.transform = `scale(${0.24 + 0.76 * k})`;
+        fs.style.borderRadius = `${26 * (1 - k)}px`;
+      }
       if (fsVideo) fsVideo.style.transform = `translateY(${8 - 16 * k}%)`;
     };
 
@@ -141,7 +150,7 @@ const Reel: React.FC<ReelProps> = ({
     const clearInline = () => {
       faceEls.forEach((f) => f.removeAttribute('style'));
       cyl.removeAttribute('style');
-      fs.removeAttribute('style');
+      fs?.removeAttribute('style');
       fsVideo?.removeAttribute('style');
       pin.style.height = '';
     };
@@ -189,7 +198,7 @@ const Reel: React.FC<ReelProps> = ({
       reduced.removeEventListener('change', evaluate);
       disable();
     };
-  }, []);
+  }, [hasFinale]);
 
   return (
     <section className="reel" aria-label={ariaLabel}>
@@ -220,10 +229,12 @@ const Reel: React.FC<ReelProps> = ({
               ))}
             </div>
           </div>
-          <div className="reel-fs" ref={fsRef} aria-hidden="true">
-            {videoSrc && <video src={videoSrc} muted loop playsInline autoPlay preload="metadata" />}
-            {caption && <div className="reel-cap">{caption}</div>}
-          </div>
+          {hasFinale && (
+            <div className="reel-fs" ref={fsRef} aria-hidden="true">
+              {videoSrc && <video src={videoSrc} muted loop playsInline autoPlay preload="metadata" />}
+              {caption && <div className="reel-cap">{caption}</div>}
+            </div>
+          )}
           <span className="reel-hint mono">{hint}</span>
         </div>
       </div>

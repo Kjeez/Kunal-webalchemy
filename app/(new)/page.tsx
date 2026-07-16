@@ -10,6 +10,7 @@ import {
   LogoMarquee,
   PopupCta,
   ContactPanel,
+  Reel,
 } from '@/components/ui';
 import { projectsData } from '@/data/projectsData';
 
@@ -17,15 +18,14 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-/* Same featured-project selection as the legacy homepage marquee
-   (first 3 of each category, 18 total). */
-const featuredProjects = [
-  ...projectsData.filter((p) => p.category === 'Educational').slice(0, 3),
-  ...projectsData.filter((p) => p.category === 'E-commerce').slice(0, 3),
-  ...projectsData.filter((p) => p.category === 'Dental').slice(0, 3),
-  ...projectsData.filter((p) => p.category === 'Corporate').slice(0, 3),
-  ...projectsData.filter((p) => p.category === 'Travel').slice(0, 3),
-  ...projectsData.filter((p) => p.category === 'Creative').slice(0, 3),
+/* Featured projects for the 3D reel — two per category, 12 faces. */
+const reelProjects = [
+  ...projectsData.filter((p) => p.category === 'Educational').slice(0, 2),
+  ...projectsData.filter((p) => p.category === 'E-commerce').slice(0, 2),
+  ...projectsData.filter((p) => p.category === 'Dental').slice(0, 2),
+  ...projectsData.filter((p) => p.category === 'Corporate').slice(0, 2),
+  ...projectsData.filter((p) => p.category === 'Travel').slice(0, 2),
+  ...projectsData.filter((p) => p.category === 'Creative').slice(0, 2),
 ];
 
 const clientNames = projectsData.map((p) => p.title);
@@ -67,46 +67,6 @@ const services = [
     description: 'Get featured in top publications and build your brand.',
     features: ['Media Placements', 'Press Releases', 'Brand Positioning', 'Reputation Management'],
     link: '/services/pr-advertising',
-  },
-];
-
-const painPoints = [
-  { title: 'Outdated Design', desc: "Visitors leave immediately. If it looks like 2010, they assume you're out of business." },
-  { title: 'No Mobile Optimization', desc: 'Losing 60% of traffic. Mobile users abandon pinch-and-zoom sites instantly.' },
-  { title: 'Slow Loading Speed', desc: '5-second load = 90% bounce rate. Every second of delay kills your conversions.' },
-  { title: 'Poor SEO Ranking', desc: 'Not found on Google searches. Your competitors are getting the leads you deserve.' },
-  { title: 'No Clear Call-to-Action', desc: "Visitors don't know what to do next. Confusion is the enemy of conversion." },
-  { title: 'DIY Website Mistakes', desc: 'Wasting time and money. Templates break, plugins conflict, and you lose sanity.' },
-];
-
-const advantages = [
-  {
-    title: 'Lightning Fast Performance',
-    desc: 'We optimize every line of code. Our sites consistently score 98+ on Google PageSpeed, ensuring better SEO and lower bounce rates.',
-    stat: { v: '99', l: 'Score' },
-  },
-  {
-    title: 'Enterprise Security',
-    desc: 'Bank-grade encryption and automated threat detection to keep your data safe.',
-    stat: { v: '✓', l: 'System Secure' },
-  },
-  {
-    title: 'Award Winning UX',
-    desc: 'Interfaces so intuitive, your grandmother could use them. Designed to convert.',
-  },
-  {
-    title: 'Modern Tech Stack',
-    desc: "We don't use outdated templates. We build with the same scalable technologies used by Netflix, Uber, and Airbnb.",
-  },
-  {
-    title: 'Direct Access',
-    desc: 'No account managers playing "telephone". You get a direct Slack channel with your design & dev team.',
-  },
-  {
-    title: 'ROI Focused',
-    desc: 'We don\'t care about "pretty". We care about profit. Every pixel is placed with the intention to convert.',
-    stat: { v: '+154%', l: 'Avg. Lift' },
-    stat2: { v: '3.8x', l: 'Conversion' },
   },
 ];
 
@@ -166,39 +126,6 @@ const faqs = [
   },
 ];
 
-const posts = [
-  {
-    id: 1,
-    title: 'The Psychology of Color in Web Design',
-    excerpt: 'How choosing the right color palette can increase your conversion rates by up to 24%.',
-    image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800',
-    date: 'Mar 15, 2024',
-    author: 'Alex Morgan',
-    readTime: '5 min read',
-    category: 'Design',
-  },
-  {
-    id: 2,
-    title: 'Why Speed is the New SEO King',
-    excerpt: "Google's Core Web Vitals update changed everything. Here is how to optimize for 100/100 scores.",
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-    date: 'Mar 10, 2024',
-    author: 'Sarah Jenkins',
-    readTime: '8 min read',
-    category: 'Technical',
-  },
-  {
-    id: 3,
-    title: 'From Visitor to Customer: CRO Basics',
-    excerpt: '5 actionable tweaks you can make to your landing page today to double your leads.',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
-    date: 'Mar 05, 2024',
-    author: 'Michael Chen',
-    readTime: '6 min read',
-    category: 'Marketing',
-  },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -240,25 +167,7 @@ export default function HomePage() {
         <LogoMarquee label="Trusted by Industry Leaders" items={clientNames} duration={80} />
       </div>
 
-      {/* ============ ABOUT (Who Are We / What We Do) ============ */}
-      <Section index="01" kicker="About" accent="orange" className="pt0">
-        <div className="two-col">
-          <div className="prose r">
-            <h2>Who Are We?</h2>
-            <p>
-              WebAlchemy is a digital Growth agency based in New Delhi, helping businesses and startups build a strong online presence through customized digital solutions. We specialize in website development, UI/UX design, SEO, social media marketing, branding, and performance-driven strategies, combining creativity, technology, and data to deliver impactful experiences that help brands grow, scale, and stand out in the digital world.
-            </p>
-          </div>
-          <div className="prose r">
-            <h2>What We Do?</h2>
-            <p>
-              Our pursuit of the perfect blend of data and creativity enables brands to unlock their true business potential.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Stats strip (from legacy About section) */}
+      {/* Stats strip */}
       <StatsStrip
         stats={[
           { value: 5, suffix: '+', label: 'Years Experience' },
@@ -268,36 +177,10 @@ export default function HomePage() {
         ]}
       />
 
-      {/* ============ PAIN POINTS ============ */}
-      <Section
-        index="02"
-        kicker="System Diagnostics"
-        heading={
-          <>
-            Is Your Website <span className="mk o">Bleeding</span> Revenue?
-          </>
-        }
-        aside="Identified critical errors preventing your business from scaling."
-        accent="orange"
-      >
-        <div className="cardgrid">
-          {painPoints.map((p, i) => (
-            <div className="card r" key={p.title}>
-              <div className="c-idx">{String(i + 1).padStart(2, '0')}</div>
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="center" style={{ marginTop: 40 }}>
-          <a href="#contact" className="btn btn-out">Initiate Repair Protocol</a>
-        </div>
-      </Section>
-
       {/* ============ SERVICES ============ */}
       <Section
         id="services"
-        index="03"
+        index="01"
         kicker="Our Expertise"
         heading={
           <>
@@ -339,10 +222,10 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ============ PORTFOLIO ============ */}
+      {/* ============ PORTFOLIO (3D reel) ============ */}
       <Section
         id="results"
-        index="04"
+        index="02"
         kicker="Global Impact"
         heading={
           <>
@@ -351,58 +234,17 @@ export default function HomePage() {
         }
         aside="Explore our recent work. We build digital experiences that drive real business growth."
         accent="green"
-        className="gallery"
+        className="pt0"
       >
-        <div className="gallery-scroll r">
-          {featuredProjects.map((p) => (
-            <a
-              className="gtile ph-wrap"
-              key={p.id}
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.image} alt={p.title} loading="lazy" />
-              <span className="gcap">{p.title}{p.metric ? ` — ${p.metric}` : ''}</span>
-            </a>
-          ))}
-        </div>
-        <p className="gallery-hint mono r">Drag or scroll →</p>
-        <div className="center" style={{ marginTop: 28 }}>
-          <Link href="/portfolio" className="btn btn-dark">View all Projects</Link>
-        </div>
+        {/* header only — the reel below pins full-viewport while it spins */}
       </Section>
-
-      {/* ============ WHY CHOOSE US ============ */}
-      <Section
-        id="process"
-        index="05"
-        kicker="The WebAlchemy Advantage"
-        heading={
-          <>
-            Why Visionaries <span className="mk v">Partner</span> With Us
-          </>
-        }
-        aside="We don't just build websites; we engineer digital ecosystems designed for dominance. Here is what sets our agency apart from the crowd."
-        accent="violet"
-      >
-        <div className="cardgrid">
-          {advantages.map((a, i) => (
-            <div className="card r" key={a.title}>
-              <div className="c-idx">{String(i + 1).padStart(2, '0')}</div>
-              <h3>{a.title}</h3>
-              <p>{a.desc}</p>
-              {(a.stat || a.stat2) && (
-                <div className="pillrow" style={{ marginTop: 18 }}>
-                  {a.stat && <span className="pill">{a.stat.v} {a.stat.l}</span>}
-                  {a.stat2 && <span className="pill">{a.stat2.v} {a.stat2.l}</span>}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </Section>
+      <Reel
+        ariaLabel="Recent projects showreel"
+        faces={reelProjects.map((p) => ({ src: p.image, alt: p.title }))}
+      />
+      <div className="center" style={{ padding: '28px 0 clamp(48px,7vw,90px)' }}>
+        <Link href="/portfolio" className="btn btn-dark">View all Projects</Link>
+      </div>
 
       {/* ============ TECH STACK ============ */}
       <div style={{ paddingBottom: 'clamp(48px,7vw,90px)' }}>
@@ -411,7 +253,7 @@ export default function HomePage() {
 
       {/* ============ TESTIMONIALS ============ */}
       <Section
-        index="06"
+        index="03"
         kicker="Client Success Stories"
         heading={
           <>
@@ -450,7 +292,7 @@ export default function HomePage() {
       {/* ============ PRICING ============ */}
       <Section
         id="pricing"
-        index="07"
+        index="04"
         kicker="Investment"
         heading={
           <>
@@ -540,7 +382,7 @@ export default function HomePage() {
       {/* ============ FAQ ============ */}
       <Section
         id="faq"
-        index="08"
+        index="05"
         kicker="FAQ"
         heading="Frequently Asked Questions"
         aside="Everything you need to know about working with WebAlchemy."
@@ -559,7 +401,7 @@ export default function HomePage() {
       {/* ============ CONTACT ============ */}
       <Section
         id="contact"
-        index="09"
+        index="06"
         kicker="Contact Us"
         heading={
           <>
@@ -605,42 +447,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ============ BLOG ============ */}
-      <Section
-        id="blog"
-        index="10"
-        kicker="Knowledge Base"
-        heading={
-          <>
-            Latest <span className="mk p">Insights</span>
-          </>
-        }
-        aside="Strategies, case studies, and technical deep-dives to keep you ahead of the curve."
-        accent="pink"
-        className="pt0"
-      >
-        <div className="cardgrid">
-          {posts.map((post) => (
-            <Link href={`/blog/${post.id}`} key={post.id} className="card post-card r">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={post.image} alt={post.title} loading="lazy" />
-              <div className="pbody">
-                <div className="pmeta">
-                  <span>{post.category}</span>
-                  <span>{post.date}</span>
-                  <span>{post.readTime}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <div className="pby">{post.author}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="center" style={{ marginTop: 36 }}>
-          <Link href="/blog" className="btn btn-out">View All Articles</Link>
-        </div>
-      </Section>
     </>
   );
 }
