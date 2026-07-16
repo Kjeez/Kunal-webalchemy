@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowNE, Star } from './icons';
+import { ArrowNE, Star, Cloud, Smiley, Bolt, Heart, Squiggle } from './icons';
 
 export interface HeroCta {
   label: string;
@@ -8,7 +8,7 @@ export interface HeroCta {
 }
 
 export interface HeroFloat {
-  kind: 'star' | 'pill';
+  kind: 'star' | 'pill' | 'cloud' | 'smiley' | 'bolt' | 'heart' | 'squiggle';
   /** Pill text (kind: 'pill'). */
   text?: React.ReactNode;
   /** Position + size, e.g. { top: '15%', left: '5%', width: 32, height: 32 }. */
@@ -71,14 +71,19 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <section className="hero">
       {floats.map((f, i) =>
-        f.kind === 'star' ? (
+        f.kind !== 'pill' ? (
           <span
             key={i}
             className={`hero-float d${f.d ?? (i % 5) + 1}`}
             style={{ ...f.style, color: f.color, ...(f.rot ? { ['--rot' as string]: f.rot } : {}) }}
             aria-hidden="true"
           >
-            <Star />
+            {f.kind === 'star' && <Star />}
+            {f.kind === 'cloud' && <Cloud />}
+            {f.kind === 'smiley' && <Smiley />}
+            {f.kind === 'bolt' && <Bolt />}
+            {f.kind === 'heart' && <Heart />}
+            {f.kind === 'squiggle' && <Squiggle />}
           </span>
         ) : (
           <span

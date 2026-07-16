@@ -142,12 +142,18 @@ export default function HomePage() {
         sub="Stop losing leads to outdated design. We craft high-performance digital protocols merged with intuitive psychology. Guaranteed to 2x your conversion rate in 90 days."
         floats={[
           { kind: 'star', style: { top: '14%', left: '9%', width: 32, height: 32 }, color: 'var(--orange)', d: 4 },
+          { kind: 'cloud', style: { top: '9%', right: '13%', width: 64, height: 64, opacity: .8 }, color: 'var(--line-2)', d: 2 },
+          { kind: 'smiley', style: { top: '28%', left: '7%', width: 34, height: 34 }, rot: '-8deg', d: 3 },
           { kind: 'pill', text: '100+ Leads', style: { top: '38%', left: '3%' }, rot: '-4deg', color: 'var(--blue)', d: 2 },
+          { kind: 'cloud', style: { top: '50%', left: '11%', width: 46, height: 46, opacity: .7 }, color: 'var(--line-2)', d: 5 },
           { kind: 'pill', text: 'Free Domain & Hosting', style: { top: '60%', left: '2.5%' }, rot: '-5deg', color: 'var(--green)', d: 1 },
+          { kind: 'heart', style: { top: '73%', left: '12%', width: 24, height: 24 }, rot: '-10deg', color: 'var(--pink)', d: 4 },
           { kind: 'pill', text: '100% Success Rate', style: { top: '82%', left: '6%' }, rot: '3deg', dark: true, d: 5 },
           { kind: 'pill', text: 'Websites from ₹11,999', style: { top: '22%', right: '4%' }, rot: '5deg', color: 'var(--yellow)', d: 3 },
+          { kind: 'bolt', style: { top: '34%', right: '10%', width: 28, height: 28 }, rot: '12deg', color: 'var(--violet)', d: 1 },
           { kind: 'pill', text: '1000+ Orders', style: { top: '44%', right: '3%' }, rot: '-3deg', color: 'var(--violet)', d: 2 },
           { kind: 'pill', text: 'Results Guaranteed', style: { top: '66%', right: '4%' }, rot: '4deg', dark: true, d: 4 },
+          { kind: 'squiggle', style: { top: '78%', right: '11%', width: 64, height: 20 }, rot: '-6deg', color: 'var(--orange)', d: 5 },
           { kind: 'pill', text: 'Worldwide', style: { top: '86%', right: '9%' }, rot: '-6deg', color: 'var(--pink)', d: 1 },
           { kind: 'star', style: { top: '90%', left: '15%', width: 22, height: 22 }, color: 'var(--violet)', d: 3 },
         ]}
