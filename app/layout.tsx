@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import SiteChrome from '@/components/SiteChrome';
+import './na.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -138,7 +138,7 @@ export default function RootLayout({
           />
         </noscript>
 
-        <SiteChrome>{children}</SiteChrome>
+        {children}
 
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
