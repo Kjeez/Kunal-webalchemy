@@ -140,10 +140,9 @@ export default function HomePage() {
           </>
         }
         sub="Stop losing leads to outdated design. We craft high-performance digital protocols merged with intuitive psychology. Guaranteed to 2x your conversion rate in 90 days."
-        secondaryCta={{ label: 'View Ecosystem', href: '#results' }}
         floats={[
-          { kind: 'star', style: { top: '15%', left: '5%', width: 32, height: 32 }, color: 'var(--orange)', d: 4 },
-          { kind: 'pill', text: 'Websites from ₹11,999', style: { top: '14%', right: '5%' }, rot: '5deg', color: 'var(--yellow)', d: 1 },
+          { kind: 'star', style: { top: '18%', left: '5%', width: 32, height: 32 }, color: 'var(--orange)', d: 4 },
+          { kind: 'pill', text: 'Websites from ₹11,999', style: { top: '22%', right: '4%' }, rot: '5deg', color: 'var(--yellow)', d: 1 },
           { kind: 'pill', text: 'Free Domain & Hosting', style: { top: '73%', left: '3%' }, rot: '-5deg', color: 'var(--green)', d: 2 },
           { kind: 'pill', text: 'Results Guaranteed', style: { top: '71%', right: '4%' }, rot: '4deg', dark: true, d: 3 },
           { kind: 'star', style: { top: '87%', left: '13%', width: 24, height: 24 }, color: 'var(--violet)', d: 5 },
