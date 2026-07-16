@@ -10,7 +10,47 @@ import {
   PricingTable,
   CtaBanner,
   Breadcrumbs,
+  Reel,
 } from '@/components/ui';
+
+/* SVG project-thumb mockups, verbatim from newdesign.html */
+const thumbMeridian = (
+  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="150" fill="#fff" /><rect width="200" height="24" fill="#FBF5EE" />
+    <circle cx="13" cy="12" r="3" fill="#FF6A2C" /><circle cx="23" cy="12" r="3" fill="#E9E6DC" /><circle cx="33" cy="12" r="3" fill="#E9E6DC" />
+    <rect x="14" y="38" width="126" height="46" rx="8" fill="#FF6A2C" />
+    <rect x="24" y="50" width="46" height="6" rx="3" fill="#fff" opacity=".85" /><rect x="24" y="64" width="78" height="10" rx="4" fill="#fff" />
+    <rect x="14" y="96" width="60" height="38" rx="6" fill="#F1EEE4" /><rect x="80" y="96" width="60" height="38" rx="6" fill="#F1EEE4" />
+    <rect x="150" y="38" width="36" height="96" rx="6" fill="#FFE1CE" />
+  </svg>
+);
+const thumbVerdant = (
+  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="150" fill="#fff" /><rect width="200" height="24" fill="#F1F8F4" />
+    <circle cx="13" cy="12" r="3" fill="#1F9E6F" /><circle cx="23" cy="12" r="3" fill="#E9E6DC" /><circle cx="33" cy="12" r="3" fill="#E9E6DC" />
+    <rect x="14" y="36" width="82" height="50" rx="6" fill="#E4F3EB" /><rect x="104" y="36" width="82" height="50" rx="6" fill="#1F9E6F" />
+    <rect x="14" y="94" width="82" height="42" rx="6" fill="#1F9E6F" opacity=".45" /><rect x="104" y="94" width="82" height="42" rx="6" fill="#E4F3EB" />
+  </svg>
+);
+const thumbCadence = (
+  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="150" fill="#fff" /><rect width="200" height="24" fill="#EEF2FF" />
+    <circle cx="13" cy="12" r="3" fill="#3D63FF" /><circle cx="23" cy="12" r="3" fill="#E9E6DC" /><circle cx="33" cy="12" r="3" fill="#E9E6DC" />
+    <rect x="14" y="36" width="66" height="66" rx="10" fill="#3D63FF" />
+    <rect x="92" y="42" width="80" height="9" rx="4" fill="#1B1B18" /><rect x="92" y="58" width="54" height="7" rx="3" fill="#C9CEDA" />
+    <circle cx="100" cy="86" r="10" fill="#3D63FF" /><rect x="116" y="83" width="56" height="6" rx="3" fill="#DCE2F2" />
+    <rect x="14" y="114" width="6" height="20" rx="2" fill="#3D63FF" /><rect x="26" y="108" width="6" height="26" rx="2" fill="#3D63FF" /><rect x="38" y="118" width="6" height="16" rx="2" fill="#9DB0F2" /><rect x="50" y="104" width="6" height="30" rx="2" fill="#3D63FF" /><rect x="62" y="120" width="6" height="14" rx="2" fill="#9DB0F2" /><rect x="74" y="110" width="6" height="24" rx="2" fill="#3D63FF" /><rect x="86" y="116" width="6" height="18" rx="2" fill="#9DB0F2" />
+  </svg>
+);
+const thumbHabitat = (
+  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="150" fill="#fff" /><rect width="200" height="24" fill="#F3F0FF" />
+    <circle cx="13" cy="12" r="3" fill="#7A5CFF" /><circle cx="23" cy="12" r="3" fill="#E9E6DC" /><circle cx="33" cy="12" r="3" fill="#E9E6DC" />
+    <rect x="14" y="36" width="172" height="44" rx="8" fill="#EDE9FF" /><rect x="14" y="36" width="60" height="44" rx="8" fill="#7A5CFF" />
+    <rect x="14" y="92" width="150" height="9" rx="4" fill="#1B1B18" />
+    <rect x="14" y="108" width="172" height="6" rx="3" fill="#E1DDCF" /><rect x="14" y="120" width="172" height="6" rx="3" fill="#E1DDCF" /><rect x="14" y="132" width="120" height="6" rx="3" fill="#E1DDCF" />
+  </svg>
+);
 
 /**
  * TEMPORARY component-library styleguide — NOT a real page.
@@ -54,6 +94,25 @@ export default function DesignPreviewPage() {
         ]}
       />
 
+      <Reel
+        eyebrow="Our world in motion"
+        caption={<>Design &amp; build &amp; grow.</>}
+        /* TODO: needs content — studio reel video + carousel images */
+        faces={[
+          { video: true, alt: 'Studio showreel', placeholder: 'studio-reel.mp4' },
+          { placeholder: 'carousel-2.jpg' },
+          { placeholder: 'gallery-1.jpg' },
+          { placeholder: 'carousel-1.jpg' },
+          { placeholder: 'gallery-2.jpg' },
+          { placeholder: 'hero-megaphone.jpg' },
+          { placeholder: 'carousel-3.jpg' },
+          { placeholder: 'gallery-3.jpg' },
+          { placeholder: 'team-1.jpg' },
+          { placeholder: 'gallery-4.jpg' },
+          { placeholder: 'team-2.jpg' },
+        ]}
+      />
+
       <StatsStrip
         stats={[
           { value: 120, suffix: '+', label: 'Projects shipped' },
@@ -71,10 +130,10 @@ export default function DesignPreviewPage() {
         accent="orange"
       >
         <ProjectGrid>
-          <ProjectCard title="Meridian Bank" category="Brand & Website" metric="+212% sign-ups" />
-          <ProjectCard title="Verdant" category="E-commerce & Dev" metric="+38% AOV" />
-          <ProjectCard title="Cadence Music" category="Brand & Campaign" metric="4.1M reach" />
-          <ProjectCard title="Habitat" category="SEO & Content" metric="+180% organic" />
+          <ProjectCard title="Meridian Bank" category="Brand & Website" metric="+212% sign-ups" thumb={thumbMeridian} />
+          <ProjectCard title="Verdant" category="E-commerce & Dev" metric="+38% AOV" thumb={thumbVerdant} />
+          <ProjectCard title="Cadence Music" category="Brand & Campaign" metric="4.1M reach" thumb={thumbCadence} />
+          <ProjectCard title="Habitat" category="SEO & Content" metric="+180% organic" thumb={thumbHabitat} />
         </ProjectGrid>
       </Section>
 
@@ -105,6 +164,16 @@ export default function DesignPreviewPage() {
               title: 'SEO',
               body: 'Technical foundations, content strategy and authority-building that compound over time. Beautiful means nothing if nobody can find it.',
               tags: ['Technical SEO', 'Content strategy', 'Analytics'],
+            },
+            {
+              title: 'Content',
+              body: 'Words, photography and editorial systems that give a brand a voice worth listening to — and a library it can keep publishing from.',
+              tags: ['Copywriting', 'Photography', 'Editorial', 'Video'],
+            },
+            {
+              title: 'Marketing',
+              body: 'Paid, social and lifecycle campaigns that turn attention into measurable, repeatable growth — with the reporting to prove it.',
+              tags: ['Paid media', 'Social', 'Lifecycle', 'Campaigns'],
             },
           ]}
         />

@@ -37,4 +37,6 @@ export type { BreadcrumbsProps, BreadcrumbItem } from './Breadcrumbs';
 export { default as AccordionGroup } from './AccordionGroup';
 export { default as Effects } from './Effects';
 export { default as CursorFx } from './CursorFx';
+export { default as Reel } from './Reel';
+export type { ReelProps, ReelFace } from './Reel';
 export { ArrowNE, Check, Star } from './icons';
