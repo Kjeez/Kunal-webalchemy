@@ -11,6 +11,7 @@ import {
   PopupCta,
   ContactPanel,
   Reel,
+  CtaBanner,
 } from '@/components/ui';
 import { projectsData } from '@/data/projectsData';
 
@@ -447,6 +448,26 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* ============ CLOSING CTA CARD ============ */}
+      <CtaBanner
+        heading={
+          <>
+            Let&apos;s build something <span className="mk o strong">great.</span>
+          </>
+        }
+        text={
+          <>
+            Tell us what you&apos;re building — we&apos;ll design, build &amp; grow it with you.
+          </>
+        }
+        proof={
+          <>
+            <b>100+ clients</b> scaled with us
+          </>
+        }
+        primaryCta={{ label: 'Start a project', href: '#contact' }}
+        secondaryCta={{ label: 'Browse the work', href: '/portfolio' }}
+      />
     </>
   );
 }
