@@ -5,7 +5,7 @@ export { default as Nav } from './Nav';
 export type { NavProps } from './Nav';
 
 export { default as Hero } from './Hero';
-export type { HeroProps, HeroCta } from './Hero';
+export type { HeroProps, HeroCta, HeroFloat } from './Hero';
 
 export { default as Section } from './Section';
 export type { SectionProps, SectionAccent } from './Section';
@@ -36,4 +36,5 @@ export type { BreadcrumbsProps, BreadcrumbItem } from './Breadcrumbs';
 
 export { default as AccordionGroup } from './AccordionGroup';
 export { default as Effects } from './Effects';
+export { default as CursorFx } from './CursorFx';
 export { ArrowNE, Check, Star } from './icons';

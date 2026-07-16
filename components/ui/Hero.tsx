@@ -7,6 +7,22 @@ export interface HeroCta {
   href: string;
 }
 
+export interface HeroFloat {
+  kind: 'star' | 'pill';
+  /** Pill text (kind: 'pill'). */
+  text?: React.ReactNode;
+  /** Position + size, e.g. { top: '15%', left: '5%', width: 32, height: 32 }. */
+  style: React.CSSProperties;
+  /** Tilt, e.g. '5deg'. */
+  rot?: string;
+  /** Star color, or the pill's status-dot color (omit for no dot). */
+  color?: string;
+  /** Dark (ink) pill variant. */
+  dark?: boolean;
+  /** Bob-animation stagger slot 1–5. */
+  d?: 1 | 2 | 3 | 4 | 5;
+}
+
 export interface HeroProps {
   /** Mono eyebrow line above the title, e.g. "Creative Digital Studio". */
   eyebrow?: string;
@@ -19,15 +35,24 @@ export interface HeroProps {
   sub?: React.ReactNode;
   primaryCta?: HeroCta;
   secondaryCta?: HeroCta;
-  /** Floating decorative stars/pills in the side margins (hidden <1200px). */
-  decor?: boolean;
-  /** Extra content rendered inside .hero-foot after the CTAs (e.g. proof pills). */
+  /**
+   * Floating decor in the side margins (hidden <1200px; drifts with the
+   * mouse via CursorFx). Defaults to two stars; pass pills for the full
+   * template look, or an empty array for none.
+   */
+  floats?: HeroFloat[];
+  /** Extra content rendered inside .hero-foot after the CTAs. */
   children?: React.ReactNode;
 }
 
+const DEFAULT_FLOATS: HeroFloat[] = [
+  { kind: 'star', style: { top: '15%', left: '5%', width: 32, height: 32 }, color: 'var(--orange)', d: 4 },
+  { kind: 'star', style: { top: '78%', right: '6%', width: 24, height: 24 }, color: 'var(--violet)', d: 5 },
+];
+
 /**
  * Editorial hero: eyebrow → oversized H1 (line-mask reveal) → sub → dual CTA.
- * Server component; the reveal animation is CSS-only and JS-gated.
+ * Server component; reveal is CSS-only and JS-gated.
  */
 const Hero: React.FC<HeroProps> = ({
   eyebrow,
@@ -35,30 +60,40 @@ const Hero: React.FC<HeroProps> = ({
   sub,
   primaryCta,
   secondaryCta,
-  decor = true,
+  floats = DEFAULT_FLOATS,
   children,
 }) => {
   const lines = Array.isArray(title) ? title : [title];
 
   return (
     <section className="hero">
-      {decor && (
-        <>
+      {floats.map((f, i) =>
+        f.kind === 'star' ? (
           <span
-            className="hero-float d4"
-            style={{ top: '15%', left: '5%', width: 32, height: 32, color: 'var(--orange)' }}
+            key={i}
+            className={`hero-float d${f.d ?? (i % 5) + 1}`}
+            style={{ ...f.style, color: f.color, ...(f.rot ? { ['--rot' as string]: f.rot } : {}) }}
             aria-hidden="true"
           >
             <Star />
           </span>
+        ) : (
           <span
-            className="hero-float d5"
-            style={{ top: '78%', right: '6%', width: 24, height: 24, color: 'var(--violet)' }}
+            key={i}
+            className={`hero-float d${f.d ?? (i % 5) + 1} pill`}
+            style={{
+              ...f.style,
+              ...(f.rot ? { ['--rot' as string]: f.rot } : {}),
+              ...(f.dark
+                ? { background: 'var(--ink)', color: 'var(--paper)', borderColor: 'var(--ink)' }
+                : {}),
+            }}
             aria-hidden="true"
           >
-            <Star />
+            {f.color && !f.dark && <span className="dot" style={{ background: f.color }}></span>}
+            {f.text}
           </span>
-        </>
+        )
       )}
       <div className="wrap">
         {eyebrow && (

@@ -45,6 +45,13 @@ export default function DesignPreviewPage() {
         }
         primaryCta={{ label: 'Start a project', href: '/contact' }}
         secondaryCta={{ label: 'View work', href: '/portfolio' }}
+        floats={[
+          { kind: 'star', style: { top: '15%', left: '5%', width: 32, height: 32 }, color: 'var(--orange)', d: 4 },
+          { kind: 'pill', text: 'Est. 2016', style: { top: '14%', right: '5%' }, rot: '5deg', d: 1 },
+          { kind: 'pill', text: 'Design & dev & growth', style: { top: '73%', left: '3%' }, rot: '-5deg', color: 'var(--green)', d: 2 },
+          { kind: 'pill', text: 'Remote & worldwide', style: { top: '71%', right: '4%' }, rot: '4deg', dark: true, d: 3 },
+          { kind: 'star', style: { top: '87%', left: '13%', width: 24, height: 24 }, color: 'var(--violet)', d: 5 },
+        ]}
       />
 
       <StatsStrip

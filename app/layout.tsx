@@ -14,6 +14,9 @@ const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-bricolage',
+  // Optical-size axis: display sizes render with the tighter large-opsz
+  // glyphs the template gets from Google's CSS (opsz 12..96).
+  axes: ['opsz'],
 });
 
 const jetbrains = JetBrains_Mono({

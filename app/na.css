@@ -25,6 +25,20 @@
 @keyframes na-floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
 @keyframes na-line-up { from { transform: translateY(118%); } to { transform: none; } }
 
+/* ---- custom trailing cursor (fine-pointer only; created by CursorFx) ----
+   Top-level (not under .na): the elements are appended to <body>. */
+.cursor-ring, .cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+  border-radius: 50%; mix-blend-mode: difference; will-change: transform;
+}
+.cursor-ring {
+  width: 34px; height: 34px; border: 1.6px solid #fff; opacity: .75;
+  transition: width .28s var(--ease), height .28s var(--ease), opacity .28s, border-width .28s;
+}
+.cursor-ring.is-active { width: 58px; height: 58px; border-width: 2px; opacity: 1; }
+.cursor-dot { width: 6px; height: 6px; background: #fff; }
+@media (prefers-reduced-motion: reduce) { .cursor-ring, .cursor-dot { display: none; } }
+
 .na {
   min-height: 100vh;
 

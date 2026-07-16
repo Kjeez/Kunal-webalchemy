@@ -1,4 +1,4 @@
-import { Nav, Footer, Effects } from '@/components/ui';
+import { Nav, Footer, Effects, CursorFx } from '@/components/ui';
 
 /**
  * Layout for pages migrated to the new design system (Ampersand
@@ -20,6 +20,7 @@ export default function NewDesignLayout({
       <main id="main">{children}</main>
       <Footer />
       <Effects />
+      <CursorFx />
     </div>
   );
 }
