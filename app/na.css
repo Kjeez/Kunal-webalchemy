@@ -173,12 +173,12 @@
 
   /* ============================================================ HERO (centered) */
   .hero {
-    padding-top: clamp(120px, 17vw, 190px); padding-bottom: clamp(48px, 6vw, 80px);
+    padding-top: clamp(96px, 12vw, 138px); padding-bottom: clamp(48px, 6vw, 80px);
     position: relative; text-align: center;
   }
   .hero-top {
     display: flex; justify-content: center; align-items: flex-start; gap: 24px;
-    flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 44px);
+    flex-wrap: wrap; margin-bottom: clamp(18px, 2.6vw, 30px);
   }
   .hero-title {
     font-size: clamp(2.7rem, 9.4vw, 8.4rem); font-weight: 700; line-height: .92;
