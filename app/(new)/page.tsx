@@ -240,7 +240,18 @@ export default function HomePage() {
       </Section>
       <Reel
         ariaLabel="Recent projects showreel"
-        faces={reelProjects.map((p) => ({ src: p.image, alt: p.title }))}
+        /* TODO: needs content — showreel video. When the asset arrives, put
+           it in public/ and set videoSrc="/showreel.mp4"; the finale below
+           already expands to fullscreen at the end of the scroll. */
+        caption={
+          <>
+            We Build Websites That <em style={{ color: 'var(--green)' }}>Actually Sell</em>.
+          </>
+        }
+        faces={[
+          { video: true, alt: 'WebAlchemy showreel', placeholder: 'showreel.mp4 (coming soon)' },
+          ...reelProjects.map((p) => ({ src: p.image, alt: p.title })),
+        ]}
       />
       <div className="center" style={{ padding: '28px 0 clamp(48px,7vw,90px)' }}>
         <Link href="/portfolio" className="btn btn-dark">View all Projects</Link>
