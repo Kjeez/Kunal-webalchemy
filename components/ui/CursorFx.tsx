@@ -9,7 +9,9 @@ import { usePathname } from 'next/navigation';
  *    (mix-blend-mode: difference, so it stays visible on paper and night),
  *  - the ring grows over interactive elements (a/button/summary/inputs),
  *  - mouse parallax: floating decor (.hero-float, .cta-icon, .sticker,
- *    .foot-sticker) drifts toward the pointer at staggered depths.
+ *    .foot-sticker) drifts toward the pointer at staggered depths,
+ *  - magnetic dark buttons: while the pointer is over a .btn-dark it is
+ *    pulled toward the cursor, snapping back elastically on leave.
  *
  * Fine-pointer devices only; fully disabled for prefers-reduced-motion
  * and touch. Holds no content — pure enhancement.
@@ -50,8 +52,8 @@ export default function CursorFx() {
 
       let settled = Math.abs(mx - rx) < 0.2 && Math.abs(my - ry) < 0.2;
       for (const t of targets) {
-        t.x += (t.tx - t.x) * 0.06;
-        t.y += (t.ty - t.y) * 0.06;
+        t.x += (t.tx - t.x) * 0.11;
+        t.y += (t.ty - t.y) * 0.11;
         // transform composes with the CSS `translate` bob + `rotate` tilt
         t.el.style.transform = `translate(${t.x}px, ${t.y}px)`;
         if (Math.abs(t.tx - t.x) > 0.2 || Math.abs(t.ty - t.y) > 0.2) settled = false;
@@ -87,6 +89,37 @@ export default function CursorFx() {
       ring.classList.toggle('is-active', isInteractive(e.target));
     };
 
+    // magnetic dark buttons — pulled toward the pointer while hovered,
+    // elastic snap-back on leave (template's GSAP behavior, in CSS+JS)
+    const magnets = Array.from(document.querySelectorAll<HTMLElement>('.na .btn-dark'));
+    const magnetCleanups: (() => void)[] = [];
+    magnets.forEach((btn) => {
+      const onBtnMove = (e: MouseEvent) => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.22;
+        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        // the base .btn transition (transform .3s var(--ease)) gives the lag
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+      };
+      const onBtnLeave = () => {
+        btn.style.transition = 'transform .55s cubic-bezier(.34,1.8,.44,1)';
+        btn.style.transform = '';
+        const clear = () => {
+          btn.style.transition = '';
+          btn.removeEventListener('transitionend', clear);
+        };
+        btn.addEventListener('transitionend', clear);
+      };
+      btn.addEventListener('mousemove', onBtnMove);
+      btn.addEventListener('mouseleave', onBtnLeave);
+      magnetCleanups.push(() => {
+        btn.removeEventListener('mousemove', onBtnMove);
+        btn.removeEventListener('mouseleave', onBtnLeave);
+        btn.style.transform = '';
+        btn.style.transition = '';
+      });
+    });
+
     window.addEventListener('mousemove', onMove, { passive: true });
     document.addEventListener('mouseover', onOver, { passive: true });
     raf = requestAnimationFrame(tick);
@@ -95,6 +128,7 @@ export default function CursorFx() {
       cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseover', onOver);
+      magnetCleanups.forEach((fn) => fn());
       targets.forEach((t) => { t.el.style.transform = ''; });
       ring.remove();
       dot.remove();
