@@ -12,7 +12,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import PromoPopup from './PromoPopup';
 import { BackgroundBeams } from './Visuals';
-import LocalBusinessSchema from './LocalBusinessSchema';
 import ScrollProgress from './ScrollProgress';
 
 const SiteChrome: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -21,7 +20,7 @@ const SiteChrome: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-navy-900 text-white relative overflow-x-hidden selection:bg-cyan-400/30 selection:text-cyan-100">
-      <LocalBusinessSchema />
+      {/* LocalBusinessSchema moved to the root layout (shared with the new-design group) */}
       <ScrollProgress />
       <BackgroundBeams />
       <PromoPopup />

@@ -23,7 +23,14 @@ export { default as FaqAccordion } from './FaqAccordion';
 export type { FaqAccordionProps, FaqAccordionItem } from './FaqAccordion';
 
 export { default as PricingTable } from './PricingTable';
-export type { PricingTableProps, PricingPlan } from './PricingTable';
+export type { PricingTableProps, PricingPlan, PlanFeature } from './PricingTable';
+
+export { default as EstimateDialog } from './EstimateDialog';
+export { default as PopupCta } from './PopupCta';
+export { default as ContactPanel } from './ContactPanel';
+export { default as LogoMarquee } from './LogoMarquee';
+export type { LogoMarqueeProps } from './LogoMarquee';
+export { default as WhatsAppFloat } from './WhatsAppFloat';
 
 export { default as CtaBanner } from './CtaBanner';
 export type { CtaBannerProps } from './CtaBanner';

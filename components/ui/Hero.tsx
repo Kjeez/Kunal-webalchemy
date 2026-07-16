@@ -31,6 +31,8 @@ export interface HeroProps {
    * or a single node for one line.
    */
   title: React.ReactNode | React.ReactNode[];
+  /** Optional H2 directly under the H1 (preserves legacy heading pairs). */
+  subHeading?: React.ReactNode;
   /** Sub-paragraph under the title. */
   sub?: React.ReactNode;
   primaryCta?: HeroCta;
@@ -57,6 +59,7 @@ const DEFAULT_FLOATS: HeroFloat[] = [
 const Hero: React.FC<HeroProps> = ({
   eyebrow,
   title,
+  subHeading,
   sub,
   primaryCta,
   secondaryCta,
@@ -114,7 +117,8 @@ const Hero: React.FC<HeroProps> = ({
         </h1>
 
         <div className="hero-foot">
-          {sub && <p className="hero-sub" style={{ marginTop: 'clamp(28px,4vw,44px)' }}>{sub}</p>}
+          {subHeading && <h2 className="hero-sub-heading">{subHeading}</h2>}
+          {sub && <p className="hero-sub" style={{ marginTop: subHeading ? '18px' : 'clamp(28px,4vw,44px)' }}>{sub}</p>}
           {(primaryCta || secondaryCta) && (
             <div className="hero-actions">
               {primaryCta && (

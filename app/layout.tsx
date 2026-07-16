@@ -3,6 +3,7 @@ import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import './na.css';
+import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -141,6 +142,9 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Global LocalBusiness JSON-LD — lives here so every route group
+            (legacy and new design) keeps it. */}
+        <LocalBusinessSchema />
         {children}
 
         {/* Google Tag Manager */}
