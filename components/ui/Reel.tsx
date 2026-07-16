@@ -66,7 +66,6 @@ const Reel: React.FC<ReelProps> = ({
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let active = false;
     let raf = 0;
-    let queued = false;
 
     const faceEls = Array.from(cyl.querySelectorAll<HTMLElement>('.face'));
     const sideEls = faceEls.filter((f) => !f.classList.contains('face--video'));
@@ -88,13 +87,20 @@ const Reel: React.FC<ReelProps> = ({
       pin.style.height = `${window.innerHeight * 4.6}px`;
     };
 
-    const update = () => {
-      queued = false;
-      if (!active) return;
+    // Smoothed scrub (GSAP's scrub:1 feel): the animation chases the
+    // scroll position with an exponential ease instead of snapping to it.
+    let p = 0;
+    let targetP = 0;
+    let running = false;
+    let last = 0;
+
+    const computeTarget = () => {
       const rect = pin.getBoundingClientRect();
       const total = pin.offsetHeight - window.innerHeight;
-      const p = clamp01(-rect.top / total);
+      targetP = clamp01(-rect.top / total);
+    };
 
+    const apply = () => {
       cyl.style.transform = `rotateY(${-360 * clamp01(p / SPIN_END)}deg)`;
 
       const fade = 1 - clamp01((p - FADE_START) / (FADE_END - FADE_START));
@@ -107,10 +113,28 @@ const Reel: React.FC<ReelProps> = ({
       if (fsVideo) fsVideo.style.transform = `translateY(${8 - 16 * k}%)`;
     };
 
+    const loop = (t: number) => {
+      const dt = Math.min(0.05, last ? (t - last) / 1000 : 0.016);
+      last = t;
+      // time-based lerp: ~1s catch-up, frame-rate independent
+      p += (targetP - p) * (1 - Math.exp(-5 * dt));
+      if (Math.abs(targetP - p) < 0.0004) {
+        p = targetP;
+        apply();
+        running = false;
+        return;
+      }
+      apply();
+      raf = requestAnimationFrame(loop);
+    };
+
     const onScroll = () => {
-      if (!queued) {
-        queued = true;
-        raf = requestAnimationFrame(update);
+      if (!active) return;
+      computeTarget();
+      if (!running) {
+        running = true;
+        last = 0;
+        raf = requestAnimationFrame(loop);
       }
     };
 
@@ -122,23 +146,32 @@ const Reel: React.FC<ReelProps> = ({
       pin.style.height = '';
     };
 
+    const onResize = () => {
+      layout();
+      computeTarget();
+      apply();
+    };
+
     const enable = () => {
       if (active) return;
       active = true;
       stage.classList.add('is-3d');
       layout();
-      update();
+      computeTarget();
+      p = targetP; // start in the correct state, no initial chase
+      apply();
       window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', layout);
+      window.addEventListener('resize', onResize);
       fsVideo?.play?.().catch(() => {});
     };
 
     const disable = () => {
       if (!active) return;
       active = false;
+      running = false;
       stage.classList.remove('is-3d');
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', layout);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(raf);
       clearInline();
     };
