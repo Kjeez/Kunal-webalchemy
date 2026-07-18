@@ -28,7 +28,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .na .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
-  .na .marquee { mask-image: none; -webkit-mask-image: none; }
+  .na .marquee::before, .na .marquee::after { display: none; }
 }
 
 /* ---- custom trailing cursor (fine-pointer only; created by CursorFx) ----
@@ -666,16 +666,21 @@
   .post-card .pby { margin-top: auto; padding-top: 14px; font-size: 13px; color: var(--ink-soft); }
 
   /* marquee strip (client logos, tech stack) */
+  /* NOTE: no CSS mask here — mask + infinitely animating transform makes
+     Chrome smear paint trails during scroll. Edge fades are plain gradient
+     overlays instead, which composite cleanly. */
   .marquee {
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    /* own compositing layer — prevents Chrome leaving paint trails of the
-       animated pills while the page scrolls */
+    position: relative;
     contain: paint;
-    transform: translateZ(0);
   }
-  .marquee-track { display: flex; gap: 10px; width: max-content; animation: na-marquee 60s linear infinite; padding-block: 4px; }
+  .marquee::before, .marquee::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 9%;
+    z-index: 2; pointer-events: none;
+  }
+  .marquee::before { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
+  .marquee::after { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
+  .marquee-track { display: flex; gap: 10px; width: max-content; animation: na-marquee 60s linear infinite; padding-block: 4px; will-change: transform; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
 
   /* forms */
