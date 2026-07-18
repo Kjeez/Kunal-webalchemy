@@ -55,7 +55,10 @@ const Reel: React.FC<ReelProps> = ({
   const stageRef = useRef<HTMLDivElement>(null);
   const cylRef = useRef<HTMLDivElement>(null);
   const fsRef = useRef<HTMLDivElement>(null);
-  const hasFinale = Boolean(videoSrc || caption);
+  // The fullscreen finale only makes sense with an actual video — an empty
+  // dark panel reads as a glitch. Caption rides along once the video exists.
+  const hasFinale = Boolean(videoSrc);
+  const visibleFaces = faces.filter((f) => !f.video || videoSrc);
 
   useEffect(() => {
     const pin = pinRef.current;
@@ -215,7 +218,7 @@ const Reel: React.FC<ReelProps> = ({
           )}
           <div className="stage3d">
             <div className="cylinder" ref={cylRef}>
-              {faces.map((f, i) => (
+              {visibleFaces.map((f, i) => (
                 <div className={`face${f.video ? ' face--video' : ''}`} key={i}>
                   {f.video && videoSrc ? (
                     <video src={videoSrc} muted loop playsInline autoPlay preload="metadata" aria-label={f.alt} />
