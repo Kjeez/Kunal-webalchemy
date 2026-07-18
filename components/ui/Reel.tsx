@@ -55,10 +55,9 @@ const Reel: React.FC<ReelProps> = ({
   const stageRef = useRef<HTMLDivElement>(null);
   const cylRef = useRef<HTMLDivElement>(null);
   const fsRef = useRef<HTMLDivElement>(null);
-  // The fullscreen finale only makes sense with an actual video — an empty
-  // dark panel reads as a glitch. Caption rides along once the video exists.
-  const hasFinale = Boolean(videoSrc);
-  const visibleFaces = faces.filter((f) => !f.video || videoSrc);
+  // Finale runs whenever there's a video OR a caption slide — so the
+  // fullscreen ending exists before the real showreel is dropped in.
+  const hasFinale = Boolean(videoSrc || caption);
 
   useEffect(() => {
     const pin = pinRef.current;
@@ -78,8 +77,9 @@ const Reel: React.FC<ReelProps> = ({
 
     const layout = () => {
       const N = faceEls.length;
-      const cardW = 250;
-      const cardH = Math.round((cardW * 4) / 3);
+      // iPhone aspect (9:19.5) so the device frames sit right on the cylinder
+      const cardW = 200;
+      const cardH = Math.round((cardW * 19.5) / 9);
       const radius = Math.round((cardW / 2 / Math.tan(Math.PI / N)) * 1.08);
       faceEls.forEach((f, i) => {
         f.style.width = `${cardW}px`;
@@ -218,18 +218,31 @@ const Reel: React.FC<ReelProps> = ({
           )}
           <div className="stage3d">
             <div className="cylinder" ref={cylRef}>
-              {visibleFaces.map((f, i) => (
-                <div className={`face${f.video ? ' face--video' : ''}`} key={i}>
-                  {f.video && videoSrc ? (
-                    <video src={videoSrc} muted loop playsInline autoPlay preload="metadata" aria-label={f.alt} />
-                  ) : f.src ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={f.src} alt={f.alt ?? ''} />
-                  ) : (
-                    <div className="ph-wrap ph" data-ph={f.placeholder ?? 'image'} aria-hidden="true"></div>
-                  )}
-                </div>
-              ))}
+              {faces.map((f, i) =>
+                f.video ? (
+                  <div className="face face--video" key={i}>
+                    {videoSrc ? (
+                      <video src={videoSrc} muted loop playsInline autoPlay preload="metadata" aria-label={f.alt} />
+                    ) : (
+                      <div className="ph-wrap ph" data-ph={f.placeholder ?? 'video'} aria-hidden="true"></div>
+                    )}
+                  </div>
+                ) : (
+                  // iPhone mockup — TODO: swap in mobile-view screenshots for the
+                  // best fit; desktop screenshots are cropped to the device screen
+                  <div className="face face-device" key={i}>
+                    <span className="device-island" aria-hidden="true"></span>
+                    <span className="device-btn pwr" aria-hidden="true"></span>
+                    <span className="device-btn vol" aria-hidden="true"></span>
+                    {f.src ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img className="device-screen" src={f.src} alt={f.alt ?? ''} loading="lazy" />
+                    ) : (
+                      <div className="device-screen ph-wrap ph" data-ph={f.placeholder ?? 'image'} aria-hidden="true"></div>
+                    )}
+                  </div>
+                )
+              )}
             </div>
           </div>
           {hasFinale && (
