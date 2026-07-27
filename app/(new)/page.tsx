@@ -19,15 +19,36 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-/* Featured projects for the 3D reel — two per category, 12 faces. */
+/* Featured projects for the 3D reel — two per category, 12 faces.
+   Reel cards are phone mockups, so each face uses a real MOBILE-viewport
+   screenshot of the live site (captured directly, not cropped from the
+   desktop shot in projectsData) — see public/portfolio-mobile/. */
+const reelMobileShots: Record<string, string> = {
+  'edu-1': '/portfolio-mobile/krmangalam-mobile.jpg',
+  'edu-2': '/portfolio-mobile/balbharti-mobile.jpg',
+  'comm-1': '/portfolio-mobile/loomcraft-mobile.jpg',
+  'comm-2': '/portfolio-mobile/dianakorr-mobile.jpg',
+  'dental-1': '/portfolio-mobile/32dentalhouse-mobile.jpg',
+  'dental-2': '/portfolio-mobile/stunningdentistry-mobile.jpg',
+  'corp-1': '/portfolio-mobile/giholding-mobile.jpg',
+  'corp-2': '/portfolio-mobile/hochhuth-mobile.jpg',
+  // travel-4 (Earthen Pods, earthenpods.in) has no DNS record — the domain
+  // appears expired/dead. Swapped for travel-3 (Sam Travels) until the
+  // owner confirms a live URL for Earthen Pods.
+  'travel-3': '/portfolio-mobile/samtravel-mobile.jpg',
+  'travel-2': '/portfolio-mobile/hamta-mobile.jpg',
+  'creative-1': '/portfolio-mobile/mergingsoils-mobile.jpg',
+  'creative-2': '/portfolio-mobile/nightvibe-mobile.jpg',
+};
+
 const reelProjects = [
   ...projectsData.filter((p) => p.category === 'Educational').slice(0, 2),
   ...projectsData.filter((p) => p.category === 'E-commerce').slice(0, 2),
   ...projectsData.filter((p) => p.category === 'Dental').slice(0, 2),
   ...projectsData.filter((p) => p.category === 'Corporate').slice(0, 2),
-  ...projectsData.filter((p) => p.category === 'Travel').slice(0, 2),
+  ...projectsData.filter((p) => p.id === 'travel-3' || p.id === 'travel-2'),
   ...projectsData.filter((p) => p.category === 'Creative').slice(0, 2),
-];
+].map((p) => ({ ...p, mobileImage: reelMobileShots[p.id] ?? p.image }));
 
 const clientNames = projectsData.map((p) => p.title);
 
@@ -260,7 +281,7 @@ export default function HomePage() {
         }
         faces={[
           { video: true, alt: 'WebAlchemy showreel', placeholder: 'showreel.mp4 (coming soon)' },
-          ...reelProjects.map((p) => ({ src: p.image, alt: p.title })),
+          ...reelProjects.map((p) => ({ src: p.mobileImage, alt: `${p.title} — mobile view` })),
         ]}
       />
       <div className="center" style={{ padding: '28px 0 clamp(48px,7vw,90px)' }}>
