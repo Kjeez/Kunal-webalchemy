@@ -96,6 +96,11 @@
 
 /* hero stage: shapes + mockup + badge + sticker */
 .stage { position: relative; padding: 30px 10px 44px; isolation: isolate; min-width: 0; }
+/* Two-column hero: sit the mockup up by the headline instead of
+   centring it against the (much taller) copy column. */
+@media (min-width: 1000px) {
+  .stage { align-self: start; margin-top: clamp(16px, 3vw, 48px); }
+}
 .mockWrap {
   position: relative; z-index: 3;
   transform: translate(calc(var(--mx, 0) * -10px), calc(var(--my, 0) * -10px));
