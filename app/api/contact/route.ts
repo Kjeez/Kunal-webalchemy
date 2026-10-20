@@ -13,6 +13,9 @@ const CORS_HEADERS = {
 const json = (body: unknown, status: number) =>
   NextResponse.json(body, { status, headers: CORS_HEADERS });
 
+const esc = (v: string) =>
+  String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 200, headers: CORS_HEADERS });
 }
@@ -30,8 +33,9 @@ export async function POST(req: Request) {
   }
 
   const { name, email, phone, message } = body;
-  if (!name || !email) {
-    return json({ success: false, message: 'Name and email required' }, 400);
+  // The redesigned forms make email optional, so a phone number is enough.
+  if (!name || (!email && !phone)) {
+    return json({ success: false, message: 'Name and a phone number or email are required' }, 400);
   }
 
   try {
@@ -45,7 +49,7 @@ export async function POST(req: Request) {
       from: `"WebAlchemy" <${process.env.MAIL_USER}>`,
       to: process.env.MAIL_RECIPIENT,
       subject: `New Contact: ${name}`,
-      html: `<h2>New Contact</h2><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone || 'N/A'}</p><p><b>Message:</b> ${message || 'N/A'}</p>`,
+      html: `<h2>New Contact</h2><p><b>Name:</b> ${esc(name)}</p><p><b>Email:</b> ${esc(email || 'N/A')}</p><p><b>Phone:</b> ${esc(phone || 'N/A')}</p><p><b>Message:</b><br>${esc(message || 'N/A').replace(/\n/g, '<br>')}</p>`,
     });
 
     return json({ success: true, message: 'Sent!' }, 200);

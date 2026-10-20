@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
+import { Inter, Bricolage_Grotesque, JetBrains_Mono, Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import './na.css';
+import './site.css';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 
 const inter = Inter({
@@ -24,6 +25,18 @@ const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-jetbrains',
+});
+
+// Site redesign (Claude Design "WebAlchemy" system): Geist + Geist Mono,
+// with Instrument Serif italic for accent words.
+const geist = Geist({ subsets: ['latin'], display: 'swap', variable: '--font-geist' });
+const geistMono = Geist_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-geist-mono' });
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
 });
 
 export const metadata: Metadata = {
@@ -112,7 +125,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}
+      className={`${inter.variable} ${bricolage.variable} ${jetbrains.variable} ${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <head>
         {/* Legacy Tailwind CDN — required by pre-redesign pages, removed at
