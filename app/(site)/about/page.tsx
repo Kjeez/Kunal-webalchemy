@@ -4,6 +4,7 @@ import { Marquee } from '@/components/site';
 import { whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import s from './about.module.css';
 import FloatField from '@/components/site/motion/FloatField';
+import RotatingWord from '@/components/home/RotatingWord';
 import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* About — Claude Design "About" (About.dc.html). Placeholder content in
@@ -57,7 +58,8 @@ export default function AboutPage() {
         />
         <div className="eyebrow">ABOUT WEBALCHEMY</div>
         <h1 className={s.title}>
-          A small Delhi team that builds websites that <span className="serif">sell</span>
+          A small Delhi team that builds websites that{' '}
+          <RotatingWord inline words={['sell', 'get found', 'win trust', 'bring leads']} />
         </h1>
         <p className={s.intro}>
           WebAlchemy is a digital growth agency based in New Delhi, helping businesses and startups

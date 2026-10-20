@@ -23,9 +23,9 @@ const CAT_TONE: Record<string, readonly [string, string]> = {
   Corporate: TONES.violet,
 };
 const CATS = ['All', 'Education', 'Healthcare', 'Travel', 'E-commerce', 'Corporate'];
-/* "All" = the design's first eight. */
-const FEATURED = ['edu-1', 'edu-2', 'edu-3', 'comm-1', 'dental-1', 'dental-2', 'dental-3', 'corp-1'];
-const PER_FILTER = 8;
+/* "All" = the design's first eight + Hamta Orchard, for a 3×3 grid. */
+const FEATURED = ['edu-1', 'edu-2', 'edu-3', 'comm-1', 'dental-1', 'dental-2', 'dental-3', 'corp-1', 'travel-2'];
+const PER_FILTER = 9;
 
 const host = (url: string) => {
   try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }

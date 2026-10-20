@@ -64,6 +64,7 @@
   display: block; font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--blue);
   letter-spacing: -.02em; animation: word .7s cubic-bezier(.2, .9, .3, 1.4) both;
 }
+.wordInline { display: inline-block; }
 .heroLede { max-width: 560px; text-wrap: pretty; }
 .heroFormWrap { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
 .heroForm {
