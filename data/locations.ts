@@ -115,7 +115,7 @@ const designFaqs = (city: string): FaqItem[] => [
   },
   {
     q: `How much does a website cost in ${city}?`,
-    a: 'Our plans start at ₹11,999 for up to 5 pages with free domain and hosting. Growth is ₹24,999 for up to 10 pages with blog and e-commerce. Larger builds get a custom quote.',
+    a: 'Every project gets a fixed quote after a free 30-minute strategy call, based on the pages, features and integrations you need. No hidden fees and no surprise invoices.',
   },
   {
     q: 'Can you help my business rank on Google locally?',
@@ -124,7 +124,7 @@ const designFaqs = (city: string): FaqItem[] => [
 ];
 
 /* Gurgaon / Noida share the old LocationLandingPage FAQ set, merged with
-   the design's. Old pricing (₹15,000+) is replaced by current plans; claims
+   the design's. Fixed plan prices are left off these pages; claims
    of a physical office in the city are reworded to "Delhi NCR". */
 const cityFaqs = (city: string, meetAt: string): FaqItem[] => [
   {
@@ -133,7 +133,7 @@ const cityFaqs = (city: string, meetAt: string): FaqItem[] => [
   },
   {
     q: `What is the cost of website development in ${city}?`,
-    a: `Our plans start at ₹11,999 for up to 5 pages with free domain and hosting. Growth is ₹24,999 for up to 10 pages with blog and e-commerce. Larger builds, like custom web applications and big e-commerce stores, get a custom quote. Contact us for a free quote tailored to your ${city} business needs.`,
+    a: `Every project gets a fixed quote after a free 30-minute strategy call, based on the pages, features and integrations you need. Contact us for a free quote tailored to your ${city} business needs.`,
   },
   {
     q: `How long does it take to build a website in ${city}?`,
@@ -178,7 +178,6 @@ const cityLocalBusiness = (city: string, description: string, lat: number, lng: 
   geo: { '@type': 'GeoCoordinates', latitude: lat, longitude: lng },
   openingHours: 'Mo-Sa 09:00-18:00',
   priceRange: '₹₹₹',
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '127' },
 });
 
 const cityReasons = (city: string) => ({
@@ -200,7 +199,7 @@ const delhi: LocationData = {
   pill: 'Delhi',
   h1Lead: 'Website developer in',
   city: 'Delhi',
-  intro: 'Fast, mobile-first websites for schools, clinics and local businesses across Delhi. Fixed prices from ₹11,999 and live in as little as 7 days.',
+  intro: 'Fast, mobile-first websites for schools, clinics and local businesses across Delhi. Fixed quotes, live in as little as 7 days.',
   whatsappMessage: "Hi! I'm looking for a website developer in Delhi. Can we discuss my project?",
   map: {
     label: 'Delhi & nearby areas',
@@ -280,16 +279,6 @@ const delhi: LocationData = {
       { t: "Full ownership — it's your website", d: 'You get the source code, admin access, and all credentials. If you ever want to move hosting or change agencies, there are no lock-ins. The site is yours.' },
     ],
   },
-  pricing: {
-    heading: 'Website development pricing in Delhi',
-    lede: 'Honest starting prices so you can plan your budget before we talk.',
-    tiers: [
-      { label: 'Starter', price: '₹11,999', note: 'Up to 5 pages, free domain and hosting, mobile-first, SEO-ready structure.' },
-      { label: 'Growth', price: '₹24,999', note: 'Up to 10 pages with blog and e-commerce.' },
-      { label: 'Custom Website', price: '₹40,000 – ₹1,50,000', note: 'React / Next.js, custom UI, backend integrations, admin dashboard.' },
-    ],
-    note: 'These are starting prices. Your final quote depends on the number of pages, features, and integrations required. We provide a detailed, itemised estimate after our discovery call — no obligation.',
-  },
   process: {
     heading: 'How we work',
     lede: 'Five steps from first conversation to a live website.',
@@ -306,7 +295,7 @@ const delhi: LocationData = {
     designFaqs('Delhi')[0],
     {
       q: 'How much does website development cost in Delhi?',
-      a: 'Our plans start at ₹11,999 for up to 5 pages with free domain and hosting. Growth is ₹24,999 for up to 10 pages with blog and e-commerce. Custom-coded websites with React or Next.js typically range from ₹40,000 to ₹1,50,000 depending on the number of pages and features. We provide a detailed quote after understanding your scope — no ballpark guesses.',
+      a: 'Custom-coded websites with React or Next.js typically range from ₹40,000 to ₹1,50,000 depending on the number of pages and features. We provide a detailed quote after understanding your scope — no ballpark guesses.',
     },
     {
       q: 'How long does it take to build a website?',
@@ -351,7 +340,7 @@ const delhi: LocationData = {
       description:
         'Delhi-based web development agency specialising in custom WordPress, React, and Next.js websites for businesses across Delhi NCR.',
       url: 'https://webalchemy.in/website-developer-delhi',
-      telephone: '+91-9625429686',
+      telephone: '+91-7838583051',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Uttam Nagar',
@@ -488,7 +477,7 @@ const ncr: LocationData = {
   pill: 'All of Delhi NCR',
   h1Lead: 'Web development company in',
   city: 'Delhi NCR',
-  intro: 'Premium website development, e-commerce solutions and digital marketing for businesses across Delhi, Gurgaon, Noida, Faridabad and Ghaziabad. Fixed prices from ₹11,999.',
+  intro: 'Premium website development, e-commerce solutions and digital marketing for businesses across Delhi, Gurgaon, Noida, Faridabad and Ghaziabad.',
   whatsappMessage: "Hi! I'm looking for a web development company in Delhi NCR. Can we discuss my project?",
   map: {
     label: 'Delhi NCR',

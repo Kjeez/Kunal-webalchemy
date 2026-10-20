@@ -9,7 +9,7 @@ import styles from './contact.module.css';
 
 export const metadata: Metadata = {
   title: 'Contact WebAlchemy — Get a Free Quote | Delhi NCR',
-  description: 'Get in touch with WebAlchemy for web development, design, or marketing. Based in Uttam Nagar, Delhi. Free consultation — reply within 30 minutes.',
+  description: 'Get in touch with WebAlchemy for web development, design, or marketing. Based in Uttam Nagar, Delhi. Free consultation — reply within 24 hours.',
   alternates: { canonical: '/contact' },
 };
 
@@ -55,7 +55,7 @@ const breadcrumbSchema = {
 const FAQ: FaqItem[] = [
   {
     q: 'How do I get a quote for my project?',
-    a: 'The quickest way is to WhatsApp us at +91 78385 83051 with a brief description of what you need — business website, e-commerce store, app, or marketing campaign. We will reply within 30 minutes during business hours with initial questions, then schedule a 20-minute discovery call to understand your scope. After that call, you receive a detailed, itemised quote within 2 business days. No cost, no obligation at any stage.',
+    a: 'The quickest way is to WhatsApp us at +91 78385 83051 with a brief description of what you need — business website, e-commerce store, app, or marketing campaign. We will reply within 24 hours with initial questions, then schedule a 20-minute discovery call to understand your scope. After that call, you receive a detailed, itemised quote within 2 business days. No cost, no obligation at any stage.',
   },
   {
     q: 'Do you sign NDAs before discussing project details?',

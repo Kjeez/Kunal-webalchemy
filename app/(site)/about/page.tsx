@@ -145,12 +145,8 @@ export default function AboutPage() {
         <figure className={`rise ${s.founder}`}>
           <div className={s.founderPhoto}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/founder.jpg" alt="Kunal, founder of WebAlchemy" width={821} height={1024} loading="lazy" />
+            <img src="/founder.jpg" alt="WebAlchemy founder" width={821} height={1024} loading="lazy" />
           </div>
-          <figcaption>
-            <div className={s.founderName}>Kunal</div>
-            <div className={s.founderRole}>FOUNDER &amp; LEAD STRATEGIST</div>
-          </figcaption>
         </figure>
       </section>
 

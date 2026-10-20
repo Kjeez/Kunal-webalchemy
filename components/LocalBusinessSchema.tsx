@@ -12,7 +12,7 @@ const LocalBusinessSchema: React.FC = () => {
     "@type": "ProfessionalService",
     "name": "WebAlchemy",
     "url": "https://webalchemy.in",
-    "telephone": "+91-9625429686",
+    "telephone": "+91-7838583051",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Uttam Nagar",
