@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowNE } from '@/components/ui';
 import { SITE_URL } from '@/lib/site';
-import { BLOG_POSTS, CATEGORY_TONE, getPost, type Block } from '@/data/blogPosts';
+import type { CSSProperties } from 'react';
+import { BLOG_POSTS, TONE_COLORS, categoryColors, getPost, thumb, type Block } from '@/data/blogPosts';
+import s from './article.module.css';
 
 /* Article page — implements the Claude Design "Article" mock
-   (Article.dc.html) on the new design system. Design colours/fonts are
-   mapped onto the site tokens; category tones live in na.css (.art-*). */
+   (Article.dc.html) on the 2026 design system (app/site.css tokens).
+   Styles: ./article.module.css; category colours come from
+   data/blogPosts (TONE_COLORS) as inline --tone / --tint. */
+
+const toneVars = ([tone, tint]: readonly [string, string]) =>
+  ({ '--tone': tone, '--tint': tint }) as CSSProperties;
 
 export const dynamicParams = false;
 
@@ -68,23 +73,23 @@ function renderBlock(block: Block, i: number) {
       return <blockquote key={i}>{block.text}</blockquote>;
     case 'metrics':
       return (
-        <div key={i} className="art-metrics">
+        <div key={i} className={s.metrics}>
           {block.items.map((m) => (
-            <div key={m.label} className="art-metric" data-tone={m.tone}>
-              <span className="k">{m.label}</span>
-              <span className="v">{m.value}</span>
-              <span className="d">{m.text}</span>
+            <div key={m.label} className={s.metric} style={toneVars(TONE_COLORS[m.tone])}>
+              <span className={s.k}>{m.label}</span>
+              <span className={s.v}>{m.value}</span>
+              <span className={s.d}>{m.text}</span>
             </div>
           ))}
         </div>
       );
     case 'cta':
       return (
-        <aside key={i} className="art-cta">
-          <p className="h">{block.heading}</p>
-          <p className="t">{block.text}</p>
-          <Link href={block.href} className="art-cta-btn">
-            {block.label} <ArrowNE />
+        <aside key={i} className={s.cta}>
+          <p className={s.h}>{block.heading}</p>
+          <p className={s.t}>{block.text}</p>
+          <Link href={block.href} className={s.ctaBtn}>
+            {block.label} <span aria-hidden="true">→</span>
           </Link>
         </aside>
       );
@@ -123,24 +128,24 @@ export default async function ArticlePage({
   };
 
   return (
-    <div className="art" data-tone={CATEGORY_TONE[post.category] ?? 'blue'}>
+    <div className={s.art} style={toneVars(categoryColors(post.category))}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <div className="art-progress" aria-hidden="true" />
+      <div className={s.progress} aria-hidden="true" />
 
-      <header className="art-head">
-        <nav aria-label="Breadcrumb" className="art-crumbs">
+      <header className={s.head}>
+        <nav aria-label="Breadcrumb" className={s.crumbs}>
           <Link href="/blog">Blog</Link>
           <span aria-hidden="true">/</span>
-          <span className="tone">{post.category}</span>
+          <span className={s.tone}>{post.category}</span>
         </nav>
         <h1>{post.title}</h1>
-        <p className="art-dek">{post.excerpt}</p>
-        <div className="art-byline">
-          <span className="art-avatar" aria-hidden="true">{initials(post.author)}</span>
-          <span className="name">{post.author}</span>
+        <p className={s.dek}>{post.excerpt}</p>
+        <div className={s.byline}>
+          <span className={s.avatar} aria-hidden="true">{initials(post.author)}</span>
+          <span className={s.name}>{post.author}</span>
           <span aria-hidden="true">·</span>
           <time dateTime={post.isoDate}>{post.date}</time>
           <span aria-hidden="true">·</span>
@@ -148,10 +153,10 @@ export default async function ArticlePage({
         </div>
       </header>
 
-      <div className="art-cover-wrap">
+      <div className={s.coverWrap}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="art-cover"
+          className={s.cover}
           src={post.image}
           alt=""
           width={1600}
@@ -160,48 +165,48 @@ export default async function ArticlePage({
         />
       </div>
 
-      <section className="art-main">
+      <section className={s.main}>
         {toc.length > 1 && (
-          <nav className="art-toc" aria-labelledby="art-toc-label">
-            <div id="art-toc-label" className="lbl">In this article</div>
+          <nav className={s.toc} aria-labelledby="art-toc-label">
+            <div id="art-toc-label" className={s.lbl}>In this article</div>
             {toc.map((h) => (
               <a key={h.id} href={`#${h.id}`}>{h.text}</a>
             ))}
           </nav>
         )}
-        <article className="art-body">
+        <article className={s.body}>
           {post.body.map(renderBlock)}
-          <div className="art-author">
-            <span className="art-avatar lg" aria-hidden="true">{initials(post.author)}</span>
+          <div className={s.author}>
+            <span className={`${s.avatar} ${s.avatarLg}`} aria-hidden="true">{initials(post.author)}</span>
             <div>
-              <div className="name">{post.author}</div>
-              {post.authorBio && <div className="bio">{post.authorBio}</div>}
+              <div className={s.name}>{post.author}</div>
+              {post.authorBio && <div className={s.bio}>{post.authorBio}</div>}
             </div>
           </div>
         </article>
       </section>
 
-      <section className="art-more" aria-labelledby="art-more-h">
-        <div className="art-more-head">
+      <section className={s.more} aria-labelledby="art-more-h">
+        <div className={s.moreHead}>
           <h2 id="art-more-h">Keep reading</h2>
           <Link href="/blog">All articles →</Link>
         </div>
-        <div className="art-more-grid">
+        <div className={s.moreGrid}>
           {related.map((p) => (
             <Link
               key={p.id}
               href={`/blog/${p.id}`}
-              className="art-card"
-              data-tone={CATEGORY_TONE[p.category] ?? 'blue'}
+              className={s.card}
+              style={toneVars(categoryColors(p.category))}
             >
-              <div className="thumb">
+              <div className={s.thumb}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.image.replace('w=1600', 'w=800')} alt="" loading="lazy" width={800} height={500} />
+                <img src={thumb(p.image)} alt="" loading="lazy" width={800} height={500} />
               </div>
-              <div className="meta">
+              <div className={s.meta}>
                 {p.category} · {p.readTime}
               </div>
-              <div className="title">{p.title}</div>
+              <div className={s.cardTitle}>{p.title}</div>
             </Link>
           ))}
         </div>

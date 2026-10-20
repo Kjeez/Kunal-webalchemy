@@ -122,6 +122,7 @@ export const SITE_FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
       { label: 'Website Developer Delhi', href: '/website-developer-delhi' },
       { label: 'Website Developer Gurgaon', href: '/website-developer-gurgaon' },
       { label: 'Website Developer Noida', href: '/website-developer-noida' },
+      { label: 'Web Dev Company Delhi NCR', href: '/web-development-company-delhi-ncr' },
       { label: 'WordPress Development', href: '/wordpress-development' },
       { label: 'E-commerce Development', href: '/ecommerce-website-development' },
     ],

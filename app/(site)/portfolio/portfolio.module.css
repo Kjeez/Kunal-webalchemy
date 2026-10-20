@@ -1,0 +1,159 @@
+/* /portfolio — Work.dc.html. Tokens come from app/site.css (.wa). */
+
+.hero {
+  padding-top: clamp(56px, 8vw, 104px);
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 32px 56px;
+  align-items: flex-end;
+}
+
+/* ---- industry tiles ---- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  gap: 1px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.tile {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: var(--bg);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background .2s;
+}
+.tile:hover,
+.tile[aria-pressed='true'] { background: #fff; }
+.tiles .tile:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; border-radius: 0; }
+.tileLabel { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; }
+.tileCount { font-size: 30px; font-weight: 600; letter-spacing: -.04em; line-height: 1.2; color: var(--ink); }
+
+/* ---- project grid ---- */
+.projects {
+  padding-top: 32px;
+  padding-bottom: clamp(72px, 9vw, 120px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.showing { font-family: var(--mono); font-size: 13px; color: var(--muted-2); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.grid[data-filter='education'] > :not([data-cat='education']),
+.grid[data-filter='healthcare'] > :not([data-cat='healthcare']),
+.grid[data-filter='travel'] > :not([data-cat='travel']),
+.grid[data-filter='ecommerce'] > :not([data-cat='ecommerce']),
+.grid[data-filter='corporate'] > :not([data-cat='corporate']),
+.grid[data-filter='creative'] > :not([data-cat='creative']) { display: none; }
+
+.card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: var(--ink);
+  transition: filter .2s;
+}
+.card:hover { filter: brightness(.985); }
+.card:focus-visible { outline-offset: -4px; }
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.shot { aspect-ratio: 1898 / 965; overflow: hidden; background: var(--soft); }
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform-origin: 50% 0;
+  transition: transform 1.4s cubic-bezier(.45, 0, .2, 1);
+}
+.card:hover .shot img { transform: scale(1.07) translateY(-2%); }
+.name { font-size: 24px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.type { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.cardFoot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(20, 22, 28, .1);
+  padding-top: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.cardFoot > span:last-child { transition: transform .35s var(--spring); }
+.card:hover .cardFoot > span:last-child { transform: translate(3px, -3px); }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- CTA (in place of the design's "featured case study") ---- */
+.featureWrap { padding-bottom: clamp(72px, 9vw, 120px); }
+.feature {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: clamp(20px, 3vw, 36px);
+  color: var(--ink);
+  transition: transform .4s var(--spring);
+}
+.feature:hover { transform: translateY(-6px); }
+.mosaic {
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  background: var(--blue-tint);
+  border: 1px solid #dfe4ff;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  overflow: hidden;
+}
+.mosaic img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 8px;
+  border: 1px solid rgba(20, 22, 28, .08);
+}
+.featureText { display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+.featureTitle { font-size: clamp(30px, 3.4vw, 46px); font-weight: 600; letter-spacing: -.035em; line-height: 1.02; text-wrap: balance; }
+.featureLede { font-size: 16px; line-height: 1.6; color: var(--muted); }
+.featureGo { font-size: 15px; font-weight: 600; color: var(--blue); }
+.feature:hover .featureGo { color: var(--blue-h); }

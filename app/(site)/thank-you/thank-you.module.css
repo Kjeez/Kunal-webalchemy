@@ -1,0 +1,39 @@
+/* /thank-you — "sent" state of Contact.dc.html. Tokens from app/site.css (.wa). */
+
+.thanks {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 112px) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.head { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.check {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--live);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  animation: wa-pop .6s cubic-bezier(.2, .9, .3, 1.4) both;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+.step { border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+.stepTop { display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; }
+.stepTitle { font-size: 22px; font-weight: 600; letter-spacing: -.02em; padding-top: 20px; }
+.stepText { font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+.spring:hover { transform: translateY(-2px); }
+.thanks .home { padding: 15px 8px; font-size: 15px; color: var(--muted-2); }
+.thanks .home:hover { color: var(--ink); }

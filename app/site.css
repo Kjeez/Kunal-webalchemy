@@ -248,7 +248,11 @@
     .menu-btn, .mobile-nav { display: none; }
   }
   @media (min-width: 1200px) { .site-phone { display: inline; } }
-  @media (max-width: 420px) { .site-header-actions .btn-pill { padding: 10px 14px; font-size: 14px; } }
+  /* Small phones: the fixed action bar already carries "Free Estimate". */
+  @media (max-width: 479px) {
+    .site-header-in { gap: 12px; }
+    .site-header-actions .btn-pill { display: none; }
+  }
 
   /* ---- site footer ---- */
   .foot-cta-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px 56px; align-items: end; padding-block: clamp(64px, 8vw, 104px); }

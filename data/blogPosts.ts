@@ -1,7 +1,9 @@
-// Blog posts for the new-design article page (app/(new)/blog/[id]).
+// Blog posts for the blog index and article pages (app/(site)/blog).
 // Post 2 carries the rewritten copy from the Claude Design "Article"
 // mock; the others are the legacy BlogPostPage copy, restructured into
 // blocks. Inline `code` in strings is rendered as <code>.
+
+import { TONES } from '@/lib/site';
 
 export type Tone = 'green' | 'blue' | 'amber' | 'violet' | 'orange';
 
@@ -45,6 +47,21 @@ export const CATEGORY_TONE: Record<string, Tone> = {
   Strategy: 'blue',
   Development: 'orange',
 };
+
+/** [ink, tint] per tone, from the 2026 design palette (lib/site TONES). */
+export const TONE_COLORS: Record<Tone, readonly [string, string]> = {
+  green: TONES.green,
+  blue: TONES.blue,
+  amber: TONES.amber,
+  violet: TONES.violet,
+  orange: TONES.rust,
+};
+
+export const categoryColors = (category: string) =>
+  TONE_COLORS[CATEGORY_TONE[category] ?? 'blue'];
+
+/** Card-sized variant of a post image (Unsplash URLs are resized server-side). */
+export const thumb = (image: string) => image.replace('w=1600', 'w=800');
 
 const unsplash = (photo: string) =>
   `https://images.unsplash.com/${photo}?auto=format&fit=crop&q=80&w=1600`;
@@ -224,3 +241,6 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const getPost = (id: string) => BLOG_POSTS.find((p) => p.id === id);
+
+/** Categories in first-appearance order (for the blog filter chips). */
+export const BLOG_CATEGORIES = [...new Set(BLOG_POSTS.map((p) => p.category))];

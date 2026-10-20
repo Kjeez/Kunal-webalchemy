@@ -1,0 +1,31 @@
+/* 404 page — WebAlchemy redesign. Tokens come from .wa (app/site.css). */
+
+@keyframes nfFloat {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+.hero {
+  padding-block: clamp(56px, 8vw, 112px);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 32px 64px; align-items: center;
+}
+.big {
+  font-size: clamp(120px, 22vw, 280px); line-height: .85; letter-spacing: -.07em; font-weight: 600;
+  color: var(--ink); white-space: nowrap;
+}
+.big :global(.serif) { display: inline-block; padding-inline: .04em; animation: nfFloat 5s ease-in-out infinite; }
+.copy { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+.links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; margin-top: 8px; }
+.link {
+  display: flex; flex-direction: column; gap: 6px; padding: 18px; color: var(--ink);
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  transition: transform .4s var(--spring), border-color .2s;
+}
+.link:hover { transform: translateY(-6px); border-color: var(--ink); color: var(--ink); }
+.k { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+.t { font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+.arrow { color: var(--blue); display: inline-block; transition: transform .35s var(--spring); }
+.link:hover .arrow { transform: translateX(4px); }
+.d { font-size: 14px; line-height: 1.45; color: var(--muted); }

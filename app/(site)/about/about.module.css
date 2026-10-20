@@ -1,0 +1,77 @@
+/* About page (About.dc.html). Shared primitives come from app/site.css. */
+
+.hero {
+  padding-top: clamp(56px, 8vw, 112px); padding-bottom: 48px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.title {
+  font-size: clamp(48px, 7.4vw, 108px); line-height: .95; letter-spacing: -.05em;
+  font-weight: 600; max-width: 1100px; text-wrap: balance;
+}
+.intro { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; color: var(--muted); max-width: 720px; }
+
+/* Real project screenshots in place of the mock's "team photo" placeholder */
+.shots {
+  border-radius: 24px; border: 1px solid var(--line); background: var(--soft);
+  padding: clamp(14px, 2.4vw, 28px); display: flex; flex-direction: column; gap: 18px;
+}
+.shotsGrid { display: grid; grid-template-columns: 1fr; gap: clamp(12px, 1.6vw, 20px); align-items: flex-start; }
+.shot { box-shadow: 0 10px 30px rgba(20, 22, 28, .08); transition: transform .45s var(--spring); }
+.shot:nth-child(n + 2) { display: none; }
+.shot img { aspect-ratio: 1896 / 966; object-fit: cover; object-position: top; }
+.shotsCap {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 20px;
+  font-family: var(--mono); font-size: 13px; color: var(--faint);
+}
+@media (min-width: 700px) {
+  .shotsGrid { grid-template-columns: repeat(3, 1fr); }
+  .shot:nth-child(n + 2) { display: block; }
+  .shot:nth-child(2) { margin-top: clamp(16px, 3vw, 40px); }
+  .shot:hover { transform: translateY(-6px) rotate(-1deg); }
+}
+
+.statsWrap { padding-top: 40px; }
+
+.story {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 32px 72px;
+}
+.storyText { display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.65; color: var(--muted); }
+
+.values { display: flex; flex-direction: column; gap: 48px; }
+.valueGrid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  border-top: 1px solid var(--dark-line);
+}
+.value {
+  padding: 28px 28px 32px 0; border-bottom: 1px solid var(--dark-line);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .35s var(--spring);
+}
+.value:hover { transform: translateX(8px); }
+.shape { width: 28px; height: 28px; }
+.valueT { font-size: 21px; font-weight: 600; letter-spacing: -.02em; padding-top: 6px; }
+.valueD { font-size: 16px; line-height: 1.55; color: var(--dark-muted); }
+
+/* Team: truthful version of the mock's grid — headline + the one real photo */
+.team {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 40px 72px; align-items: center;
+}
+.teamText { display: flex; flex-direction: column; gap: 18px; max-width: 620px; }
+.founder { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 340px; justify-self: center; }
+.founderPhoto {
+  aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden;
+  background: var(--blue-tint); border: 1px solid var(--line);
+  transition: transform .4s var(--spring);
+}
+.founderPhoto:hover { transform: rotate(-2deg) scale(1.03); }
+.founderPhoto img { width: 100%; height: 100%; object-fit: cover; }
+.founderName { font-size: 17px; font-weight: 600; }
+.founderRole { font-family: var(--mono); font-size: 12px; color: var(--blue); padding-top: 2px; }
+
+.clients { padding-block: 26px; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shot:hover, .value:hover, .founderPhoto:hover { transform: none; }
+}

@@ -1,31 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter, Bricolage_Grotesque, JetBrains_Mono, Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import './na.css';
 import './site.css';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-bricolage',
-  // Optical-size axis: display sizes render with the tighter large-opsz
-  // glyphs the template gets from Google's CSS (opsz 12..96).
-  axes: ['opsz'],
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-jetbrains',
-});
 
 // Site redesign (Claude Design "WebAlchemy" system): Geist + Geist Mono,
 // with Instrument Serif italic for accent words.
@@ -49,74 +27,6 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
 };
 
-/* Legacy Tailwind CDN config (from old index.html). The CDN script and this
-   config keep not-yet-migrated pages styled; both are removed once the last
-   page moves to the new design system. fontFamily.sans now points at the
-   next/font Inter variable instead of the removed Google Fonts <link>. */
-const tailwindCdnConfig = `
-tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-      },
-      colors: {
-        navy: { 900: '#0a0e27', 800: '#111633' },
-        cyan: { 400: '#00d9ff', 500: '#00b8d4' },
-        teal: { 400: '#00ffb3' }
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 6s ease-in-out 3s infinite',
-        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 12s linear infinite',
-        'beam': 'beam 8s linear infinite',
-        'beam-delayed': 'beam 8s linear 4s infinite',
-        'marquee': 'marquee 40s linear infinite',
-        'marquee-reverse': 'marquee-reverse 40s linear infinite',
-        'fade-in': 'fadeIn 0.5s ease-out',
-        'zoom-in': 'zoomIn 0.3s ease-out',
-        'scroll-left': 'scrollLeft 30s linear infinite',
-        'scroll-right': 'scrollRight 30s linear infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        beam: {
-          '0%': { strokeDashoffset: '1000' },
-          '100%': { strokeDashoffset: '0' }
-        },
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        'marquee-reverse': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        zoomIn: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        scrollLeft: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-33.33%)' },
-        },
-        scrollRight: {
-          '0%': { transform: 'translateX(-33.33%)' },
-          '100%': { transform: 'translateX(0)' },
-        }
-      }
-    }
-  }
-}`;
-
 export default function RootLayout({
   children,
 }: {
@@ -125,16 +35,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} ${jetbrains.variable} ${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
-      <head>
-        {/* Legacy Tailwind CDN — required by pre-redesign pages, removed at
-            the end of the migration. Loaded synchronously to minimise
-            unstyled flashes on legacy markup. */}
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script dangerouslySetInnerHTML={{ __html: tailwindCdnConfig }} />
-      </head>
-      <body className={inter.className}>
+      <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

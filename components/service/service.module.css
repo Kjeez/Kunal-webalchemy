@@ -1,0 +1,155 @@
+/* Service page template (Claude Design "Service"). Tokens come from
+   app/site.css (.wa scope). */
+
+/* ---- hero ---- */
+.hero {
+  padding-top: clamp(48px, 7vw, 96px);
+  padding-bottom: 56px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 40px 56px;
+  align-items: center;
+}
+.heroCopy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.crumbs {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none;
+  font-family: var(--mono); font-size: 13px; color: var(--faint);
+}
+:global(.wa) .crumbs a { color: var(--faint); }
+:global(.wa) .crumbs a:hover { color: var(--blue); }
+.crumbCurrent { color: var(--blue); }
+.h1 { font-size: clamp(44px, 6.4vw, 84px); overflow-wrap: anywhere; }
+.lede { max-width: 540px; }
+
+.glance {
+  background: var(--dark); color: var(--dark-text); border-radius: 22px;
+  padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 22px;
+  transform: rotate(1.5deg); box-shadow: 0 30px 60px rgba(20, 22, 28, .18);
+  transition: transform .45s var(--spring);
+  min-width: 0;
+}
+.glance:hover { transform: rotate(0deg) scale(1.02); }
+.glanceLabel { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--blue-soft); }
+.glanceList { margin: 0; display: flex; flex-direction: column; gap: 22px; }
+.glanceRow {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  border-bottom: 1px solid var(--dark-line); padding-bottom: 16px;
+}
+.glanceRow dt { font-size: 15px; color: var(--dark-muted); flex: none; }
+.glanceRow dd { font-size: clamp(22px, 2.2vw, 30px); font-weight: 600; letter-spacing: -.03em; text-align: right; line-height: 1.15; min-width: 0; }
+.glanceRow dd.small { font-size: clamp(17px, 1.6vw, 21px); letter-spacing: -.015em; }
+:global(.wa) .glanceCta { color: var(--blue-soft); font-size: 15px; font-weight: 500; align-self: flex-start; }
+:global(.wa) .glanceCta:hover { color: #fff; }
+
+/* ---- section heads ---- */
+.head { display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+.headIntro { font-size: 17px; line-height: 1.6; color: var(--muted); }
+.stack40 { display: flex; flex-direction: column; gap: 40px; }
+
+/* ---- included grid ---- */
+.included { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .included { grid-template-columns: repeat(var(--cols-md, 2), 1fr); } }
+@media (min-width: 960px) { .included { grid-template-columns: repeat(var(--cols, 3), 1fr); } }
+.incItem { padding: 28px; display: flex; flex-direction: column; gap: 10px; transition: background .2s; }
+.gridlinesHover > .incItem:hover { background: var(--bg); }
+.shape { width: 30px; height: 30px; flex: none; }
+.incTitle { font-size: 19px; font-weight: 600; letter-spacing: -.01em; padding-top: 8px; }
+.incText { font-size: 15px; line-height: 1.55; color: var(--muted); }
+:global(.wa) .incLink { margin-top: auto; padding-top: 6px; font-size: 15px; font-weight: 500; color: var(--blue); }
+:global(.wa) .incLink:hover { color: var(--blue-h); }
+.bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+
+/* ---- audience rows ---- */
+.rows { display: flex; flex-direction: column; border-top: 1px solid var(--line); margin: 0; padding: 0; list-style: none; }
+.row {
+  display: grid; grid-template-columns: 14px 1fr auto; gap: 16px; align-items: center;
+  padding: 20px 4px; border-bottom: 1px solid var(--line); color: var(--ink);
+  transition: padding .3s var(--spring), background .2s;
+}
+.row:hover { padding-left: 14px; background: #fff; color: var(--ink); }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.rowText { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.rowTitle { font-size: 19px; font-weight: 600; }
+.rowDesc { font-size: 14px; color: var(--muted-2); }
+.rowMeta { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+
+/* ---- case studies ---- */
+.cases { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.case { padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+.caseMeta { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+.caseTitle { font-size: 21px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.caseClient { font-size: 15px; color: var(--muted-2); }
+.caseResults { list-style: none; margin: 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+.caseResults li { display: grid; grid-template-columns: 16px 1fr; gap: 6px; }
+.caseResults li::before { content: '✓'; color: var(--green); }
+.caseTags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+
+/* ---- steps ---- */
+.steps { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .steps { grid-template-columns: repeat(var(--cols, 3), 1fr); } }
+.step {
+  border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px;
+  transition: transform .4s var(--spring);
+  margin: 0;
+}
+.step:hover { transform: translateY(-8px) rotate(-1deg); }
+.stepTop { display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; }
+.stepTitle { font-size: 26px; font-weight: 600; letter-spacing: -.025em; padding-top: 28px; line-height: 1.15; }
+.stepText { font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+/* ---- plans ---- */
+.plansHead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.plan {
+  background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 20px;
+  padding: 28px; display: flex; flex-direction: column; gap: 16px;
+  transition: transform .4s var(--spring);
+}
+.plan:hover { transform: translateY(-8px); }
+.planDark { background: var(--dark); color: var(--dark-text); border-color: var(--dark); }
+.planName { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 19px; font-weight: 600; }
+.planPrice { font-size: 44px; font-weight: 600; letter-spacing: -.045em; line-height: 1; }
+.planPriceSm { font-size: clamp(28px, 2.6vw, 34px); letter-spacing: -.035em; line-height: 1.1; }
+.planUnit { font-size: 16px; font-weight: 500; letter-spacing: 0; opacity: .65; margin-left: 4px; }
+.planList { list-style: none; margin: 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 9px; font-size: 15px; }
+.planDark .planList { border-color: var(--dark-line); }
+.planCta {
+  margin-top: auto; text-align: center; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 600;
+  background: #fff; color: var(--ink); border: 1px solid var(--line-2);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.planCta:hover { border-color: var(--ink); color: var(--ink); }
+:global(.wa) .planDark .planCta { background: var(--blue); color: #fff; border-color: var(--blue); }
+:global(.wa) .planDark .planCta:hover { background: var(--blue-h); border-color: var(--blue-h); color: #fff; }
+.planBadge { font-size: 12px; font-weight: 600; color: #fff; background: var(--blue); padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.planNote { font-size: 15px; line-height: 1.55; color: var(--muted-2); max-width: 720px; }
+
+/* ---- faq ---- */
+.faqAside { display: flex; flex-direction: column; gap: 18px; }
+.others { display: flex; flex-direction: column; gap: 10px; padding-top: 12px; }
+.othersLabel { color: var(--faint); }
+
+/* ---- /services index ---- */
+.idxHero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 88px); display: flex; flex-direction: column; gap: 22px; max-width: 900px; }
+.idxSplit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 48px 72px; }
+.idxSticky { display: flex; flex-direction: column; gap: 18px; align-self: flex-start; }
+@media (min-width: 900px) { .idxSticky { position: sticky; top: 100px; } }
+.svcList { display: flex; flex-direction: column; border-top: 1px solid var(--line); margin: 0; padding: 0; list-style: none; }
+.svcRow {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: flex-start;
+  padding: 26px 4px; border-bottom: 1px solid var(--line); color: var(--ink);
+  transition: background .2s, padding .3s var(--spring);
+}
+.svcRow:hover { background: var(--bg); padding-left: 12px; color: var(--ink); }
+.svcNum { font-family: var(--mono); font-size: 13px; color: var(--faint); padding-top: 6px; }
+.svcBody { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.svcTitleRow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.svcTitle { font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.svcDesc { font-size: 16px; color: var(--muted); line-height: 1.5; }
+.svcTags { font-size: 14px; color: var(--faint); line-height: 1.6; }
+.svcGo { font-size: 15px; font-weight: 500; color: var(--blue); padding-top: 4px; white-space: nowrap; }
+@media (max-width: 520px) {
+  .svcRow { grid-template-columns: 32px 1fr; }
+  .svcGo { grid-column: 2; padding-top: 0; }
+}
