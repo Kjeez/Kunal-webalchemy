@@ -160,7 +160,7 @@ export default function Page() {
         <div className={s.plansHead}>
           <div className={s.head}>
             <div className="eyebrow">PRICING</div>
-            <h2 className="h2 rise">Websites from ₹11,999</h2>
+            <h2 className="h2 rise">Websites from ₹14,999</h2>
             <p className={s.headIntro}>
               Fixed prices for websites, no hidden fees. Marketing, design, content, app and advertising work is
               quoted on scope — each service page lists typical ranges.

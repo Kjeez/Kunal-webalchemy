@@ -96,6 +96,25 @@ export const SITE_NAV: (NavLink & { match: string })[] = [
   { label: 'Contact', href: '/contact', match: '/contact' },
 ];
 
+// Header "Services" menu (desktop dropdown + mobile drawer).
+export const SERVICE_MENU: (NavLink & { desc: string; color: string })[] = [
+  { label: 'Website Development', href: '/services/web-development', desc: 'Fast websites that turn visitors into customers.', color: '#3557f5' },
+  { label: 'Digital Marketing', href: '/services/digital-marketing', desc: 'Google & Meta ads, SEO and reporting.', color: '#2f7a4f' },
+  { label: 'Design & Branding', href: '/services/design-branding', desc: 'Logos, brand kits and UI/UX design.', color: '#a8660a' },
+  { label: 'Content Strategy', href: '/services/content-strategy', desc: 'Copy and blogs that rank and sell.', color: '#c0532b' },
+  { label: 'App Development', href: '/services/app-development', desc: 'iOS and Android apps people use.', color: '#7a4bc2' },
+  { label: 'PR & Advertising', href: '/services/pr-advertising', desc: 'Media placements and brand campaigns.', color: '#14161c' },
+  { label: 'WordPress Development', href: '/wordpress-development', desc: 'Custom themes, plugins and WooCommerce.', color: '#3557f5' },
+  { label: 'E-commerce Development', href: '/ecommerce-website-development', desc: 'Shopify and custom online stores.', color: '#2f7a4f' },
+];
+
+export const LOCATION_MENU: NavLink[] = [
+  { label: 'Website Developer Delhi', href: '/website-developer-delhi' },
+  { label: 'Website Developer Gurgaon', href: '/website-developer-gurgaon' },
+  { label: 'Website Developer Noida', href: '/website-developer-noida' },
+  { label: 'Web Development Company Delhi NCR', href: '/web-development-company-delhi-ncr' },
+];
+
 export const SITE_FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
     title: 'Services',

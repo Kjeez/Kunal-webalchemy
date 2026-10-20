@@ -11,7 +11,7 @@ import {
   type PrefillDetail,
 } from '@/lib/leads';
 
-const BUDGETS = ['Under ₹10k', '₹10–25k', '₹25–50k', '₹50k+'];
+const BUDGETS = ['Under ₹15k', '₹15–30k', '₹30–50k', '₹50k+'];
 
 /**
  * "Send Message / Book Strategy Call" panel from the design (home contact
@@ -34,7 +34,7 @@ export default function LeadForm({
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [service, setService] = useState(defaultService);
-  const [budget, setBudget] = useState('₹10–25k');
+  const [budget, setBudget] = useState('₹15–30k');
   const [details, setDetails] = useState('');
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);

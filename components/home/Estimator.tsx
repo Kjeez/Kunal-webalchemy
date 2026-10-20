@@ -6,15 +6,16 @@ import { prefillLead } from '@/lib/leads';
 import { peep, prefersReducedMotion } from './motion';
 import s from './home.module.css';
 
-/** [key, label, tier] — g = Growth feature, e = Enterprise feature. */
-const OPTS: [string, string, 'g' | 'e'][] = [
+/** [key, label, tier] — g = Growth, p = Premium, e = Enterprise feature. */
+const OPTS: [string, string, 'g' | 'p' | 'e'][] = [
   ['ecom', 'E-commerce store', 'g'], ['blog', 'Blog / CMS', 'g'], ['seo', 'Advanced SEO', 'g'],
-  ['email', 'Email marketing', 'g'], ['anim', 'Custom animations', 'g'], ['lang', 'Multi-language', 'e'],
+  ['email', 'Email marketing', 'g'], ['anim', 'Custom animations', 'g'], ['lang', 'Multi-language', 'p'],
   ['crm', 'CRM / ERP integration', 'e'], ['custom', 'Custom functionality', 'e'],
 ];
 const PEEPS = {
   Starter: ['Mia', 'e8f4ec'],
   Growth: ['Kabir', 'eef1ff'],
+  Premium: ['Arjun', 'fbf3e2'],
   Enterprise: ['Zara', 'f3ecfb'],
 } as const;
 
@@ -28,18 +29,19 @@ const inr = (n: number) => {
 
 function calc(pages: number, opts: Record<string, boolean>) {
   const sel = OPTS.filter((o) => opts[o[0]]);
-  const ent = pages > 10 || sel.some((o) => o[2] === 'e');
-  const gro = !ent && (pages > 5 || sel.length > 0);
-  const plan = (ent ? 'Enterprise' : gro ? 'Growth' : 'Starter') as keyof typeof PEEPS;
-  return { sel, plan, target: ent ? null : gro ? 24999 : 11999 };
+  const ent = pages > 20 || sel.some((o) => o[2] === 'e');
+  const pre = !ent && (pages > 10 || sel.some((o) => o[2] === 'p'));
+  const gro = !ent && !pre && (pages > 5 || sel.length > 0);
+  const plan = (ent ? 'Enterprise' : pre ? 'Premium' : gro ? 'Growth' : 'Starter') as keyof typeof PEEPS;
+  return { sel, plan, target: ent ? null : pre ? 49999 : gro ? 29999 : 14999 };
 }
 
 /** "Price estimator": pages + options → recommended plan, tweened price, prefilled quote. */
 export default function Estimator() {
   const [pages, setPages] = useState(5);
   const [opts, setOpts] = useState<Record<string, boolean>>({});
-  const [shown, setShown] = useState(11999);
-  const shownRef = useRef(11999);
+  const [shown, setShown] = useState(14999);
+  const shownRef = useRef(14999);
   const { sel, plan, target } = calc(pages, opts);
 
   useEffect(() => {
@@ -60,12 +62,15 @@ export default function Estimator() {
   }, [target]);
 
   const gSel = sel.filter((o) => o[2] === 'g').map((o) => o[1]);
+  const pSel = sel.filter((o) => o[2] === 'p').map((o) => o[1]);
   const eSel = sel.filter((o) => o[2] === 'e').map((o) => o[1]);
   const incl = plan === 'Starter'
     ? ['Up to 5 pages', 'Mobile-responsive design', 'Free Domain & SSL Certificate', 'Free Hosting', '7-day delivery', '1 month of support']
     : plan === 'Growth'
       ? ['Everything in Starter', 'Up to 10 pages', ...gSel, '3 months of support']
-      : ['Everything in Growth', ...(pages > 10 ? ['Unlimited pages'] : []), ...gSel, ...eSel, 'Dedicated project manager'];
+      : plan === 'Premium'
+        ? ['Everything in Growth', 'Up to 20 pages', 'Custom UI/UX design', ...gSel, ...pSel, '6 months of support']
+        : ['Everything in Premium', ...(pages > 20 ? ['Unlimited pages'] : []), ...gSel, ...pSel, ...eSel, 'Dedicated project manager'];
 
   const go = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,7 +99,7 @@ export default function Estimator() {
             className={s.range}
             type="range"
             min={1}
-            max={20}
+            max={30}
             value={pages}
             aria-valuetext={pagesLabel}
             onChange={(e) => setPages(+e.target.value)}

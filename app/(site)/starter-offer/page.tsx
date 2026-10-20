@@ -6,13 +6,13 @@ import { EMAIL, PHONE_DISPLAY, TEL_HREF, whatsappHref } from '@/lib/site';
 import s from './starter.module.css';
 
 export const metadata: Metadata = {
-  title: '₹11,999 Starter Website Package | WebAlchemy',
+  title: '₹14,999 Starter Website Package | WebAlchemy',
   description:
-    'A professional 5-page website for ₹11,999, one-time. Free domain, 1-year hosting, SSL, mobile-responsive, SEO-ready and delivered in 7 days.',
+    'A professional 5-page website for ₹14,999, one-time. Free domain, 1-year hosting, SSL, mobile-responsive, SEO-ready and delivered in 7 days.',
   alternates: { canonical: '/starter-offer' },
 };
 
-const WA_MESSAGE = "Hi! I'm interested in the ₹11,999 Starter Website Package. Please share more details.";
+const WA_MESSAGE = "Hi! I'm interested in the ₹14,999 Starter Website Package. Please share more details.";
 
 const FEATURES = [
   '5-Page Professional Website',
@@ -50,7 +50,7 @@ const WORK = [
 const FAQS = [
   {
     q: 'Is this a one-time payment?',
-    a: 'Yes! ₹11,999 is a one-time payment. No hidden charges, no monthly fees for the first year. Hosting renewal after 1 year is just ₹2,999/year.',
+    a: 'Yes! ₹14,999 is a one-time payment. No hidden charges, no monthly fees for the first year. Hosting renewal after 1 year is just ₹2,999/year.',
   },
   {
     q: "What if I'm not satisfied with the design?",
@@ -80,7 +80,7 @@ export default function Page() {
         <div className={s.heroCopy}>
           <div className={s.badges}>
             <span className={s.status}><span className="live-dot pulse" aria-hidden="true" /> Available for new projects</span>
-            <span className="badge">Websites from ₹11,999 · Free Domain &amp; Hosting</span>
+            <span className="badge">Websites from ₹14,999 · Free Domain &amp; Hosting</span>
           </div>
           <h1 id="so-h1" className="h1">
             Need more <span className="serif">customers?</span>
@@ -89,7 +89,7 @@ export default function Page() {
             We build websites that <span className="serif">actually sell.</span>
           </p>
           <p className="lede-lg" style={{ maxWidth: 540 }}>
-            Stop losing leads to outdated design. Get a professional website at just <strong>₹11,999</strong> with
+            Stop losing leads to outdated design. Get a professional website at just <strong>₹14,999</strong> with
             free domain, hosting &amp; SSL.
           </p>
           <div className="btnrow">
@@ -109,7 +109,7 @@ export default function Page() {
             <span className="badge">7-day delivery</span>
           </div>
           <div className={s.priceRow}>
-            <span className={s.price}>₹11,999</span>
+            <span className={s.price}>₹14,999</span>
             <span className={s.priceNote}>One-time payment</span>
           </div>
           <dl className={s.glanceList}>
@@ -132,7 +132,7 @@ export default function Page() {
             <div className={s.headCopy}>
               <div className="eyebrow">WHAT YOU GET</div>
               <h2 id="so-incl" className="h2 rise">
-                Everything included at <span className="serif">₹11,999</span>
+                Everything included at <span className="serif">₹14,999</span>
               </h2>
             </div>
             <p className="lede" style={{ maxWidth: 380 }}>No hidden charges. What you see is what you pay.</p>

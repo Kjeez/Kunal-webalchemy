@@ -207,7 +207,7 @@ const webDevelopment: ServiceData = {
   h1: ['Custom websites that convert visitors into ', 'customers'],
   lede: 'Fast, mobile-first websites built around how your customers decide. Fixed prices, a clear timeline and a team you can message directly.',
   glance: [
-    { k: 'Starting at', v: '₹11,999' },
+    { k: 'Starting at', v: '₹14,999' },
     { k: 'Delivery', v: '7 days' },
     { k: 'Domain & hosting', v: 'Free' },
     { k: 'PageSpeed', v: '98+' },
@@ -287,9 +287,9 @@ const webDevelopment: ServiceData = {
     heading: 'Fixed prices. No hidden fees.',
     compare: true,
     plans: [
-      { name: 'Starter', price: '₹11,999', features: ['Up to 5 pages', 'Free domain & hosting', '7-day delivery'], cta: 'Get Started' },
-      { name: 'Growth', price: '₹24,999', features: ['Up to 10 pages', 'Blog/CMS & e-commerce', '3 months of support'], cta: 'Start Growing', featured: true },
-      { name: 'Enterprise', price: 'Custom', features: ['Unlimited pages', 'CRM/ERP integrations', 'Dedicated project manager'], cta: 'Contact Sales' },
+      { name: 'Starter', price: '₹14,999', features: ['Up to 5 pages', 'Free domain & hosting', '7-day delivery'], cta: 'Get Started' },
+      { name: 'Growth', price: '₹29,999', features: ['Up to 10 pages', 'Blog/CMS & e-commerce', '3 months of support'], cta: 'Start Growing', featured: true },
+      { name: 'Premium', price: '₹49,999', features: ['Up to 20 pages', 'Complete redesign, custom UI/UX', '6 months of support'], cta: 'Go Premium' },
     ],
     note: 'Custom web applications and larger builds are quoted on scope — we provide a detailed estimate after the discovery call.',
   },

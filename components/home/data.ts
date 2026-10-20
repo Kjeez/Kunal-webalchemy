@@ -42,11 +42,11 @@ const PAL: [string, string][] = [
 ];
 
 export const START_ROWS = [
-  ['My website looks outdated', 'Free website audit', 'We review your site and send a written list of fixes within 48 hours. No obligation.', 'Redesign', 'From ₹11,999', 'Website Development'],
-  ['I get visitors but no enquiries', 'Conversion review', 'A 30-minute call going through your pages, calls-to-action and forms.', 'Growth plan', '₹24,999', 'Website Development'],
-  ["I don't have a website yet", 'Starter website', 'Up to 5 pages, live in 7 days, with free domain and hosting.', 'Starter plan', '₹11,999', 'Website Development'],
+  ['My website looks outdated', 'Free website audit', 'We review your site and send a written list of fixes within 48 hours. No obligation.', 'Premium plan · redesign', '₹49,999', 'Website Development'],
+  ['I get visitors but no enquiries', 'Conversion review', 'A 30-minute call going through your pages, calls-to-action and forms.', 'Growth plan', '₹29,999', 'Website Development'],
+  ["I don't have a website yet", 'Starter website', 'Up to 5 pages, live in 7 days, with free domain and hosting.', 'Starter plan', '₹14,999', 'Website Development'],
   ["I'm not showing up on Google", 'SEO check', 'Where you rank today, who outranks you, and the pages to fix first.', 'Content Strategy & SEO', 'Monthly', 'Content Strategy'],
-  ['I want to sell online', 'E-commerce consult', 'We map your catalogue, payments and shipping before quoting.', 'Growth plan · store', '₹24,999', 'Website Development'],
+  ['I want to sell online', 'E-commerce consult', 'We map your catalogue, payments and shipping before quoting.', 'Growth plan · store', '₹29,999', 'Website Development'],
   ['I need an app or custom software', 'Scoping call', 'A fixed-scope estimate with timeline, written up after one call.', 'App Development', 'Custom quote', 'App Development'],
 ].map(([have, start, detail, leads, price, service], i) => ({
   have, start, detail, leads, price, service, c: PAL[i % PAL.length][0], tint: PAL[i % PAL.length][1],
@@ -84,10 +84,13 @@ const on = (t: string, b = false): Feature => ({ t, on: true, b });
 const off = (t: string): Feature => ({ t, on: false });
 
 export const TIERS: { name: string; tag: string; price: string; note: string; cta: string; badge?: string; dark?: boolean; best: string; features: Feature[] }[] = [
-  { name: 'Starter', tag: 'Perfect for getting started online', price: '₹11,999', note: 'One-time payment', cta: 'Get Started', best: 'Landing pages, portfolios, small business websites',
+  { name: 'Starter', tag: 'Perfect for getting started online', price: '₹14,999', note: 'One-time payment', cta: 'Get Started', best: 'Landing pages, portfolios, small business websites',
     features: [on('Up to 5 pages'), on('Mobile-responsive design'), on('SEO-ready structure'), on('Free Domain & SSL Certificate'), on('Contact form integration'), on('Google Analytics setup'), on('1 month of support'), on('Free Hosting'), on('7-day delivery'), off('E-commerce functionality'), off('Blog/CMS'), off('Advanced integrations'), off('Ongoing maintenance')] },
-  { name: 'Growth', tag: 'Everything you need to scale', price: '₹24,999', note: 'One-time payment', cta: 'Start Growing', badge: 'Most popular', dark: true, best: 'E-commerce stores, content-driven sites, growing brands',
+  { name: 'Growth', tag: 'Everything you need to scale', price: '₹29,999', note: 'One-time payment', cta: 'Start Growing', badge: 'Most popular', dark: true, best: 'E-commerce stores, content-driven sites, growing brands',
     features: [on('Everything in Starter', true), on('Up to 10 pages'), on('Blog/CMS integration'), on('E-commerce ready (50 products)'), on('Advanced SEO optimization'), on('Email marketing integration'), on('Social media integration'), on('3 months of support'), on('Priority development'), on('Custom animations'), on('Performance optimization')] },
+  // TODO(owner): confirm Premium's feature list.
+  { name: 'Premium', tag: 'A full redesign or a bigger new build', price: '₹49,999', note: 'One-time payment', cta: 'Go Premium', best: 'Website redesigns, established businesses, larger sites',
+    features: [on('Everything in Growth', true), on('Up to 20 pages'), on('Complete website redesign'), on('Custom UI/UX design, no templates'), on('Content migration from your old site'), on('E-commerce ready (200 products)'), on('Multi-language support'), on('Speed & SEO optimisation'), on('6 months of support')] },
   { name: 'Enterprise', tag: 'Unlimited possibilities for your business', price: 'Custom', note: 'Tailored to your needs', cta: 'Contact Sales', badge: 'For teams', best: 'Large businesses, agencies, complex requirements',
     features: [on('Everything in Growth', true), on('Unlimited pages'), on('Custom functionality'), on('Dedicated project manager'), on('Priority support (24/7)'), on('Advanced integrations (CRM, ERP)'), on('Multi-language support'), on('Custom training sessions'), on('White-glove service'), on('Ongoing consulting'), on('Performance SLAs')] },
 ];

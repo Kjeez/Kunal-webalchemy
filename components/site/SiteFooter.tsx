@@ -28,7 +28,7 @@ export default function SiteFooter() {
             </h2>
             <div className="stack" style={{ gap: 20 }}>
               <p style={{ fontSize: 18, lineHeight: 1.55, color: 'var(--dark-muted)' }}>
-                Free 30-minute strategy call. Fixed quote, no obligation. Websites from ₹11,999,
+                Free 30-minute strategy call. Fixed quote, no obligation. Websites from ₹14,999,
                 live in as little as 7 days.
               </p>
               <div className="btnrow">

@@ -386,7 +386,7 @@
 /* ============ 06 PRICING ============ */
 .priceSec { display: flex; flex-direction: column; gap: 48px; }
 .priceHead { display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; }
-.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; align-items: stretch; }
+.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; align-items: stretch; }
 .tier {
   background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 20px; padding: 32px;
   display: flex; flex-direction: column; gap: 24px; transition: transform .4s var(--spring);

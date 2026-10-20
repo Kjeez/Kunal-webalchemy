@@ -30,7 +30,7 @@ export default function Hero() {
           </h1>
           <p className={`lede-lg ${s.heroLede}`}>
             Stop losing leads to outdated design. We build fast, mobile-first websites grounded in buyer
-            psychology, at fixed prices from ₹11,999 and live in as little as 7 days.
+            psychology, at fixed prices from ₹14,999 and live in as little as 7 days.
           </p>
           <HeroLeadForm />
           <div className={s.heroAlt}>
