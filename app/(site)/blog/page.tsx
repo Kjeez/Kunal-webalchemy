@@ -4,6 +4,8 @@ import { BLOG_CATEGORIES, BLOG_POSTS, categoryColors, getPost, thumb } from '@/d
 import BlogGrid from './BlogGrid';
 import Newsletter from './Newsletter';
 import s from './blog.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* Blog index — Claude Design "Blog" (Blog.dc.html). */
 
@@ -36,7 +38,15 @@ export default function BlogIndexPage() {
 
   return (
     <>
-      <section className={`wrap ${s.hero}`}>
+      <section className={`wrap has-decor ${s.hero}`}>
+        <FloatField preset="soft" />
+        <PeepCrew
+          className="hero-crew hero-crew-top"
+          peeps={[
+            { seed: 'Ishita', bg: 'f3ecfb', pose: 'float', size: 88, bubble: 'New post!' },
+            { seed: 'Kabir', bg: 'eef1ff', pose: 'sway', size: 74 },
+          ]}
+        />
         <div className="stack" style={{ gap: 16 }}>
           <div className="eyebrow">KNOWLEDGE BASE</div>
           <h1 className="h1-xl">

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { TONES, whatsappHref } from '@/lib/site';
 import { ConversionPing, LeadFirstName, LeadService } from './LeadThanks';
 import styles from './thank-you.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* Thank-you / conversion page — the "sent" state of Claude Design
    "Contact" (Contact.dc.html). Every lead form lands here. */
@@ -24,7 +26,16 @@ const NEXT_STEPS = [
 
 export default function Page() {
   return (
-    <section className={styles.thanks}>
+    <section className={`has-decor ${styles.thanks}`}>
+      <FloatField preset="party" />
+      <PeepCrew
+        className="hero-crew hero-crew-top"
+        peeps={[
+          { seed: 'Mia', bg: 'e8f4ec', pose: 'jump', size: 84, bubble: 'Yay!' },
+          { seed: 'Rohan', bg: 'eef1ff', pose: 'jump', size: 96 },
+          { seed: 'Zara', bg: 'f3ecfb', pose: 'jump', size: 80 },
+        ]}
+      />
       <ConversionPing />
       <div className={styles.head}>
         <div className={styles.check} aria-hidden="true">✓</div>

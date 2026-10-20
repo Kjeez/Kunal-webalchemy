@@ -4,6 +4,8 @@ import Faq from '@/components/site/Faq';
 import LeadForm from '@/components/site/LeadForm';
 import { EMAIL, PHONE_DISPLAY, TEL_HREF, whatsappHref } from '@/lib/site';
 import s from './starter.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeekOver } from '@/components/site/motion/Peep';
 
 export const metadata: Metadata = {
   title: '₹14,999 Starter Website Package | WebAlchemy',
@@ -76,7 +78,8 @@ export default function Page() {
   return (
     <>
       {/* ---------- hero ---------- */}
-      <section className={`wrap ${s.hero}`} aria-labelledby="so-h1">
+      <section className={`wrap has-decor ${s.hero}`} aria-labelledby="so-h1">
+        <FloatField preset="hero" />
         <div className={s.heroCopy}>
           <div className={s.badges}>
             <span className={s.status}><span className="live-dot pulse" aria-hidden="true" /> Available for new projects</span>
@@ -103,7 +106,8 @@ export default function Page() {
           </div>
         </div>
 
-        <aside className={`card ${s.glance}`} aria-labelledby="so-glance">
+        <aside className={`card has-peek ${s.glance}`} aria-labelledby="so-glance">
+          <PeekOver seed="Kabir" bubble="Live in 7 days!" />
           <div className={s.glanceTop}>
             <h2 id="so-glance" className="eyebrow-sm" style={{ color: 'var(--blue)', fontWeight: 500 }}>The Starter package</h2>
             <span className="badge">7-day delivery</span>

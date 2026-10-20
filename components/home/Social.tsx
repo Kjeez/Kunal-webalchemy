@@ -2,6 +2,7 @@
 import Marquee from '@/components/site/Marquee';
 import { BAND_A, BAND_B, REVIEWS, peep } from './data';
 import s from './home.module.css';
+import Peep from '@/components/site/motion/Peep';
 
 const BAND_ITEM = { fontSize: 22, fontWeight: 600, color: 'inherit' } as const;
 
@@ -9,6 +10,9 @@ const BAND_ITEM = { fontSize: 22, fontWeight: 600, color: 'inherit' } as const;
 export function Bands() {
   return (
     <div className={s.bands} aria-hidden="true">
+      <span className="band-rider" data-motion>
+        <Peep seed="Kabir" bg="ffffff" pose="bob" size={58} />
+      </span>
       <div className={s.bandA}>
         <Marquee items={BAND_A} duration={30} seps={['#ffd25e', '#fff', '#ff8a6b']} itemStyle={BAND_ITEM} />
       </div>

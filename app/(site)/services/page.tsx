@@ -4,6 +4,8 @@ import { SITE_URL } from '@/lib/site';
 import { SERVICES } from '@/data/services';
 import { JsonLd, PlanCards, StepCards } from '@/components/service/ServicePage';
 import s from '@/components/service/service.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* /services index — no dedicated design; composed from the Service
    template + the Landing v5 numbered service list. */
@@ -88,7 +90,16 @@ export default function Page() {
       <JsonLd data={itemListLd} />
 
       {/* ---- hero ---- */}
-      <section className={`wrap ${s.idxHero}`}>
+      <section className={`wrap has-decor ${s.idxHero}`}>
+        <FloatField preset="hero" />
+        <PeepCrew
+          className="hero-crew"
+          peeps={[
+            { seed: 'Asha', bg: 'e8f4ec', pose: 'bob', size: 84 },
+            { seed: 'Zara', bg: 'f3ecfb', pose: 'wave', size: 98, bubble: 'How can we help?' },
+            { seed: 'Arjun', bg: 'fbf3e2', pose: 'jump', size: 76 },
+          ]}
+        />
         <div className="eyebrow">SERVICES</div>
         <h1 className={`h1 ${s.h1}`}>
           Comprehensive digital <span className="serif">solutions</span>

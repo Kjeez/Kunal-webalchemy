@@ -6,6 +6,7 @@ import { BLOG_POSTS, thumb } from '@/data/blogPosts';
 import { EMAIL, PHONE_DISPLAY, TEL_HREF, whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import { FAQS, peep } from './data';
 import s from './home.module.css';
+import Peep from '@/components/site/motion/Peep';
 
 /** FAQ: intro + shared accordion. (Old homepage emitted no FAQPage JSON-LD; unchanged.) */
 export function HomeFaq() {
@@ -24,6 +25,9 @@ export function HomeFaq() {
           >
             Still have questions? Chat with an expert
           </a>
+          <span className="faq-peep" data-motion>
+            <Peep seed="Ishita" bg="fbf3e2" pose="float" size={92} bubble="Ask us anything!" />
+          </span>
         </div>
         <Faq items={FAQS} />
       </div>

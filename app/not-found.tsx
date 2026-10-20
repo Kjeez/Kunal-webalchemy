@@ -2,6 +2,8 @@ import Link from 'next/link';
 import SiteHeader from '@/components/site/SiteHeader';
 import SiteFooter from '@/components/site/SiteFooter';
 import s from './not-found.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import Peep from '@/components/site/motion/Peep';
 
 // Unknown URLs get a real 404 status. This file sits outside the (site)
 // route group, so it brings its own `.wa` shell (header + footer).
@@ -17,7 +19,11 @@ export default function NotFound() {
       <a href="#main" className="skip">Skip to content</a>
       <SiteHeader />
       <main id="main">
-        <section className={`wrap ${s.hero}`} aria-labelledby="nf-h1">
+        <section className={`wrap has-decor ${s.hero}`} aria-labelledby="nf-h1">
+          <FloatField preset="soft" />
+          <span className="nf-peep" data-motion>
+            <Peep seed="Kabir" bg="fbf3e2" pose="sway" size={110} bubble="Hmm… where did it go?" />
+          </span>
           <p className={s.big} aria-hidden="true">
             4<span className="serif">0</span>4
           </p>

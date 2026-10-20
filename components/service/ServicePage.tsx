@@ -12,6 +12,8 @@ import {
   type ServicePlan,
 } from '@/data/services';
 import s from './service.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeekOver } from '@/components/site/motion/Peep';
 
 /* Service page template — implements the Claude Design "Service" mock
    (Service.dc.html) for every service route. Content lives in
@@ -168,7 +170,8 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
       <JsonLd data={serviceLd} />
 
       {/* ---- hero ---- */}
-      <section className={`wrap ${s.hero}`} aria-labelledby="svc-title">
+      <section className={`wrap has-decor ${s.hero}`} aria-labelledby="svc-title">
+        <FloatField preset="hero" />
         <div className={s.heroCopy}>
           <nav aria-label="Breadcrumb">
             <ol className={s.crumbs}>
@@ -188,7 +191,8 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
             <Link href="/portfolio" className="btn btn-ghost">See our work</Link>
           </div>
         </div>
-        <aside className={s.glance} aria-label="At a glance">
+        <aside className={`has-peek ${s.glance}`} aria-label="At a glance">
+          <PeekOver seed="Neha" side="left" bubble="Fixed price!" />
           <div className={s.glanceLabel}>AT A GLANCE</div>
           <dl className={s.glanceList}>
             {svc.glance.map((g) => (

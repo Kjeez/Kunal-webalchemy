@@ -9,6 +9,7 @@ import {
 } from '@/data/locations';
 import LocationMap from './LocationMap';
 import s from './LocationPage.module.css';
+import FloatField from '@/components/site/motion/FloatField';
 
 /**
  * Location landing page (Claude Design "Location"). Server component;
@@ -39,7 +40,8 @@ export default function LocationPage({ data }: { data: LocationData }) {
       ))}
 
       {/* ---------- hero ---------- */}
-      <section className={s.hero} aria-labelledby="loc-h1">
+      <section className={`has-decor ${s.hero}`} aria-labelledby="loc-h1">
+        <FloatField preset="soft" />
         <div className={s.heroCopy}>
           {data.breadcrumbs && (
             <nav aria-label="Breadcrumb" className={s.crumbs}>

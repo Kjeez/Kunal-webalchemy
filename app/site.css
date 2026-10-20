@@ -372,25 +372,107 @@
     .site-header-actions .btn-pill { display: none; }
   }
 
-  /* ---- site footer ---- */
-  .foot-cta-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px 56px; align-items: end; padding-block: clamp(64px, 8vw, 104px); }
-  .foot-cta h2 { font-size: clamp(40px, 5.4vw, 76px); line-height: .98; letter-spacing: -.045em; text-wrap: balance; }
-  .foot-cta .serif { color: var(--blue-soft); }
-  .site-footer { border-top: 1px solid var(--line); background: var(--bg); }
-  .foot-in { padding-block: 64px 40px; display: flex; flex-direction: column; gap: 48px; }
-  .foot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; }
-  .foot-col { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-  .foot-col .title { font-weight: 600; margin-bottom: 4px; }
-  .foot-col a { color: var(--muted-2); }
-  .foot-col a:hover { color: var(--blue); }
-  .foot-brand { display: flex; flex-direction: column; gap: 14px; }
-  .foot-brand p { font-size: 14px; line-height: 1.6; color: var(--muted-2); }
-  .foot-base {
-    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
-    font-size: 13px; color: var(--faint); border-top: 1px solid var(--line); padding-top: 24px;
+  /* ---- site footer: dark rounded panel ---- */
+  .site-footer {
+    background: #19191a; color: var(--dark-text);
+    border-radius: clamp(24px, 3vw, 44px) clamp(24px, 3vw, 44px) 0 0;
+    margin-top: clamp(40px, 6vw, 96px); overflow: hidden;
   }
-  .foot-base nav { display: flex; gap: 20px; flex-wrap: wrap; }
-  .foot-base a:hover { color: var(--ink); }
+  .foot-in { padding-block: clamp(64px, 9vw, 140px) 36px; display: flex; flex-direction: column; }
+
+  .foot-contact { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .foot-copy { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .foot-eyebrow {
+    display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase; color: #a5a29a;
+  }
+  .foot-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue-soft); flex: none; }
+  .foot-eyebrow .foot-dot { background: var(--live); animation: wa-pulse 1.8s ease-in-out infinite; }
+  .foot-q { font-size: clamp(26px, 3.4vw, 50px); line-height: 1.1; letter-spacing: -.03em; font-weight: 500; margin-top: 8px; }
+  .foot-email {
+    font-size: clamp(28px, 6vw, 96px); line-height: 1.05; letter-spacing: -.045em; font-weight: 500;
+    color: #f2f1ec; overflow-wrap: anywhere; transition: color .25s;
+  }
+  .foot-email:hover { color: var(--blue-soft); }
+  .foot-phone { display: inline-flex; align-items: center; gap: 12px; font-size: clamp(22px, 2.6vw, 40px); letter-spacing: -.03em; color: #b9b6ad; }
+  .foot-phone:hover { color: #fff; }
+  .foot-go {
+    width: clamp(88px, 9vw, 136px); aspect-ratio: 1; border-radius: 50%; flex: none;
+    background: var(--blue); color: #fff; display: grid; place-items: center;
+    box-shadow: 0 18px 50px -12px rgba(53, 87, 245, .7);
+    transition: transform .5s var(--spring), background .2s;
+  }
+  .foot-go:hover { background: var(--blue-h); color: #fff; transform: rotate(45deg) scale(1.06); }
+
+  .foot-rule { border: 0; height: 1px; background: #2e2e30; margin: clamp(48px, 7vw, 96px) 0 clamp(32px, 4vw, 56px); }
+
+  .foot-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px 32px; flex-wrap: wrap; }
+  .foot-brand { font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+  .foot-nav { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 16px; color: #b9b6ad; }
+  .foot-nav a:hover { color: #fff; }
+  .foot-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .foot-pill {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px;
+    border: 1px solid #3a3a3d; background: #222224; font-size: 15px; font-weight: 600; color: #f2f1ec;
+    transition: border-color .2s, background .2s, transform .3s var(--spring);
+  }
+  .foot-pill:hover { border-color: #f2f1ec; color: #fff; transform: translateY(-2px); }
+  .foot-pill-solid { background: var(--blue); border-color: var(--blue); box-shadow: 0 10px 30px -10px rgba(53, 87, 245, .8); }
+  .foot-pill-solid:hover { background: var(--blue-h); border-color: var(--blue-h); }
+
+  .foot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px 40px; margin-top: 40px; }
+  .foot-col { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  .foot-col .title { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #77756f; margin-bottom: 4px; }
+  .foot-col a { color: #a5a29a; }
+  .foot-col a:hover { color: #fff; }
+
+  /* giant wordmark + stickers */
+  .foot-mark { position: relative; margin: clamp(64px, 9vw, 120px) 0 0; padding-top: 2%; container-type: inline-size; }
+  .foot-word {
+    display: block; font-size: 16.6cqi; line-height: .82; font-weight: 700;
+    letter-spacing: -.055em; color: #f2f1ec; white-space: nowrap; text-align: center;
+  }
+  .stk {
+    position: absolute; z-index: 2; display: inline-grid; place-items: center;
+    animation: wa-ff var(--dur, 6s) ease-in-out var(--delay, 0s) infinite; transform: rotate(var(--r, 0deg));
+    transition: scale .3s var(--spring);
+  }
+  .stk:nth-of-type(2) { --dur: 5.5s; --delay: -1s; }
+  .stk:nth-of-type(3) { --dur: 7s; --delay: -2.4s; }
+  .stk:nth-of-type(4) { --dur: 6.4s; --delay: -.6s; }
+  .stk:nth-of-type(5) { --dur: 5s; --delay: -3s; }
+  .stk:nth-of-type(6) { --dur: 7.4s; --delay: -1.8s; }
+  .stk:nth-of-type(7) { --dur: 6s; --delay: -4s; }
+  .stk-pill {
+    padding: clamp(6px, .9vw, 12px) clamp(12px, 1.6vw, 22px); border-radius: 999px; background: #f2f1ec; color: var(--ink);
+    font-size: clamp(11px, 1.3vw, 18px); font-weight: 600; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  }
+  .stk-blue { background: var(--blue); color: #fff; }
+  .stk-dark { background: #262628; color: #f2f1ec; border: 1px solid #3a3a3d; }
+  .stk-round { width: clamp(40px, 5vw, 78px); aspect-ratio: 1; border-radius: 50%; font-size: clamp(16px, 2vw, 28px); box-shadow: 0 10px 30px rgba(0, 0, 0, .3); }
+  .stk-light { background: #f2f1ec; color: var(--ink); }
+  .stk-round.stk-dark { padding: 0; }
+  .stk-arrow { width: clamp(44px, 5vw, 78px); aspect-ratio: 1; border-radius: 50%; background: var(--blue); color: #fff; box-shadow: 0 10px 30px rgba(53, 87, 245, .45); }
+  .foot-mark .foot-peep { position: absolute; z-index: 1; width: clamp(44px, 7cqi, 84px); height: clamp(44px, 7cqi, 84px); }
+  .foot-mark .foot-peep-a { right: 1%; top: -30%; }
+  .foot-mark .foot-peep-b { left: 44%; top: -28%; }
+  .foot-peep .peep-bubble { font-size: 12px; }
+
+  .foot-base {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px;
+    margin-top: clamp(28px, 4vw, 48px); padding-top: 24px; border-top: 1px solid #2e2e30;
+    font-size: 14px; color: #8f8c84;
+  }
+  .foot-base-r { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .foot-base a:hover { color: #fff; }
+  @media (max-width: 640px) {
+    .foot-contact { align-items: flex-start; }
+    .foot-go { order: -1; }
+    .foot-nav { gap: 8px 20px; }
+    /* fewer stickers on phones so the wordmark stays readable */
+    .foot-mark .stk-blue, .foot-mark .stk-pill.stk-dark, .foot-mark .stk-light { display: none; }
+    .foot-mark .foot-peep-b { display: none; }
+  }
 
   /* ---- floating contact: WhatsApp buddy (desktop) + action bar (mobile) ---- */
   .chat-buddy { position: fixed; right: 24px; bottom: 24px; z-index: 30; display: none; flex-direction: column; align-items: flex-end; gap: 10px; }
@@ -430,4 +512,105 @@
 @media (prefers-reduced-motion: reduce) {
   .wa *, .wa *::before, .wa *::after { animation: none !important; transition: none !important; }
   .wa .rise { opacity: 1; translate: none; }
+}
+
+/* ============================================================
+   MOTION: characters & shapes (components/site/motion/*)
+   Looping CSS only (transform/opacity). Anything marked
+   [data-motion] pauses while off-screen (MotionObserver), and
+   the global reduced-motion rule above stops it all.
+   ============================================================ */
+@keyframes wa-ff { 0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-16px) rotate(calc(var(--r, 0deg) + 10deg)); } }
+@keyframes wa-p-wave { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(7deg); } }
+@keyframes wa-p-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes wa-p-jump { 0%, 62%, 100% { transform: translateY(0) rotate(0); } 72% { transform: translateY(-34%) rotate(-9deg); } 84% { transform: translateY(0) rotate(5deg); } 92% { transform: translateY(-9%) rotate(0); } }
+@keyframes wa-p-sway { 0%, 100% { transform: rotate(-3deg) translateX(-2px); } 50% { transform: rotate(3deg) translateX(2px); } }
+@keyframes wa-p-float { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-14px) rotate(4deg); } }
+@keyframes wa-p-peek { 0%, 100% { transform: translateY(82%) rotate(-6deg); } 28%, 74% { transform: translateY(6%) rotate(4deg); } 50% { transform: translateY(0) rotate(-3deg); } }
+@keyframes wa-p-bubble { 0%, 30% { opacity: 0; transform: translate(-50%, 8px) scale(.9); } 38%, 66% { opacity: 1; transform: translate(-50%, 0) scale(1); } 74%, 100% { opacity: 0; transform: translate(-50%, -4px) scale(.95); } }
+@keyframes wa-p-bubble-loop { 0%, 8% { opacity: 0; transform: translate(-50%, 8px) scale(.9); } 16%, 70% { opacity: 1; transform: translate(-50%, 0) scale(1); } 80%, 100% { opacity: 0; transform: translate(-50%, -4px) scale(.95); } }
+@keyframes wa-travel-bob { 0%, 100% { transform: translate(-50%, 0) rotate(-4deg); } 50% { transform: translate(-50%, -6px) rotate(4deg); } }
+
+.wa {
+  .has-decor { position: relative; isolation: isolate; }
+  .has-peek { position: relative; }
+
+  /* floating shapes */
+  .ff { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .ff-s { position: absolute; display: block; animation: wa-ff var(--dur, 7s) ease-in-out var(--delay, 0s) infinite; }
+  .ff-s > * { display: block; }
+
+  /* characters */
+  .peep {
+    position: relative; display: inline-block; flex: none;
+    width: var(--size, 96px); height: var(--size, 96px); transform-origin: 50% 100%;
+  }
+  .peep img { width: 100%; height: 100%; display: block; }
+  .peep-disc img { border-radius: 50%; }
+  .peep-wave { animation: wa-p-wave 3.2s ease-in-out var(--pd, 0s) infinite; }
+  .peep-bob { animation: wa-p-bob 3.6s ease-in-out var(--pd, 0s) infinite; }
+  .peep-jump { animation: wa-p-jump 3.4s ease-out var(--pd, 0s) infinite; }
+  .peep-sway { animation: wa-p-sway 4.2s ease-in-out var(--pd, 0s) infinite; }
+  .peep-float { animation: wa-p-float 5.5s ease-in-out var(--pd, 0s) infinite; }
+  .peep-bubble {
+    position: absolute; left: 50%; bottom: calc(100% + 6px); z-index: 2;
+    background: #fff; color: var(--ink); border: 1px solid var(--line);
+    border-radius: 12px 12px 12px 4px; padding: 6px 10px;
+    font-size: 13px; font-weight: 600; line-height: 1.2; white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(20, 22, 28, .12);
+    opacity: 0; animation: wa-p-bubble-loop 7s ease-in-out calc(var(--pd, 0s) + 1.2s) infinite;
+  }
+  .peep-crew { display: flex; align-items: flex-end; gap: 4px; pointer-events: none; }
+  .peep-crew .peep + .peep { margin-left: -14px; }
+
+  /* peeking over a card's top edge */
+  .peek-over {
+    position: absolute; bottom: 100%; z-index: 0; width: var(--size, 104px);
+    height: calc(var(--size, 104px) * .8); pointer-events: none;
+  }
+  .peek-right { right: 32px; }
+  .peek-left { left: 32px; }
+  .peek-clip { position: absolute; inset: 0; overflow: hidden; }
+  .peek-clip img {
+    position: absolute; left: 0; bottom: 0; width: 100%; height: var(--size, 104px);
+    transform-origin: 50% 100%; animation: wa-p-peek 6.5s ease-in-out infinite;
+  }
+  .peek-bubble { bottom: 100%; animation: wa-p-bubble 6.5s ease-in-out infinite; }
+  @media (max-width: 1099px) { .has-peek { margin-top: 84px; } }
+
+  /* pause anything that's scrolled out of view */
+  [data-motion]:not([data-inview]),
+  [data-motion]:not([data-inview]) * { animation-play-state: paused !important; }
+}
+
+.wa {
+  /* hero character crews (absolute, decorative; hidden where heroes stack) */
+  .hero-crew { position: absolute; right: var(--gutter); bottom: 28px; z-index: 0; display: none; }
+  .hero-crew-top { top: clamp(40px, 6vw, 80px); bottom: auto; }
+  @media (min-width: 1000px) { .hero-crew { display: flex; } }
+
+  /* little explorer on the location maps */
+  .map-peep { position: absolute; left: 7%; bottom: 7%; z-index: 3; pointer-events: none; }
+  .map-peep .peep img { box-shadow: 0 8px 22px rgba(20, 22, 28, .18); border-radius: 50%; }
+}
+
+.wa {
+  /* 404: puzzled character beside the big number */
+  .nf-peep { position: absolute; left: 21%; top: 34px; z-index: 0; display: none; }
+  @media (min-width: 900px) { .nf-peep { display: block; } }
+
+  /* home "How it works": rides the progress line (sticky inside the track) */
+  .travel-track { position: absolute; left: 16px; top: 12px; bottom: 12px; width: 0; z-index: 2; pointer-events: none; }
+  .traveller {
+    position: sticky; top: 55vh; display: block; width: 46px;
+    animation: wa-travel-bob 1.4s ease-in-out infinite;
+  }
+  .traveller .peep img { border-radius: 50%; border: 3px solid var(--blue); background: #fff; }
+
+  /* home diagonal bands: a passenger sitting on the blue band */
+  .band-rider { position: absolute; left: 12%; top: 2px; z-index: 3; pointer-events: none; transform: rotate(-3deg); }
+  .band-rider .peep img { border-radius: 50%; box-shadow: 0 6px 16px rgba(20, 22, 28, .2); }
+
+  /* home FAQ helper */
+  .faq-peep { display: inline-block; margin-top: 44px; align-self: flex-start; }
 }

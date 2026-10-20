@@ -4,6 +4,8 @@ import { projectsData } from '@/data/projectsData';
 import WorkFilter, { type FilterTile } from './WorkFilter';
 import { INDUSTRIES, hostname, industryKey, industryOf, industryTone } from './work';
 import styles from './portfolio.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* Work index — implements the Claude Design "Work" mock (Work.dc.html).
    Cards link to the live sites until real case studies exist
@@ -47,7 +49,15 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <section className={`wrap ${styles.hero}`}>
+      <section className={`wrap has-decor ${styles.hero}`}>
+        <FloatField preset="soft" />
+        <PeepCrew
+          className="hero-crew hero-crew-top"
+          peeps={[
+            { seed: 'Meera', bg: 'fbf3e2', pose: 'jump', size: 80 },
+            { seed: 'Rohan', bg: 'eef1ff', pose: 'wave', size: 94, bubble: 'Take a look!' },
+          ]}
+        />
         <div className="stack" style={{ gap: 18 }}>
           <p className="eyebrow">
             WORK — {total} PROJECTS · {industries.length} INDUSTRIES

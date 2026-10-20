@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Marquee } from '@/components/site';
 import { whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import s from './about.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeepCrew } from '@/components/site/motion/Peep';
 
 /* About — Claude Design "About" (About.dc.html). Placeholder content in
    the mock (team-photo hero, founding-story paragraph, named team grid)
@@ -43,7 +45,16 @@ const CLIENTS = [
 export default function AboutPage() {
   return (
     <>
-      <section className={`wrap ${s.hero}`}>
+      <section className={`wrap has-decor ${s.hero}`}>
+        <FloatField preset="soft" />
+        <PeepCrew
+          className="hero-crew"
+          peeps={[
+            { seed: 'Neha', bg: 'eef1ff', pose: 'wave', size: 96, bubble: 'Namaste!' },
+            { seed: 'Arjun', bg: 'fbf3e2', pose: 'bob', size: 84 },
+            { seed: 'Tara', bg: 'e8f4ec', pose: 'jump', size: 76 },
+          ]}
+        />
         <div className="eyebrow">ABOUT WEBALCHEMY</div>
         <h1 className={s.title}>
           A small Delhi team that builds websites that <span className="serif">sell</span>

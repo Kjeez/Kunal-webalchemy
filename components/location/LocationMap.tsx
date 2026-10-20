@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { LocationData } from '@/data/locations';
 import s from './LocationPage.module.css';
+import Peep from '@/components/site/motion/Peep';
 
 /*
  * Decorative, abstract "map" for the location hero (the design has a
@@ -111,6 +112,9 @@ export default function LocationMap({ map }: { map: LocationData['map'] }) {
       </ul>
 
       <span className={s.compass} aria-hidden="true">N</span>
+      <span className="map-peep" data-motion>
+        <Peep seed="Tara" bg="ffffff" pose="bob" size={78} bubble={`We're nearby!`} />
+      </span>
     </figure>
   );
 }

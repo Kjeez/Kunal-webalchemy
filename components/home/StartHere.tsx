@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import { START_ROWS, STEPS, peep } from './data';
 import PrefillButton from './PrefillButton';
 import s from './home.module.css';
+import Peep from '@/components/site/motion/Peep';
 
 /** "01 — Start here" problem → first-step table. Rows prefill the contact form. */
 export function StartHere() {
@@ -67,6 +68,10 @@ export function HowItWorks() {
       <ol className={s.steps} style={{ listStyle: 'none', margin: 0 }}>
         <li aria-hidden="true" className={s.lineBase} />
         <li aria-hidden="true" className={s.lineFill} />
+        {/* a character that rides down the progress line as you scroll */}
+        <li aria-hidden="true" className="travel-track" data-motion>
+          <span className="traveller"><Peep seed="Asha" bg="eef1ff" pose="still" size={46} /></span>
+        </li>
         {STEPS.map((st) => (
           <li key={st.n} className={s.step}>
             <span className={s.stepDot} aria-hidden="true">{st.n}</span>

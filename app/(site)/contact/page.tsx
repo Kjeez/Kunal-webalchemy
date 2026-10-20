@@ -3,6 +3,8 @@ import LeadForm from '@/components/site/LeadForm';
 import Faq, { type FaqItem } from '@/components/site/Faq';
 import { EMAIL, PHONE_DISPLAY, TEL_HREF, WHATSAPP_DEFAULT_MESSAGE, whatsappHref } from '@/lib/site';
 import styles from './contact.module.css';
+import FloatField from '@/components/site/motion/FloatField';
+import { PeekOver } from '@/components/site/motion/Peep';
 
 /* Contact — Claude Design "Contact" (Contact.dc.html), form state. The
    design's "sent" state lives at /thank-you (the conversion URL). */
@@ -76,7 +78,8 @@ export default function Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <section className={`wrap ${styles.contact}`}>
+      <section className={`wrap has-decor ${styles.contact}`}>
+        <FloatField preset="hero" />
         <div className="stack" style={{ gap: 24 }}>
           <p className={styles.accepting}>
             <span className="live-dot" aria-hidden="true" />
@@ -113,7 +116,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={`card ${styles.formCard}`}>
+        <div className={`card has-peek ${styles.formCard}`}>
+          <PeekOver seed="Rohan" bubble="We reply in 24h!" />
           <LeadForm source="Contact page" serviceInput="chips" showBudget />
         </div>
       </section>
