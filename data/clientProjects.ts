@@ -166,4 +166,5 @@ export const CLIENT_PROJECTS: Project[] = [
   { id: 'client-202', title: 'Tenbel', category: 'Corporate', image: '/portfolio-screenshots/clients/tenbel-in.jpg', link: 'https://www.tenbel.in/', metric: 'Connectivity & Tech', area: 'Delhi NCR' },
   { id: 'client-203', title: 'ViabTech', category: 'Corporate', image: '/portfolio-screenshots/clients/viabtech-com.jpg', link: 'https://www.viabtech.com/', metric: 'Printer Dealer', area: 'Dar es Salaam' },
   { id: 'client-204', title: 'MWC Showcase', category: 'Creative', image: '/portfolio-screenshots/clients/mwc-showcase-three-vercel-app.jpg', link: 'https://mwc-showcase-three.vercel.app', metric: 'Showcase Website', area: 'Delhi NCR' },
+  { id: 'client-205', title: 'Vistaaram', category: 'E-commerce', image: '/portfolio-screenshots/clients/vistaaram-vercel-app.jpg', link: 'https://vistaaram.vercel.app', metric: 'Natural Products', area: 'Uttarakhand' },
 ];
