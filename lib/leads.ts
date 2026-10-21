@@ -27,7 +27,23 @@ export const SERVICES = [
   'Not sure yet',
 ] as const;
 
+import { whatsappHref } from '@/lib/site';
+
 const LEAD_KEY = 'wa-lead';
+
+/** Fallback when email delivery fails: the same enquiry, pre-written for WhatsApp. */
+export function whatsappLead(lead: Lead): string {
+  const lines = [
+    'Hi WebAlchemy! I tried your website form but it did not go through.',
+    lead.name && lead.name !== 'Website visitor' ? `Name: ${lead.name}` : '',
+    lead.phone ? `Mobile: +91 ${lead.phone}` : '',
+    lead.email ? `Email: ${lead.email}` : '',
+    lead.service ? `Service: ${lead.service}` : '',
+    ...Object.entries(lead.fields ?? {}).map(([k, v]) => (v ? `${k}: ${v}` : '')),
+    lead.details ? `\n${lead.details}` : '',
+  ].filter(Boolean);
+  return whatsappHref(lines.join('\n'));
+}
 
 /** Strips formatting; returns the 10-digit Indian mobile or null. */
 export function normalisePhone(raw: string): string | null {

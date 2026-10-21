@@ -9,6 +9,7 @@ import {
   sendLead,
   SERVICES,
   type PrefillDetail,
+  whatsappLead,
 } from '@/lib/leads';
 
 const BUDGETS = ['Under ₹15k', '₹15–30k', '₹30–50k', '₹50k+'];
@@ -37,6 +38,7 @@ export default function LeadForm({
   const [budget, setBudget] = useState('₹15–30k');
   const [details, setDetails] = useState('');
   const [error, setError] = useState('');
+  const [fallback, setFallback] = useState('');
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
@@ -53,13 +55,14 @@ export default function LeadForm({
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setFallback('');
     const mobile = normalisePhone(phone);
     if (!mobile) {
       setError('Please enter a valid 10-digit mobile number.');
       return;
     }
     setSending(true);
-    const res = await sendLead({
+    const lead = {
       name,
       phone: mobile,
       email,
@@ -67,11 +70,13 @@ export default function LeadForm({
       fields: showBudget ? { Budget: budget } : undefined,
       details,
       source,
-    });
+    };
+    const res = await sendLead(lead);
     if (res.ok) {
       goToThankYou(name, service);
     } else {
-      setError(res.message || "Something went wrong. Please try again.");
+      setError("We couldn't send your message just now — tap below to send it on WhatsApp instead.");
+      setFallback(whatsappLead(lead));
       setSending(false);
     }
   };
@@ -130,6 +135,11 @@ export default function LeadForm({
             <textarea className="input" rows={4} placeholder="Tell us about your project goals and timeline..." value={details} onChange={(e) => setDetails(e.target.value)} />
           </label>
           {error && <p className="form-error" role="alert">{error}</p>}
+          {fallback && (
+            <a href={fallback} className="btn btn-whatsapp btn-block" target="_blank" rel="noopener noreferrer">
+              Send on WhatsApp instead →
+            </a>
+          )}
           <button type="submit" className="btn btn-primary btn-lg btn-block" disabled={sending}>
             {sending ? 'Sending…' : 'Send Message →'}
           </button>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { goToThankYou, normalisePhone, sendLead } from '@/lib/leads';
+import { goToThankYou, normalisePhone, sendLead, whatsappLead } from '@/lib/leads';
 import s from './home.module.css';
 
 const SERVICE = 'Website Development';
@@ -10,22 +10,26 @@ const SERVICE = 'Website Development';
 export default function HeroLeadForm() {
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
+  const [fallback, setFallback] = useState('');
   const [sending, setSending] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setFallback('');
     const mobile = normalisePhone(phone);
     if (!mobile) {
       setError('Please enter a valid 10-digit mobile number.');
       return;
     }
     setSending(true);
-    const res = await sendLead({ name: 'Website visitor', phone: mobile, source: 'Home · hero', service: SERVICE });
+    const lead = { name: 'Website visitor', phone: mobile, source: 'Home · hero', service: SERVICE };
+    const res = await sendLead(lead);
     if (res.ok) {
       goToThankYou('', SERVICE);
     } else {
-      setError(res.message || 'Something went wrong. Please try again.');
+      setError("We couldn't send that just now — tap below to message us on WhatsApp instead.");
+      setFallback(whatsappLead(lead));
       setSending(false);
     }
   };
@@ -54,6 +58,11 @@ export default function HeroLeadForm() {
         </button>
       </form>
       {error && <p id="hero-form-error" className="form-error" role="alert">{error}</p>}
+      {fallback && (
+        <a href={fallback} className="btn btn-whatsapp" style={{ alignSelf: 'flex-start' }} target="_blank" rel="noopener noreferrer">
+          Send on WhatsApp instead →
+        </a>
+      )}
     </div>
   );
 }
