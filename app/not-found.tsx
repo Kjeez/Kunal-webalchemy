@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteHeader from '@/components/site/SiteHeader';
 import SiteFooter from '@/components/site/SiteFooter';
+import CursorFx from '@/components/site/CursorFx';
 import s from './not-found.module.css';
 import FloatField from '@/components/site/motion/FloatField';
 import Peep from '@/components/site/motion/Peep';
@@ -48,6 +49,7 @@ export default function NotFound() {
         </section>
       </main>
       <SiteFooter />
+      <CursorFx />
     </div>
   );
 }

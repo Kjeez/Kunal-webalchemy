@@ -1,23 +1,29 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { prefersReducedMotion } from './motion';
-import s from './home.module.css';
 
-const HOT = 'a,button,input,select,textarea,label';
+const HOT = 'a,button,input,select,textarea,label,[role="button"]';
+/* Magnetic targets: anything opted in, plus the site's main CTAs — but
+   never full-width/stretched buttons (they'd visibly slide out of forms). */
+const MAGNETS = '[data-magnetic], .btn-primary, .btn-pill, .foot-go, .foot-pill, .chat-btn';
+const MAX_W = 360;   // wider than this → no pull
+const MAX_PULL = 8;  // px, hard cap on the offset
 
 /**
- * Homepage-only pointer flourish: a ring that trails the cursor (grows over
- * interactive elements) and a gentle magnetic pull on [data-magnetic]
- * buttons. Fine pointers only, never under reduced motion. The rAF loop
- * stops once everything settles. Moves via transform / `translate` only.
+ * Site-wide pointer flourish: a blue ring that trails the cursor (grows and
+ * fills over anything clickable) and a gentle, capped magnetic pull on the
+ * main buttons. Mouse/trackpad only — touch devices and reduced-motion
+ * users get nothing. The rAF loop sleeps once everything settles.
  */
 export default function CursorFx() {
   const ref = useRef<HTMLDivElement>(null);
   const [on, setOn] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (window.matchMedia?.('(pointer: fine)').matches && !prefersReducedMotion()) setOn(true);
+    const mq = (q: string) => window.matchMedia?.(q).matches;
+    if (mq('(hover: hover) and (pointer: fine)') && !mq('(prefers-reduced-motion: reduce)')) setOn(true);
   }, []);
 
   useEffect(() => {
@@ -30,23 +36,29 @@ export default function CursorFx() {
 
     const loop = () => {
       const target = hot ? 1.8 : 1;
-      fx += (mx - fx) * 0.2;
-      fy += (my - fy) * 0.2;
+      fx += (mx - fx) * 0.22;
+      fy += (my - fy) * 0.22;
       fs += (target - fs) * 0.2;
       el.style.transform = `translate(${fx.toFixed(1)}px,${fy.toFixed(1)}px) translate(-50%,-50%) scale(${fs.toFixed(3)})`;
-      el.style.backgroundColor = hot ? 'rgba(53,87,245,.12)' : 'transparent';
+      el.classList.toggle('is-hot', hot);
       let moving = Math.abs(mx - fx) > 0.2 || Math.abs(my - fy) > 0.2 || Math.abs(target - fs) > 0.003;
 
       for (const m of mags) {
         const r = m.getBoundingClientRect();
-        const dx = mx - (r.left + r.width / 2);
-        const dy = my - (r.top + r.height / 2);
-        const pull = Math.hypot(dx, dy) < Math.max(r.width, r.height) * 0.9 ? 0.28 : 0;
         const p = pos.get(m) ?? { x: 0, y: 0 };
-        const ddx = (dx * pull - p.x) * 0.2;
-        const ddy = (dy * pull - p.y) * 0.2;
+        let tx = 0, ty = 0;
+        if (r.width > 0 && r.width <= MAX_W) {
+          const dx = mx - (r.left + r.width / 2);
+          const dy = my - (r.top + r.height / 2);
+          if (Math.hypot(dx, dy) < Math.max(r.width, r.height) * 0.75) {
+            tx = Math.max(-MAX_PULL, Math.min(MAX_PULL, dx * 0.25));
+            ty = Math.max(-MAX_PULL, Math.min(MAX_PULL, dy * 0.25));
+          }
+        }
+        const ddx = (tx - p.x) * 0.2;
+        const ddy = (ty - p.y) * 0.2;
         if (Math.abs(ddx) < 0.05 && Math.abs(ddy) < 0.05) {
-          if (pull === 0 && (p.x || p.y)) { p.x = 0; p.y = 0; m.style.translate = ''; pos.set(m, p); }
+          if (!tx && !ty && (p.x || p.y)) { p.x = 0; p.y = 0; m.style.translate = ''; pos.set(m, p); }
           continue;
         }
         moving = true;
@@ -63,7 +75,7 @@ export default function CursorFx() {
     const kick = () => {
       if (running) return;
       running = true;
-      mags = Array.from(document.querySelectorAll<HTMLElement>('[data-magnetic]'));
+      mags = Array.from(document.querySelectorAll<HTMLElement>(MAGNETS)).filter((m) => !m.closest('.btn-block'));
       raf = requestAnimationFrame(loop);
     };
     const onMove = (e: MouseEvent) => {
@@ -74,18 +86,24 @@ export default function CursorFx() {
       kick();
     };
     const onLeave = () => { el.style.opacity = '0'; seen = false; };
+    const onDown = () => el.classList.add('is-down');
+    const onUp = () => el.classList.remove('is-down');
 
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup', onUp);
     document.documentElement.addEventListener('mouseleave', onLeave);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('scroll', kick);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('mouseup', onUp);
       document.documentElement.removeEventListener('mouseleave', onLeave);
       mags.forEach((m) => { m.style.translate = ''; });
     };
-  }, [on]);
+  }, [on, pathname]);
 
-  return on ? <div ref={ref} className={s.cursor} style={{ opacity: 0 }} aria-hidden="true" /> : null;
+  return on ? <div ref={ref} className="cursor-ring" style={{ opacity: 0 }} aria-hidden="true" /> : null;
 }

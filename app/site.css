@@ -614,3 +614,14 @@
   /* home FAQ helper */
   .faq-peep { display: inline-block; margin-top: 44px; align-self: flex-start; }
 }
+
+.wa {
+  /* cursor ring (components/site/CursorFx — mouse/trackpad only) */
+  .cursor-ring {
+    position: fixed; left: 0; top: 0; z-index: 9999; width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid var(--blue); pointer-events: none;
+    transform: translate(-100px, -100px); transition: background-color .2s, opacity .2s, border-width .2s;
+  }
+  .cursor-ring.is-hot { background-color: rgba(53, 87, 245, .12); }
+  .cursor-ring.is-down { background-color: rgba(53, 87, 245, .25); border-width: 2px; }
+}

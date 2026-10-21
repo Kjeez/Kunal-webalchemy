@@ -6,7 +6,6 @@ import { Services, Work, WhyUs } from '@/components/home/Work';
 import { Bands, Testimonials } from '@/components/home/Social';
 import Pricing from '@/components/home/Pricing';
 import { ContactSection, HomeFaq, Insights } from '@/components/home/Closing';
-import CursorFx from '@/components/home/CursorFx';
 
 // Title/description come from the root layout (unchanged from the old homepage).
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export default function HomePage() {
       <HomeFaq />
       <ContactSection />
       <Insights />
-      <CursorFx />
     </>
   );
 }

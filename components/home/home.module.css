@@ -498,9 +498,4 @@
 .postT { font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
 .postD { font-size: 15px; line-height: 1.5; color: var(--muted); }
 
-/* ============ cursor follower (fine pointers only) ============ */
-.cursor {
-  position: fixed; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
-  border: 1.5px solid var(--blue); pointer-events: none; z-index: 100;
-  transform: translate(-100px, -100px); transition: background-color .2s, opacity .2s;
-}
+

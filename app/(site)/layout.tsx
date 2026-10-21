@@ -2,6 +2,7 @@ import SiteHeader, { Announcement } from '@/components/site/SiteHeader';
 import SiteFooter from '@/components/site/SiteFooter';
 import FloatingContact from '@/components/site/FloatingContact';
 import MotionObserver from '@/components/site/motion/MotionObserver';
+import CursorFx from '@/components/site/CursorFx';
 
 /**
  * Shell for the 2026 redesign. `.wa` scopes app/site.css; pages move
@@ -17,6 +18,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <SiteFooter />
       <FloatingContact />
       <MotionObserver />
+      <CursorFx />
     </div>
   );
 }
