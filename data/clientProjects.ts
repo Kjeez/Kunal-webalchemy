@@ -2,7 +2,7 @@ import type { Project } from './projectsData';
 
 /* Delhi NCR client websites (from WebAlchemy's client list). Screenshots
    are homepage captures in /public/portfolio-screenshots/clients/.
-   Generated — edit the source list and regenerate rather than by hand. */
+   Generated from the client list; later additions appended by hand. */
 export const CLIENT_PROJECTS: Project[] = [
   { id: 'client-7', title: 'Bakers Oven', category: 'Food', image: '/portfolio-screenshots/clients/bakersoven-in.jpg', link: 'https://bakersoven.in', metric: 'Bakery', area: 'Gurugram' },
   { id: 'client-8', title: 'Cakofy', category: 'Food', image: '/portfolio-screenshots/clients/cakofy-com.jpg', link: 'https://cakofy.com', metric: 'Cake Shop', area: 'Gurugram' },
@@ -167,4 +167,7 @@ export const CLIENT_PROJECTS: Project[] = [
   { id: 'client-203', title: 'ViabTech', category: 'Corporate', image: '/portfolio-screenshots/clients/viabtech-com.jpg', link: 'https://www.viabtech.com/', metric: 'Printer Dealer', area: 'Dar es Salaam' },
   { id: 'client-204', title: 'MWC Showcase', category: 'Creative', image: '/portfolio-screenshots/clients/mwc-showcase-three-vercel-app.jpg', link: 'https://mwc-showcase-three.vercel.app', metric: 'Showcase Website', area: 'Delhi NCR' },
   { id: 'client-205', title: 'Vistaaram', category: 'E-commerce', image: '/portfolio-screenshots/clients/vistaaram-vercel-app.jpg', link: 'https://vistaaram.vercel.app', metric: 'Natural Products', area: 'Uttarakhand' },
+  { id: 'client-206', title: 'Alethia', category: 'Corporate', image: '/portfolio-screenshots/clients/alethia-earth.jpg', link: 'https://www.alethia.earth/', metric: 'Climate Tech', area: 'International' },
+  { id: 'client-207', title: 'Pear', category: 'Corporate', image: '/portfolio-screenshots/clients/pear-no.jpg', link: 'https://pear.no/', metric: 'SEO & Software', area: 'Norway' },
+  { id: 'client-208', title: 'Edolus', category: 'Corporate', image: '/portfolio-screenshots/clients/edolus-com.jpg', link: 'https://edolus.com/', metric: 'AI Infrastructure', area: 'International' },
 ];
