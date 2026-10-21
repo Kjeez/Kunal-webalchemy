@@ -70,7 +70,7 @@ export const SERVICES_LIST: { t: string; d: string; tags: string; href: string; 
 export const STACK = ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node.js', 'Three.js', 'WordPress', 'Shopify', 'Webflow', 'Framer', 'Wix', 'WooCommerce'];
 
 export const BAND_A = ['Mobile-first', 'PageSpeed 98+', '7-day delivery', 'Free domain & hosting', 'SEO-ready', 'Direct Slack access'];
-export const BAND_B = ['Websites that sell', 'Built in New Delhi', '100+ projects', 'Rated 4.9/5', 'Conversion focused', 'Launch-date guarantee'];
+export const BAND_B = ['Websites that sell', 'Built in New Delhi', '500+ projects', 'Rated 4.9/5', 'Conversion focused', 'Launch-date guarantee'];
 
 /* The three reviews the previous homepage already showed. */
 export const REVIEWS = [

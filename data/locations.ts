@@ -400,7 +400,7 @@ const gurgaon: LocationData = {
     eyebrow: 'GURGAON',
     heading: 'Empowering Gurgaon startups & corporates with digital excellence',
     paras: [
-      'Looking for a professional website developer in Gurgaon? WebAlchemy is a web development company serving Gurgaon, specializing in custom websites, e-commerce solutions, and digital marketing. We have delivered 100+ projects for businesses across Delhi NCR.',
+      'Looking for a professional website developer in Gurgaon? WebAlchemy is a web development company serving Gurgaon, specializing in custom websites, e-commerce solutions, and digital marketing. We have delivered 500+ projects for businesses across Delhi NCR.',
       'As a website development company for Gurgaon, we offer comprehensive digital solutions tailored for local businesses: custom websites for Gurgaon businesses, beautiful conversion-focused UI/UX design, digital marketing that helps you dominate Gurgaon search results, and website maintenance with ongoing support and updates.',
     ],
   },
@@ -453,7 +453,7 @@ const noida: LocationData = {
     eyebrow: 'NOIDA',
     heading: "Building digital solutions for Noida's tech ecosystem",
     paras: [
-      'Looking for a professional website developer in Noida? WebAlchemy is a web development company serving Noida and Greater Noida, specializing in custom websites, e-commerce solutions, and digital marketing. We have delivered 100+ projects for businesses across Delhi NCR.',
+      'Looking for a professional website developer in Noida? WebAlchemy is a web development company serving Noida and Greater Noida, specializing in custom websites, e-commerce solutions, and digital marketing. We have delivered 500+ projects for businesses across Delhi NCR.',
       'As a website development company for Noida, we offer comprehensive digital solutions tailored for local businesses: custom websites for Noida businesses, beautiful conversion-focused UI/UX design, digital marketing that helps you dominate Noida search results, and website maintenance with ongoing support and updates.',
     ],
   },

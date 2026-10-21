@@ -112,6 +112,7 @@ export default function Page() {
                 {p.metric && (
                   <span className={styles.type} style={{ color: c }}>
                     {p.metric}
+                    {p.area && <span className={styles.area}> · {p.area}</span>}
                   </span>
                 )}
               </div>

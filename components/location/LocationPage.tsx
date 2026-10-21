@@ -78,7 +78,7 @@ export default function LocationPage({ data }: { data: LocationData }) {
           </div>
           <div className={s.proof}>
             <span><span className="stars" aria-hidden="true">★★★★★</span> 4.9/5</span>
-            <span>100+ projects delivered</span>
+            <span>500+ projects delivered</span>
             <span>Based in New Delhi</span>
           </div>
         </div>

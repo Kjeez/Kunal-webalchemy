@@ -4,12 +4,23 @@ import type { Project } from '@/data/projectsData';
 /* Shared helpers for /portfolio and /portfolio/[slug]: projectsData
    categories mapped onto the design's industry labels and tones. */
 
-export const INDUSTRIES = ['Education', 'Healthcare', 'Travel', 'E-commerce', 'Corporate', 'Creative'] as const;
+export const INDUSTRIES = [
+  'Education', 'Healthcare', 'Interiors', 'Professional', 'Manufacturing', 'Fashion',
+  'Food', 'Wellness', 'Events', 'E-commerce', 'Travel', 'Corporate', 'Creative',
+] as const;
 export type Industry = (typeof INDUSTRIES)[number];
 
 const CATEGORY_INDUSTRY: Record<Project['category'], Industry> = {
   Educational: 'Education',
   Dental: 'Healthcare',
+  Healthcare: 'Healthcare',
+  Interiors: 'Interiors',
+  Professional: 'Professional',
+  Manufacturing: 'Manufacturing',
+  Fashion: 'Fashion',
+  Food: 'Food',
+  Wellness: 'Wellness',
+  Events: 'Events',
   Travel: 'Travel',
   'E-commerce': 'E-commerce',
   Corporate: 'Corporate',
@@ -19,6 +30,13 @@ const CATEGORY_INDUSTRY: Record<Project['category'], Industry> = {
 const INDUSTRY_TONE: Record<Industry, Tone> = {
   Education: 'blue',
   Healthcare: 'green',
+  Interiors: 'violet',
+  Professional: 'ink',
+  Manufacturing: 'blue',
+  Fashion: 'rust',
+  Food: 'amber',
+  Wellness: 'green',
+  Events: 'violet',
   Travel: 'amber',
   'E-commerce': 'rust',
   Corporate: 'violet',

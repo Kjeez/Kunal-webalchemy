@@ -10,19 +10,28 @@ import s from './home.module.css';
 const CAT: Record<Project['category'], string> = {
   Educational: 'Education',
   Dental: 'Healthcare',
-  'E-commerce': 'E-commerce',
-  Travel: 'Travel',
+  Healthcare: 'Healthcare',
+  Wellness: 'Healthcare',
+  Interiors: 'Interiors',
+  Professional: 'Professional',
+  'E-commerce': 'Retail',
+  Fashion: 'Retail',
+  Food: 'Retail',
+  Travel: 'Corporate',
+  Events: 'Corporate',
+  Manufacturing: 'Corporate',
   Corporate: 'Corporate',
   Creative: 'Corporate',
 };
 const CAT_TONE: Record<string, readonly [string, string]> = {
   Education: TONES.blue,
   Healthcare: TONES.green,
-  Travel: TONES.amber,
-  'E-commerce': TONES.rust,
-  Corporate: TONES.violet,
+  Interiors: TONES.violet,
+  Professional: TONES.ink,
+  Retail: TONES.rust,
+  Corporate: TONES.amber,
 };
-const CATS = ['All', 'Education', 'Healthcare', 'Travel', 'E-commerce', 'Corporate'];
+const CATS = ['All', 'Education', 'Healthcare', 'Interiors', 'Professional', 'Retail', 'Corporate'];
 /* "All" = the design's first eight + Hamta Orchard, for a 3×3 grid. */
 const FEATURED = ['edu-1', 'edu-2', 'edu-3', 'comm-1', 'dental-1', 'dental-2', 'dental-3', 'corp-1', 'travel-2'];
 const PER_FILTER = 9;

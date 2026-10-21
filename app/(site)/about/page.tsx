@@ -26,7 +26,7 @@ const SHOTS = [
 
 const STATS = [
   { k: 'YEARS', v: '5+', l: 'In operation', c: 'var(--ink)' },
-  { k: 'PROJECTS', v: '100+', l: 'Websites & apps delivered', c: 'var(--blue)' },
+  { k: 'PROJECTS', v: '500+', l: 'Websites & apps delivered', c: 'var(--blue)' },
   { k: 'TEAM', v: '12', l: 'Designers & developers', c: 'var(--green)' },
   { k: 'SATISFACTION', v: '98%', l: 'Client satisfaction', c: 'var(--rust)' },
 ];

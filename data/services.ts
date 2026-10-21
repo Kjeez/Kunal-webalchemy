@@ -113,7 +113,7 @@ const webSteps = (support: string, buildExtra = '') => [
 
 const PORTFOLIO_ROWS: ServiceAudienceRow[] = [
   { t: 'Schools & education', d: 'Admissions, notices, results, galleries', tone: 'blue', categories: ['Educational'] },
-  { t: 'Dental & healthcare', d: 'Appointments, treatments, doctor profiles', tone: 'green', categories: ['Dental'] },
+  { t: 'Dental & healthcare', d: 'Appointments, treatments, doctor profiles', tone: 'green', categories: ['Dental', 'Healthcare'] },
   { t: 'Travel & resorts', d: 'Packages, bookings, enquiries', tone: 'amber', categories: ['Travel'] },
   { t: 'E-commerce', d: 'Catalogues, payments, shipping', tone: 'rust', categories: ['E-commerce'] },
   { t: 'Corporate', d: 'Services, reports, careers', tone: 'violet', categories: ['Corporate'] },
@@ -505,7 +505,7 @@ const designBranding: ServiceData = {
     rows: [
       { t: 'Corporate', d: 'Brand systems, service sites, collateral', tone: 'violet', categories: ['Corporate'] },
       { t: 'Creative & portfolios', d: 'Studios, artists and personal brands', tone: 'rust', categories: ['Creative'] },
-      { t: 'Dental & healthcare', d: 'Clinic identities and patient-friendly sites', tone: 'green', categories: ['Dental'] },
+      { t: 'Dental & healthcare', d: 'Clinic identities and patient-friendly sites', tone: 'green', categories: ['Dental', 'Healthcare'] },
       { t: 'Schools & education', d: 'Institutional websites and galleries', tone: 'blue', categories: ['Educational'] },
     ],
   },

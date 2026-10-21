@@ -60,6 +60,13 @@
 .grid[data-filter='travel'] > :not([data-cat='travel']),
 .grid[data-filter='ecommerce'] > :not([data-cat='ecommerce']),
 .grid[data-filter='corporate'] > :not([data-cat='corporate']),
+.grid[data-filter='interiors'] > :not([data-cat='interiors']),
+.grid[data-filter='professional'] > :not([data-cat='professional']),
+.grid[data-filter='manufacturing'] > :not([data-cat='manufacturing']),
+.grid[data-filter='fashion'] > :not([data-cat='fashion']),
+.grid[data-filter='food'] > :not([data-cat='food']),
+.grid[data-filter='wellness'] > :not([data-cat='wellness']),
+.grid[data-filter='events'] > :not([data-cat='events']),
 .grid[data-filter='creative'] > :not([data-cat='creative']) { display: none; }
 
 .card {
@@ -157,3 +164,4 @@
 .featureLede { font-size: 16px; line-height: 1.6; color: var(--muted); }
 .featureGo { font-size: 15px; font-weight: 600; color: var(--blue); }
 .feature:hover .featureGo { color: var(--blue-h); }
+.area { color: var(--muted-2); }

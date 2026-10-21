@@ -100,7 +100,7 @@ export default function Page() {
             <a href={TEL_HREF} className="btn btn-ghost btn-lg">Call now</a>
           </div>
           <div className={s.proof}>
-            <span>100+ happy clients</span>
+            <span>500+ happy clients</span>
             <span>Money-back guarantee</span>
             <span>7-day delivery</span>
           </div>

@@ -1,14 +1,20 @@
+import { CLIENT_PROJECTS } from './clientProjects';
+
 export interface Project {
     id: string;
     title: string;
-    category: 'Educational' | 'E-commerce' | 'Corporate' | 'Travel' | 'Creative' | 'Dental';
+    category:
+        | 'Educational' | 'E-commerce' | 'Corporate' | 'Travel' | 'Creative' | 'Dental'
+        | 'Healthcare' | 'Food' | 'Interiors' | 'Professional' | 'Manufacturing' | 'Fashion' | 'Wellness' | 'Events';
+    /** Neighbourhood / city, for client-list projects. */
+    area?: string;
     image: string;
     link: string;
     metric?: string;
     description?: string;
 }
 
-export const projectsData: Project[] = [
+const coreProjects: Project[] = [
     // Educational
     {
         id: 'edu-1',
@@ -389,3 +395,6 @@ export const projectsData: Project[] = [
         metric: 'Luxury Interiors'
     }
 ];
+
+// Delhi NCR client sites (generated: data/clientProjects.ts).
+export const projectsData: Project[] = [...coreProjects, ...CLIENT_PROJECTS];
