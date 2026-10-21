@@ -73,10 +73,13 @@ export const BAND_A = ['Mobile-first', 'PageSpeed 98+', '7-day delivery', 'Free 
 export const BAND_B = ['Websites that sell', 'Built in New Delhi', '500+ projects', 'Rated 4.9/5', 'Conversion focused', 'Launch-date guarantee'];
 
 /* The three reviews the previous homepage already showed. */
-export const REVIEWS = [
-  { q: "WebAlchemy didn't just build a website; they built a sales engine. Our lead quality improved overnight, and the design perfectly captures our brand's future vision.", name: 'Sarah Jenkins', co: 'TechFlow Systems' },
-  { q: 'The level of technical detail is unmatched. They handled our complex 3D WebGL integrations seamlessly. Truly a partner, not just a vendor.', name: 'Michael Chen', co: 'Nexus AI' },
-  { q: 'We were losing customers to mobile usability issues. The new responsive platform WebAlchemy launched helped us recover significant market share in Q4.', name: 'Elena Rodriguez', co: 'Global Logistics' },
+/* Real client reviews (supplied by WebAlchemy). `shot` = their site's
+   homepage capture, shown on the featured card. */
+export const REVIEWS: { q: string; name: string; co: string; shot?: string }[] = [
+  { q: 'WebAlchemy understood our technical business and translated it into a professional digital presence. The website design looks clean, communicates our solutions effectively, and gives our brand a much stronger identity.', name: 'Ashish', co: 'Tenbel', shot: '/portfolio-screenshots/clients/tenbel-in.jpg' },
+  { q: 'From presenting our products to communicating our brand story, WebAlchemy helped us create a website that feels premium and authentic. Their attention to detail made the entire experience smooth.', name: 'Pankaj', co: 'Vistaaram' },
+  { q: 'We needed a digital presence that reflected the strength and professionalism of our business. The team approached the project thoughtfully and focused on clear communication, design quality, and usability.', name: 'Anoop', co: 'Shyam Metalics' },
+  { q: 'WebAlchemy brought our vision to life with a polished design and a thoughtful user experience. The website feels aligned with our brand, works smoothly across devices, and makes it easier for customers to explore our offerings.', name: 'Ankita', co: 'Nandtara' },
 ];
 
 type Feature = { t: string; on: boolean; b?: boolean };

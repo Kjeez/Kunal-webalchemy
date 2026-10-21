@@ -40,8 +40,15 @@ export function Testimonials() {
           <div className={s.tCard} aria-hidden="true">
             <div className={s.tCardTop}><span>WEBALCHEMY</span><span>CLIENT PROJECT</span></div>
             <div className={s.tCardArt}>
-              <span className={s.tCardMark}>&ldquo;</span>
-              <span className="stars">★★★★★</span>
+              {featured.shot ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img className={s.tCardShot} src={featured.shot} alt="" width={1280} height={651} loading="lazy" />
+              ) : (
+                <>
+                  <span className={s.tCardMark}>&ldquo;</span>
+                  <span className="stars">★★★★★</span>
+                </>
+              )}
             </div>
             <div className={s.tCo}>{featured.co}</div>
             <div className={s.tMetric}>
@@ -68,6 +75,7 @@ export function Testimonials() {
                 <div className={s.tFigV}>5.0</div>
                 <div className={s.tFigL}>CLIENT RATING</div>
               </div>
+              <span className="stars" aria-label="5 out of 5 stars">★★★★★</span>
               <blockquote className={s.tFigQ}>&ldquo;{r.q}&rdquo;</blockquote>
               <figcaption className={s.tFigCap}>
                 <img src={peep(r.name, 'eef1ff')} alt="" width={44} height={44} loading="lazy" />
