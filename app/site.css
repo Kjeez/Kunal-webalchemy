@@ -625,3 +625,11 @@
   .cursor-ring.is-hot { background-color: rgba(53, 87, 245, .12); }
   .cursor-ring.is-down { background-color: rgba(53, 87, 245, .25); border-width: 2px; }
 }
+
+.wa {
+  /* Kunal portfolio: blue full stop after the name, sized footer wordmark */
+  .logo-dot { color: var(--blue); }
+  .foot-brand .logo-dot { color: var(--blue-soft); }
+  .foot-word { font-size: 26cqi; }
+  .foot-word .logo-dot { color: var(--blue); }
+}

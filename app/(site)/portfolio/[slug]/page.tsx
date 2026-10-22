@@ -7,7 +7,8 @@ import { TONES, type Tone } from '@/lib/site';
 import { hostname, industryOf, industryTone } from '../work';
 import styles from './case.module.css';
 
-/* Case study template — Claude Design "Case Study" (Case Study.dc.html).
+/* Case study template — Claude Design "Case Study" (Case Study.dc.html),
+   framed as Kunal's own work.
    Driven entirely by data/caseStudies.ts; every section renders only when
    its data exists. With no entries, no pages are generated. */
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = cs && projectFor(cs.projectId);
   if (!cs || !project) return {};
   return {
-    title: `${project.title} — Case Study | WebAlchemy`,
+    title: `${project.title} — Case Study | Kunal`,
     description: cs.summary,
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: { title: `${project.title} — Case Study`, description: cs.summary, images: [cs.heroImage?.src ?? project.image] },
@@ -66,9 +67,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </nav>
         <div className={styles.heroGrid}>
           <div className="stack" style={{ gap: 16 }}>
-            <p className="eyebrow">CASE STUDY · {industry.toUpperCase()}</p>
+            <p className="eyebrow">CASE STUDY · {industry.toUpperCase()} · BUILT BY KUNAL</p>
             <h1 className="h1-xl">{project.title}</h1>
             <p className={styles.summary}>{cs.summary}</p>
+            <p className={styles.role}>My role: UI/UX design, visual design &amp; development</p>
           </div>
           {cs.meta?.length > 0 && (
             <dl className={styles.meta}>
@@ -170,6 +172,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               <div className={styles.quoteRole}>
                 {cs.quote.role.toUpperCase()}, {project.title.toUpperCase()}
               </div>
+              <div className={styles.quoteNote}>Project I led at my studio, WebAlchemy</div>
             </div>
           </div>
         </section>

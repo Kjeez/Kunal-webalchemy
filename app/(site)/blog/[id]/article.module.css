@@ -132,3 +132,7 @@
   .progress { display: none; }
   .art .card:hover, .art .ctaBtn:hover { transform: none; }
 }
+
+/* Kunal portfolio: hire link under the author bio */
+.author .hire { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 500; color: var(--blue); }
+.author .hire:hover { color: var(--blue-h); }

@@ -67,9 +67,9 @@ export function Work() {
         groups={groups()}
         intro={
           <div key="intro" className={`${s.headStack} ${s.workIntro}`}>
-            <p className="eyebrow">02 — RECENT WORK</p>
-            <h2 id="work-h" className="h2 h2-lg rise">Built for scale</h2>
-            <p className="lede">Explore our recent work. We build digital experiences that drive real business growth.</p>
+            <p className="eyebrow">SELECTED WORK</p>
+            <h2 id="work-h" className="h2 h2-lg rise">Things I&apos;ve <span className="serif">designed &amp; built</span></h2>
+            <p className="lede">A slice of 200+ projects: schools, clinics, stores and brands. Every one designed in Figma and built to load fast on a phone.</p>
           </div>
         }
       />
@@ -80,34 +80,60 @@ export function Work() {
   );
 }
 
-/** "03 — Our expertise": sticky intro + service rows that prefill the contact form. */
+/** Looping "design → code" card: a Figma frame, then the same layout as code. */
+function DesignToCode() {
+  return (
+    <div className={s.d2c} aria-hidden="true">
+      <div className={s.d2cBar}>
+        <span className={s.d2cTab}>Design</span>
+        <span className={s.d2cTab}>Code</span>
+        <i className={s.d2cPill} />
+      </div>
+      <div className={s.d2cBody}>
+        <div className={s.d2cDesign}>
+          <i className={s.dNav} /><i className={s.dH1} /><i className={s.dH2} /><i className={s.dBtn} /><i className={s.dImg} />
+          <span className={s.dSel}><b /><b /><b /><b /><em>Hero · 1440</em></span>
+        </div>
+        <div className={s.d2cCode}>
+          <span><em>&lt;section</em> class=<q>hero</q><em>&gt;</em></span>
+          <span>&nbsp;&nbsp;<em>&lt;h1&gt;</em>Websites that sell<em>&lt;/h1&gt;</em></span>
+          <span>&nbsp;&nbsp;<em>&lt;a</em> class=<q>btn</q><em>&gt;</em>Book now<em>&lt;/a&gt;</em></span>
+          <span><em>&lt;/section&gt;</em></span>
+          <span className={s.d2cOk}>✓ PageSpeed 98 · mobile</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** "Expertise": sticky intro + service rows that prefill the contact form. */
 export function Services() {
   return (
-    <section id="services" className={`band-white ${s.anchor}`} aria-labelledby="services-h">
+    <section id="expertise" className={`band-white ${s.anchor}`} aria-labelledby="services-h">
       <div className={`wrap section ${s.sideGrid}`}>
         <div className={s.stickyCol}>
-          <p className="eyebrow">03 — OUR EXPERTISE</p>
-          <h2 id="services-h" className="h2 h2-lg rise">Digital solutions for modern businesses</h2>
+          <p className="eyebrow">EXPERTISE</p>
+          <h2 id="services-h" className="h2 h2-lg rise">Design <span className="serif">and</span> code, under one roof</h2>
           <p className="lede" style={{ maxWidth: 440 }}>
-            We combine design, technology, and strategy to build products that win. Pick a service to get a tailored quote.
+            Strong UI/UX thinking, pixel-perfect visuals in Figma, Photoshop and Illustrator, built on every major CMS.
+            Pick one to get a tailored quote.
           </p>
-          <p style={{ fontSize: 15, color: 'var(--muted-2)' }}>
-            In Delhi NCR? See our <Link className="link" href="/website-developer-delhi">website developer in Delhi</Link> page, or browse <Link className="link" href="/services">all services</Link>.
-          </p>
+          <DesignToCode />
         </div>
         <div className={s.svcList}>
           {SERVICES_LIST.map((sv, i) => (
-            <PrefillButton key={sv.t} service={sv.t} className={s.svcRow}>
-              <span className={s.svcN}>0{i + 1}</span>
+            <PrefillButton key={sv.t} service={sv.service} className={s.svcRow}>
+              <span className={s.svcN} style={{ color: sv.c }}>0{i + 1}</span>
               <span className={s.svcBody}>
                 <span className={s.svcTitle}>
+                  <span className={s.svcDot} style={{ background: sv.c }} aria-hidden="true" />
                   <span className={s.svcT}>{sv.t}</span>
-                  {sv.popular && <span className="badge">Most popular</span>}
+                  {sv.popular && <span className="badge">Most requested</span>}
                 </span>
                 <span className={s.svcD}>{sv.d}</span>
                 <span className={s.svcTags}>{sv.tags}</span>
               </span>
-              <span className={s.svcGo}>Get quote <span aria-hidden="true">→</span></span>
+              <span className={s.svcGo}>Get quote <span className={s.svcArrow} aria-hidden="true">→</span></span>
             </PrefillButton>
           ))}
         </div>
@@ -116,33 +142,33 @@ export function Services() {
   );
 }
 
-/** "04 — The WebAlchemy advantage" cards. */
+/** "Why work with me" cards. */
 export function WhyUs() {
   return (
     <section className={`wrap section ${s.whySec}`} aria-labelledby="why-h">
       <div className={s.headStack} style={{ maxWidth: 720 }}>
-        <p className="eyebrow">04 — THE WEBALCHEMY ADVANTAGE</p>
-        <h2 id="why-h" className="h2 h2-lg rise">Why visionaries partner with us</h2>
+        <p className="eyebrow">WHY WORK WITH ME</p>
+        <h2 id="why-h" className="h2 h2-lg rise">What you get when you hire me</h2>
       </div>
       <div className={s.whyGrid}>
         <div className={`rise ${s.why}`}>
-          <div className={s.whyBig} style={{ color: 'var(--green)' }}>99</div>
+          <div className={s.whyBig} style={{ color: 'var(--green)' }}>90+</div>
           <h3 className={s.whyT}>Lightning fast performance</h3>
-          <p className={s.whyD}>Our sites consistently score 98+ on Google PageSpeed, ensuring better SEO and lower bounce rates.</p>
+          <p className={s.whyD}>I build for a 90+ Google PageSpeed score on mobile, for better SEO and lower bounce rates.</p>
         </div>
         <div className={`rise ${s.why}`}>
           <div className={s.whyBig} style={{ color: 'var(--blue)' }}>7 days</div>
           <h3 className={s.whyT}>Live in a week</h3>
-          <p className={s.whyD}>Starter sites go from brief to live in 7 days. Larger builds get a fixed timeline on day one.</p>
+          <p className={s.whyD}>Starter sites go from brief to live in about 7 days. Larger builds get a fixed timeline on day one.</p>
         </div>
         <div className={`rise ${s.why}`}>
           <div className={s.whyBig}>1:1</div>
-          <h3 className={s.whyT}>Direct access</h3>
-          <p className={s.whyD}>No account managers playing &ldquo;telephone&rdquo;. You get a direct Slack channel with your design and dev team.</p>
+          <h3 className={s.whyT}>Direct access to me</h3>
+          <p className={s.whyD}>No account managers playing &ldquo;telephone&rdquo;. The person you talk to on WhatsApp is the one designing and building your site.</p>
         </div>
         <div className={`rise ${s.why}`}>
-          <h3 className={s.whyT}>Modern tech stack</h3>
-          <p className={s.whyD}>No outdated templates. We build on the platform that fits your business.</p>
+          <h3 className={s.whyT}>Designer + developer</h3>
+          <p className={s.whyD}>No outdated templates and no hand-off gaps. I design it and build it, on the platform that fits your business.</p>
           <div className={s.stackTags}>
             {STACK.map((t) => <span key={t} className={s.stackTag}>{t}</span>)}
           </div>

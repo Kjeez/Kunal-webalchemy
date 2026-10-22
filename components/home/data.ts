@@ -1,5 +1,6 @@
-// Static copy for the homepage (Claude Design "WebAlchemy Landing v5").
-// Every claim here is either in the design or on the previous homepage.
+// Static copy for Kunal's portfolio homepage (built on the WebAlchemy
+// "Landing v5" design system). Claims mirror the WebAlchemy homepage,
+// re-voiced in the first person.
 
 export { peep } from './motion';
 
@@ -36,78 +37,80 @@ export const PROBLEMS: [string, string][] = [
   ['DIY website mistakes', 'Wasting time and money. Templates break, plugins conflict, and you lose sanity.'],
 ];
 
-const PAL: [string, string][] = [
-  ['#3557f5', '#eef1ff'], ['#2f7a4f', '#e8f4ec'], ['#a8660a', '#fbf3e2'],
-  ['#c0532b', '#fcebe3'], ['#7a4bc2', '#f3ecfb'], ['#14161c', '#f2f1ec'],
-];
-
-export const START_ROWS = [
-  ['My website looks outdated', 'Free website audit', 'We review your site and send a written list of fixes within 48 hours. No obligation.', 'Premium plan · redesign', '₹49,999', 'Website Development'],
-  ['I get visitors but no enquiries', 'Conversion review', 'A 30-minute call going through your pages, calls-to-action and forms.', 'Growth plan', '₹29,999', 'Website Development'],
-  ["I don't have a website yet", 'Starter website', 'Up to 5 pages, live in 7 days, with free domain and hosting.', 'Starter plan', '₹14,999', 'Website Development'],
-  ["I'm not showing up on Google", 'SEO check', 'Where you rank today, who outranks you, and the pages to fix first.', 'Content Strategy & SEO', 'Monthly', 'Content Strategy'],
-  ['I want to sell online', 'E-commerce consult', 'We map your catalogue, payments and shipping before quoting.', 'Growth plan · store', '₹29,999', 'Website Development'],
-  ['I need an app or custom software', 'Scoping call', 'A fixed-scope estimate with timeline, written up after one call.', 'App Development', 'Custom quote', 'App Development'],
-].map(([have, start, detail, leads, price, service], i) => ({
-  have, start, detail, leads, price, service, c: PAL[i % PAL.length][0], tint: PAL[i % PAL.length][1],
-}));
-
 export const STEPS = [
-  { seed: 'Neha', bg: 'eef1ff', n: '01', when: 'DAY 1', t: 'Free strategy call', d: "30 minutes on your goals, your customers and what isn't working on your current site. You leave with a clear plan and a fixed quote.", items: ['30 minutes', 'Fixed quote', 'No obligation'] },
-  { seed: 'Arjun', bg: 'fbf3e2', n: '02', when: 'DAYS 2–6', t: 'Design & build', d: 'We design your pages, share progress as we go and refine with your feedback. You talk directly to your designer and developer.', items: ['Unlimited revisions', 'Direct Slack access', 'Mobile-first'] },
-  { seed: 'Tara', bg: 'e8f4ec', n: '03', when: 'DAY 7 · STARTER PLAN', t: 'Launch & grow', d: 'We launch on your domain, set up Google Analytics and SEO basics, then support you for 1 to 3 months depending on your plan.', items: ['Free domain & hosting', 'Analytics setup', '1–3 months support'] },
+  { seed: 'Neha', bg: 'eef1ff', n: '01', when: 'DAY 1', t: 'Free discovery call', d: "30 minutes on your goals, your customers and what isn't working on your current site. You leave with a clear plan and a fixed quote.", items: ['30 minutes', 'Fixed quote', 'No obligation'] },
+  { seed: 'Arjun', bg: 'fbf3e2', n: '02', when: 'DAYS 2–6', t: 'Design in Figma, build in code', d: 'I design your pages in Figma, share clickable previews as I go and refine with your feedback, then build them on the platform that fits.', items: ['Unlimited revisions', 'Direct WhatsApp access', 'Mobile-first'] },
+  { seed: 'Tara', bg: 'e8f4ec', n: '03', when: 'DAY 7 · STARTER SITES', t: 'Launch & grow', d: 'I launch on your domain, set up Google Analytics and SEO basics, then stay on hand for fixes and updates after go-live.', items: ['Domain & hosting setup', 'Analytics setup', 'Post-launch support'] },
 ];
 
-export const SERVICES_LIST: { t: string; d: string; tags: string; href: string; popular?: boolean }[] = [
-  { t: 'Website Development', d: 'Custom websites that convert visitors into customers.', tags: 'Responsive Design · Fast Performance · SEO Optimized · 7-Day Delivery', href: '/services/web-development', popular: true },
-  { t: 'Digital Marketing', d: 'Data-driven campaigns that grow your business.', tags: 'Google Ads · Meta Ads · SEO Strategy · Analytics & Reporting', href: '/services/digital-marketing' },
-  { t: 'Design & Branding', d: 'Visual identity that makes you memorable.', tags: 'Logo Design · Brand Guidelines · Marketing Materials · UI/UX Design', href: '/services/design-branding' },
-  { t: 'Content Strategy', d: 'Words that rank on Google and sell to humans.', tags: 'SEO Blog Writing · Website Copy · Keyword Strategy · Content Calendar', href: '/services/content-strategy' },
-  { t: 'App Development', d: 'iOS and Android apps that users love.', tags: 'Native Development · Cross-Platform · App Store Launch · Ongoing Support', href: '/services/app-development' },
-  { t: 'PR & Advertising', d: 'Get featured in top publications and build your brand.', tags: 'Media Placements · Press Releases · Brand Positioning · Reputation Management', href: '/services/pr-advertising' },
+export const SERVICES_LIST: { t: string; d: string; tags: string; service: string; c: string; popular?: boolean }[] = [
+  { t: 'Web Design & Development', d: 'Custom, fast websites that turn visitors into customers.', tags: 'Responsive · Mobile-first · PageSpeed 90+ · 7-day delivery', service: 'Website Development', c: '#3557f5', popular: true },
+  { t: 'UI/UX Design', d: 'Research-led interfaces people actually enjoy using.', tags: 'User flows · Wireframes · Figma prototypes · Design systems', service: 'UI/UX Design', c: '#7a4bc2' },
+  { t: 'Graphic & Brand Design', d: 'Visuals that make your brand memorable.', tags: 'Logos · Brand kits · Social creatives · Photoshop & Illustrator', service: 'Graphic & Brand Design', c: '#c0532b' },
+  { t: 'CMS Websites', d: 'Sites you can update yourself, on the platform that fits.', tags: 'WordPress · Elementor · Shopify · Webflow · Wix · Framer', service: 'CMS Website', c: '#2f7a4f' },
+  { t: 'E-commerce Stores', d: 'Online stores that make buying feel easy.', tags: 'Shopify · WooCommerce · Payments · Product setup', service: 'E-commerce Store', c: '#a8660a' },
+  { t: 'Landing Pages & Redesigns', d: 'Turn an outdated site into a lead machine.', tags: 'Conversion-focused layouts · Speed & SEO fixes · Clear CTAs', service: 'Landing Page / Redesign', c: '#14161c' },
 ];
 
-export const STACK = ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node.js', 'Three.js', 'WordPress', 'Shopify', 'Webflow', 'Framer', 'Wix', 'WooCommerce'];
+/** [name, short label on the badge, ink, background] */
+export type Tool = [string, string, string, string];
+export const DESIGN_TOOLS: Tool[] = [
+  ['Figma', 'Fg', '#ffffff', '#1e1e1e'],
+  ['Adobe Photoshop', 'Ps', '#31a8ff', '#001e36'],
+  ['Adobe Illustrator', 'Ai', '#ff9a00', '#330000'],
+  ['Adobe XD', 'Xd', '#ff61f6', '#470137'],
+  ['Canva', 'Ca', '#ffffff', '#7d2ae8'],
+];
+export const CMS_TOOLS: Tool[] = [
+  ['WordPress', 'WP', '#ffffff', '#21759b'],
+  ['Elementor', 'El', '#ffffff', '#92003b'],
+  ['WooCommerce', 'Woo', '#ffffff', '#7f54b3'],
+  ['Shopify', 'Sh', '#ffffff', '#5e8e3e'],
+  ['Webflow', 'Wf', '#ffffff', '#4353ff'],
+  ['Wix', 'Wix', '#ffffff', '#0c0c0c'],
+  ['Framer', 'Fr', '#ffffff', '#0055ff'],
+  ['Squarespace', 'Sq', '#ffffff', '#222222'],
+];
+export const CODE_TOOLS: Tool[] = [
+  ['HTML5', 'H5', '#ffffff', '#e34f26'],
+  ['CSS3', 'C3', '#ffffff', '#1572b6'],
+  ['JavaScript', 'JS', '#1e1e1e', '#f7df1e'],
+  ['TypeScript', 'TS', '#ffffff', '#3178c6'],
+  ['React', 'Re', '#61dafb', '#20232a'],
+  ['Next.js', 'N', '#ffffff', '#000000'],
+  ['Tailwind CSS', 'Tw', '#ffffff', '#0ea5e9'],
+  ['Node.js', 'No', '#ffffff', '#3c873a'],
+];
 
-export const BAND_A = ['Mobile-first', 'PageSpeed 98+', '7-day delivery', 'Free domain & hosting', 'SEO-ready', 'Direct Slack access'];
-export const BAND_B = ['Websites that sell', 'Built in New Delhi', '500+ projects', 'Rated 4.9/5', 'Conversion focused', 'Launch-date guarantee'];
+/** Skill meters in the Toolbox section: [skill, level 0–100, colour]. */
+export const SKILLS: [string, number, string][] = [
+  ['UI/UX design', 95, '#7a4bc2'],
+  ['Website development', 96, '#3557f5'],
+  ['Visual & graphic design', 90, '#c0532b'],
+  ['CMS (WordPress, Shopify, Webflow, Wix)', 95, '#2f7a4f'],
+  ['Speed & on-page SEO', 90, '#a8660a'],
+];
+
+export const STACK = ['Figma', 'Photoshop', 'Illustrator', 'WordPress', 'Shopify', 'Webflow', 'Wix', 'Framer', 'WooCommerce', 'React', 'Next.js', 'Tailwind'];
+
+export const BAND_A = ['Mobile-first', 'PageSpeed 90+', 'Figma → Code', 'UI/UX Design', 'SEO-ready', 'Direct line to me'];
+export const BAND_B = ['Websites that sell', 'Built in New Delhi', '200+ projects', 'Rated 4.9/5', 'WordPress · Shopify · Webflow', 'Photoshop & Illustrator'];
 
 /* The three reviews the previous homepage already showed. */
-/* Real client reviews (supplied by WebAlchemy). `shot` = their site's
-   homepage capture, shown on the featured card. */
+/* Real client reviews of projects Kunal led at his studio, WebAlchemy
+   (quoted verbatim). `shot` = their site's homepage capture. */
 export const REVIEWS: { q: string; name: string; co: string; shot?: string }[] = [
   { q: 'WebAlchemy understood our technical business and translated it into a professional digital presence. The website design looks clean, communicates our solutions effectively, and gives our brand a much stronger identity.', name: 'Ashish', co: 'Tenbel', shot: '/portfolio-screenshots/clients/tenbel-in.jpg' },
   { q: 'From presenting our products to communicating our brand story, WebAlchemy helped us create a website that feels premium and authentic. Their attention to detail made the entire experience smooth.', name: 'Pankaj', co: 'Vistaaram' },
-  { q: 'We needed a digital presence that reflected the strength and professionalism of our business. The team approached the project thoughtfully and focused on clear communication, design quality, and usability.', name: 'Anoop', co: 'Shyam Metalics' },
+  { q: 'We needed a digital presence that reflected the strength and professionalism of our business. The team approached the project thoughtfully and focused on clear communication, design quality, and usability.', name: 'Ajay', co: 'Magic Holidays India' },
   { q: 'WebAlchemy brought our vision to life with a polished design and a thoughtful user experience. The website feels aligned with our brand, works smoothly across devices, and makes it easier for customers to explore our offerings.', name: 'Ankita', co: 'Nandtara' },
 ];
 
-type Feature = { t: string; on: boolean; b?: boolean };
-const on = (t: string, b = false): Feature => ({ t, on: true, b });
-const off = (t: string): Feature => ({ t, on: false });
-
-export const TIERS: { name: string; tag: string; price: string; note: string; cta: string; badge?: string; dark?: boolean; best: string; features: Feature[] }[] = [
-  { name: 'Starter', tag: 'Perfect for getting started online', price: '₹14,999', note: 'One-time payment', cta: 'Get Started', best: 'Landing pages, portfolios, small business websites',
-    features: [on('Up to 5 pages'), on('Mobile-responsive design'), on('SEO-ready structure'), on('Free Domain & SSL Certificate'), on('Contact form integration'), on('Google Analytics setup'), on('1 month of support'), on('Free Hosting'), on('7-day delivery'), off('E-commerce functionality'), off('Blog/CMS'), off('Advanced integrations'), off('Ongoing maintenance')] },
-  { name: 'Growth', tag: 'Everything you need to scale', price: '₹29,999', note: 'One-time payment', cta: 'Start Growing', badge: 'Most popular', dark: true, best: 'E-commerce stores, content-driven sites, growing brands',
-    features: [on('Everything in Starter', true), on('Up to 10 pages'), on('Blog/CMS integration'), on('E-commerce ready (50 products)'), on('Advanced SEO optimization'), on('Email marketing integration'), on('Social media integration'), on('3 months of support'), on('Priority development'), on('Custom animations'), on('Performance optimization')] },
-  // TODO(owner): confirm Premium's feature list.
-  { name: 'Premium', tag: 'A full redesign or a bigger new build', price: '₹49,999', note: 'One-time payment', cta: 'Go Premium', best: 'Website redesigns, established businesses, larger sites',
-    features: [on('Everything in Growth', true), on('Up to 20 pages'), on('Complete website redesign'), on('Custom UI/UX design, no templates'), on('Content migration from your old site'), on('E-commerce ready (200 products)'), on('Multi-language support'), on('Speed & SEO optimisation'), on('6 months of support')] },
-  { name: 'Enterprise', tag: 'Unlimited possibilities for your business', price: 'Custom', note: 'Tailored to your needs', cta: 'Contact Sales', badge: 'For teams', best: 'Large businesses, agencies, complex requirements',
-    features: [on('Everything in Growth', true), on('Unlimited pages'), on('Custom functionality'), on('Dedicated project manager'), on('Priority support (24/7)'), on('Advanced integrations (CRM, ERP)'), on('Multi-language support'), on('Custom training sessions'), on('White-glove service'), on('Ongoing consulting'), on('Performance SLAs')] },
-];
-
-export const GUARANTEES = [
-  { t: 'On time, or you save', d: "If we miss the launch date agreed in your quote, you get 10% off for every week we're late.", c: '#3557f5', radius: '50%', rot: '0deg' },
-  { t: 'Unlimited revisions', d: "We refine the design until you're happy before anything goes live, at no extra charge.", c: '#e3a008', radius: '6px', rot: '45deg' },
-  { t: 'Fast, or we fix it free', d: 'Your site scores 90+ on Google PageSpeed for mobile at launch, or we optimise it at no cost.', c: '#2f7a4f', radius: '6px', rot: '12deg' },
-];
-
 export const FAQS = [
-  { q: 'How long does it take to build a website?', a: 'A standard high-conversion landing page typically takes 2-3 weeks. A full 5-10 page corporate website usually takes 4-6 weeks. Complex web applications with custom backends can take 2-3 months. We provide a detailed timeline during our initial strategy call.' },
-  { q: 'Do you offer hosting and maintenance?', a: 'Yes. Starter and Growth plans include a free domain, hosting and SSL certificate, plus 1 to 3 months of support depending on the plan. Ongoing maintenance is available after that.' },
-  { q: 'Will I be able to update the website myself?', a: 'Yes. Growth and Enterprise sites include a CMS, so you can edit pages, blog posts and products without touching code. We walk you through it at handover.' },
-  { q: 'What is your payment structure?', a: 'We typically require a 50% deposit to secure your slot in our production schedule. The remaining 50% is due upon project completion and launch. For larger enterprise projects, we can discuss milestone-based payments.' },
-  { q: 'Do you handle SEO and content writing?', a: 'Yes. Every site ships with an SEO-ready structure, and our Content Strategy service covers SEO blog writing, website copy, keyword strategy and a content calendar.' },
+  { q: 'How long does it take to build a website?', a: 'A focused landing page or starter site can go live in about 7 days. A full 5–10 page website usually takes 3–5 weeks, and larger stores or custom builds get a fixed timeline on our first call.' },
+  { q: 'Do you design the site before building it?', a: 'Yes. I design every key page in Figma first (with visuals prepared in Photoshop or Illustrator where needed), share a clickable preview, and only start building once you are happy with it.' },
+  { q: 'Which platform will you build my site on?', a: 'Whatever fits your business: WordPress (with Elementor or WooCommerce), Shopify, Webflow, Wix, Framer, or a custom React / Next.js build when you need something bespoke. I will recommend one and explain why.' },
+  { q: 'Will I be able to update the website myself?', a: 'Yes. CMS sites let you edit pages, blog posts and products without touching code, and I walk you through everything at handover.' },
+  { q: 'What is your payment structure?', a: 'Usually 50% upfront to book the slot and 50% at launch. For larger projects we can split it into milestones.' },
+  { q: 'Do you also handle SEO, speed and hosting?', a: 'Every site ships with an SEO-ready structure, fast load times (PageSpeed 90+ on mobile is the target) and help setting up your domain, hosting and Google Analytics.' },
 ];

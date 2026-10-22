@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
 import Faq from '@/components/site/Faq';
 import LeadForm from '@/components/site/LeadForm';
-import { BLOG_POSTS, thumb } from '@/data/blogPosts';
 import { EMAIL, PHONE_DISPLAY, TEL_HREF, whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import { FAQS, peep } from './data';
 import s from './home.module.css';
@@ -15,7 +13,7 @@ export function HomeFaq() {
       <div className={`wrap section ${s.sideGrid}`} style={{ gap: '40px 72px' }}>
         <div className={s.faqIntro}>
           <h2 id="faq-h" className="h2 rise">Frequently asked questions</h2>
-          <p className="lede">Everything you need to know about working with WebAlchemy.</p>
+          <p className="lede">Everything you need to know about working with me.</p>
           <a
             href={whatsappHref(WHATSAPP_DEFAULT_MESSAGE)}
             className="btn btn-round"
@@ -23,10 +21,10 @@ export function HomeFaq() {
             rel="noopener noreferrer"
             style={{ alignSelf: 'start', marginTop: 8, whiteSpace: 'normal' }}
           >
-            Still have questions? Chat with an expert
+            Still have questions? Chat with me
           </a>
           <span className="faq-peep" data-motion>
-            <Peep seed="Ishita" bg="fbf3e2" pose="float" size={92} bubble="Ask us anything!" />
+            <Peep seed="Ishita" bg="fbf3e2" pose="float" size={92} bubble="Ask Kunal anything!" />
           </span>
         </div>
         <Faq items={FAQS} />
@@ -47,7 +45,7 @@ export function ContactSection() {
             <span className={s.spinStar} aria-hidden="true" />
           </h2>
           <p style={{ fontSize: 18, lineHeight: 1.55, color: 'var(--dark-muted)', maxWidth: 460 }}>
-            Ready to transform your digital presence? We are currently accepting new projects. Tell us about your vision.
+            Ready to transform your digital presence? I&apos;m currently taking on new projects. Tell me about your vision.
           </p>
           <div className={s.contactRows}>
             <a href={`mailto:${EMAIL}`} className={s.cRow}><span className={s.cLabel}>Email</span><span className={s.cVal}>{EMAIL}</span></a>
@@ -62,34 +60,6 @@ export function ContactSection() {
           <img src={peep('Rohan')} alt="" width={112} height={112} className={s.peep} />
           <LeadForm source="Home · contact" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-/** Latest three blog posts. */
-export function Insights() {
-  const posts = BLOG_POSTS.slice(0, 3);
-  return (
-    <section className={`wrap section ${s.postsSec}`} aria-labelledby="insights-h">
-      <div className={s.headRow}>
-        <div className={s.headStack} style={{ maxWidth: 640 }}>
-          <p className="eyebrow">KNOWLEDGE BASE</p>
-          <h2 id="insights-h" className={`rise ${s.postsH}`}>Latest insights</h2>
-        </div>
-        <Link href="/blog" className="text-link">View all articles →</Link>
-      </div>
-      <div className={s.posts}>
-        {posts.map((p) => (
-          <Link key={p.id} href={`/blog/${p.id}`} className={`rise ${s.post}`}>
-            <div className={s.postImg}>
-              <img src={thumb(p.image)} alt="" width={800} height={500} loading="lazy" />
-            </div>
-            <div className={s.postMeta}>{p.category} · {p.date} · {p.readTime}</div>
-            <h3 className={s.postT}>{p.title}</h3>
-            <p className={s.postD}>{p.excerpt}</p>
-          </Link>
-        ))}
       </div>
     </section>
   );

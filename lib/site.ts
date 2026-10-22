@@ -2,7 +2,7 @@
 // Every href below points at an EXISTING route — the redesign must not
 // add, rename, or remove URLs.
 
-export const SITE_URL = 'https://webalchemy.in';
+export const SITE_URL = 'https://kunalwebdesigner.vercel.app';
 
 export const PHONE = '917838583051';
 export const PHONE_DISPLAY = '+91 78385 83051';
@@ -12,7 +12,9 @@ export const whatsappHref = (message?: string) =>
   `https://wa.me/${PHONE}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
 
 export const WHATSAPP_DEFAULT_MESSAGE =
-  "Hi! I'm interested in your web development services. Please share more details.";
+  "Hi Kunal! I'm interested in a website / design project. Please share more details.";
+
+export const OWNER = 'Kunal';
 
 export interface NavLink {
   label: string;
@@ -86,11 +88,12 @@ export const FOOTER_SOCIALS: NavLink[] = [
 export const EMAIL = 'contact@webalchemy.in';
 export const CALENDLY_URL = 'https://calendly.com/yourtrickster-kg/30min';
 
-// Header nav, in the design's order. `key` drives the active underline.
+// Header nav. "Services" opens the services menu (see SiteHeader).
+// `match` drives the active underline; hash links never show as active.
 export const SITE_NAV: (NavLink & { match: string })[] = [
   { label: 'Work', href: '/portfolio', match: '/portfolio' },
   { label: 'Services', href: '/services', match: '/services' },
-  { label: 'Pricing', href: '/#pricing', match: '/#pricing' },
+  { label: 'Toolbox', href: '/#toolbox', match: '/#toolbox' },
   { label: 'About', href: '/about', match: '/about' },
   { label: 'Blog', href: '/blog', match: '/blog' },
   { label: 'Contact', href: '/contact', match: '/contact' },
@@ -98,52 +101,40 @@ export const SITE_NAV: (NavLink & { match: string })[] = [
 
 // Header "Services" menu (desktop dropdown + mobile drawer).
 export const SERVICE_MENU: (NavLink & { desc: string; color: string })[] = [
-  { label: 'Website Development', href: '/services/web-development', desc: 'Fast websites that turn visitors into customers.', color: '#3557f5' },
-  { label: 'Digital Marketing', href: '/services/digital-marketing', desc: 'Google & Meta ads, SEO and reporting.', color: '#2f7a4f' },
-  { label: 'Design & Branding', href: '/services/design-branding', desc: 'Logos, brand kits and UI/UX design.', color: '#a8660a' },
-  { label: 'Content Strategy', href: '/services/content-strategy', desc: 'Copy and blogs that rank and sell.', color: '#c0532b' },
-  { label: 'App Development', href: '/services/app-development', desc: 'iOS and Android apps people use.', color: '#7a4bc2' },
-  { label: 'PR & Advertising', href: '/services/pr-advertising', desc: 'Media placements and brand campaigns.', color: '#14161c' },
-  { label: 'WordPress Development', href: '/wordpress-development', desc: 'Custom themes, plugins and WooCommerce.', color: '#3557f5' },
-  { label: 'E-commerce Development', href: '/ecommerce-website-development', desc: 'Shopify and custom online stores.', color: '#2f7a4f' },
-];
-
-export const LOCATION_MENU: NavLink[] = [
-  { label: 'Website Developer Delhi', href: '/website-developer-delhi' },
-  { label: 'Website Developer Gurgaon', href: '/website-developer-gurgaon' },
-  { label: 'Website Developer Noida', href: '/website-developer-noida' },
-  { label: 'Web Development Company Delhi NCR', href: '/web-development-company-delhi-ncr' },
+  { label: 'Web Design & Development', href: '/services/web-development', desc: 'Fast, custom websites that turn visitors into customers.', color: '#3557f5' },
+  { label: 'UI/UX & Brand Design', href: '/services/design-branding', desc: 'Figma prototypes, design systems, logos and brand kits.', color: '#7a4bc2' },
+  { label: 'WordPress Websites', href: '/wordpress-development', desc: 'Elementor, custom themes and WooCommerce.', color: '#2f7a4f' },
+  { label: 'E-commerce Stores', href: '/ecommerce-website-development', desc: 'Shopify and WooCommerce stores that sell.', color: '#a8660a' },
 ];
 
 export const SITE_FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
   {
-    title: 'Services',
+    title: 'Expertise',
     links: [
-      { label: 'Web Development', href: '/services/web-development' },
-      { label: 'UI/UX Design', href: '/services/design-branding' },
-      { label: 'Digital Marketing', href: '/services/digital-marketing' },
-      { label: 'SEO & Content', href: '/services/content-strategy' },
-      { label: 'App Development', href: '/services/app-development' },
+      { label: 'Web Design & Development', href: '/services/web-development' },
+      { label: 'UI/UX & Brand Design', href: '/services/design-branding' },
+      { label: 'WordPress Websites', href: '/wordpress-development' },
+      { label: 'E-commerce Stores', href: '/ecommerce-website-development' },
+      { label: 'All services', href: '/services' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Explore',
     links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Portfolio', href: '/portfolio' },
+      { label: 'All projects', href: '/portfolio' },
+      { label: 'About me', href: '/about' },
       { label: 'Blog', href: '/blog' },
+      { label: 'Toolbox', href: '/#toolbox' },
       { label: 'Contact', href: '/contact' },
     ],
   },
   {
-    title: 'Delhi NCR',
+    title: 'Toolbox',
     links: [
-      { label: 'Website Developer Delhi', href: '/website-developer-delhi' },
-      { label: 'Website Developer Gurgaon', href: '/website-developer-gurgaon' },
-      { label: 'Website Developer Noida', href: '/website-developer-noida' },
-      { label: 'Web Dev Company Delhi NCR', href: '/web-development-company-delhi-ncr' },
-      { label: 'WordPress Development', href: '/wordpress-development' },
-      { label: 'E-commerce Development', href: '/ecommerce-website-development' },
+      { label: 'Figma · Photoshop · Illustrator', href: '/#toolbox' },
+      { label: 'WordPress · WooCommerce', href: '/#toolbox' },
+      { label: 'Shopify · Webflow · Wix', href: '/#toolbox' },
+      { label: 'React · Next.js', href: '/#toolbox' },
     ],
   },
 ];

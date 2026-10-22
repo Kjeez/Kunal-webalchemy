@@ -1,78 +1,61 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '@/lib/site';
-import { SERVICES } from '@/data/services';
-import { JsonLd, PlanCards, StepCards } from '@/components/service/ServicePage';
+import { SITE_URL, whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
+import { SERVICES, SERVICE_ORDER } from '@/data/services';
+import { JsonLd, StepCards } from '@/components/service/ServicePage';
 import s from '@/components/service/service.module.css';
 import FloatField from '@/components/site/motion/FloatField';
-import { PeepCrew } from '@/components/site/motion/Peep';
+import Peep, { PeepCrew } from '@/components/site/motion/Peep';
 
-/* /services index — no dedicated design; composed from the Service
+/* /services index — Kunal's four services, composed from the Service
    template + the Landing v5 numbered service list. */
 
 export const metadata: Metadata = {
-  title: 'Services — Web Development, Digital Marketing, Design & More | WebAlchemy',
+  title: 'Services | Kunal — Website Developer & UI/UX Designer',
   description:
-    'Web development, digital marketing, UI/UX design & branding, content strategy, app development and PR & advertising from one Delhi NCR team. Get a free estimate.',
+    'Web design & development, UI/UX and brand design, WordPress & CMS websites and Shopify / WooCommerce stores. Designed in Figma, built by Kunal, with a direct line to him.',
   alternates: { canonical: '/services' },
 };
 
-// Descriptions from the homepage service list; sub-services from the legacy
-// /services index (its category item lists).
-const LIST: { key: string; d: string; subs: string[]; popular?: boolean }[] = [
-  {
-    key: 'web-development',
-    d: 'Custom websites that convert visitors into customers.',
-    subs: ['One Page Website', 'Landing Page', 'Business Website', 'Product Showcase', 'E-commerce', 'Agency Website', 'WordPress', 'Shopify', 'Webflow', 'Wix', 'Framer', 'WooCommerce'],
+// One line + the things each service covers (mirrors the homepage Expertise list).
+const LIST: Record<(typeof SERVICE_ORDER)[number], { d: string; subs: string[]; popular?: boolean }> = {
+  'web-development': {
+    d: 'Custom, fast websites that turn visitors into customers.',
+    subs: ['Business websites', 'Landing pages', 'Redesigns', 'Speed & SEO fixes', 'React / Next.js builds'],
     popular: true,
   },
-  {
-    key: 'digital-marketing',
-    d: 'Data-driven campaigns that grow your business.',
-    subs: ['Google Ads', 'SEO', 'Google Shopping Ads', 'Facebook Ads', 'Instagram Ads', 'Display Advertising', 'Google Mobile Ads', 'Influencer Marketing', 'Remarketing Ads'],
+  'design-branding': {
+    d: 'Research-led interfaces and a brand look people remember.',
+    subs: ['User flows', 'Wireframes', 'Figma prototypes', 'Design systems', 'Logos & brand kits', 'Photoshop & Illustrator visuals'],
   },
-  {
-    key: 'design-branding',
-    d: 'Visual identity that makes you memorable.',
-    subs: ['UI/UX Design', 'Branding', 'Catalogue', 'Logos', 'Banners', 'Social Media Posts', 'Video Editing', 'Animations', '3D Modeling'],
+  'wordpress-development': {
+    d: 'Sites you can update yourself, on the platform that fits.',
+    subs: ['WordPress', 'Elementor', 'Custom themes', 'Webflow', 'Wix', 'Framer', 'Squarespace'],
   },
-  {
-    key: 'content-strategy',
-    d: 'Words that rank on Google and sell to humans.',
-    subs: ['Content Writing', 'Blog Writing', 'Data Entry'],
+  'ecommerce-website-development': {
+    d: 'Online stores that make buying feel easy.',
+    subs: ['Shopify', 'WooCommerce', 'Payments', 'Shipping', 'Product setup'],
   },
-  {
-    key: 'app-development',
-    d: 'iOS and Android apps that users love.',
-    subs: ['iOS Development', 'Android Development', 'Native Development', 'Cross-Platform'],
-  },
-  {
-    key: 'pr-advertising',
-    d: 'Mass media reach for maximum brand awareness.',
-    subs: ['Radio', 'TV', 'Outdoor', 'Metro', 'Auto & Bus', 'Bus Shelter', 'Newspaper', 'Airlines', 'Cinema', 'OTT', 'Railway', 'Airport'],
-  },
-];
-
-const SPECIALIST = ['wordpress-development', 'ecommerce-website-development'].map((k) => SERVICES[k]);
+};
 
 const STEPS = [
-  { when: 'FREE', t: 'Strategy call', d: '30 minutes on your goals and customers. You leave with a clear plan and a quote — no obligation.' },
-  { when: 'SHARED PROGRESS', t: 'Design & build', d: 'We map the work, then design, build or launch it, sharing progress as we go so nothing drifts from what you approved.' },
-  { when: 'ONGOING', t: 'Launch & grow', d: 'Go live with tracking in place, then we support, report and optimise so the work keeps paying off.' },
+  { when: 'FREE · 30 MIN', t: 'Discovery call', d: 'Your goals, your customers and what is not working today. You leave with a clear plan and a fixed quote, with no obligation.' },
+  { when: 'FIGMA → CODE', t: 'Design & build', d: 'I design the key pages in Figma, refine them with your feedback, then build on a staging link you can check anytime.' },
+  { when: 'GO LIVE', t: 'Launch & grow', d: 'Live on your domain with analytics and SEO basics in place, and I stay on hand for fixes and updates afterwards.' },
 ];
 
-const TEASER_PLANS = SERVICES['web-development'].pricing.plans;
+const PLATFORMS = ['Figma', 'Photoshop', 'Illustrator', 'WordPress', 'Elementor', 'WooCommerce', 'Shopify', 'Webflow', 'Wix', 'Framer', 'Squarespace', 'React', 'Next.js'];
 
 export default function Page() {
   const itemListLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'WebAlchemy services',
-    itemListElement: [...LIST.map((l) => SERVICES[l.key]), ...SPECIALIST].map((svc, i) => ({
+    name: 'Services by Kunal',
+    itemListElement: SERVICE_ORDER.map((k, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: svc.name,
-      url: `${SITE_URL}${svc.path}`,
+      name: SERVICES[k].name,
+      url: `${SITE_URL}${SERVICES[k].path}`,
     })),
   };
   const breadcrumbLd = {
@@ -96,21 +79,22 @@ export default function Page() {
           className="hero-crew"
           peeps={[
             { seed: 'Asha', bg: 'e8f4ec', pose: 'bob', size: 84 },
-            { seed: 'Zara', bg: 'f3ecfb', pose: 'wave', size: 98, bubble: 'How can we help?' },
+            { seed: 'Kunal', bg: 'eef1ff', pose: 'wave', size: 98, bubble: 'What are we building?' },
             { seed: 'Arjun', bg: 'fbf3e2', pose: 'jump', size: 76 },
           ]}
         />
         <div className="eyebrow">SERVICES</div>
         <h1 className={`h1 ${s.h1}`}>
-          Comprehensive digital <span className="serif">solutions</span>
+          Design <span className="serif">and</span> code, under one roof
         </h1>
         <p className={`lede-lg ${s.lede}`} style={{ maxWidth: 620 }}>
-          From pixel-perfect designs to mass media advertising, we cover every aspect of your brand&apos;s growth
-          journey — websites, marketing, design, content, apps and advertising from one Delhi NCR team.
+          I&apos;m Kunal, a website developer and UI/UX designer. I design in Figma, Photoshop and Illustrator, then
+          build on WordPress, Shopify, Webflow, Wix or Next.js. One person from first sketch to launch, and a direct
+          line to me the whole way.
         </p>
         <div className="btnrow">
-          <Link href="/contact" className="btn btn-primary">Get a free estimate →</Link>
-          <Link href="/portfolio" className="btn btn-ghost">See our work</Link>
+          <Link href="/contact" className="btn btn-primary">Get a free quote →</Link>
+          <Link href="/portfolio" className="btn btn-ghost">See my work</Link>
         </div>
       </section>
 
@@ -118,32 +102,31 @@ export default function Page() {
       <section className="band-white">
         <div className={`wrap section ${s.idxSplit}`}>
           <div className={s.idxSticky}>
-            <div className="eyebrow">OUR EXPERTISE</div>
-            <h2 className="h2 h2-lg rise">Digital solutions for modern businesses</h2>
+            <div className="eyebrow">EXPERTISE</div>
+            <h2 className="h2 h2-lg rise">Four ways I can help</h2>
             <p className="lede" style={{ maxWidth: 440 }}>
-              We combine design, technology, and strategy to build products that win. Pick a service to see
-              what&apos;s included, how it works and what it costs.
+              Pick one to see what&apos;s included, how I work and the questions clients usually ask. Not sure which
+              you need? Message me and I&apos;ll tell you honestly.
             </p>
             <div className={s.others}>
-              <div className={`eyebrow-sm ${s.othersLabel}`}>SPECIALIST PAGES</div>
-              <nav aria-label="Specialist services" className="chiprow">
-                {SPECIALIST.map((o) => (
-                  <Link key={o.key} href={o.path} className="chip">{o.chip}</Link>
-                ))}
-              </nav>
+              <div className={`eyebrow-sm ${s.othersLabel}`}>TOOLS & PLATFORMS</div>
+              <div className="chiprow">
+                {PLATFORMS.map((p) => <span key={p} className="tag">{p}</span>)}
+              </div>
             </div>
           </div>
           <ul className={s.svcList}>
-            {LIST.map((l) => {
-              const svc = SERVICES[l.key];
+            {SERVICE_ORDER.map((k) => {
+              const svc = SERVICES[k];
+              const l = LIST[k];
               return (
-                <li key={l.key}>
+                <li key={k}>
                   <Link href={svc.path} className={s.svcRow}>
                     <span className={s.svcNum}>{svc.num}</span>
                     <div className={s.svcBody}>
                       <div className={s.svcTitleRow}>
                         <h3 className={s.svcTitle}>{svc.name}</h3>
-                        {l.popular && <span className="badge">Most popular</span>}
+                        {l.popular && <span className="badge">Most requested</span>}
                       </div>
                       <span className={s.svcDesc}>{l.d}</span>
                       <span className={s.svcTags}>{l.subs.join(' · ')}</span>
@@ -157,32 +140,42 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ---- how it works ---- */}
+      {/* ---- how I work ---- */}
       <section className={`wrap section-top ${s.stack40}`}>
         <div className={s.head}>
-          <div className="eyebrow">HOW IT WORKS</div>
-          <h2 className="h2 rise">One team, one simple process</h2>
+          <div className="eyebrow">HOW I WORK</div>
+          <h2 className="h2 rise">One person, one simple process</h2>
         </div>
         <StepCards steps={STEPS} />
       </section>
 
-      {/* ---- pricing teaser ---- */}
-      <section className={`wrap section ${s.stack40}`}>
-        <div className={s.plansHead}>
-          <div className={s.head}>
-            <div className="eyebrow">PRICING</div>
-            <h2 className="h2 rise">Websites from ₹14,999</h2>
-            <p className={s.headIntro}>
-              Fixed prices for websites, no hidden fees. Marketing, design, content, app and advertising work is
-              quoted on scope — each service page lists typical ranges.
+      {/* ---- working with me ---- */}
+      <section className="wrap section">
+        <div className={`has-decor ${s.quote}`}>
+          <FloatField preset="dark" />
+          <div className={s.quoteCopy}>
+            <div className="eyebrow" style={{ color: 'var(--blue-soft)' }}>WORKING WITH ME</div>
+            <h2 className="h2 rise">A fixed quote after one call</h2>
+            <p className={s.quoteIntro}>
+              I quote every project on its scope rather than selling packages, so you get one clear price and timeline
+              before any work starts.
             </p>
+            <div className="btnrow">
+              <Link href="/contact" className="btn btn-primary">Get a free quote →</Link>
+              <a href={whatsappHref(WHATSAPP_DEFAULT_MESSAGE)} className="btn btn-outline-dark" target="_blank" rel="noopener noreferrer">
+                WhatsApp me
+              </a>
+            </div>
           </div>
-          <Link href="/#pricing" className="text-link">Compare all features →</Link>
+          <ul className={s.quoteList}>
+            {['Fixed price, agreed upfront', 'Usually 50% to start, 50% at launch', 'Design in Figma before any build', 'No account managers, just me'].map((pt) => (
+              <li key={pt} className="rise">{pt}</li>
+            ))}
+          </ul>
+          <span className={s.quotePeep} data-motion>
+            <Peep seed="Kunal" bg="9fb0ff" pose="wave" size={84} bubble="Let's talk!" />
+          </span>
         </div>
-        <PlanCards plans={TEASER_PLANS} />
-        <p className={s.planNote}>
-          Not sure what it will cost? <Link href="/#estimate" className="link">Build your estimate</Link>.
-        </p>
       </section>
     </>
   );

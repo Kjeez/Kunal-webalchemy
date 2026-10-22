@@ -73,3 +73,17 @@
 @media (prefers-reduced-motion: reduce) {
   .shot:hover, .value:hover, .founderPhoto:hover { transform: none; }
 }
+
+/* Kunal: toolbox columns + team links */
+.toolsSec { display: flex; flex-direction: column; gap: 40px; }
+.toolCols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+.toolCol {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+  display: flex; flex-direction: column; gap: 14px; transition: transform .4s var(--spring);
+}
+.toolCol:hover { transform: translateY(-6px) rotate(-1deg); }
+.toolK { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; }
+.toolList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.toolList li { display: flex; align-items: center; gap: 10px; }
+.teamLinks { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+@media (prefers-reduced-motion: reduce) { .toolCol:hover { transform: none; } }

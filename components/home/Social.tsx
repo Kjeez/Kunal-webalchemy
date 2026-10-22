@@ -23,22 +23,25 @@ export function Bands() {
   );
 }
 
-/** "Don't just take our word for it" — featured review + two more. */
+/** "Don't just take my word for it" — featured review + three more. */
 export function Testimonials() {
   const [featured, ...others] = REVIEWS;
   return (
-    <section className="band-white" aria-labelledby="reviews-h">
+    <section id="reviews" className={`band-white ${s.anchor}`} aria-labelledby="reviews-h">
       <div className={`wrap section ${s.tSec}`}>
         <div className={s.headRow}>
           <h2 id="reviews-h" className={`h2 h2-lg rise ${s.tH}`}>
-            Don&apos;t just take <span className="serif">our word for it</span>
+            Don&apos;t just take <span className="serif">my word for it</span>
           </h2>
-          <p className={s.tRating}><span className="stars" aria-hidden="true">★★★★★</span> Rated 4.9/5 by our clients</p>
+          <div className={s.tRatingCol}>
+            <p className={s.tRating}><span className="stars" aria-hidden="true">★★★★★</span> Rated 4.9/5 by clients</p>
+            <p className={s.tNote}>Reviews from projects I designed and built at my studio, WebAlchemy.</p>
+          </div>
         </div>
 
         <div className={s.tFeature}>
           <div className={s.tCard} aria-hidden="true">
-            <div className={s.tCardTop}><span>WEBALCHEMY</span><span>CLIENT PROJECT</span></div>
+            <div className={s.tCardTop}><span>BUILT BY KUNAL</span><span>CLIENT PROJECT</span></div>
             <div className={s.tCardArt}>
               {featured.shot ? (
                 /* eslint-disable-next-line @next/next/no-img-element */

@@ -75,7 +75,7 @@ export default function LeadForm({
     if (res.ok) {
       goToThankYou(name, service);
     } else {
-      setError("We couldn't send your message just now — tap below to send it on WhatsApp instead.");
+      setError("I couldn't receive your message just now — tap below to send it on WhatsApp instead.");
       setFallback(whatsappLead(lead));
       setSending(false);
     }
@@ -113,7 +113,7 @@ export default function LeadForm({
             <fieldset className="field" style={{ border: 0, padding: 0, margin: 0, gap: 9 }}>
               <legend style={{ padding: 0, marginBottom: 9 }}>What do you need?</legend>
               <div className="chiprow">
-                {SERVICES.filter((s) => s !== 'PR & Advertising').map((s) => (
+                {SERVICES.map((s) => (
                   <button key={s} type="button" className="chip" aria-pressed={service === s} onClick={() => setService(s)}>{s}</button>
                 ))}
               </div>
@@ -132,7 +132,7 @@ export default function LeadForm({
           )}
 
           <label className="field">Project details
-            <textarea className="input" rows={4} placeholder="Tell us about your project goals and timeline..." value={details} onChange={(e) => setDetails(e.target.value)} />
+            <textarea className="input" rows={4} placeholder="Tell me about your project goals and timeline..." value={details} onChange={(e) => setDetails(e.target.value)} />
           </label>
           {error && <p className="form-error" role="alert">{error}</p>}
           {fallback && (
@@ -143,7 +143,7 @@ export default function LeadForm({
           <button type="submit" className="btn btn-primary btn-lg btn-block" disabled={sending}>
             {sending ? 'Sending…' : 'Send Message →'}
           </button>
-          <p className="form-note">We reply within 24 hours. No spam, ever.</p>
+          <p className="form-note">I reply within 24 hours. No spam, ever.</p>
         </form>
       ) : (
         <div className="stack" style={{ gap: 14 }}>
@@ -154,7 +154,7 @@ export default function LeadForm({
             style={{ width: '100%', height: 620, border: '1px solid var(--line)', borderRadius: 14, background: '#fff' }}
           />
           <p style={{ fontSize: 14, color: 'var(--muted-2)' }}>
-            30-minute call. We&apos;ll review your current site and map out what to build.
+            30-minute call with me. I&apos;ll review your current site and map out what to build.
           </p>
         </div>
       )}

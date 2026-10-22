@@ -19,11 +19,11 @@ export function LeadFirstName() {
   return firstName ? <>, {firstName}</> : null;
 }
 
-/** "website development", "PR & advertising", or "your project". */
+/** "website development", "UI/UX design", or "your project". */
 export function LeadService() {
   const { service } = useLead();
   if (!service || service === 'Not sure yet') return <>your project</>;
-  return <>{service.toLowerCase().replace(/^pr\b/, 'PR')}</>;
+  return <>{service.toLowerCase().replace(/^ui\/ux\b/, 'UI/UX').replace(/\bcms\b/, 'CMS')}</>;
 }
 
 /** Google Ads conversion ping — carried over unchanged from the legacy ThankYouPage. */

@@ -2,9 +2,10 @@ import type { Project } from './projectsData';
 import type { Tone } from '@/lib/site';
 
 /* Content for every service page rendered by components/service/ServicePage
-   (Claude Design "Service" mock). Copy is carried over from the legacy
-   service components — nothing here is new marketing claims; prices are the
-   ones each page already stated. */
+   (Claude Design "Service" mock). The four services in SERVICE_ORDER are
+   Kunal's, in the first person and without price lists. The other entries
+   are the old agency pages: their routes redirect away, and they are kept
+   only so their page files still compile. */
 
 export type ProjectCategory = Project['category'];
 
@@ -76,7 +77,10 @@ export interface ServiceData {
   audience: { heading: string; intro?: string; rows: ServiceAudienceRow[] };
   projects?: { heading: string; intro?: string; items: ServiceCaseStudy[] };
   process: { heading: string; intro?: string; steps: { when: string; t: string; d: string }[] };
-  pricing: { heading: string; intro?: string; plans: ServicePlan[]; note?: string; compare?: boolean };
+  /** "Working with me" block shown instead of a price list. */
+  quote?: { heading: string; intro: string; points: string[] };
+  /** Legacy agency price lists (only on the redirected services). */
+  pricing?: { heading: string; intro?: string; plans: ServicePlan[]; note?: string; compare?: boolean };
   faq: { heading: string; items: ServiceFaq[] };
 }
 
@@ -86,28 +90,27 @@ export interface ServiceData {
 
 const AREAS = ['Delhi', 'Gurgaon', 'Noida', 'Delhi NCR'];
 
-/** Web-build process (legacy web-development page), reused by the WordPress
- *  and e-commerce pages, which never had a process section of their own. */
+/** Web-build process shared by the WordPress and e-commerce pages. */
 const webSteps = (support: string, buildExtra = '') => [
   {
     when: 'BEFORE DESIGN',
     t: 'Scope & wireframe',
-    d: 'We map out every page, feature and integration before writing code. You approve the layout and sitemap before design begins, while changes are still cheap.',
+    d: 'I map out every page, feature and integration before anything is designed. You approve the layout and sitemap while changes are still cheap.',
   },
   {
     when: 'FIGMA MOCKUPS',
     t: 'Visual design',
-    d: 'Mockups for desktop and mobile, so you see exactly what the finished site will look like and can request revisions before development starts.',
+    d: 'Figma mockups for desktop and mobile, so you see exactly what the finished site will look like and can ask for changes before I build it.',
   },
   {
     when: 'STAGING URL',
     t: 'Build & iterate',
-    d: `Development on a staging URL you can check anytime, with weekly check-ins.${buildExtra} Content entry, testing and speed optimisation happen here.`,
+    d: `I build on a staging link you can check anytime, with regular updates on WhatsApp.${buildExtra} Content entry, testing and speed optimisation happen here.`,
   },
   {
     when: 'GO LIVE',
     t: 'Launch & support',
-    d: `DNS cutover, SSL setup, analytics and Google Search Console submission. Then ${support} while you settle in.`,
+    d: `Domain, SSL, analytics and Google Search Console set up. Then ${support} while you settle in.`,
   },
 ];
 
@@ -192,75 +195,74 @@ const webDevelopment: ServiceData = {
   key: 'web-development',
   path: '/services/web-development',
   num: '01',
-  name: 'Website Development',
-  chip: 'Web Development',
-  crumb: 'Web Development',
+  name: 'Web Design & Development',
+  chip: 'Web Design & Development',
+  crumb: 'Web Design & Development',
   meta: {
-    title: 'Web Development Services Delhi | WebAlchemy',
-    description: 'Custom WordPress & React websites for Delhi businesses. Fast, SEO-ready, mobile-first. Get a free quote today.',
+    title: 'Web Design & Development | Kunal — Website Developer & UI/UX Designer',
+    description: 'I design websites in Figma and build them fast and mobile-first on WordPress, Shopify, Webflow, Wix or Next.js. 200+ projects, 5+ years. Talk to me directly.',
   },
   schema: {
-    name: 'Web Development Services',
-    description: 'Custom WordPress & React websites for Delhi businesses. Fast, SEO-ready, mobile-first.',
-    areaServed: AREAS,
+    name: 'Web Design & Development',
+    description: 'Custom websites designed in Figma and built mobile-first on WordPress, Shopify, Webflow, Wix or Next.js by Kunal, a website developer and UI/UX designer in New Delhi.',
   },
-  h1: ['Custom websites that convert visitors into ', 'customers'],
-  lede: 'Fast, mobile-first websites built around how your customers decide. Fixed prices, a clear timeline and a team you can message directly.',
+  h1: ['Websites that turn visitors into ', 'customers'],
+  lede: 'I design every page in Figma first, then build it fast and mobile-first on the platform that fits your business. One person from first sketch to launch day, and a direct line to me the whole way.',
   glance: [
-    { k: 'Starting at', v: '₹14,999' },
-    { k: 'Delivery', v: '7 days' },
-    { k: 'Domain & hosting', v: 'Free' },
-    { k: 'PageSpeed', v: '98+' },
+    { k: 'Starter sites live in', v: '~7 days' },
+    { k: 'Design', v: 'Figma first' },
+    { k: 'PageSpeed target', v: '90+ mobile' },
+    { k: 'You talk to', v: 'Me, directly' },
   ],
-  glanceCta: { label: 'Build your estimate →', href: '/#estimate' },
+  glanceCta: { label: 'Tell me about your project →', href: '/contact' },
   included: {
     heading: 'Everything a website needs to sell',
     intro:
-      'We build websites that do more than look good — they load fast, rank on Google, and turn visitors into paying customers. Whether you need a five-page business site on WordPress or a custom React application with user dashboards and API integrations, our Delhi-based team handles the full build from design to deployment. Every project ships with mobile responsiveness, technical SEO and post-launch support included.',
+      'A good website does more than look nice: it loads fast, shows up on Google and makes it obvious what a visitor should do next. I handle the whole thing myself, from layout and visual design to the build, content entry, speed tuning and launch, so nothing gets lost in a hand-off.',
     items: [
-      { t: 'Responsive design', d: 'Looks and works right on every phone, tablet and laptop.' },
-      { t: 'Fast performance', d: 'Sites that consistently score 98+ on Google PageSpeed.' },
-      { t: 'SEO optimized', d: 'Clean structure, metadata and speed so Google can find you.' },
+      { t: 'Figma design first', d: 'You see and approve every key page as a clickable preview before I build it.' },
+      { t: 'Mobile-first build', d: 'Designed for the phone first, then scaled up to tablet and desktop.' },
+      { t: 'Fast performance', d: 'I build for a 90+ Google PageSpeed score on mobile.' },
+      { t: 'SEO-ready structure', d: 'Clean headings, metadata, sitemaps and speed so Google can find you.' },
       { t: 'Clear calls-to-action', d: 'Every page leads visitors to call, WhatsApp or enquire.' },
-      { t: 'Contact & analytics', d: 'Contact forms and Google Analytics set up from day one.' },
-      { t: 'Free domain, SSL & hosting', d: 'Included with Starter and Growth plans.' },
+      { t: 'Analytics & handover', d: 'Google Analytics and Search Console set up, plus a walkthrough so you can edit content.' },
     ],
   },
   details: {
-    eyebrow: 'WHAT WE BUILD',
-    heading: 'Four ways we build for the web',
-    intro: 'Four core web development services — each tailored to different business needs, budgets, and growth stages.',
+    eyebrow: 'WHAT I BUILD',
+    heading: 'Four kinds of web projects',
+    intro: 'Most projects fall into one of these. Not sure which is yours? Message me and I will tell you honestly.',
     items: [
       {
         t: 'Business websites',
-        d: 'Professional websites for companies that need a credible online presence without a six-figure budget. We build on WordPress with Elementor, giving you a polished design, fast load times, and an admin panel you can actually use. Most business sites include 5-10 pages — home, about, services, portfolio, contact — with a blog section for SEO content, plus training so your team can manage day-to-day updates.',
-        link: { label: 'Our WordPress work', href: '/wordpress-development' },
+        d: 'A credible, fast site for your company: home, about, services, work and contact, with a blog if you want to grow on Google. Usually built on WordPress with Elementor, or on Webflow, Wix or Framer if that suits you better, with an admin panel you can actually use.',
+        link: { label: 'WordPress & CMS sites', href: '/wordpress-development' },
       },
       {
-        t: 'Custom web applications',
-        d: 'When templates and page builders hit their limits, we write code from scratch. Our stack is React and Next.js on the frontend, Node.js and MongoDB on the backend. We build customer portals, booking engines, inventory dashboards, multi-vendor marketplaces — anything that needs custom business logic beyond what WordPress can handle. These projects typically run 6-10 weeks and start from ₹40,000.',
-        link: { label: 'App development services', href: '/services/app-development' },
+        t: 'Landing pages',
+        d: 'One focused page for an ad campaign, a launch or a single offer, designed around one action. These are the quickest projects and the easiest way to start working together.',
       },
       {
         t: 'E-commerce stores',
-        d: 'Online stores built for the Indian market — Razorpay and Paytm payment gateways, Shiprocket or Delhivery shipping integration, GST-compliant invoicing. We work with Shopify for quick-launch stores, WooCommerce for WordPress-based catalogues, and fully custom setups for businesses with specific requirements. Product uploads, variant management, discount coupons, and abandoned cart emails are all part of the package.',
-        link: { label: 'E-commerce development details', href: '/ecommerce-website-development' },
+        d: 'Online stores on Shopify or WooCommerce with payments, shipping and product setup handled, designed so buying feels easy on a phone.',
+        link: { label: 'Shopify & WooCommerce stores', href: '/ecommerce-website-development' },
       },
       {
-        t: 'Redesign & speed optimisation',
-        d: 'Already have a website that looks outdated or loads slowly? We audit your existing site for Core Web Vitals issues, bloated plugins, unoptimised images, and poor mobile layouts — then fix everything. For sites that need a visual refresh, we redesign the UI while preserving your existing Google rankings and backlinks through proper URL mapping and 301 redirects. Most redesign projects are completed in 3-4 weeks.',
-        link: { label: 'Website development in Delhi', href: '/website-developer-delhi' },
+        t: 'Redesigns & custom builds',
+        d: 'An outdated or slow site rebuilt with a fresh design, keeping your Google rankings through proper redirects. When a page builder is not enough, I build custom front-ends in React and Next.js.',
+        link: { label: 'UI/UX & brand design', href: '/services/design-branding' },
       },
     ],
   },
   audience: {
     heading: 'Built for businesses like yours',
     intro:
-      'Our web development services are built for small-to-mid-sized businesses that need a website that actually works for them — not just a digital brochure collecting dust. Local service providers, product companies launching online, startups that need to look established, or businesses whose current site is outdated.',
+      'Schools, clinics, resorts, stores and companies who need a website that brings in enquiries, not a digital brochure. Here is where my past projects sit.',
     rows: PORTFOLIO_ROWS,
   },
   projects: {
     heading: 'Real builds for real businesses',
+    intro: 'A few projects I designed and built at my studio, WebAlchemy.',
     items: [CASE_BATON_ROUGE, CASE_TRUDANAZ, CASE_KAMLESH],
   },
   process: {
@@ -268,61 +270,56 @@ const webDevelopment: ServiceData = {
     steps: [
       {
         when: 'DAY 1',
-        t: 'Free strategy call',
-        d: '30 minutes on your goals and customers. We map out the pages, features and integrations, and you leave with a plan and a fixed quote.',
+        t: 'Free discovery call',
+        d: '30 minutes on your goals and customers. I map out the pages and features, and you leave with a clear plan and a fixed quote.',
       },
       {
         when: 'DAYS 2–6',
-        t: 'Design & build',
-        d: 'We design for desktop and mobile, then build on a staging URL, sharing progress as we go. Unlimited revisions before launch.',
+        t: 'Design in Figma, build in code',
+        d: 'I design for desktop and mobile, share a clickable preview, then build on a staging link you can check anytime. Unlimited revisions before launch.',
       },
       {
-        when: 'DAY 7',
+        when: 'DAY 7 · STARTER SITES',
         t: 'Launch & grow',
-        d: 'Live on your domain with SSL, analytics, Search Console and SEO basics, plus 1–3 months of support.',
+        d: 'Live on your domain with SSL, analytics, Search Console and SEO basics, and I stay on hand for fixes and updates after go-live.',
       },
     ],
   },
-  pricing: {
-    heading: 'Fixed prices. No hidden fees.',
-    compare: true,
-    plans: [
-      { name: 'Starter', price: '₹14,999', features: ['Up to 5 pages', 'Free domain & hosting', '7-day delivery'], cta: 'Get Started' },
-      { name: 'Growth', price: '₹29,999', features: ['Up to 10 pages', 'Blog/CMS & e-commerce', '3 months of support'], cta: 'Start Growing', featured: true },
-      { name: 'Premium', price: '₹49,999', features: ['Up to 20 pages', 'Complete redesign, custom UI/UX', '6 months of support'], cta: 'Go Premium' },
-    ],
-    note: 'Custom web applications and larger builds are quoted on scope — we provide a detailed estimate after the discovery call.',
+  quote: {
+    heading: 'A fixed quote after one call',
+    intro: 'Every project is different, so I quote on scope rather than sell packages. You get one clear number before any work starts.',
+    points: ['Fixed price, agreed upfront', 'Usually 50% to start, 50% at launch', 'Milestones for larger builds', 'No account managers, no surprise invoices'],
   },
   faq: {
-    heading: 'Questions about web development',
+    heading: 'Questions about web design & development',
     items: [
       {
         q: 'How long does it take to build a website?',
-        a: 'A standard high-conversion landing page typically takes 2-3 weeks. A full 5-10 page corporate website usually takes 4-6 weeks. Complex web applications with custom backends can take 2-3 months. We provide a detailed timeline during our initial strategy call.',
+        a: 'A focused landing page or starter site can go live in about 7 days. A full 5–10 page website usually takes 3–5 weeks, and larger stores or custom builds get a fixed timeline on our first call.',
       },
       {
-        q: 'What platforms do you build websites on?',
-        a: 'We work primarily with two stacks. For content-managed business sites, we use WordPress with Elementor or custom themes — it gives you full control over pages, blogs, and media without touching code. For projects that need custom logic, interactive interfaces, or high performance under load, we build with React, Next.js, and Node.js. We also set up Shopify and WooCommerce stores when e-commerce is the priority. The right platform depends on your goals, and we help you choose during the discovery call.',
+        q: 'Which platform will you build my site on?',
+        a: 'Whatever fits your business: WordPress (with Elementor or WooCommerce), Shopify, Webflow, Wix, Framer, Squarespace, or a custom React / Next.js build when you need something bespoke. I will recommend one on our call and explain why.',
+      },
+      {
+        q: 'Do you design the site before building it?',
+        a: 'Yes. I design every key page in Figma first, with visuals prepared in Photoshop or Illustrator where needed, share a clickable preview, and only start building once you are happy with it.',
       },
       {
         q: 'Will my website work well on mobile phones?',
-        a: 'Every site we build is designed mobile-first. That means we start with the smallest screen and scale up, rather than squeezing a desktop layout onto a phone. We test across real devices — iPhones, Android phones, tablets — and optimise touch targets, font sizes, and image loading for each. Google also uses mobile-first indexing, so a properly responsive site directly impacts your search rankings.',
+        a: 'Every site I build is designed mobile-first: I start with the smallest screen and scale up, test on real phones, and tune font sizes, tap targets and image loading. Google indexes the mobile version first, so this directly helps your rankings too.',
       },
       {
         q: 'Will I be able to update the website myself?',
-        a: 'Yes. Growth and Enterprise sites include a CMS, so you can edit pages, blog posts and products without touching code. We walk you through it at handover.',
+        a: 'Yes. CMS sites let you edit pages, blog posts and products without touching code, and I walk you through everything at handover.',
       },
       {
-        q: 'How do you handle website hosting and domain setup?',
-        a: 'Starter and Growth plans include a free domain, hosting and SSL certificate. For custom React/Next.js apps or sites that need more control, we help you choose the right host — Vercel, managed WordPress hosting or AWS — with the subscription in your name so you own the infrastructure. Either way, we handle DNS configuration, SSL certificates, and initial server setup as part of the project.',
+        q: 'Can you move my site from another platform?',
+        a: 'Yes. I migrate sites from Wix, Squarespace, old HTML builds and other platforms, keep your content, and set up 301 redirects so Google carries your rankings across.',
       },
       {
-        q: 'Can you migrate my site from another platform?',
-        a: 'Yes. We regularly migrate sites from Wix, Squarespace, GoDaddy builders, and older HTML sites to WordPress or React. We preserve your existing content, set up 301 redirects so Google transfers your rankings, and re-optimise images and page speed in the process. Most migrations are completed within the normal project timeline without extra cost.',
-      },
-      {
-        q: 'What happens if I need changes after the site is live?',
-        a: 'Every plan includes post-launch support for bug fixes and minor adjustments — 1 month on Starter and 3 months on Growth. If you need ongoing changes — monthly content updates, new landing pages, feature additions — we offer maintenance retainers starting at ₹3,000/month. For one-off changes after the support period, we bill on an hourly basis with a clear estimate upfront.',
+        q: 'What happens if I need changes after launch?',
+        a: 'Fixes and small adjustments right after launch are part of the project. For ongoing work, such as new pages or regular updates, we agree a simple arrangement that suits how often you need me.',
       },
     ],
   },
@@ -453,55 +450,54 @@ const digitalMarketing: ServiceData = {
 const designBranding: ServiceData = {
   key: 'design-branding',
   path: '/services/design-branding',
-  num: '03',
-  name: 'Design & Branding',
-  chip: 'Design & Branding',
-  crumb: 'Design & Branding',
+  num: '02',
+  name: 'UI/UX & Brand Design',
+  chip: 'UI/UX & Brand Design',
+  crumb: 'UI/UX & Brand Design',
   meta: {
-    title: 'UI/UX Design & Branding | WebAlchemy',
-    description: 'Professional UI/UX design, logo creation, and brand identity systems. Make your business look as good as it performs.',
+    title: 'UI/UX & Brand Design | Kunal — Website Developer & UI/UX Designer',
+    description: 'User flows, wireframes and Figma prototypes, plus logos, brand kits and visuals in Photoshop & Illustrator. Design by Kunal, a UI/UX designer who also builds what he designs.',
   },
   schema: {
-    name: 'UI/UX Design & Branding',
-    description: 'Professional UI/UX design, logo creation, and brand identity systems.',
+    name: 'UI/UX & Brand Design',
+    description: 'UI/UX design in Figma (user flows, wireframes, prototypes, design systems) and brand design (logos, brand kits, visuals in Photoshop and Illustrator) by Kunal.',
   },
-  h1: ['UI/UX design and branding that ', 'converts'],
-  lede: 'Brand identities, website interfaces and marketing collateral that make a strong first impression — and hold up on every touchpoint, from a business card to a mobile screen.',
+  h1: ['Interfaces and brands people ', 'remember'],
+  lede: 'I map how people use your site, design it in Figma, and give your brand a look that holds up everywhere, from a favicon to a hoarding. And because I also build websites, my designs are made to actually ship.',
   glance: [
-    { k: 'Logo & identity', v: 'from ₹10,000' },
-    { k: 'Logo concepts', v: '3–4' },
-    { k: 'Revision rounds', v: '2–3' },
-    { k: 'Source files', v: 'Included' },
+    { k: 'Design tool', v: 'Figma' },
+    { k: 'Visuals', v: 'Photoshop & Illustrator' },
+    { k: 'Prototypes', v: 'Clickable' },
+    { k: 'Source files', v: 'Yours to keep' },
   ],
-  glanceCta: { label: 'Start your brand project →', href: '/contact' },
+  glanceCta: { label: 'Start a design project →', href: '/contact' },
   included: {
-    heading: 'Design services we offer',
+    heading: 'Design work I do',
     intro:
-      'People judge your business in under three seconds based on how it looks online. Our design team creates brand identities, website interfaces, and marketing collateral that make a strong first impression and hold up across every touchpoint — from a business card to a billboard to a mobile screen. We design with intent: every colour choice, layout decision, and typography pairing serves your conversion goals, not just aesthetics.',
+      'People judge a business in a few seconds by how it looks. I design with intent: every layout, colour and type choice should make it easier for your visitor to trust you and take the next step, not just look pretty.',
     items: [
       {
-        t: 'UI/UX design for websites & apps',
-        d: 'We design interfaces that people actually enjoy using. Our process starts with user flow mapping and wireframes — figuring out the right structure before making it pretty. Then we move to high-fidelity Figma mockups with responsive variants for mobile, tablet, and desktop. Interactive prototypes let you click through the design before a developer writes a single line of code. We design for websites and mobile apps with equal depth.',
-        link: { label: 'Website development', href: '/services/web-development' },
+        t: 'UI/UX for websites & apps',
+        d: 'I start with user flows and wireframes to get the structure right, then move to high-fidelity Figma screens for mobile, tablet and desktop. Clickable prototypes let you try the design before a line of code is written.',
+        link: { label: 'Web design & development', href: '/services/web-development' },
       },
       {
-        t: 'Logo design & brand identity',
-        d: 'Your logo is the visual cornerstone of your business. We design logos that work at every size — from a 16px favicon to a 10-foot trade show banner. Beyond the logo, we build complete brand identity systems: primary and secondary colour palettes, typography hierarchy, icon styles, photography direction, and a brand guidelines document your team can follow.',
+        t: 'Design systems',
+        d: 'Reusable components, colour and type scales and spacing rules in Figma, so every new page stays consistent and building it is faster.',
       },
       {
-        t: 'Marketing collateral & social graphics',
-        d: 'Brochures, pitch decks, social media post templates, email headers, banner ads, product catalogues — all designed to match your brand system. We produce assets optimised for each platform\'s specifications so images are never stretched, cropped, or pixelated. For ongoing needs, we create reusable Canva or Figma templates your marketing team can edit independently.',
-        link: { label: 'See our marketing services', href: '/services/digital-marketing' },
+        t: 'Logo & brand identity',
+        d: 'Logos that work at every size, plus colour palettes, typography and a short brand guide your team and printers can follow.',
       },
       {
-        t: 'Motion graphics & video editing',
-        d: 'Static designs get scrolled past. We create animated social content, explainer motion graphics, logo animations (Lottie format for web), and short-form video edits for Instagram Reels and YouTube Shorts. Video editing packages include caption overlays, b-roll sourcing, and music selection cleared for commercial use.',
+        t: 'Visuals & marketing graphics',
+        d: 'Banners, social posts, brochures, catalogues and ad creatives, retouched and composed in Photoshop and Illustrator. I can also set up editable Canva or Figma templates so your team can make on-brand posts themselves.',
       },
     ],
   },
   audience: {
     heading: 'Built for businesses like yours',
-    intro: 'Every website in our portfolio started with design — here is where that work has gone.',
+    intro: 'Every website in my portfolio started as a design. Here is where that work has gone.',
     rows: [
       { t: 'Corporate', d: 'Brand systems, service sites, collateral', tone: 'violet', categories: ['Corporate'] },
       { t: 'Creative & portfolios', d: 'Studios, artists and personal brands', tone: 'rust', categories: ['Creative'] },
@@ -511,6 +507,7 @@ const designBranding: ServiceData = {
   },
   projects: {
     heading: 'Visual systems for real businesses',
+    intro: 'Design projects I led at my studio, WebAlchemy.',
     items: [
       {
         title: 'Restaurant chain — complete design system',
@@ -539,47 +536,42 @@ const designBranding: ServiceData = {
     ],
   },
   process: {
-    heading: 'Our design process',
-    intro: 'Four stages that ensure the final design matches your vision — no surprises.',
+    heading: 'How I design',
+    intro: 'Four stages, so the final design matches what you had in mind, with no surprises.',
     steps: [
-      { when: 'BEFORE DESIGN', t: 'Brand discovery & moodboard', d: 'We study your market, competitors, and target audience, then assemble a visual moodboard — colours, textures, reference designs — to align on direction.' },
-      { when: '3–4 DIRECTIONS', t: 'Concept exploration', d: 'Distinct design directions presented side by side. You see the range of possibilities and pick the one that resonates, with feedback gathered in a single structured round.' },
-      { when: '2–3 ROUNDS', t: 'Refinement & iteration', d: 'The chosen direction is refined: typography dialled in, colours tested in context, and responsive layouts finalised for all screen sizes.' },
-      { when: 'ALL FORMATS', t: 'Asset delivery & handoff', d: 'Final files in SVG, PNG, PDF and Figma source, plus brand guidelines. If the design feeds into a build, we hand off directly to our engineering team.' },
+      { when: 'BEFORE DESIGN', t: 'Discovery & moodboard', d: 'I look at your market, competitors and customers, then put together a moodboard of colours, type and references so we agree on a direction.' },
+      { when: 'WIREFRAMES', t: 'Structure & flows', d: 'Low-detail layouts and user flows that get the content and journey right before any visual polish.' },
+      { when: 'FIGMA', t: 'Visual design & prototype', d: 'High-fidelity screens for every size, refined with your feedback and shared as a clickable prototype.' },
+      { when: 'HANDOFF', t: 'Files & build', d: 'Final files in Figma, SVG, PNG and PDF with a short guide. If you want the site built too, I build it myself, so nothing gets lost.' },
     ],
   },
-  pricing: {
-    heading: 'Budget ranges by scope',
-    intro: 'Design pricing varies widely depending on scope. A logo project is very different from a full product UI. Here are starting ranges to help you budget.',
-    plans: [
-      { name: 'Logo & Brand Identity', price: '₹10,000 – ₹35,000', features: ['Logo', 'Colour palette & typography', 'Brand guidelines PDF'], cta: 'Get a Quote' },
-      { name: 'Website UI/UX Design', price: '₹15,000 – ₹60,000', features: ['Figma mockups', 'Responsive variants', 'Interactive prototype'], cta: 'Get a Quote', featured: true },
-      { name: 'Monthly Design Retainer', price: '₹20,000 – ₹50,000', unit: '/mo', features: ['Social graphics', 'Marketing collateral & ad creatives', 'Ongoing edits'], cta: 'Get a Quote' },
-    ],
-    note: 'Ranges, not fixed packages — we confirm the price once we understand the scope.',
+  quote: {
+    heading: 'Quoted on scope',
+    intro: 'A logo is a very different job from a full product UI, so I quote each project after a short call. You get one fixed price before I start.',
+    points: ['Fixed price, agreed upfront', 'Revisions included until you are happy', 'All source files handed over', 'Direct contact with me throughout'],
   },
   faq: {
-    heading: 'Questions about design & branding',
+    heading: 'Questions about UI/UX & brand design',
     items: [
       {
-        q: 'What is the difference between UI design and UX design?',
-        a: 'UX (User Experience) design is about how your website or app works — the flow a user follows to complete a task, where buttons are placed, how information is structured. UI (User Interface) design is about how it looks — typography, colour palette, spacing, visual hierarchy. We handle both together because they are inseparable: a beautiful interface that confuses users is as bad as an ugly one that works. Our design process starts with UX wireframes to nail the flow, then applies UI polish on top.',
+        q: 'What is the difference between UI and UX design?',
+        a: 'UX is how something works: the flow a visitor follows, where buttons sit, how information is structured. UI is how it looks: type, colour, spacing and hierarchy. I do both together, starting with wireframes to get the flow right and then adding the visual layer.',
       },
       {
-        q: 'How many logo concepts will I see before choosing one?',
-        a: 'We present 3-4 distinct logo directions in the first round. Each concept explores a different visual approach — typographic, symbol-based, abstract mark, or combination. Once you pick a direction, we refine it through 2-3 rounds of revisions to perfect proportions, colour, and versatility across different sizes and backgrounds. You receive the final logo in all formats: vector (AI, SVG, EPS), raster (PNG with transparent background), and PDF for print.',
+        q: 'Which tools do you design in?',
+        a: 'Figma for interfaces, prototypes and design systems; Adobe Photoshop and Illustrator for photo work, illustrations, logos and print; and Canva or Figma templates when your team needs to make graphics themselves. I also know Adobe XD if your files live there.',
       },
       {
         q: 'Can you design for print as well as digital?',
-        a: 'Yes. Beyond websites and apps, we design business cards, letterheads, brochures, product packaging, trade show banners, and vehicle wraps. Everything is produced with CMYK colour profiles for print accuracy and includes bleed marks and crop marks for commercial printers. If you need a complete brand identity system — digital and physical — we can deliver the full package.',
+        a: 'Yes: business cards, brochures, catalogues, banners and packaging, delivered as print-ready files with the right colour profiles and bleed.',
       },
       {
-        q: 'Do you design social media templates I can reuse?',
-        a: 'Absolutely. We create branded Canva or Figma templates for Instagram posts, stories, LinkedIn banners, and Facebook covers. These templates let your team produce on-brand social content without a designer for each post. The templates include editable text areas, image placeholders, and your brand colours locked in so nothing drifts off-brand. A typical template pack includes 10-15 layouts across formats.',
+        q: 'Can you work with my existing logo?',
+        a: 'Of course. I can build a full brand system around it (colours, typography, icon style, examples) and tidy the logo up if it struggles at small sizes or on dark backgrounds.',
       },
       {
-        q: 'What if I already have a logo but need a full brand system?',
-        a: 'We work with existing logos regularly. A brand system goes beyond the logo — it includes your colour palette with hex and CMYK codes, typography scale, icon style, image treatment guidelines, voice and tone notes, and application examples (email signatures, social profiles, presentation slides). We compile everything into a brand guidelines PDF that your team and external vendors can follow. If your existing logo needs minor refinement to work better at small sizes or on dark backgrounds, we handle that too.',
+        q: 'Do I get the source files?',
+        a: 'Yes. You get the Figma files and final exports in every format you need, and they are yours to keep.',
       },
     ],
   },
@@ -966,89 +958,95 @@ const prAdvertising: ServiceData = {
 const wordpressDevelopment: ServiceData = {
   key: 'wordpress-development',
   path: '/wordpress-development',
-  num: '07',
-  name: 'WordPress Development',
-  chip: 'WordPress Development',
-  crumb: 'WordPress Development',
+  num: '03',
+  name: 'WordPress & CMS Websites',
+  chip: 'WordPress & CMS',
+  crumb: 'WordPress & CMS Websites',
   meta: {
-    title: 'WordPress Developer Delhi NCR | WebAlchemy - Expert WordPress Development',
-    description: 'Expert WordPress developer in Delhi NCR. Custom themes, plugins, WooCommerce, speed optimization. 100+ WordPress sites delivered. Free consultation!',
+    title: 'WordPress Developer | Kunal — Website Developer & UI/UX Designer',
+    description: 'Custom WordPress websites with Elementor, WooCommerce and custom themes, plus Webflow, Wix, Framer and Squarespace builds. Sites you can update yourself, by Kunal.',
   },
   schema: {
-    name: 'WordPress Development Services',
-    description: 'Professional WordPress development services including custom themes, plugins, WooCommerce, and website maintenance',
-    areaServed: AREAS,
+    name: 'WordPress & CMS Website Development',
+    description: 'WordPress development (Elementor, WooCommerce, custom themes, speed and security) and CMS builds on Webflow, Wix, Framer and Squarespace by Kunal.',
   },
-  h1: ['WordPress developer in ', 'Delhi NCR'],
-  lede: 'Looking for an expert WordPress developer in Delhi? WebAlchemy specialises in custom WordPress themes, plugins, WooCommerce, and speed optimisation for businesses in Delhi, Gurgaon, and Noida.',
+  h1: ['WordPress sites you can ', 'run yourself'],
+  lede: 'WordPress powers a huge share of the web for a reason: you can edit everything without a developer. I design your site in Figma, build it on WordPress with Elementor or a custom theme, and hand it over with a walkthrough. Prefer Webflow, Wix, Framer or Squarespace? I build on those too.',
   glance: [
-    { k: 'Starting at', v: '₹19,999' },
-    { k: 'WooCommerce stores', v: 'from ₹24,999' },
-    { k: 'Support', v: '3–6 months' },
-    { k: 'Areas', v: 'Delhi · Gurgaon · Noida' },
+    { k: 'Builder', v: 'Elementor · custom themes' },
+    { k: 'Stores', v: 'WooCommerce' },
+    { k: 'Also build on', v: 'Webflow · Wix · Framer' },
+    { k: 'Handover', v: 'Walkthrough included' },
   ],
-  glanceCta: { label: 'Build your estimate →', href: '/#estimate' },
+  glanceCta: { label: 'Tell me about your site →', href: '/contact' },
   included: {
-    heading: 'Our WordPress development services',
-    intro: 'Comprehensive WordPress solutions for Delhi NCR businesses — from a new custom theme to keeping an existing site fast, secure and up to date.',
+    heading: 'WordPress work I do',
+    intro: 'From a brand-new site to keeping an existing one fast, secure and up to date.',
     items: [
-      { t: 'Custom theme development', d: 'Unique, branded themes built from scratch to match your vision.' },
-      { t: 'Plugin development', d: 'Custom plugins to add any functionality you need.' },
-      { t: 'WooCommerce development', d: 'Full-featured online stores with WordPress.', link: { label: 'E-commerce development', href: '/ecommerce-website-development' } },
-      { t: 'Speed optimisation', d: 'Make your WordPress site lightning fast.' },
-      { t: 'Security hardening', d: 'Protect your site from hackers and malware.' },
-      { t: 'Maintenance & support', d: 'Ongoing updates, backups, and support.' },
+      { t: 'Custom WordPress sites', d: 'Designed in Figma, built with Elementor or a custom theme, matched to your brand.' },
+      { t: 'Custom theme & plugin work', d: 'Bespoke templates and small plugins when a feature needs more than a page builder.' },
+      { t: 'WooCommerce stores', d: 'Online stores on the WordPress site you already manage.', link: { label: 'E-commerce stores', href: '/ecommerce-website-development' } },
+      { t: 'Speed optimisation', d: 'Lighter pages, optimised images and caching, aiming for 90+ PageSpeed on mobile.' },
+      { t: 'Security & updates', d: 'Hardening, backups and safe updates so the site stays healthy.' },
+      { t: 'Fixes & redesigns', d: 'Broken layouts, plugin conflicts or a tired design, sorted without losing your rankings.' },
+    ],
+  },
+  details: {
+    eyebrow: 'OTHER CMS PLATFORMS',
+    heading: 'Not set on WordPress?',
+    intro: 'I pick the platform that fits how you work, not the one I happen to like.',
+    items: [
+      { t: 'Webflow', d: 'Design-led sites with smooth interactions and a clean visual editor.', bullets: ['Pixel-perfect layouts', 'Built-in CMS', 'Hosted & fast'] },
+      { t: 'Wix & Squarespace', d: 'Simple, all-in-one platforms that are easy to edit and maintain.', bullets: ['Drag-and-drop editing', 'Hosting included', 'Quick to launch'] },
+      { t: 'Framer', d: 'Modern marketing sites and landing pages with rich motion.', bullets: ['Animation-friendly', 'Figma-like editor', 'Great for launches'] },
     ],
   },
   audience: {
     heading: 'Built for businesses like yours',
     rows: [
-      { t: 'Business websites', d: '5–10 pages on a premium theme with contact forms', tone: 'blue' },
+      { t: 'Business websites', d: '5–10 pages you can edit yourself', tone: 'blue' },
       { t: 'Online stores', d: 'WooCommerce with payments, shipping and orders', tone: 'rust' },
       { t: 'Custom builds', d: 'Custom themes and plugins for advanced features', tone: 'violet' },
-      { t: 'Existing WordPress sites', d: 'Speed, security, maintenance and support', tone: 'green' },
+      { t: 'Existing WordPress sites', d: 'Speed, security, fixes and redesigns', tone: 'green' },
     ],
   },
   projects: {
     heading: 'WordPress builds for real businesses',
+    intro: 'WordPress projects I led at my studio, WebAlchemy.',
     items: [CASE_BATON_ROUGE, CASE_TRUDANAZ],
   },
   process: {
     heading: 'How a WordPress project works',
     intro: 'Four phases from first conversation to live website.',
-    steps: webSteps('3–6 months of support depending on your plan'),
+    steps: webSteps('I stay on hand for fixes and updates'),
   },
-  pricing: {
-    heading: 'WordPress development pricing',
-    intro: 'Affordable WordPress solutions for every budget.',
-    plans: [
-      { name: 'Business Website', price: '₹19,999', features: ['5–10 pages', 'Premium theme', 'Contact forms', 'Basic SEO', '3 months support'], cta: 'Get Started' },
-      { name: 'WooCommerce Store', price: '₹24,999', features: ['Up to 100 products', 'Payment gateway', 'Shipping setup', 'Order management', '6 months support'], cta: 'Get Started' },
-      { name: 'Custom Development', price: '₹49,999', features: ['Custom theme', 'Custom plugins', 'Advanced features', 'Performance optimisation', '6 months support'], cta: 'Get Started', featured: true, badge: 'Most popular' },
-    ],
+  quote: {
+    heading: 'One fixed quote',
+    intro: 'Tell me what the site needs to do and I will come back with one clear price and timeline, no packages to decode.',
+    points: ['Fixed price, agreed upfront', 'You own the site, domain and hosting', 'Walkthrough so you can edit it yourself', 'Direct WhatsApp line to me'],
   },
   faq: {
-    heading: 'Questions about WordPress development',
+    heading: 'Questions about WordPress & CMS sites',
     items: [
       {
-        q: 'What WordPress development services do you offer?',
-        a: 'Custom theme development, custom plugin development, WooCommerce stores, speed optimisation, security hardening, and ongoing maintenance and support — for new WordPress sites and existing ones.',
+        q: 'Should I use WordPress or something like Webflow or Wix?',
+        a: 'WordPress is the most flexible and has the biggest ecosystem, great for content-heavy sites and WooCommerce stores. Webflow and Framer suit design-led marketing sites; Wix and Squarespace are the simplest to run yourself. I will recommend one on our call based on how you want to work.',
       },
       {
-        q: 'How much does a WordPress website cost?',
-        a: 'A business website (5-10 pages, premium theme, contact forms, basic SEO, 3 months support) is ₹19,999. A WooCommerce store with up to 100 products, payment gateway, shipping setup and 6 months support is ₹24,999. Custom development with a custom theme, custom plugins and performance optimisation is ₹49,999.',
+        q: 'Will I be able to edit the site myself?',
+        a: 'Yes. I set up the editor so text, images, pages and blog posts are easy to change, and walk you through it at handover.',
       },
       {
         q: 'Can you build an online store on WordPress?',
-        a: 'Yes. We build full-featured WooCommerce stores with payment gateways, shipping setup and order management, so you can sell from the same WordPress site you already manage.',
+        a: 'Yes, with WooCommerce: products, payment gateways, shipping and order management on the same WordPress site you manage.',
       },
       {
-        q: 'Can you migrate my site to WordPress?',
-        a: 'Yes. We regularly migrate sites from Wix, Squarespace, GoDaddy builders, and older HTML sites to WordPress. We preserve your existing content, set up 301 redirects so Google transfers your rankings, and re-optimise images and page speed in the process.',
+        q: 'Can you fix or speed up my existing WordPress site?',
+        a: 'Yes. I clean up heavy plugins, optimise images, add caching and fix layout issues, aiming for 90+ on Google PageSpeed for mobile.',
       },
       {
-        q: 'Do you offer WordPress maintenance and support?',
-        a: 'Yes. Every plan includes 3 to 6 months of support, and we offer ongoing maintenance after that — updates, backups, security hardening and speed optimisation.',
+        q: 'Can you move my site to WordPress?',
+        a: 'Yes. I migrate from Wix, Squarespace, old HTML sites and other builders, keep your content and set up 301 redirects so Google carries your rankings across.',
       },
     ],
   },
@@ -1057,95 +1055,90 @@ const wordpressDevelopment: ServiceData = {
 const ecommerceDevelopment: ServiceData = {
   key: 'ecommerce-website-development',
   path: '/ecommerce-website-development',
-  num: '08',
-  name: 'E-commerce Development',
-  chip: 'E-commerce Development',
-  crumb: 'E-commerce Website Development',
+  num: '04',
+  name: 'E-commerce Stores',
+  chip: 'E-commerce Stores',
+  crumb: 'E-commerce Stores',
   meta: {
-    title: 'E-commerce Website Development Delhi NCR | WebAlchemy',
-    description: 'Expert e-commerce website development in Delhi NCR. Shopify, WooCommerce, custom online stores. Boost your online sales with our proven solutions. Free quote!',
+    title: 'Shopify & WooCommerce Stores | Kunal — Website Developer & UI/UX Designer',
+    description: 'Online stores on Shopify or WooCommerce, designed so buying feels easy on a phone. Payments, shipping and product setup handled by Kunal.',
   },
   schema: {
     name: 'E-commerce Website Development',
-    description: 'Professional e-commerce website development services including Shopify, WooCommerce, and custom online store solutions',
-    areaServed: AREAS,
+    description: 'Shopify and WooCommerce online stores designed and built by Kunal, with payment gateways, shipping and product setup.',
   },
-  h1: ['E-commerce website development in ', 'Delhi NCR'],
-  lede: 'We create high-converting Shopify, WooCommerce, and custom e-commerce websites for businesses in Delhi, Gurgaon, and Noida.',
+  h1: ['Online stores that make buying ', 'easy'],
+  lede: 'I design and build stores on Shopify or WooCommerce with payments, shipping and products set up, so you can start selling, and so customers can check out on a phone without thinking twice.',
   glance: [
-    { k: 'Starting at', v: '₹24,999' },
-    { k: 'Platforms', v: 'Shopify · WooCommerce · Custom' },
+    { k: 'Platforms', v: 'Shopify · WooCommerce' },
     { k: 'Payments', v: 'Razorpay · PayU · Stripe' },
     { k: 'Shipping', v: 'Shiprocket · Delhivery' },
+    { k: 'Design', v: 'Mobile-first' },
   ],
-  glanceCta: { label: 'Build your estimate →', href: '/#estimate' },
+  glanceCta: { label: 'Tell me about your store →', href: '/contact' },
   included: {
     heading: 'Everything your online store needs',
-    intro: 'Complete e-commerce solutions with all essential features — built for the Indian market, from payment gateways to shipping partners.',
+    intro: 'A complete store, set up for selling in India and beyond, from payment gateways to shipping partners.',
     items: [
-      { t: 'Product management', d: 'Easy-to-use admin panel for managing products, inventory, and categories.' },
-      { t: 'Payment integration', d: 'Razorpay, PayU, Stripe, PayPal and all major payment gateways.' },
-      { t: 'Shipping integration', d: 'Shiprocket, Delhivery, and custom shipping solutions.' },
-      { t: 'Analytics dashboard', d: 'Track sales, customers, and conversions in real-time.' },
-      { t: 'Secure checkout', d: 'SSL, PCI compliance, and fraud protection.' },
-      { t: 'Fast performance', d: 'Optimised for speed and mobile conversions.' },
+      { t: 'Store design', d: 'Product, collection and checkout pages designed in Figma around how your customers shop.' },
+      { t: 'Product setup', d: 'Categories, variants and product uploads, plus an admin you can manage yourself.' },
+      { t: 'Payment integration', d: 'Razorpay, PayU, Stripe, PayPal and other major gateways.' },
+      { t: 'Shipping integration', d: 'Shiprocket, Delhivery or your own shipping rules.' },
+      { t: 'Secure checkout', d: 'SSL and gateway-handled payments, tested end to end before launch.' },
+      { t: 'Fast & mobile-first', d: 'Optimised for speed and for thumbs, where most orders happen.' },
     ],
   },
   details: {
     eyebrow: 'PLATFORMS',
-    heading: 'E-commerce platforms we work with',
-    intro: 'Choose the right platform for your business. We work across all major e-commerce solutions.',
+    heading: 'Shopify or WooCommerce?',
+    intro: 'Both are great; the right one depends on how you want to run the store.',
     items: [
-      { t: 'Shopify', d: 'Perfect for quick launch and easy management.', bullets: ['Hosted solution', 'App ecosystem', 'Payment ready'] },
-      { t: 'WooCommerce', d: 'Flexible WordPress-based solution.', bullets: ['Full customisation', 'Cost effective', 'SEO friendly'], link: { label: 'WordPress development', href: '/wordpress-development' } },
-      { t: 'Custom store', d: 'Built from scratch for unique needs.', bullets: ['100% tailored', 'Scalable', 'Full ownership'] },
+      { t: 'Shopify', d: 'Quick to launch and easy to manage.', bullets: ['Hosted for you', 'Huge app ecosystem', 'Payment-ready'] },
+      { t: 'WooCommerce', d: 'Flexible and WordPress-based.', bullets: ['Full customisation', 'Cost-effective', 'SEO-friendly'], link: { label: 'WordPress & CMS sites', href: '/wordpress-development' } },
+      { t: 'Custom front-end', d: 'For unusual requirements, a custom React / Next.js storefront.', bullets: ['Fully tailored', 'Very fast', 'Built to scale'] },
     ],
   },
   audience: {
     heading: 'Built for businesses selling online',
     rows: [
       { t: 'E-commerce', d: 'Catalogues, payments, shipping', tone: 'rust', categories: ['E-commerce'] },
-      { t: 'Quick-launch stores', d: 'Shopify — hosted and payment-ready', tone: 'green' },
+      { t: 'Quick-launch stores', d: 'Shopify, hosted and payment-ready', tone: 'green' },
       { t: 'WordPress businesses', d: 'WooCommerce on a site you already manage', tone: 'blue' },
-      { t: 'Unique requirements', d: 'Custom stores built from scratch, fully yours', tone: 'violet' },
+      { t: 'Unique requirements', d: 'Custom storefronts, fully yours', tone: 'violet' },
     ],
   },
   process: {
-    heading: 'How an e-commerce project works',
+    heading: 'How a store project works',
     intro: 'Four phases from first conversation to a live store.',
-    steps: webSteps('3–6 months of support depending on your plan', ' Product uploads, payment and shipping integrations are set up and tested here.'),
+    steps: webSteps('I stay on hand for fixes and updates', ' Product uploads, payment and shipping integrations are set up and tested here.'),
   },
-  pricing: {
-    heading: 'E-commerce development pricing',
-    intro: 'Transparent pricing for your online store project.',
-    plans: [
-      { name: 'Starter Store', price: '₹24,999', features: ['Up to 50 products', 'Payment integration', 'Mobile responsive', 'Basic SEO', '3 months support'], cta: 'Get Started' },
-      { name: 'Growth Store', price: '₹49,999', features: ['Up to 500 products', 'Multi-payment gateways', 'Shipping integration', 'Advanced SEO', '6 months support'], cta: 'Get Started', featured: true, badge: 'Most popular' },
-      { name: 'Enterprise', price: 'Custom', features: ['Unlimited products', 'Custom features', 'Multiple integrations', 'Dedicated support', 'Performance optimisation'], cta: 'Contact Sales' },
-    ],
+  quote: {
+    heading: 'One fixed quote',
+    intro: 'Stores vary a lot (ten products or ten thousand), so I quote after a short call about your catalogue, payments and shipping.',
+    points: ['Fixed price, agreed upfront', 'You own the store and its data', 'Walkthrough for managing orders & products', 'Direct WhatsApp line to me'],
   },
   faq: {
-    heading: 'Questions about e-commerce development',
+    heading: 'Questions about e-commerce stores',
     items: [
       {
-        q: 'Which e-commerce platform should I choose?',
-        a: 'Shopify is perfect for a quick launch and easy management — it is hosted, payment-ready and has a large app ecosystem. WooCommerce is a flexible, cost-effective WordPress-based option that is SEO friendly and fully customisable. A custom store is built from scratch for unique needs, scalable and fully owned by you. We help you choose during the free consultation.',
+        q: 'Which platform should I choose?',
+        a: 'Shopify is the quickest to launch and the easiest to manage: hosted, payment-ready and full of apps. WooCommerce is more flexible and cost-effective if you want your store on WordPress. For very specific needs I can build a custom storefront. We decide together on our first call.',
       },
       {
         q: 'Which payment gateways can you integrate?',
-        a: 'Razorpay, PayU, Stripe, PayPal and all major payment gateways. Our Growth Store plan supports multiple payment gateways on one store.',
+        a: 'Razorpay, PayU, Stripe, PayPal and other major gateways, set up and tested before launch.',
       },
       {
-        q: 'Can you set up shipping for my store?',
-        a: 'Yes. We integrate Shiprocket, Delhivery, and custom shipping solutions so orders flow from checkout to delivery without manual work.',
+        q: 'Can you set up shipping?',
+        a: 'Yes. I integrate Shiprocket, Delhivery or custom shipping rules so orders flow from checkout to delivery without manual work.',
       },
       {
-        q: 'How much does an e-commerce website cost?',
-        a: 'Our Starter Store (up to 50 products, payment integration, basic SEO, 3 months support) is ₹24,999. The Growth Store (up to 500 products, multiple payment gateways, shipping integration, advanced SEO, 6 months support) is ₹49,999. Enterprise stores with unlimited products and custom features are quoted on scope.',
+        q: 'Can I add and edit products myself?',
+        a: 'Yes. I set up the products and categories with you, then show you how to add new ones, run discounts and manage orders.',
       },
       {
         q: 'Is the checkout secure?',
-        a: 'Yes. Every store ships with SSL, PCI-compliant payment handling through the gateway, and fraud protection, and is optimised for speed and mobile conversions.',
+        a: 'Yes. Every store runs on SSL with payments handled by the gateway, and I test the full purchase flow on real devices before going live.',
       },
     ],
   },
@@ -1162,20 +1155,15 @@ export const SERVICES: Record<string, ServiceData> = {
   'ecommerce-website-development': ecommerceDevelopment,
 };
 
-/** Display order for listings and "Other services" chips. */
+/** Kunal's services, in display order (listings and "Other services" chips). */
 export const SERVICE_ORDER = [
   'web-development',
-  'digital-marketing',
   'design-branding',
-  'content-strategy',
-  'app-development',
-  'pr-advertising',
   'wordpress-development',
   'ecommerce-website-development',
 ] as const;
 
-/** The six core services (the /services index list). */
-export const CORE_SERVICES = SERVICE_ORDER.slice(0, 6).map((k) => SERVICES[k]);
+export const CORE_SERVICES = SERVICE_ORDER.map((k) => SERVICES[k]);
 
 export function getService(key: string): ServiceData {
   const s = SERVICES[key];

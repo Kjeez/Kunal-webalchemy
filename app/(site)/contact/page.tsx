@@ -1,46 +1,33 @@
 import type { Metadata } from 'next';
 import LeadForm from '@/components/site/LeadForm';
 import Faq, { type FaqItem } from '@/components/site/Faq';
-import { EMAIL, PHONE_DISPLAY, TEL_HREF, WHATSAPP_DEFAULT_MESSAGE, whatsappHref } from '@/lib/site';
+import { EMAIL, PHONE_DISPLAY, SITE_URL, TEL_HREF, WHATSAPP_DEFAULT_MESSAGE, whatsappHref } from '@/lib/site';
 import styles from './contact.module.css';
 import FloatField from '@/components/site/motion/FloatField';
 import { PeekOver } from '@/components/site/motion/Peep';
 
-/* Contact — Claude Design "Contact" (Contact.dc.html), form state. The
-   design's "sent" state lives at /thank-you (the conversion URL). */
+/* Contact — Kunal's contact page (design system "Contact" layout). The
+   "sent" state lives at /thank-you. */
 
 export const metadata: Metadata = {
-  title: 'Contact WebAlchemy — Get a Free Quote | Delhi NCR',
-  description: 'Get in touch with WebAlchemy for web development, design, or marketing. Based in Uttam Nagar, Delhi. Free consultation — reply within 24 hours.',
+  title: 'Contact Kunal | Hire a Website Developer & UI/UX Designer',
+  description: 'Tell me about your website, redesign or design project. I’m Kunal, a website developer and UI/UX designer in New Delhi, and I reply within 24 hours with a plan and a fixed quote.',
   alternates: { canonical: '/contact' },
 };
 
-// ContactPage JSON-LD carried over unchanged from the legacy ContactPage.
 const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contact WebAlchemy',
-  description: 'Get in touch with WebAlchemy for web development, design, or digital marketing services in Delhi NCR.',
-  url: 'https://webalchemy.in/contact',
+  name: 'Contact Kunal',
+  description: 'Get in touch with Kunal for website design and development, UI/UX and CMS projects.',
+  url: `${SITE_URL}/contact`,
   mainEntity: {
-    '@type': 'ProfessionalService',
-    name: 'WebAlchemy',
+    '@type': 'Person',
+    name: 'Kunal',
+    jobTitle: 'Website Developer & UI/UX Designer',
     telephone: '+91-78385-83051',
-    email: 'contact@webalchemy.in',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Uttam Nagar',
-      addressLocality: 'New Delhi',
-      addressRegion: 'DL',
-      postalCode: '110059',
-      addressCountry: 'IN',
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '10:00',
-      closes: '19:00',
-    },
+    email: EMAIL,
+    address: { '@type': 'PostalAddress', addressLocality: 'New Delhi', addressRegion: 'DL', addressCountry: 'IN' },
   },
 };
 
@@ -48,28 +35,27 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webalchemy.in/' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
     { '@type': 'ListItem', position: 2, name: 'Contact' },
   ],
 };
 
-// FAQ carried over verbatim from the legacy ContactPage (also emits its FAQPage JSON-LD).
 const FAQ: FaqItem[] = [
   {
     q: 'How do I get a quote for my project?',
-    a: 'The quickest way is to WhatsApp us at +91 78385 83051 with a brief description of what you need — business website, e-commerce store, app, or marketing campaign. We will reply within 24 hours with initial questions, then schedule a 20-minute discovery call to understand your scope. After that call, you receive a detailed, itemised quote within 2 business days. No cost, no obligation at any stage.',
+    a: 'The quickest way is to WhatsApp me at +91 78385 83051 with a short description of what you need: a new website, a redesign, a store or UI/UX design. I reply within 24 hours with a few questions, then we have a short discovery call. After that you get a clear, itemised quote within 2 business days. No cost and no obligation at any stage.',
   },
   {
-    q: 'Do you sign NDAs before discussing project details?',
-    a: 'Yes, we are happy to sign a Non-Disclosure Agreement before you share any sensitive information. If you have your own NDA template, send it over and we will review and sign. If you need us to provide one, we have a standard mutual NDA ready to go. We take client confidentiality seriously — your business ideas, data, and strategy are never shared with anyone outside the project team.',
+    q: 'Will you sign an NDA before we discuss details?',
+    a: 'Yes. Send over your NDA and I will review and sign it, or I can share a standard mutual NDA. Your ideas, data and plans are never shared with anyone outside the project.',
   },
   {
     q: 'What are your payment terms?',
-    a: 'We work on a milestone-based payment model. Typical structure: 50% advance to kick off the project, 25% at design approval, and 25% before final delivery and deployment. For ongoing retainers (marketing, maintenance, content), we bill monthly in advance. We accept bank transfers (NEFT/IMPS), UPI, and international wire transfers for overseas clients. GST invoices are provided for all payments.',
+    a: 'Usually 50% upfront to book the slot and 50% at launch. Larger projects can be split into milestones, for example at design approval. I accept bank transfer (NEFT/IMPS), UPI and international wire transfers.',
   },
   {
-    q: 'Do you work with international clients?',
-    a: 'Yes, we actively work with clients in Canada, Tanzania, the UAE, and the UK. Time zone differences are managed through async communication (WhatsApp, email, Loom videos) and scheduled calls that work for both sides. International payments are accepted via wire transfer or Wise (TransferWise). The process, deliverables, and quality are identical — the only difference is we meet over video instead of in person.',
+    q: 'Do you work with clients outside India?',
+    a: 'Yes. Time zones are handled with async updates on WhatsApp, email and short screen recordings, plus calls at a time that suits both of us. International payments work via wire transfer or Wise.',
   },
 ];
 
@@ -89,7 +75,7 @@ export default function Page() {
             Let&apos;s build something <span className="serif">extraordinary</span>
           </h1>
           <p className="lede" style={{ maxWidth: 480 }}>
-            Tell us about your business and we&apos;ll come back within 24 hours with a plan and a fixed quote. No
+            Tell me about your business and I&apos;ll come back within 24 hours with a plan and a fixed quote. No
             obligation.
           </p>
           <div className={styles.rows}>
@@ -117,7 +103,7 @@ export default function Page() {
         </div>
 
         <div className={`card has-peek ${styles.formCard}`}>
-          <PeekOver seed="Rohan" bubble="We reply in 24h!" />
+          <PeekOver seed="Kunal" bubble="I reply in 24h!" />
           <LeadForm source="Contact page" serviceInput="chips" showBudget />
         </div>
       </section>
@@ -126,7 +112,7 @@ export default function Page() {
         <div className={`wrap section-top ${styles.faq}`}>
           <div className="stack" style={{ gap: 16 }}>
             <p className="eyebrow">FAQ</p>
-            <h2 className="h2">Questions about working with us</h2>
+            <h2 className="h2">Questions about working with me</h2>
             <p className="lede">How engagements work, payment terms, and more.</p>
           </div>
           <Faq items={FAQ} jsonLd />

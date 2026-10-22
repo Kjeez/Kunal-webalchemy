@@ -7,12 +7,12 @@ import s from './blog.module.css';
 import FloatField from '@/components/site/motion/FloatField';
 import { PeepCrew } from '@/components/site/motion/Peep';
 
-/* Blog index — Claude Design "Blog" (Blog.dc.html). */
+/* Kunal's blog index — Claude Design "Blog" (Blog.dc.html). */
 
 export const metadata: Metadata = {
-  title: 'Blog | Web Design, SEO & Marketing Insights | WebAlchemy',
+  title: 'Blog — Notes on Web Design & Development | Kunal',
   description:
-    'Deep dives into design, technology, and marketing strategies to fuel your growth. Practical guides from the WebAlchemy team in New Delhi.',
+    'Practical notes on web design, UI/UX, speed and SEO from Kunal, a website developer & UI/UX designer in New Delhi.',
   alternates: { canonical: '/blog' },
 };
 
@@ -43,18 +43,19 @@ export default function BlogIndexPage() {
         <PeepCrew
           className="hero-crew hero-crew-top"
           peeps={[
-            { seed: 'Ishita', bg: 'f3ecfb', pose: 'float', size: 88, bubble: 'New post!' },
+            { seed: 'Kunal', bg: 'eef1ff', pose: 'float', size: 88, bubble: 'Fresh notes!' },
             { seed: 'Kabir', bg: 'eef1ff', pose: 'sway', size: 74 },
           ]}
         />
         <div className="stack" style={{ gap: 16 }}>
-          <div className="eyebrow">KNOWLEDGE BASE</div>
+          <div className="eyebrow">BLOG · BY KUNAL</div>
           <h1 className="h1-xl">
-            Latest <span className="serif">insights</span>
+            Notes on <span className="serif">web design</span> &amp; development
           </h1>
         </div>
         <p className="lede" style={{ maxWidth: 480 }}>
-          Strategies, case studies, and technical deep-dives to keep you ahead of the curve.
+          What I&apos;ve learned designing and building 200+ websites: UI/UX, speed, SEO and the platforms behind
+          them.
         </p>
       </section>
 
@@ -88,7 +89,7 @@ export default function BlogIndexPage() {
           <div className="stack" style={{ gap: 10 }}>
             <h2 id="news-h" className="h3">Stay updated</h2>
             <p style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--muted)' }}>
-              Subscribe to our newsletter for the latest design trends and tech insights.
+              Get my latest notes on design, speed and SEO in your inbox. No spam, just the good stuff.
             </p>
           </div>
           <Newsletter />

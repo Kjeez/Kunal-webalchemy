@@ -12,6 +12,22 @@ const nextConfig = {
     config.resolve.alias['react-router-dom'] = routerCompat;
     return config;
   },
+  // Portfolio build: agency-only pages (marketing, PR, apps, local SEO
+  // landers, the starter-offer promo) send visitors to the closest section.
+  async redirects() {
+    const to = (source, destination) => ({ source, destination, permanent: false });
+    return [
+      to('/services/digital-marketing', '/#expertise'),
+      to('/services/content-strategy', '/#expertise'),
+      to('/services/pr-advertising', '/#expertise'),
+      to('/services/app-development', '/#expertise'),
+      to('/website-developer-delhi', '/'),
+      to('/website-developer-gurgaon', '/'),
+      to('/website-developer-noida', '/'),
+      to('/web-development-company-delhi-ncr', '/'),
+      to('/starter-offer', '/#contact'),
+    ];
+  },
   turbopack: {
     resolveAlias: {
       'react-router-dom': './lib/router-compat.tsx',

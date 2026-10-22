@@ -14,7 +14,7 @@ export default function Problems() {
             Is your website <span className={`serif ${s.coral}`} style={{ color: 'var(--coral)' }}>bleeding revenue?</span>
           </h2>
           <p className={s.darkLede}>
-            Six problems we fix on almost every site we audit. If two or more sound familiar, you&apos;re losing leads every day.
+            Six problems I fix on almost every site I audit. If two or more sound familiar, you&apos;re losing leads every day.
           </p>
         </div>
         <div className={s.probGrid}>
@@ -29,7 +29,7 @@ export default function Problems() {
         <SpeedRace />
         <div className={s.ctaRow}>
           <a href="#contact" className="btn btn-light" data-magnetic="">Get a free website audit →</a>
-          <span className={s.ctaNote}>We&apos;ll review your current site and send fixes within 48 hours.</span>
+          <span className={s.ctaNote}>I&apos;ll personally review your current site and send fixes within 48 hours.</span>
         </div>
       </div>
     </section>

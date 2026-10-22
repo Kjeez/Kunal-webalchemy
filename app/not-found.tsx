@@ -10,8 +10,8 @@ import Peep from '@/components/site/motion/Peep';
 // route group, so it brings its own `.wa` shell (header + footer).
 const LINKS = [
   { href: '/', k: '01', t: 'Home', d: 'Start from the top.' },
-  { href: '/portfolio', k: '02', t: 'Work', d: 'Websites we have shipped.' },
-  { href: '/contact', k: '03', t: 'Contact', d: 'Tell us what you were looking for.' },
+  { href: '/portfolio', k: '02', t: 'Work', d: 'Websites I have designed and built.' },
+  { href: '/contact', k: '03', t: 'Contact', d: 'Tell me what you were looking for.' },
 ];
 
 export default function NotFound() {

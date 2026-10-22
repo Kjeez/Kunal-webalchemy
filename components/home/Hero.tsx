@@ -5,13 +5,15 @@ import { whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import { HERO_SHAPES, peep } from './data';
 import FloatShapes from './FloatShapes';
 import HeroLeadForm from './HeroLeadForm';
-import HeroMockup from './HeroMockup';
+import HeroPortrait from './HeroPortrait';
 import HeroStage from './HeroStage';
 import RotatingWord from './RotatingWord';
 import StatsCountUp from './StatsCountUp';
+import { SurpriseButton } from './Surprise';
 import s from './home.module.css';
 
 const AVATARS: [string, string][] = [['Aarav', 'eef1ff'], ['Meera', 'fbf3e2'], ['Kabir', 'e8f4ec'], ['Ishita', 'fcebe3']];
+const WORDS = ['actually sell.', 'get found.', 'win trust.', 'feel alive.'];
 
 /* travel-4 (Earthen Pods) is left out: its domain no longer resolves. */
 const CLIENTS = projectsData.filter((p) => p.id !== 'travel-4').map((p) => p.title);
@@ -23,14 +25,18 @@ export default function Hero() {
         <div className={s.heroCopy}>
           <p className={s.heroEyebrow}>
             <span className="live-dot" aria-hidden="true" />
-            Available for new projects
+            Available for freelance projects
+          </p>
+          <p className={s.heroHello}>
+            <span className={s.waveHand} aria-hidden="true">👋</span>
+            <span>Hi, I&apos;m <b>Kunal</b>: website developer &amp; UI/UX designer</span>
           </p>
           <h1 id="hero-h" className="h1">
-            Need more customers? We build websites that <RotatingWord />
+            I design &amp; build websites that <RotatingWord words={WORDS} />
           </h1>
           <p className={`lede-lg ${s.heroLede}`}>
-            Stop losing leads to outdated design. We build fast, mobile-first websites grounded in buyer
-            psychology, at fixed prices from ₹14,999 and live in as little as 7 days.
+            From the first sketch in Figma and Photoshop to a fast, mobile-first site on WordPress, Shopify,
+            Webflow, Wix or Next.js. One person, design and code, and a direct line to you.
           </p>
           <HeroLeadForm />
           <div className={s.heroAlt}>
@@ -38,10 +44,10 @@ export default function Hero() {
             <span>
               or{' '}
               <a className="link" href={whatsappHref(WHATSAPP_DEFAULT_MESSAGE)} target="_blank" rel="noopener noreferrer">
-                message us on WhatsApp
+                message me on WhatsApp
               </a>
             </span>
-            <span>or <a className="link" href="#contact">book a strategy call</a></span>
+            <span>or <SurpriseButton /></span>
           </div>
           <div className={s.proof}>
             <div className={s.avatars} aria-hidden="true">
@@ -51,14 +57,14 @@ export default function Hero() {
             </div>
             <div className={s.proofText}>
               <div><b><span className="stars" aria-hidden="true">★★★★★</span> 4.9/5</b><span className={s.srOnly}> client rating</span></div>
-              <div style={{ color: 'var(--muted-2)' }}>500+ projects delivered</div>
+              <div style={{ color: 'var(--muted-2)' }}>200+ projects delivered</div>
             </div>
           </div>
         </div>
 
         <HeroStage>
           <FloatShapes list={HERO_SHAPES} />
-          <HeroMockup />
+          <HeroPortrait />
           <div className={s.badge} aria-hidden="true">
             <svg className={s.badgeSvg} viewBox="0 0 120 120" width={120} height={120}>
               <defs>
@@ -73,8 +79,8 @@ export default function Hero() {
             <span className={s.badgeDot} />
           </div>
           <div className={s.sticker}>
-            <div className={s.stickerK}>LIVE IN</div>
-            <div className={s.stickerV}>7 days</div>
+            <div className={s.stickerK}>SHIPPED</div>
+            <div className={s.stickerV}>200+ sites</div>
           </div>
         </HeroStage>
       </section>
@@ -88,7 +94,7 @@ export default function Hero() {
         </div>
       </section>
 
-      <section className={`wrap ${s.statsSection}`} aria-label="WebAlchemy in numbers">
+      <section className={`wrap ${s.statsSection}`} aria-label="Kunal in numbers">
         <StatsCountUp />
       </section>
     </>

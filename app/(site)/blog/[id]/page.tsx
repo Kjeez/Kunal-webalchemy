@@ -29,7 +29,7 @@ export async function generateMetadata({
   const post = getPost(id);
   if (!post) return {};
   return {
-    title: `${post.seoTitle} | WebAlchemy`,
+    title: `${post.seoTitle} | Kunal`,
     description: post.excerpt,
     alternates: { canonical: `/blog/${id}` },
     openGraph: {
@@ -123,7 +123,7 @@ export default async function ArticlePage({
     image: post.image,
     datePublished: post.isoDate,
     author: { '@type': 'Person', name: post.author },
-    publisher: { '@type': 'Organization', name: 'WebAlchemy', url: SITE_URL },
+    publisher: { '@type': 'Person', name: 'Kunal', url: SITE_URL },
     mainEntityOfPage: `${SITE_URL}/blog/${post.id}`,
   };
 
@@ -181,6 +181,7 @@ export default async function ArticlePage({
             <div>
               <div className={s.name}>{post.author}</div>
               {post.authorBio && <div className={s.bio}>{post.authorBio}</div>}
+              <Link href="/#contact" className={s.hire}>Need a website that does this? Work with me →</Link>
             </div>
           </div>
         </article>

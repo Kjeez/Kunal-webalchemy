@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  LOCATION_MENU,
   PHONE_DISPLAY,
   SERVICE_MENU,
   SITE_NAV,
@@ -16,25 +15,25 @@ import {
 /** Logo lockup used by the header and footer. */
 export function Logo({ onClick }: { onClick?: () => void }) {
   return (
-    <Link href="/" className="logo" aria-label="WebAlchemy home" onClick={onClick}>
-      <span className="logo-mark" aria-hidden="true">W</span>
-      WebAlchemy
+    <Link href="/" className="logo" aria-label="Kunal, home" onClick={onClick}>
+      <span className="logo-mark" aria-hidden="true">K</span>
+      <span>Kunal<span className="logo-dot" aria-hidden="true">.</span></span>
     </Link>
   );
 }
 
-/** Homepage-only offer strip above the sticky header. */
+/** Homepage-only availability strip above the sticky header. */
 export function Announcement() {
   const pathname = usePathname();
   if (pathname !== '/') return null;
   return (
-    <a href="#pricing" className="announce">
-      <span style={{ fontWeight: 600 }}>Websites from ₹14,999</span>
+    <a href="#contact" className="announce">
+      <span style={{ fontWeight: 600 }}>Freelance website developer &amp; UI/UX designer</span>
       <span className="dim" aria-hidden="true">•</span>
-      <span>Free Domain &amp; Hosting</span>
+      <span>Figma → live site</span>
       <span className="dim" aria-hidden="true">•</span>
-      <span>7-day delivery</span>
-      <span className="go">See plans →</span>
+      <span>Booking new projects</span>
+      <span className="go">Let&apos;s talk →</span>
     </a>
   );
 }
@@ -66,7 +65,7 @@ export default function SiteHeader() {
   const isActive = (match: string) =>
     !match.includes('#') && (pathname === match || pathname.startsWith(`${match}/`));
   const servicesActive =
-    isActive('/services') || SERVICE_MENU.some((l) => isActive(l.href)) || LOCATION_MENU.some((l) => isActive(l.href));
+    isActive('/services') || SERVICE_MENU.some((l) => isActive(l.href));
 
   // close everything on navigation
   useEffect(() => {
@@ -178,18 +177,10 @@ export default function SiteHeader() {
                       <Link href="/services" className="mega-all" onClick={() => setMega(false)}>All services →</Link>
                     </div>
                     <div className="mega-side">
-                      <div className="mega-label">DELHI NCR</div>
-                      <ul className="mega-locs">
-                        {LOCATION_MENU.map((loc) => (
-                          <li key={loc.href}>
-                            <Link href={loc.href} onClick={() => setMega(false)} aria-current={isActive(loc.href) ? 'page' : undefined}>{loc.label}</Link>
-                          </li>
-                        ))}
-                      </ul>
                       <div className="mega-card">
                         <div className="mega-card-k">FREE · 30 MINUTES</div>
-                        <div className="mega-card-t">Not sure what you need? Book a strategy call.</div>
-                        <Link href="/contact" className="btn btn-primary" onClick={() => setMega(false)}>Get Free Estimate →</Link>
+                        <div className="mega-card-t">Not sure what you need? Book a call with me.</div>
+                        <Link href="/contact" className="btn btn-primary" onClick={() => setMega(false)}>Start a project →</Link>
                       </div>
                     </div>
                   </div>
@@ -208,7 +199,7 @@ export default function SiteHeader() {
             <PhoneIcon />
             {PHONE_DISPLAY}
           </a>
-          <Link href="/contact" className="btn btn-pill">Get Free Estimate</Link>
+          <Link href="/#contact" className="btn btn-pill">Hire me</Link>
           <button
             ref={burgerRef}
             type="button"
@@ -285,8 +276,8 @@ export default function SiteHeader() {
               <a href={TEL_HREF} className="btn btn-ghost"><PhoneIcon /> Call</a>
               <a href={wa} className="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </div>
-            <Link href="/contact" className="btn btn-primary btn-lg btn-block" onClick={() => setDrawer(false)}>Get Free Estimate →</Link>
-            <p className="drawer-note">{PHONE_DISPLAY} · New Delhi · Reply within 24 hours</p>
+            <Link href="/#contact" className="btn btn-primary btn-lg btn-block" onClick={() => setDrawer(false)}>Start a project with me →</Link>
+            <p className="drawer-note">{PHONE_DISPLAY} · New Delhi · I reply within 24 hours</p>
           </div>
         </div>
       </div>

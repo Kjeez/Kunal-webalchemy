@@ -5,9 +5,9 @@ import { prefersReducedMotion } from './motion';
 import s from './home.module.css';
 
 const STATS = [
-  { k: 'YEARS', n: 5, suf: '+', l: 'In operation', c: 'var(--ink)' },
-  { k: 'PROJECTS', n: 500, suf: '+', l: 'Websites & apps delivered', c: 'var(--blue)' },
-  { k: 'TEAM', n: 12, suf: '', l: 'Designers & developers', c: 'var(--green)' },
+  { k: 'YEARS', n: 5, suf: '+', l: 'Designing & building', c: 'var(--ink)' },
+  { k: 'PROJECTS', n: 200, suf: '+', l: 'Websites & apps delivered', c: 'var(--blue)' },
+  { k: 'TOOLBOX', n: 20, suf: '+', l: 'Design tools, CMSs & frameworks', c: 'var(--green)' },
   { k: 'SATISFACTION', n: 98, suf: '%', l: 'Clients who would refer us', c: 'var(--rust)' },
 ];
 

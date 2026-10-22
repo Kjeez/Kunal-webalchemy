@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Faq from '@/components/site/Faq';
-import { SITE_URL, TONES } from '@/lib/site';
+import { SITE_URL, TONES, whatsappHref, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/site';
 import { projectsData } from '@/data/projectsData';
 import {
   SERVICES,
@@ -13,10 +13,10 @@ import {
 } from '@/data/services';
 import s from './service.module.css';
 import FloatField from '@/components/site/motion/FloatField';
-import { PeekOver } from '@/components/site/motion/Peep';
+import Peep, { PeekOver } from '@/components/site/motion/Peep';
 
 /* Service page template — implements the Claude Design "Service" mock
-   (Service.dc.html) for every service route. Content lives in
+   (Service.dc.html) for Kunal's service routes. Content lives in
    data/services.ts; the only client island is the shared Faq accordion. */
 
 // Little rotated shapes on the "What's included" cards (design order).
@@ -158,7 +158,7 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: svc.schema.name,
-    provider: { '@type': 'Organization', name: 'WebAlchemy', url: SITE_URL },
+    provider: { '@type': 'Person', name: 'Kunal', jobTitle: 'Website Developer & UI/UX Designer', url: SITE_URL },
     ...(svc.schema.areaServed ? { areaServed: svc.schema.areaServed } : {}),
     description: svc.schema.description,
     url: `${SITE_URL}${svc.path}`,
@@ -187,12 +187,12 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
           </h1>
           <p className={`lede-lg ${s.lede}`}>{svc.lede}</p>
           <div className="btnrow">
-            <Link href="/contact" className="btn btn-primary">Get a free estimate →</Link>
-            <Link href="/portfolio" className="btn btn-ghost">See our work</Link>
+            <Link href="/contact" className="btn btn-primary">Get a free quote →</Link>
+            <Link href="/portfolio" className="btn btn-ghost">See my work</Link>
           </div>
         </div>
         <aside className={`has-peek ${s.glance}`} aria-label="At a glance">
-          <PeekOver seed="Neha" side="left" bubble="Fixed price!" />
+          <PeekOver seed="Neha" side="left" bubble="Talk to Kunal directly!" />
           <div className={s.glanceLabel}>AT A GLANCE</div>
           <dl className={s.glanceList}>
             {svc.glance.map((g) => (
@@ -218,7 +218,7 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
         </div>
       </section>
 
-      {/* ---- details (what we build / platforms) ---- */}
+      {/* ---- details (what I build / platforms) ---- */}
       {svc.details && (
         <section className={`wrap section-top ${s.stack40}`}>
           <div className={s.head}>
@@ -301,21 +301,44 @@ export default function ServicePage({ service: svc }: { service: ServiceData }) 
         <StepCards steps={svc.process.steps} />
       </section>
 
-      {/* ---- pricing ---- */}
-      <section className={`wrap section-top ${s.stack40}`}>
-        <div className={s.plansHead}>
+      {/* ---- working with me (replaces the old price list) ---- */}
+      {svc.quote && (
+        <section className="wrap section-top">
+          <div className={`has-decor ${s.quote}`}>
+            <FloatField preset="dark" />
+            <div className={s.quoteCopy}>
+              <div className="eyebrow" style={{ color: 'var(--blue-soft)' }}>WORKING WITH ME</div>
+              <h2 className="h2 rise">{svc.quote.heading}</h2>
+              <p className={s.quoteIntro}>{svc.quote.intro}</p>
+              <div className="btnrow">
+                <Link href="/contact" className="btn btn-primary">Get a free quote →</Link>
+                <a href={whatsappHref(WHATSAPP_DEFAULT_MESSAGE)} className="btn btn-outline-dark" target="_blank" rel="noopener noreferrer">
+                  WhatsApp me
+                </a>
+              </div>
+            </div>
+            <ul className={s.quoteList}>
+              {svc.quote.points.map((pt) => <li key={pt} className="rise">{pt}</li>)}
+            </ul>
+            <span className={s.quotePeep} data-motion>
+              <Peep seed="Kunal" bg="9fb0ff" pose="wave" size={84} bubble="Let's talk!" />
+            </span>
+          </div>
+        </section>
+      )}
+
+      {/* ---- legacy price list (only the redirected agency services have one) ---- */}
+      {!svc.quote && svc.pricing && (
+        <section className={`wrap section-top ${s.stack40}`}>
           <div className={s.head}>
             <div className="eyebrow">PRICING</div>
             <h2 className="h2 rise">{svc.pricing.heading}</h2>
             {svc.pricing.intro && <p className={s.headIntro}>{svc.pricing.intro}</p>}
           </div>
-          {svc.pricing.compare && (
-            <Link href="/#pricing" className="text-link">Compare all features →</Link>
-          )}
-        </div>
-        <PlanCards plans={svc.pricing.plans} />
-        {svc.pricing.note && <p className={s.planNote}>{svc.pricing.note}</p>}
-      </section>
+          <PlanCards plans={svc.pricing.plans} />
+          {svc.pricing.note && <p className={s.planNote}>{svc.pricing.note}</p>}
+        </section>
+      )}
 
       {/* ---- faq ---- */}
       <section className="wrap section split-start">

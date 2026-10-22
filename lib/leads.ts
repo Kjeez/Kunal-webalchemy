@@ -19,11 +19,11 @@ export interface Lead {
 
 export const SERVICES = [
   'Website Development',
-  'Digital Marketing',
-  'Design & Branding',
-  'Content Strategy',
-  'App Development',
-  'PR & Advertising',
+  'UI/UX Design',
+  'Graphic & Brand Design',
+  'CMS Website',
+  'E-commerce Store',
+  'Landing Page / Redesign',
   'Not sure yet',
 ] as const;
 
@@ -34,7 +34,7 @@ const LEAD_KEY = 'wa-lead';
 /** Fallback when email delivery fails: the same enquiry, pre-written for WhatsApp. */
 export function whatsappLead(lead: Lead): string {
   const lines = [
-    'Hi WebAlchemy! I tried your website form but it did not go through.',
+    'Hi Kunal! I tried your website form but it did not go through.',
     lead.name && lead.name !== 'Website visitor' ? `Name: ${lead.name}` : '',
     lead.phone ? `Mobile: +91 ${lead.phone}` : '',
     lead.email ? `Email: ${lead.email}` : '',

@@ -33,7 +33,7 @@ export interface BlogPost {
   /** ISO date for metadata / JSON-LD. */
   isoDate: string;
   author: string;
-  /** TODO: needs content — author role + one-line bio (shown under the byline when set). */
+  /** Author role + one-line bio, shown under the byline. */
   authorBio?: string;
   readTime: string;
   image: string;
@@ -83,7 +83,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Design',
     date: 'Mar 15, 2024',
     isoDate: '2024-03-15',
-    author: 'Alex Morgan',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '5 min read',
     image: unsplash('photo-1550684848-fac1c5b4e853'),
     body: [
@@ -114,7 +115,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Technical',
     date: 'Mar 10, 2024',
     isoDate: '2024-03-10',
-    author: 'Sarah Jenkins',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '8 min read',
     image: unsplash('photo-1460925895917-afdab827c52f'),
     body: [
@@ -162,7 +164,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Marketing',
     date: 'Mar 05, 2024',
     isoDate: '2024-03-05',
-    author: 'Michael Chen',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '6 min read',
     image: unsplash('photo-1552664730-d307ca884978'),
     body: [
@@ -189,7 +192,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Strategy',
     date: 'Feb 28, 2024',
     isoDate: '2024-02-28',
-    author: 'David Kim',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '7 min read',
     image: unsplash('photo-1677442136019-21780ecad995'),
     body: [
@@ -208,7 +212,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Development',
     date: 'Feb 22, 2024',
     isoDate: '2024-02-22',
-    author: 'Sarah Jenkins',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '10 min read',
     image: unsplash('photo-1587620962725-abab7fe55159'),
     body: [
@@ -227,7 +232,8 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Marketing',
     date: 'Feb 15, 2024',
     isoDate: '2024-02-15',
-    author: 'Alex Morgan',
+    author: 'Kunal',
+    authorBio: 'Website developer & UI/UX designer in New Delhi. Designs in Figma, builds on WordPress, Shopify, Webflow and Next.js.',
     readTime: '4 min read',
     image: unsplash('photo-1519389950473-47ba0277781c'),
     body: [

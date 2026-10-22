@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     });
 
     await transporter.sendMail({
-      from: `"WebAlchemy" <${process.env.MAIL_USER}>`,
+      from: `"Kunal · Portfolio" <${process.env.MAIL_USER}>`,
       to: process.env.MAIL_RECIPIENT,
       subject: `New Contact: ${name}`,
       html: `<h2>New Contact</h2><p><b>Name:</b> ${esc(name)}</p><p><b>Email:</b> ${esc(email || 'N/A')}</p><p><b>Phone:</b> ${esc(phone || 'N/A')}</p><p><b>Message:</b><br>${esc(message || 'N/A').replace(/\n/g, '<br>')}</p>`,

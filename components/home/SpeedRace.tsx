@@ -7,7 +7,7 @@ import s from './home.module.css';
 
 const LANES = [
   { label: 'Typical template site', dur: 5.2, c: '#ff8a6b', k: 1.6, seed: 'Ravi' },
-  { label: 'WebAlchemy build', dur: 1.1, c: '#7fd6a0', k: 1, seed: 'Asha' },
+  { label: 'Built by Kunal', dur: 1.1, c: '#7fd6a0', k: 1, seed: 'Asha' },
 ];
 const END = 6;
 

@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { projectsData } from '@/data/projectsData';
+import { SITE_URL } from '@/lib/site';
 import WorkFilter, { type FilterTile } from './WorkFilter';
 import { INDUSTRIES, hostname, industryKey, industryOf, industryTone } from './work';
 import styles from './portfolio.module.css';
 import FloatField from '@/components/site/motion/FloatField';
 import { PeepCrew } from '@/components/site/motion/Peep';
 
-/* Work index — implements the Claude Design "Work" mock (Work.dc.html).
-   Cards link to the live sites until real case studies exist
-   (data/caseStudies.ts). */
+/* Kunal's work index (on the "Work" mock, Work.dc.html). Cards link to
+   the live sites until real case studies exist (data/caseStudies.ts). */
 
 export const metadata: Metadata = {
-  title: 'Our Work — Web Development Portfolio | WebAlchemy',
-  description: 'Web development, e-commerce, and marketing projects for businesses in Delhi NCR and internationally. See what we build.',
+  title: 'Work — Websites I\'ve Designed & Built | Kunal',
+  description: 'Portfolio of Kunal, website developer & UI/UX designer in New Delhi: school, clinic, resort, retail and corporate websites, designed in Figma and built to load fast on a phone.',
   alternates: { canonical: '/portfolio' },
 };
 
@@ -22,7 +22,7 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webalchemy.in/' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
     { '@type': 'ListItem', position: 2, name: 'Portfolio' },
   ],
 };
@@ -55,7 +55,7 @@ export default function Page() {
           className="hero-crew hero-crew-top"
           peeps={[
             { seed: 'Meera', bg: 'fbf3e2', pose: 'jump', size: 80 },
-            { seed: 'Rohan', bg: 'eef1ff', pose: 'wave', size: 94, bubble: 'Take a look!' },
+            { seed: 'Kunal', bg: 'eef1ff', pose: 'wave', size: 94, bubble: 'My recent work!' },
           ]}
         />
         <div className="stack" style={{ gap: 18 }}>
@@ -63,12 +63,13 @@ export default function Page() {
             WORK — {total} PROJECTS · {industries.length} INDUSTRIES
           </p>
           <h1 className="h1-xl">
-            Work that brings in <span className="serif">customers</span>
+            Work I&apos;ve <span className="serif">designed &amp; built</span>
           </h1>
         </div>
         <p className="lede" style={{ maxWidth: 480 }}>
-          Schools, clinics, resorts and retailers across Delhi NCR and beyond. Pick an industry to see work like
-          yours, then open a project to visit the live site.
+          A slice of 200+ projects for schools, clinics, resorts and retailers across Delhi NCR and beyond. Each one
+          designed in Figma and built to load fast on a phone. Pick an industry, then open a project to visit the live
+          site.
         </p>
       </section>
 
@@ -128,7 +129,7 @@ export default function Page() {
       </WorkFilter>
 
       <section className={`wrap ${styles.featureWrap}`}>
-        <Link href="/contact" className={styles.feature}>
+        <Link href="/#contact" className={styles.feature}>
           <div className={styles.mosaic} aria-hidden="true">
             {mosaic.map((p) => (
               // eslint-disable-next-line @next/next/no-img-element
@@ -137,12 +138,12 @@ export default function Page() {
           </div>
           <div className={styles.featureText}>
             <p className="eyebrow-sm" style={{ color: 'var(--blue)' }}>YOUR PROJECT · FREE ESTIMATE</p>
-            <h2 className={styles.featureTitle}>Want a website that brings in customers like these?</h2>
+            <h2 className={styles.featureTitle}>Want a website like these? Let&apos;s build yours next.</h2>
             <p className={styles.featureLede}>
-              Tell us about your business and we&apos;ll come back within 24 hours with a plan and a fixed quote. No
-              obligation.
+              Tell me about your business and I&apos;ll come back within 24 hours with a plan and a fixed quote. No
+              obligation, and you talk to me directly.
             </p>
-            <span className={styles.featureGo}>Get a free estimate →</span>
+            <span className={styles.featureGo}>Start a project with me →</span>
           </div>
         </Link>
       </section>

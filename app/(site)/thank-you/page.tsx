@@ -11,17 +11,17 @@ import { PeepCrew } from '@/components/site/motion/Peep';
 
 // Post-form conversion page: keep it out of search results.
 export const metadata: Metadata = {
-  title: 'Thank you | WebAlchemy',
+  title: 'Thank you | Kunal',
   alternates: { canonical: '/thank-you' },
   robots: { index: false, follow: true },
 };
 
-const WHATSAPP_MESSAGE = 'Hi! I just submitted a form on your website. Looking forward to hearing from you!';
+const WHATSAPP_MESSAGE = 'Hi Kunal! I just submitted a form on your website. Looking forward to hearing from you!';
 
 const NEXT_STEPS = [
-  { when: 'WITHIN 24 HOURS', title: 'We call or WhatsApp you', text: 'A quick chat to understand your business, your customers and what you need.', tone: TONES.blue },
-  { when: 'DAY 1–2', title: 'Free strategy call', text: '30 minutes on your goals. You leave with a clear plan and a fixed quote.', tone: TONES.amber },
-  { when: 'WHEN YOU SAY GO', title: 'We start building', text: 'Starter sites go live in 7 days. Larger builds get a fixed timeline on day one.', tone: TONES.green },
+  { when: 'WITHIN 24 HOURS', title: 'I call or WhatsApp you', text: 'A quick chat to understand your business, your customers and what you need.', tone: TONES.blue },
+  { when: 'DAY 1–2', title: 'Free discovery call', text: '30 minutes on your goals. You leave with a clear plan and a fixed quote.', tone: TONES.amber },
+  { when: 'WHEN YOU SAY GO', title: 'I start designing', text: 'Figma first, then the build. Starter sites can go live in about 7 days; larger builds get a fixed timeline on day one.', tone: TONES.green },
 ];
 
 export default function Page() {
@@ -32,7 +32,7 @@ export default function Page() {
         className="hero-crew hero-crew-top"
         peeps={[
           { seed: 'Mia', bg: 'e8f4ec', pose: 'jump', size: 84, bubble: 'Yay!' },
-          { seed: 'Rohan', bg: 'eef1ff', pose: 'jump', size: 96 },
+          { seed: 'Kunal', bg: 'eef1ff', pose: 'jump', size: 96 },
           { seed: 'Zara', bg: 'f3ecfb', pose: 'jump', size: 80 },
         ]}
       />
@@ -40,10 +40,10 @@ export default function Page() {
       <div className={styles.head}>
         <div className={styles.check} aria-hidden="true">✓</div>
         <h1 className="h1" style={{ fontSize: 'clamp(44px, 6.4vw, 84px)' }}>
-          Thanks<LeadFirstName />. <span className="serif">We&apos;re on it.</span>
+          Thanks<LeadFirstName />. <span className="serif">I&apos;m on it.</span>
         </h1>
         <p className="lede" style={{ maxWidth: 560 }}>
-          We&apos;ve received your message about <LeadService />. Here&apos;s what happens next.
+          I&apos;ve received your message about <LeadService />. Here&apos;s what happens next.
         </p>
       </div>
 
@@ -62,10 +62,10 @@ export default function Page() {
 
       <div className="btnrow">
         <a href={whatsappHref(WHATSAPP_MESSAGE)} target="_blank" rel="noopener noreferrer" className={`btn btn-whatsapp ${styles.spring}`}>
-          Can&apos;t wait? WhatsApp us now
+          Can&apos;t wait? WhatsApp me now
         </a>
         <Link href="/portfolio" className={`btn btn-ghost ${styles.spring}`}>
-          See our work while you wait
+          See my work while you wait
         </Link>
         <Link href="/" className={styles.home}>
           Back to home

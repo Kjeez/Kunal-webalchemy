@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import './site.css';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
+import { SITE_URL } from '@/lib/site';
 
 // Site redesign (Claude Design "WebAlchemy" system): Geist + Geist Mono,
 // with Instrument Serif italic for accent words.
@@ -18,12 +19,12 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://webalchemy.in'),
-  title: 'WebAlchemy | Digital Growth Agency - Web Development & Marketing India',
+  metadataBase: new URL(SITE_URL),
+  title: 'Kunal | Website Developer & UI/UX Designer in New Delhi',
   description:
-    "WebAlchemy is India's leading digital growth agency offering web development, digital marketing, SEO, branding, and UI/UX design services. Get a free estimate today!",
+    'Kunal designs and builds fast, mobile-first websites. UI/UX in Figma, visuals in Photoshop & Illustrator, builds on WordPress, Shopify, Webflow, Wix and Next.js. 200+ projects, 5+ years.',
   keywords:
-    'web development, digital marketing, SEO, web design, website development India, digital agency, growth agency, branding, UI UX design',
+    'Kunal, website developer, web designer, UI UX designer, freelance web developer Delhi, Figma, Photoshop, WordPress developer, Shopify developer, Webflow, portfolio',
   icons: { icon: '/favicon.svg' },
 };
 

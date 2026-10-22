@@ -131,3 +131,7 @@
   transition: transform .4s var(--spring);
 }
 .next:hover .nextGo { transform: translateX(6px); }
+
+/* Kunal portfolio: role line under the summary, studio note under the quote */
+.role { font-family: var(--mono); font-size: 13px; color: var(--blue); }
+.quoteNote { font-size: 13px; color: var(--faint); margin-top: 2px; }

@@ -28,7 +28,7 @@ export default function HeroLeadForm() {
     if (res.ok) {
       goToThankYou('', SERVICE);
     } else {
-      setError("We couldn't send that just now — tap below to message us on WhatsApp instead.");
+      setError("I couldn't receive that just now — tap below to message us on WhatsApp instead.");
       setFallback(whatsappLead(lead));
       setSending(false);
     }
