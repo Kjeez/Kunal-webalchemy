@@ -1,34 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Kunal — portfolio site
 
-# Run and deploy your AI Studio app
+Personal portfolio for Kunal (website developer & UI/UX designer), built on
+the WebAlchemy Next.js design system. Lives on the `kunal-portfolio` branch;
+`main` is still the WebAlchemy agency site.
 
-This contains everything you need to run your app locally.
+Live: https://kunalwebdesigner.vercel.app
 
-View your app in AI Studio: https://ai.studio/apps/drive/1ZHDGaRZgjVOtOZ3eQcbjZ72P5Kdqx6I0
+## Deploys
 
-## Run Locally
+- Vercel project **kunalwebdesigner** builds the `kunal-portfolio` branch only.
+  Every push to it goes live automatically; pushes to other branches are skipped
+  by the project's ignored-build-step rule.
+- webalchemy.in (Vercel project **kunal-webalchemy**) deploys from `main` and is
+  unaffected by this branch.
 
-**Prerequisites:**  Node.js
+## Run locally
 
+Prerequisites: Node.js
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key
-3. (Forms / Email) Configure mail environment variables (Vercel Functions + local backend use these):
+1. `npm install`
+2. `npm run dev`, then open http://localhost:3000
 
-   - `MAIL_USER`: Gmail address (sender)
-   - `MAIL_PASS`: Gmail app password (recommended) or SMTP password
-   - `MAIL_RECIPIENT`: Where leads should be delivered
-   - `SMTP_ALLOW_SELF_SIGNED`: set to `true` only if your local network MITMs TLS and you see `self-signed certificate in certificate chain`
+## Contact form email
 
-4. Run the API server locally (for `/api/contact` and `/api/estimate`):
+The forms post to `/api/contact`, which sends mail via SMTP. Set these in the
+kunalwebdesigner project (Settings → Environment Variables) and in `.env.local`
+for local testing:
 
-   - `cd server`
-   - `npm install`
-   - `npm run dev`
+- `MAIL_USER`: sender address
+- `MAIL_PASS`: app password / SMTP password
+- `MAIL_RECIPIENT`: where enquiries are delivered
+- `SMTP_ALLOW_SELF_SIGNED`: `true` only if your network intercepts TLS
 
-5. Run the frontend (Vite on `http://127.0.0.1:3000`):
-
-   - `npm run dev`
+Without them the forms fall back to sending the enquiry on WhatsApp.
