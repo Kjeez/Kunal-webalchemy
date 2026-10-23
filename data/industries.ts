@@ -1,6 +1,8 @@
 import { projectsData, type Project } from './projectsData';
 import type { Tone } from '@/lib/site';
 import type { ServicePlan } from './services';
+import { plan, steps } from './industryShared';
+import { INDUSTRIES_2 } from './industries2';
 
 /* Industry landing pages (components/industry/IndustryPage). Each page is
    backed by REAL client websites from data/projectsData — no invented
@@ -29,23 +31,6 @@ export interface IndustryData {
   tone: Tone;
   whatsappMessage: string;
 }
-
-const plan = (name: string, price: string, features: string[], featured = false, badge?: string): ServicePlan => ({
-  name,
-  price,
-  unit: 'one-time',
-  features,
-  cta: 'Get a fixed quote',
-  featured,
-  badge,
-});
-
-const steps = (content: string) => [
-  { when: 'DAY 1', t: 'Free 30-minute call', d: `We look at your current site (if any), your competitors on Google and what you want enquiries for. You get a fixed quote and launch date in writing.` },
-  { when: 'WEEK 1', t: 'Design you approve', d: `Mobile and desktop mockups first. ${content} We revise until you are happy, before any development starts.` },
-  { when: 'WEEK 1–3', t: 'Build & connect', d: 'We build the site, connect WhatsApp, call buttons, forms and Google Analytics, and set up your Google Business Profile link and map.' },
-  { when: 'LAUNCH', t: 'Go live & hand over', d: 'Speed check (90+ mobile PageSpeed, guaranteed), Search Console submission, and a walkthrough so your team can update it.' },
-];
 
 /* ------------------------------------------------------------------ */
 
@@ -233,7 +218,7 @@ const interiors: IndustryData = {
     { k: 'Typical timeline', v: '7–21 days' },
     { k: 'Built around', v: 'Your project photos' },
   ],
-  match: (p) => p.category === 'Interiors',
+  match: (p) => p.category === 'Interiors' || /interior/i.test(p.metric ?? ''),
   work: {
     heading: 'Design studio websites we have built',
     intro: 'Architects, interior studios, furniture stores and modular kitchen companies across Delhi NCR.',
@@ -380,7 +365,7 @@ const manufacturing: IndustryData = {
   whatsappMessage: "Hi! We're a manufacturing company looking for a new website. Can we discuss?",
 };
 
-export const INDUSTRIES: IndustryData[] = [clinics, realEstate, interiors, manufacturing];
+export const INDUSTRIES: IndustryData[] = [clinics, realEstate, interiors, manufacturing, ...INDUSTRIES_2];
 
 export const getIndustry = (slug: string) => {
   const i = INDUSTRIES.find((x) => x.slug === slug);

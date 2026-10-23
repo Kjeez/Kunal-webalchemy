@@ -5,6 +5,7 @@
 
 import { AUTHOR, TONES } from '@/lib/site';
 import { COST_GUIDES } from './costGuides';
+import { PLAN_POSTS } from './posts2026';
 
 export type Tone = 'green' | 'blue' | 'amber' | 'violet' | 'orange';
 
@@ -266,7 +267,7 @@ const LEGACY_POSTS: BlogPost[] = [
 ];
 
 /** Newest first: pricing guides, then the original articles. */
-export const BLOG_POSTS: BlogPost[] = [...COST_GUIDES, ...LEGACY_POSTS];
+export const BLOG_POSTS: BlogPost[] = [...COST_GUIDES, ...PLAN_POSTS, ...LEGACY_POSTS];
 
 export const getPost = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);
 
