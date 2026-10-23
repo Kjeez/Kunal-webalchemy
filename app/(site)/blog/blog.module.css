@@ -77,3 +77,11 @@
 @media (prefers-reduced-motion: reduce) {
   .featuredWrap .featured:hover, .grid .post:hover { transform: none; }
 }
+
+/* Category links, count line, pagination (BlogParts / BlogListing). */
+.posts :global(.chiprow) a[aria-current='page'] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.count { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--faint); }
+.pageNo { font-size: .45em; letter-spacing: -.01em; color: var(--muted-2); white-space: nowrap; }
+.pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 48px; flex-wrap: wrap; }
+.pagerNums { display: flex; gap: 6px; flex-wrap: wrap; }
+.pager a[aria-current='page'] { background: var(--ink); color: #fff; border-color: var(--ink); }

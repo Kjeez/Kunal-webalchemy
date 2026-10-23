@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/site';
-import { BLOG_POSTS } from '@/data/blogPosts';
+import { BLOG_CATEGORIES, BLOG_POSTS, PAGE_SIZE, getCategory, postsIn } from '@/data/blogPosts';
 import { CASE_STUDIES } from '@/data/caseStudies';
 import { INDUSTRIES } from '@/data/industries';
 import { SERVICES } from '@/data/services';
@@ -32,11 +32,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Category pages and numbered listing pages (page 1 is the base URL).
+  const pagesOf = (n: number) => Math.max(1, Math.ceil(n / PAGE_SIZE));
+  const blogLists = [
+    ...Array.from({ length: pagesOf(BLOG_POSTS.length - 1) - 1 }, (_, i) => `/blog/page/${i + 2}`),
+    ...BLOG_CATEGORIES.flatMap((name) => {
+      const base = `/blog/category/${getCategory(name)!.slug}`;
+      return [base, ...Array.from({ length: pagesOf(postsIn(name).length) - 1 }, (_, i) => `${base}/page/${i + 2}`)];
+    }),
+  ].map((path) => ({ url: url(path), changeFrequency: 'weekly' as const, priority: 0.5 }));
+
   const cases = CASE_STUDIES.map((c) => ({
     url: url(`/portfolio/${c.slug}`),
     changeFrequency: 'yearly' as const,
     priority: 0.5,
   }));
 
-  return [...pages, ...posts, ...cases];
+  return [...pages, ...blogLists, ...posts, ...cases];
 }

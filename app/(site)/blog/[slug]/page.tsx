@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { SITE_URL } from '@/lib/site';
 import Faq from '@/components/site/Faq';
 import type { CSSProperties } from 'react';
-import { BLOG_POSTS, TONE_COLORS, categoryColors, getPost, thumb, type Block } from '@/data/blogPosts';
+import { BLOG_POSTS, TONE_COLORS, categoryColors, categoryHref, getPost, thumb, type Block } from '@/data/blogPosts';
+import BackLink from '../BackLink';
 import s from './article.module.css';
 
 /* Article page — implements the Claude Design "Article" mock
@@ -166,7 +167,7 @@ export default async function ArticlePage({
   const related = [
     ...others.filter((p) => p.category === post.category),
     ...others.filter((p) => p.category !== post.category).sort((a, b) => b.isoDate.localeCompare(a.isoDate)),
-  ].slice(0, 2);
+  ].slice(0, 3);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -187,14 +188,33 @@ export default async function ArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Blog', item: `${SITE_URL}/blog` },
+              { '@type': 'ListItem', position: 2, name: post.category, item: `${SITE_URL}${categoryHref(post.category)}` },
+              { '@type': 'ListItem', position: 3, name: post.title },
+            ],
+          }),
+        }}
+      />
       <div className={s.progress} aria-hidden="true" />
 
       <header className={s.head}>
-        <nav aria-label="Breadcrumb" className={s.crumbs}>
-          <Link href="/blog">Blog</Link>
-          <span aria-hidden="true">/</span>
-          <span className={s.tone}>{post.category}</span>
-        </nav>
+        <div className={s.topRow}>
+          <BackLink href="/blog" className={s.back}>
+            <span aria-hidden="true">←</span> Back
+          </BackLink>
+          <nav aria-label="Breadcrumb" className={s.crumbs}>
+            <Link href="/blog">Blog</Link>
+            <span aria-hidden="true">/</span>
+            <Link href={categoryHref(post.category)} className={s.tone}>{post.category}</Link>
+          </nav>
+        </div>
         <h1>{post.title}</h1>
         <p className={s.dek}>{post.excerpt}</p>
         <div className={s.byline}>
@@ -247,7 +267,7 @@ export default async function ArticlePage({
       <section className={s.more} aria-labelledby="art-more-h">
         <div className={s.moreHead}>
           <h2 id="art-more-h">Keep reading</h2>
-          <Link href="/blog">All articles →</Link>
+          <Link href={categoryHref(post.category)}>More in {post.category} →</Link>
         </div>
         <div className={s.moreGrid}>
           {related.map((p) => (
@@ -267,6 +287,14 @@ export default async function ArticlePage({
               <div className={s.cardTitle}>{p.title}</div>
             </Link>
           ))}
+        </div>
+        <div className={s.endNav}>
+          <Link href="/blog" className={s.back}>
+            <span aria-hidden="true">←</span> All articles
+          </Link>
+          <Link href={categoryHref(post.category)} className={s.back}>
+            {post.category} guides <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
     </div>

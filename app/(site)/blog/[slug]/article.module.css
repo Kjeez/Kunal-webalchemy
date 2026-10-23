@@ -24,7 +24,7 @@
 .art .crumbs a { color: var(--faint); }
 .art .crumbs a:hover { color: var(--ink); }
 .art .crumbs .tone { color: var(--tone); }
-.art .head h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1; letter-spacing: -.045em; font-weight: 600; text-wrap: balance; }
+.art .head h1 { font-size: clamp(34px, 6vw, 76px); line-height: 1; letter-spacing: -.045em; font-weight: 600; text-wrap: balance; }
 .art .dek { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; color: var(--muted); }
 .art .byline { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 14px; color: var(--muted-2); }
 .art .byline .name { font-weight: 600; color: var(--ink); }
@@ -150,3 +150,14 @@
 .art .links span { color: var(--muted-2); }
 .art .inlineLink { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--blue); }
 .art .inlineLink:hover { color: var(--blue); }
+
+/* Back link + breadcrumb row, and the end-of-article nav. */
+.topRow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.art .back {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 14px; font-weight: 500;
+  transition: border-color .2s, color .2s;
+}
+.art .back:hover { border-color: var(--ink); color: var(--ink); }
+.art .crumbs a.tone { color: var(--tone); }
+.endNav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 8px; }
