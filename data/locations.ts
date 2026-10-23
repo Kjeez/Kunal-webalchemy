@@ -226,8 +226,8 @@ const cityService = (city: string, description: string) => ({
   serviceType: 'Website design and development',
   name: `Website development in ${city}`,
   description,
-  url: `https://webalchemy.in/website-developer-${city.toLowerCase()}`,
-  provider: { '@type': 'ProfessionalService', '@id': 'https://webalchemy.in/#organization', name: 'WebAlchemy', telephone: '+91-7838583051' },
+  url: `https://www.webalchemy.in/website-developer-${city.toLowerCase()}`,
+  provider: { '@type': 'ProfessionalService', '@id': 'https://www.webalchemy.in/#organization', name: 'WebAlchemy', telephone: '+91-7838583051' },
   areaServed: { '@type': 'City', name: city },
   offers: { '@type': 'Offer', price: '14999', priceCurrency: 'INR', description: 'Starter website, one-time' },
 });
@@ -391,7 +391,7 @@ const delhi: LocationData = {
       name: 'WebAlchemy — Website Developer in Delhi',
       description:
         'Delhi-based web development agency specialising in custom WordPress, React, and Next.js websites for businesses across Delhi NCR.',
-      url: 'https://webalchemy.in/website-developer-delhi',
+      url: 'https://www.webalchemy.in/website-developer-delhi',
       telephone: '+91-7838583051',
       address: {
         '@type': 'PostalAddress',
@@ -588,8 +588,8 @@ const ncr: LocationData = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'WebAlchemy - Web Development Company Delhi NCR',
-      url: 'https://webalchemy.in',
-      logo: 'https://webalchemy.in/logo.png',
+      url: 'https://www.webalchemy.in',
+      logo: 'https://www.webalchemy.in/logo.png',
       description:
         'Best web development company in Delhi NCR providing custom websites, e-commerce, and digital marketing services',
       areaServed: ['Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Ghaziabad', 'Greater Noida'],

@@ -32,7 +32,7 @@ const ContactPage: React.FC = () => {
       "@type": "ContactPage",
       name: "Contact WebAlchemy",
       description: "Get in touch with WebAlchemy for web development, design, or digital marketing services in Delhi NCR.",
-      url: "https://webalchemy.in/contact",
+      url: "https://www.webalchemy.in/contact",
       mainEntity: {
         "@type": "ProfessionalService",
         name: "WebAlchemy",

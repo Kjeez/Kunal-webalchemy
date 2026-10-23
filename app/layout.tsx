@@ -19,7 +19,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://webalchemy.in'),
+  metadataBase: new URL('https://www.webalchemy.in'),
   title: 'WebAlchemy | Digital Growth Agency - Web Development & Marketing India',
   description:
     "WebAlchemy is India's leading digital growth agency offering web development, digital marketing, SEO, branding, and UI/UX design services. Get a free estimate today!",

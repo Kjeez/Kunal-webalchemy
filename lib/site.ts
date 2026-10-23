@@ -2,7 +2,7 @@
 // Every href below points at an EXISTING route — the redesign must not
 // add, rename, or remove URLs.
 
-export const SITE_URL = 'https://webalchemy.in';
+export const SITE_URL = 'https://www.webalchemy.in';
 
 export const PHONE = '917838583051';
 export const PHONE_DISPLAY = '+91 78385 83051';

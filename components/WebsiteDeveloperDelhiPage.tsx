@@ -58,7 +58,7 @@ const WebsiteDeveloperDelhiPage: React.FC = () => {
       'og:description':
         'Delhi-based website developer building custom WordPress & React sites that rank and convert. 50+ projects delivered. Get a free quote today.',
       'og:type': 'website',
-      'og:url': 'https://webalchemy.in/website-developer-delhi',
+      'og:url': 'https://www.webalchemy.in/website-developer-delhi',
     };
 
     Object.entries(ogTags).forEach(([property, content]) => {
@@ -80,7 +80,7 @@ const WebsiteDeveloperDelhiPage: React.FC = () => {
       name: 'WebAlchemy — Website Developer in Delhi',
       description:
         'Delhi-based web development agency specialising in custom WordPress, React, and Next.js websites for businesses across Delhi NCR.',
-      url: 'https://webalchemy.in/website-developer-delhi',
+      url: 'https://www.webalchemy.in/website-developer-delhi',
       telephone: '+91-9625429686',
       address: {
         '@type': 'PostalAddress',

@@ -79,7 +79,7 @@ const LocationLandingPage: React.FC<LocationLandingPageProps> = ({ city }) => {
             "@type": "LocalBusiness",
             "name": `WebAlchemy - Website Developer in ${city}`,
             "description": data.metaDescription,
-            "url": `https://webalchemy.in/website-developer-${city.toLowerCase()}`,
+            "url": `https://www.webalchemy.in/website-developer-${city.toLowerCase()}`,
             "telephone": "+91-7838583051",
             "address": {
                 "@type": "PostalAddress",

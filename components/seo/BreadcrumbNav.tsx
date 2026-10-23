@@ -16,7 +16,7 @@ export interface BreadcrumbItem {
 
 export interface BreadcrumbNavProps {
   items: BreadcrumbItem[];
-  /** Base site URL used in the JSON-LD schema, defaults to https://webalchemy.in */
+  /** Base site URL used in the JSON-LD schema, defaults to https://www.webalchemy.in */
   siteUrl?: string;
   /** Show a home icon on the first item */
   showHomeIcon?: boolean;
@@ -29,7 +29,7 @@ export interface BreadcrumbNavProps {
 
 const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   items,
-  siteUrl = 'https://webalchemy.in',
+  siteUrl = 'https://www.webalchemy.in',
   showHomeIcon = true,
   className = '',
 }) => {

@@ -21,7 +21,7 @@ const contactSchema = {
   '@type': 'ContactPage',
   name: 'Contact WebAlchemy',
   description: 'Get in touch with WebAlchemy for web development, design, or digital marketing services in Delhi NCR.',
-  url: 'https://webalchemy.in/contact',
+  url: 'https://www.webalchemy.in/contact',
   mainEntity: {
     '@type': 'ProfessionalService',
     name: 'WebAlchemy',
@@ -48,7 +48,7 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://webalchemy.in/' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.webalchemy.in/' },
     { '@type': 'ListItem', position: 2, name: 'Contact' },
   ],
 };

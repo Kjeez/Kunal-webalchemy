@@ -26,8 +26,8 @@ const WebDevDelhiNCRPage: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "WebAlchemy - Web Development Company Delhi NCR",
-            "url": "https://webalchemy.in",
-            "logo": "https://webalchemy.in/logo.png",
+            "url": "https://www.webalchemy.in",
+            "logo": "https://www.webalchemy.in/logo.png",
             "description": "Best web development company in Delhi NCR providing custom websites, e-commerce, and digital marketing services",
             "areaServed": ["Delhi", "Gurgaon", "Noida", "Faridabad", "Ghaziabad", "Greater Noida"],
             "address": {

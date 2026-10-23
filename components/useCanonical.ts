@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const SITE_URL = 'https://webalchemy.in';
+const SITE_URL = 'https://www.webalchemy.in';
 
 /**
  * Global hook that sets a self-referencing <link rel="canonical"> tag

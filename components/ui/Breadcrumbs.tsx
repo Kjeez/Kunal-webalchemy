@@ -10,7 +10,7 @@ export interface BreadcrumbItem {
 
 export interface BreadcrumbsProps {
   items: BreadcrumbItem[];
-  /** Base site URL used in JSON-LD; defaults to https://webalchemy.in */
+  /** Base site URL used in JSON-LD; defaults to https://www.webalchemy.in */
   siteUrl?: string;
   className?: string;
 }
