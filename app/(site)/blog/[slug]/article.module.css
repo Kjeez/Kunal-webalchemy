@@ -132,3 +132,21 @@
   .progress { display: none; }
   .art .card:hover, .art .ctaBtn:hover { transform: none; }
 }
+
+/* Tables, FAQ and link lists (cost guides). */
+.tableWrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; min-width: 560px; }
+.table caption { caption-side: bottom; padding: 10px 16px; text-align: left; font-size: 13px; color: var(--faint); }
+.table th, .table td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.table thead th { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); background: var(--tint); }
+.table tbody th { font-weight: 600; color: var(--ink); }
+.table tbody tr:last-child th, .table tbody tr:last-child td { border-bottom: 0; }
+.faqBlock { display: flex; flex-direction: column; gap: 16px; }
+.links { border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+.linksH { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+.art .links ul { padding-left: 0; list-style: none; gap: 10px; }
+.art .links a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.art .links a:hover { color: var(--blue); }
+.art .links span { color: var(--muted-2); }
+.art .inlineLink { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--blue); }
+.art .inlineLink:hover { color: var(--blue); }

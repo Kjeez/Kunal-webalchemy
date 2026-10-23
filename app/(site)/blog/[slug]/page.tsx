@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE_URL } from '@/lib/site';
+import Faq from '@/components/site/Faq';
 import type { CSSProperties } from 'react';
 import { BLOG_POSTS, TONE_COLORS, categoryColors, getPost, thumb, type Block } from '@/data/blogPosts';
 import s from './article.module.css';
@@ -17,35 +18,42 @@ const toneVars = ([tone, tint]: readonly [string, string]) =>
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return BLOG_POSTS.map((p) => ({ id: p.id }));
+  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
-  const post = getPost(id);
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) return {};
   return {
     title: `${post.seoTitle} | WebAlchemy`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${id}` },
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: 'article',
       title: post.seoTitle,
       description: post.excerpt,
       publishedTime: post.isoDate,
+      ...(post.updated ? { modifiedTime: post.updated.iso } : {}),
       authors: [post.author],
       images: [post.image],
     },
   };
 }
 
-/** Renders `code` spans inside plain copy. */
+/** Inline markup in copy: `code`, **bold** and [text](/internal-link). */
 function inline(text: string) {
-  return text.split(/`([^`]+)`/).map((part, i) => (i % 2 ? <code key={i}>{part}</code> : part));
+  return text.split(/(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/).map((part, i) => {
+    if (part.startsWith('`') && part.endsWith('`')) return <code key={i}>{part.slice(1, -1)}</code>;
+    if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>;
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) return <Link key={i} href={link[2]} className={s.inlineLink}>{link[1]}</Link>;
+    return part;
+  });
 }
 
 function renderBlock(block: Block, i: number) {
@@ -83,6 +91,46 @@ function renderBlock(block: Block, i: number) {
           ))}
         </div>
       );
+    case 'table':
+      return (
+        <div key={i} className={s.tableWrap}>
+          <table className={s.table}>
+            {block.caption && <caption>{block.caption}</caption>}
+            <thead>
+              <tr>{block.head.map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) =>
+                    c === 0 ? <th key={c} scope="row">{inline(cell)}</th> : <td key={c}>{inline(cell)}</td>,
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case 'faq':
+      return (
+        <div key={i} className={s.faqBlock}>
+          <h2 id={`faq-${i}`}>{block.heading}</h2>
+          <Faq items={block.items} jsonLd />
+        </div>
+      );
+    case 'links':
+      return (
+        <aside key={i} className={s.links}>
+          <p className={s.linksH}>{block.heading}</p>
+          <ul>
+            {block.items.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href}>{l.label}</Link> <span>{l.text}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      );
     case 'cta':
       return (
         <aside key={i} className={s.cta}>
@@ -106,14 +154,19 @@ const initials = (name: string) =>
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
-  const post = getPost(id);
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) notFound();
 
   const toc = post.body.filter((b): b is Extract<Block, { type: 'h2' }> => b.type === 'h2');
-  const related = BLOG_POSTS.filter((p) => p.id !== post.id).slice(0, 2);
+  // Same-category posts first, then the newest of the rest.
+  const others = BLOG_POSTS.filter((p) => p.slug !== post.slug);
+  const related = [
+    ...others.filter((p) => p.category === post.category),
+    ...others.filter((p) => p.category !== post.category).sort((a, b) => b.isoDate.localeCompare(a.isoDate)),
+  ].slice(0, 2);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -122,9 +175,10 @@ export default async function ArticlePage({
     description: post.excerpt,
     image: post.image,
     datePublished: post.isoDate,
-    author: { '@type': 'Person', name: post.author },
-    publisher: { '@type': 'Organization', name: 'WebAlchemy', url: SITE_URL },
-    mainEntityOfPage: `${SITE_URL}/blog/${post.id}`,
+    dateModified: post.updated?.iso ?? post.isoDate,
+    author: { '@type': 'Person', name: post.author, url: `${SITE_URL}/about`, ...(post.authorBio ? { description: post.authorBio } : {}) },
+    publisher: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'WebAlchemy', url: SITE_URL },
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
   };
 
   return (
@@ -147,7 +201,11 @@ export default async function ArticlePage({
           <span className={s.avatar} aria-hidden="true">{initials(post.author)}</span>
           <span className={s.name}>{post.author}</span>
           <span aria-hidden="true">·</span>
-          <time dateTime={post.isoDate}>{post.date}</time>
+          {post.updated ? (
+            <time dateTime={post.updated.iso}>Updated {post.updated.date}</time>
+          ) : (
+            <time dateTime={post.isoDate}>{post.date}</time>
+          )}
           <span aria-hidden="true">·</span>
           <span>{post.readTime}</span>
         </div>
@@ -194,8 +252,8 @@ export default async function ArticlePage({
         <div className={s.moreGrid}>
           {related.map((p) => (
             <Link
-              key={p.id}
-              href={`/blog/${p.id}`}
+              key={p.slug}
+              href={`/blog/${p.slug}`}
               className={s.card}
               style={toneVars(categoryColors(p.category))}
             >

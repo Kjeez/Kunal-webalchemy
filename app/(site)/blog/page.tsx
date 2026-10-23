@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { BLOG_CATEGORIES, BLOG_POSTS, categoryColors, getPost, thumb } from '@/data/blogPosts';
+import { BLOG_CATEGORIES, BLOG_POSTS, categoryColors, thumb } from '@/data/blogPosts';
 import BlogGrid from './BlogGrid';
 import Newsletter from './Newsletter';
 import s from './blog.module.css';
@@ -24,10 +24,12 @@ const initials = (name: string) =>
     .slice(0, 2);
 
 export default function BlogIndexPage() {
-  const featured = getPost('2') ?? BLOG_POSTS[0];
+  // Newest post leads the page.
+  const byDate = [...BLOG_POSTS].sort((a, b) => b.isoDate.localeCompare(a.isoDate));
+  const featured = byDate[0];
   const [ink] = categoryColors(featured.category);
-  const posts = BLOG_POSTS.map((p) => ({
-    id: p.id,
+  const posts = byDate.map((p) => ({
+    id: p.slug,
     title: p.title,
     excerpt: p.excerpt,
     category: p.category,
@@ -59,7 +61,7 @@ export default function BlogIndexPage() {
       </section>
 
       <section className={`wrap ${s.featuredWrap}`} aria-label="Featured article">
-        <Link href={`/blog/${featured.id}`} className={s.featured}>
+        <Link href={`/blog/${featured.slug}`} className={s.featured}>
           <div className={s.featuredCover}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={featured.image} alt="" width={1600} height={1000} fetchPriority="high" />

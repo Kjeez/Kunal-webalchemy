@@ -127,6 +127,16 @@ export const SITE_FOOTER_COLUMNS: { title: string; links: NavLink[] }[] = [
     ],
   },
   {
+    title: 'Industries',
+    links: [
+      { label: 'Doctors & Clinics', href: '/website-for-doctors-and-clinics' },
+      { label: 'Real Estate', href: '/real-estate-website-design' },
+      { label: 'Interior Designers & Architects', href: '/interior-designer-website-design' },
+      { label: 'Manufacturers & Exporters', href: '/manufacturing-company-website-design' },
+      { label: 'Website Cost in India', href: '/blog/website-development-cost-india' },
+    ],
+  },
+  {
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
@@ -158,3 +168,9 @@ export const TONES = {
   ink: ['#14161c', '#f2f1ec'],
 } as const;
 export type Tone = keyof typeof TONES;
+
+/** Blog author (every article is written and reviewed by the founder). */
+export const AUTHOR = {
+  name: 'Kunal',
+  bio: 'Founder of WebAlchemy, a web design and growth studio in New Delhi. Has built websites for 500+ businesses, from Karol Bagh jewellers to Noida eye hospitals.',
+};

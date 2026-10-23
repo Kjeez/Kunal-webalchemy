@@ -3,7 +3,8 @@
 // mock; the others are the legacy BlogPostPage copy, restructured into
 // blocks. Inline `code` in strings is rendered as <code>.
 
-import { TONES } from '@/lib/site';
+import { AUTHOR, TONES } from '@/lib/site';
+import { COST_GUIDES } from './costGuides';
 
 export type Tone = 'green' | 'blue' | 'amber' | 'violet' | 'orange';
 
@@ -20,20 +21,31 @@ export type Block =
   | { type: 'ul' | 'ol'; items: ListItem[] }
   | { type: 'quote'; text: string }
   | { type: 'metrics'; items: { label: string; value: string; text: string; tone: Tone }[] }
-  | { type: 'cta'; heading: string; text: string; label: string; href: string };
+  | { type: 'cta'; heading: string; text: string; label: string; href: string }
+  /** Comparison / price table. Cells support inline `code`. */
+  | { type: 'table'; caption?: string; head: string[]; rows: string[][] }
+  /** FAQ accordion + FAQPage JSON-LD. */
+  | { type: 'faq'; heading: string; items: { q: string; a: string }[] }
+  /** Internal links with a one-line description each. */
+  | { type: 'links'; heading: string; items: { label: string; href: string; text: string }[] };
 
 export interface BlogPost {
+  /** Legacy numeric id (old /blog/<id> URLs redirect to /blog/<slug>). */
   id: string;
+  /** URL segment: /blog/<slug>. */
+  slug: string;
   title: string;
   /** Longer keyword title (the legacy page's H1), used for <title>. */
   seoTitle: string;
   excerpt: string;
   category: string;
   date: string;
+  /** Optional "Updated …" date (display + ISO), for refreshed guides. */
+  updated?: { date: string; iso: string };
   /** ISO date for metadata / JSON-LD. */
   isoDate: string;
   author: string;
-  /** TODO: needs content — author role + one-line bio (shown under the byline when set). */
+  /** Author role + one-line bio (shown under the byline). */
   authorBio?: string;
   readTime: string;
   image: string;
@@ -46,6 +58,7 @@ export const CATEGORY_TONE: Record<string, Tone> = {
   Marketing: 'amber',
   Strategy: 'blue',
   Development: 'orange',
+  Pricing: 'amber',
 };
 
 /** [ink, tint] per tone, from the 2026 design palette (lib/site TONES). */
@@ -74,16 +87,18 @@ const DEFAULT_CTA: Block = {
   href: '/contact',
 };
 
-export const BLOG_POSTS: BlogPost[] = [
+const LEGACY_POSTS: BlogPost[] = [
   {
     id: '1',
+    slug: 'psychology-of-color-in-web-design',
     title: 'The Psychology of Color in Web Design',
     seoTitle: 'The Psychology of Color in Web Design: How to Increase Conversions',
-    excerpt: 'How choosing the right color palette can increase your conversion rates by up to 24%.',
+    excerpt: 'How the colors on your website shape trust, attention and, ultimately, how many visitors become enquiries.',
     category: 'Design',
     date: 'Mar 15, 2024',
     isoDate: '2024-03-15',
-    author: 'Alex Morgan',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '5 min read',
     image: unsplash('photo-1550684848-fac1c5b4e853'),
     body: [
@@ -108,13 +123,15 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '2',
+    slug: 'website-speed-core-web-vitals',
     title: 'Why Speed is the New SEO King',
     seoTitle: 'Why Speed is the New SEO King: Core Web Vitals Guide 2024',
     excerpt: "Google's Core Web Vitals update changed everything. Here is how to optimize for 100/100 scores.",
     category: 'Technical',
     date: 'Mar 10, 2024',
     isoDate: '2024-03-10',
-    author: 'Sarah Jenkins',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '8 min read',
     image: unsplash('photo-1460925895917-afdab827c52f'),
     body: [
@@ -156,13 +173,15 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '3',
+    slug: 'conversion-rate-optimization-basics',
     title: 'From Visitor to Customer: CRO Basics',
     seoTitle: 'From Visitor to Customer: CRO Basics That Double Leads',
     excerpt: '5 actionable tweaks you can make to your landing page today to double your leads.',
     category: 'Marketing',
     date: 'Mar 05, 2024',
     isoDate: '2024-03-05',
-    author: 'Michael Chen',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '6 min read',
     image: unsplash('photo-1552664730-d307ca884978'),
     body: [
@@ -183,13 +202,15 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '4',
+    slug: 'ai-in-digital-agencies',
     title: 'The Future of AI in Digital Agencies',
     seoTitle: 'The Future of AI in Digital Agencies: Adapt or Die',
     excerpt: 'How artificial intelligence is reshaping the landscape of design and development.',
     category: 'Strategy',
     date: 'Feb 28, 2024',
     isoDate: '2024-02-28',
-    author: 'David Kim',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '7 min read',
     image: unsplash('photo-1677442136019-21780ecad995'),
     body: [
@@ -202,13 +223,15 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '5',
+    slug: 'tailwind-css-grid-layouts',
     title: 'Mastering Tailwind CSS Grid',
     seoTitle: 'Mastering Tailwind CSS Grid: Complex Layouts Made Easy',
     excerpt: 'A deep dive into creating complex, responsive layouts with utility classes.',
     category: 'Development',
     date: 'Feb 22, 2024',
     isoDate: '2024-02-22',
-    author: 'Sarah Jenkins',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '10 min read',
     image: unsplash('photo-1587620962725-abab7fe55159'),
     body: [
@@ -221,18 +244,20 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '6',
+    slug: 'brand-storytelling',
     title: 'Brand Storytelling in 2024',
     seoTitle: 'Brand Storytelling in 2024: Connecting with Gen Z',
     excerpt: 'Why narrative is more important than ever for connecting with Gen Z audiences.',
     category: 'Marketing',
     date: 'Feb 15, 2024',
     isoDate: '2024-02-15',
-    author: 'Alex Morgan',
+    author: AUTHOR.name,
+    authorBio: AUTHOR.bio,
     readTime: '4 min read',
     image: unsplash('photo-1519389950473-47ba0277781c'),
     body: [
       { type: 'h2', id: 'death-of-traditional-ads', text: 'The death of traditional ads' },
-      { type: 'p', text: 'Gen Z has a sophisticated bullshit detector. Traditional, interruption-based advertising no longer works. To connect with this demographic, brands must pivot to authentic storytelling that aligns with values and culture.' },
+      { type: 'p', text: 'Gen Z can spot inauthentic marketing instantly. Traditional, interruption-based advertising no longer works. To connect with this demographic, brands must pivot to authentic storytelling that aligns with values and culture.' },
       { type: 'h2', id: 'authenticity-is-key', text: 'Authenticity is key' },
       { type: 'p', text: "It's not about selling a product; it's about inviting the customer into a narrative. User Generated Content (UGC) and behind-the-scenes content perform exceptionally well because they feel unpolished and real." },
       DEFAULT_CTA,
@@ -240,7 +265,10 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ];
 
-export const getPost = (id: string) => BLOG_POSTS.find((p) => p.id === id);
+/** Newest first: pricing guides, then the original articles. */
+export const BLOG_POSTS: BlogPost[] = [...COST_GUIDES, ...LEGACY_POSTS];
+
+export const getPost = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);
 
 /** Categories in first-appearance order (for the blog filter chips). */
 export const BLOG_CATEGORIES = [...new Set(BLOG_POSTS.map((p) => p.category))];
