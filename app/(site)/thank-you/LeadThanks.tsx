@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { readLead } from '@/lib/leads';
+import { track, trackPixel } from '@/lib/track';
 
 /* Tiny client islands for /thank-you. The server renders the generic
    copy ("Thanks." / "your project"); after mount these swap in the
@@ -26,16 +27,25 @@ export function LeadService() {
   return <>{service.toLowerCase().replace(/^pr\b/, 'PR')}</>;
 }
 
-/** Google Ads conversion ping — carried over unchanged from the legacy ThankYouPage. */
+/**
+ * Counts a completed form enquiry: GA4 `generate_lead`, Meta Pixel `Lead`,
+ * and (when NEXT_PUBLIC_ADS_CONVERSION is set, e.g. "AW-123/AbC") a Google
+ * Ads conversion. Only fires when a form actually sent the visitor here,
+ * and only once per lead, so reloads and direct visits don't inflate it.
+ */
 export function ConversionPing() {
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const w = window as any;
-    if (typeof w.gtag === 'function') {
-      w.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL', // Replace with your actual conversion ID
-      });
-    }
+    const lead = readLead();
+    if (!lead.firstName && !lead.service) return;
+    try {
+      if (sessionStorage.getItem('wa-lead-tracked')) return;
+      sessionStorage.setItem('wa-lead-tracked', '1');
+    } catch { /* storage blocked: still count it */ }
+    const service = lead.service || 'Not specified';
+    track('generate_lead', { currency: 'INR', value: 1, lead_service: service });
+    trackPixel('Lead', { content_name: service });
+    const ads = process.env.NEXT_PUBLIC_ADS_CONVERSION;
+    if (ads) track('conversion', { send_to: ads });
   }, []);
   return null;
 }

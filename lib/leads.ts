@@ -82,6 +82,7 @@ export async function sendLead(lead: Lead): Promise<{ ok: boolean; message?: str
 export function goToThankYou(name: string, service?: string) {
   try {
     sessionStorage.setItem(LEAD_KEY, JSON.stringify({ firstName: name.trim().split(/\s+/)[0] || '', service }));
+    sessionStorage.removeItem('wa-lead-tracked'); // a new enquiry gets counted
   } catch { /* storage blocked — thank-you page falls back to generic copy */ }
   window.location.href = '/thank-you';
 }

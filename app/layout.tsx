@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import './site.css';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
+import ClickTracker from '@/components/site/ClickTracker';
 
 // Site redesign (Claude Design "WebAlchemy" system): Geist + Geist Mono,
 // with Instrument Serif italic for accent words.
@@ -62,6 +63,7 @@ export default function RootLayout({
             (legacy and new design) keeps it. */}
         <LocalBusinessSchema />
         {children}
+        <ClickTracker />
 
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
