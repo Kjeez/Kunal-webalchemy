@@ -18,14 +18,6 @@ const BLOG_SLUGS = {
 const nextConfig = {
   async redirects() {
     return [
-      // One canonical host: every page's canonical tag points at the bare
-      // domain, so send www there too instead of serving a duplicate copy.
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.webalchemy.in' }],
-        destination: 'https://webalchemy.in/:path*',
-        permanent: true,
-      },
       ...Object.entries(BLOG_SLUGS).map(([id, slug]) => ({
         source: `/blog/${id}`,
         destination: `/blog/${slug}`,
