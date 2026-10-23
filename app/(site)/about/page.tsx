@@ -34,7 +34,7 @@ const STATS = [
 const VALUES = [
   { t: 'Direct access', d: 'No account managers playing "telephone". You get a direct Slack channel with your design & dev team.', c: 'var(--blue-soft)', r: '50%', rot: '0deg' },
   { t: 'Fixed prices', d: 'You get a fixed quote before we start. No hidden fees and no surprise invoices.', c: 'var(--gold)', r: '6px', rot: '45deg' },
-  { t: 'Speed matters', d: 'Starter sites go live in 7 days, and every site is built to score 98+ on PageSpeed.', c: 'var(--mint)', r: '6px', rot: '12deg' },
+  { t: 'Speed matters', d: 'Starter sites go live in 7 days, and every site launches with a 90+ mobile PageSpeed score, guaranteed.', c: 'var(--mint)', r: '6px', rot: '12deg' },
   { t: 'Built to convert', d: 'Every page is designed to turn visitors into calls, WhatsApps and enquiries.', c: 'var(--coral)', r: '50%', rot: '0deg' },
 ];
 

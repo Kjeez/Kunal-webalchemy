@@ -69,7 +69,7 @@ export function ContactSection() {
 
 /** Latest three blog posts. */
 export function Insights() {
-  const posts = BLOG_POSTS.slice(0, 3);
+  const posts = [...BLOG_POSTS].sort((a, b) => b.isoDate.localeCompare(a.isoDate)).slice(0, 3);
   return (
     <section className={`wrap section ${s.postsSec}`} aria-labelledby="insights-h">
       <div className={s.headRow}>
@@ -81,11 +81,11 @@ export function Insights() {
       </div>
       <div className={s.posts}>
         {posts.map((p) => (
-          <Link key={p.id} href={`/blog/${p.id}`} className={`rise ${s.post}`}>
+          <Link key={p.slug} href={`/blog/${p.slug}`} className={`rise ${s.post}`}>
             <div className={s.postImg}>
               <img src={thumb(p.image)} alt="" width={800} height={500} loading="lazy" />
             </div>
-            <div className={s.postMeta}>{p.category} · {p.date} · {p.readTime}</div>
+            <div className={s.postMeta}>{p.category} · {p.updated?.date ?? p.date} · {p.readTime}</div>
             <h3 className={s.postT}>{p.title}</h3>
             <p className={s.postD}>{p.excerpt}</p>
           </Link>

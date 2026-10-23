@@ -75,7 +75,7 @@ export default function SiteFooter() {
           <span className="foot-word">WebAlchemy</span>
           <span className="stk stk-arrow" style={{ left: '6%', top: '-4%' }}><Arrow size={26} /></span>
           <span className="stk stk-pill" style={{ left: '27%', top: '-14%', '--r': '4deg' } as React.CSSProperties}>7-day delivery</span>
-          <span className="stk stk-pill stk-blue" style={{ left: '17%', top: '52%', '--r': '-6deg' } as React.CSSProperties}>PageSpeed 98+</span>
+          <span className="stk stk-pill stk-blue" style={{ left: '17%', top: '52%', '--r': '-6deg' } as React.CSSProperties}>PageSpeed 90+</span>
           <span className="stk stk-round stk-light" style={{ left: '55%', top: '-6%' }}>✳</span>
           <span className="stk stk-pill stk-dark" style={{ left: '62%', top: '46%', '--r': '-5deg' } as React.CSSProperties}>500+ projects</span>
           <span className="stk stk-round stk-dark" style={{ left: '78%', top: '-10%' }}><span style={{ color: '#ff8a6b' }}>♥</span></span>

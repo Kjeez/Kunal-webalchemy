@@ -6,6 +6,8 @@
 // WebDevDelhiNCRPage.tsx). JSON-LD blocks are carried over verbatim.
 
 import type { FaqItem } from '@/components/site/Faq';
+import { projectsData, type Project } from './projectsData';
+import { industryOf, industryTone } from '@/app/(site)/portfolio/work';
 
 export type LocationSlug = 'delhi' | 'gurgaon' | 'noida' | 'ncr';
 
@@ -23,6 +25,8 @@ export interface LocalWork {
   image: string;
   tint: string;
   color: string;
+  /** Live client site; cards without one link to /portfolio. */
+  href?: string;
 }
 
 export interface AreaNote {
@@ -108,6 +112,56 @@ const LOCAL_WORK: LocalWork[] = [
 ];
 export const localWork = LOCAL_WORK;
 
+/** Which client areas count as each city (matched against Project.area). */
+const CITY_AREA: Record<LocationSlug, RegExp | null> = {
+  delhi: /delhi(?! ncr)/i,
+  gurgaon: /gurugram|gurgaon|manesar/i,
+  noida: /noida/i,
+  ncr: null,
+};
+
+/**
+ * Up to `n` real client sites from a city, rotating through industries so
+ * the grid shows range (a dental clinic, a realtor, a CA firm…) rather
+ * than eight bakeries. Falls back to the hand-picked LOCAL_WORK.
+ */
+export function localWorkFor(slug: LocationSlug, n = 8): LocalWork[] {
+  const re = CITY_AREA[slug];
+  if (!re) return LOCAL_WORK;
+  const byIndustry = new Map<string, Project[]>();
+  for (const p of projectsData) {
+    if (!p.area || !re.test(p.area)) continue;
+    const k = industryOf(p);
+    byIndustry.set(k, [...(byIndustry.get(k) ?? []), p]);
+  }
+  const picked: Project[] = [];
+  const queues = [...byIndustry.values()];
+  while (picked.length < n && queues.some((q) => q.length)) {
+    for (const q of queues) {
+      const p = q.shift();
+      if (p && picked.length < n) picked.push(p);
+    }
+  }
+  if (picked.length < 4) return LOCAL_WORK;
+  return picked.map((p) => {
+    const [color, tint] = industryTone(industryOf(p));
+    return {
+      name: p.title,
+      area: `${p.area} · ${p.metric ?? industryOf(p)}`.toUpperCase(),
+      image: p.image,
+      tint,
+      color,
+      href: p.link,
+    };
+  });
+}
+
+/** Number of client sites in a city (for headings). */
+export const localCount = (slug: LocationSlug) => {
+  const re = CITY_AREA[slug];
+  return re ? projectsData.filter((p) => p.area && re.test(p.area)).length : 0;
+};
+
 const designFaqs = (city: string): FaqItem[] => [
   {
     q: `Do you meet clients in ${city}?`,
@@ -137,7 +191,7 @@ const cityFaqs = (city: string, meetAt: string): FaqItem[] => [
   },
   {
     q: `How long does it take to build a website in ${city}?`,
-    a: 'A starter website can go live in as little as 7 days. A standard business website typically takes 2-3 weeks, e-commerce websites take 4-6 weeks, and complex web applications can take 2-3 months. As a Delhi NCR agency, we keep communication quick and delivery on schedule.',
+    a: 'A Starter website goes live in 7 days. A standard business website typically takes 2-3 weeks, e-commerce stores 3-5 weeks, and custom web applications 6-10 weeks. Your launch date is fixed in the quote. As a Delhi NCR agency, we keep communication quick and delivery on schedule.',
   },
   {
     q: `Do you provide website maintenance services in ${city}?`,
@@ -161,23 +215,21 @@ const cityFaqs = (city: string, meetAt: string): FaqItem[] => [
   },
 ];
 
-/** LocalBusiness schema from the old LocationLandingPage (verbatim shape). */
-const cityLocalBusiness = (city: string, description: string, lat: number, lng: number) => ({
+/**
+ * Service schema for a city page. We are not physically located in every
+ * city, so this describes the service and the area it covers rather than
+ * claiming a LocalBusiness address there (which Google treats as spam).
+ */
+const cityService = (city: string, description: string) => ({
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: `WebAlchemy - Website Developer in ${city}`,
+  '@type': 'Service',
+  serviceType: 'Website design and development',
+  name: `Website development in ${city}`,
   description,
   url: `https://webalchemy.in/website-developer-${city.toLowerCase()}`,
-  telephone: '+91-7838583051',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: city,
-    addressRegion: 'Delhi NCR',
-    addressCountry: 'IN',
-  },
-  geo: { '@type': 'GeoCoordinates', latitude: lat, longitude: lng },
-  openingHours: 'Mo-Sa 09:00-18:00',
-  priceRange: '₹₹₹',
+  provider: { '@type': 'ProfessionalService', '@id': 'https://webalchemy.in/#organization', name: 'WebAlchemy', telephone: '+91-7838583051' },
+  areaServed: { '@type': 'City', name: city },
+  offers: { '@type': 'Offer', price: '14999', priceCurrency: 'INR', description: 'Starter website, one-time' },
 });
 
 const cityReasons = (city: string) => ({
@@ -185,7 +237,7 @@ const cityReasons = (city: string) => ({
   lede: `A Delhi NCR web development agency that understands ${city} businesses and delivers results that matter.`,
   items: [
     { t: 'Local expertise', d: `Deep understanding of the ${city} market and customer behaviour.` },
-    { t: 'Fast turnaround', d: 'Average 7-day delivery with local support.' },
+    { t: 'Fast turnaround', d: 'Starter sites go live in 7 days; every quote has a fixed launch date, with 10% off for every week we are late.' },
     { t: 'Fixed prices', d: 'A clear quote and timeline from day one. No surprise bills.' },
     { t: 'Modern technology', d: 'React, Next.js, WordPress and more, chosen for what your business needs.' },
   ],
@@ -212,7 +264,7 @@ const delhi: LocationData = {
       { name: 'BBIS Dwarka', x: '68%', y: '30%', color: BLUE },
     ],
   },
-  localHeading: 'Trusted by businesses near you',
+  localHeading: 'Websites we have built for Delhi businesses',
   areas: [
     'Dwarka', 'Vikaspuri', 'Uttam Nagar', 'Janakpuri', 'Rajouri Garden', 'Punjabi Bagh', 'Karol Bagh',
     'Connaught Place', 'Lajpat Nagar', 'Saket', 'Rohini', 'Pitampura', 'South Delhi',
@@ -383,7 +435,7 @@ const gurgaon: LocationData = {
       { name: 'Sohna Road', x: '45%', y: '75%', color: VIOLET },
     ],
   },
-  localHeading: 'Trusted by businesses across Delhi NCR',
+  localHeading: 'Websites we have built for Gurgaon businesses',
   areas: [
     'DLF Phase 1–5', 'Sohna Road', 'Golf Course Road', 'MG Road', 'Udyog Vihar', 'Sector 29', 'Cyber City',
     'Palam Vihar', 'Sector 14', 'Old Gurgaon', 'Manesar',
@@ -410,11 +462,9 @@ const gurgaon: LocationData = {
   faqs: cityFaqs('Gurgaon', 'Cyber City'),
   faqJsonLd: true,
   jsonLd: [
-    cityLocalBusiness(
+    cityService(
       'Gurgaon',
       'Leading website developer in Gurgaon. We create stunning websites for Gurgaon startups & corporates. Premium quality. Fast delivery. Get quote!',
-      28.4595,
-      77.0266,
     ),
   ],
 };
@@ -436,7 +486,7 @@ const noida: LocationData = {
       { name: 'Noida Extension', x: '50%', y: '72%', color: RUST },
     ],
   },
-  localHeading: 'Trusted by businesses across Delhi NCR',
+  localHeading: 'Websites we have built for Noida businesses',
   areas: [
     'Sector 18', 'Sector 62', 'Sector 63', 'Noida Extension', 'Sector 50', 'Sector 137', 'Greater Noida',
     'Sector 125', 'Noida Expressway', 'Film City', 'Sector 16', 'Knowledge Park', 'Tech Zone',
@@ -462,11 +512,9 @@ const noida: LocationData = {
   faqs: cityFaqs('Noida', 'Sector 62'),
   faqJsonLd: true,
   jsonLd: [
-    cityLocalBusiness(
+    cityService(
       'Noida',
       'Expert website developer in Noida & Greater Noida. Building high-performance websites for IT companies & startups. Free consultation!',
-      28.5355,
-      77.391,
     ),
   ],
 };

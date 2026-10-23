@@ -69,8 +69,8 @@ export const SERVICES_LIST: { t: string; d: string; tags: string; href: string; 
 
 export const STACK = ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node.js', 'Three.js', 'WordPress', 'Shopify', 'Webflow', 'Framer', 'Wix', 'WooCommerce'];
 
-export const BAND_A = ['Mobile-first', 'PageSpeed 98+', '7-day delivery', 'Free domain & hosting', 'SEO-ready', 'Direct Slack access'];
-export const BAND_B = ['Websites that sell', 'Built in New Delhi', '500+ projects', 'Rated 4.9/5', 'Conversion focused', 'Launch-date guarantee'];
+export const BAND_A = ['Mobile-first', 'PageSpeed 90+ guaranteed', '7-day delivery', 'Free domain & hosting', 'SEO-ready', 'Direct Slack access'];
+export const BAND_B = ['Websites that sell', 'Built in New Delhi', '500+ projects', '5.0 on Google', 'Conversion focused', 'Launch-date guarantee'];
 
 /* The three reviews the previous homepage already showed. */
 /* Real client reviews (supplied by WebAlchemy). `shot` = their site's
@@ -105,7 +105,7 @@ export const GUARANTEES = [
 ];
 
 export const FAQS = [
-  { q: 'How long does it take to build a website?', a: 'A standard high-conversion landing page typically takes 2-3 weeks. A full 5-10 page corporate website usually takes 4-6 weeks. Complex web applications with custom backends can take 2-3 months. We provide a detailed timeline during our initial strategy call.' },
+  { q: 'How long does it take to build a website?', a: 'A Starter website (up to 5 pages) goes live in 7 days once we have your logo, photos and basic details. A Growth site (up to 10 pages) usually takes 2-3 weeks, a Premium redesign or e-commerce store 3-5 weeks, and custom web applications 6-10 weeks. Your launch date is written into the quote, with 10% off for every week we are late.' },
   { q: 'Do you offer hosting and maintenance?', a: 'Yes. Starter and Growth plans include a free domain, hosting and SSL certificate, plus 1 to 3 months of support depending on the plan. Ongoing maintenance is available after that.' },
   { q: 'Will I be able to update the website myself?', a: 'Yes. Growth and Enterprise sites include a CMS, so you can edit pages, blog posts and products without touching code. We walk you through it at handover.' },
   { q: 'What is your payment structure?', a: 'We typically require a 50% deposit to secure your slot in our production schedule. The remaining 50% is due upon project completion and launch. For larger enterprise projects, we can discuss milestone-based payments.' },

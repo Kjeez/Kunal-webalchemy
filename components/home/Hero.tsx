@@ -50,7 +50,7 @@ export default function Hero() {
               ))}
             </div>
             <div className={s.proofText}>
-              <div><b><span className="stars" aria-hidden="true">★★★★★</span> 4.9/5</b><span className={s.srOnly}> client rating</span></div>
+              <div><b><span className="stars" aria-hidden="true">★★★★★</span> 5.0</b><span className={s.srOnly}> rating on Google</span></div>
               <div style={{ color: 'var(--muted-2)' }}>500+ projects delivered</div>
             </div>
           </div>

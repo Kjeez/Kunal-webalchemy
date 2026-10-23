@@ -4,7 +4,7 @@ import { SITE_URL, whatsappHref } from '@/lib/site';
 import {
   LOCAL_SERVICES,
   LOCATION_LINKS,
-  localWork,
+  localWorkFor,
   type LocationData,
 } from '@/data/locations';
 import LocationMap from './LocationMap';
@@ -77,7 +77,7 @@ export default function LocationPage({ data }: { data: LocationData }) {
             </a>
           </div>
           <div className={s.proof}>
-            <span><span className="stars" aria-hidden="true">★★★★★</span> 4.9/5</span>
+            <span><span className="stars" aria-hidden="true">★★★★★</span> 5.0 on Google</span>
             <span>500+ projects delivered</span>
             <span>Based in New Delhi</span>
           </div>
@@ -96,8 +96,8 @@ export default function LocationPage({ data }: { data: LocationData }) {
             <Link href="/portfolio" className="text-link">All projects →</Link>
           </div>
           <div className={s.workGrid}>
-            {localWork.map((w) => (
-              <Link key={w.name} href="/portfolio" className={`${s.workCard} rise`} style={{ background: w.tint }}>
+            {localWorkFor(data.slug).map((w) => (
+              <Link key={w.name} href={w.href ?? '/portfolio'} {...(w.href ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={`${s.workCard} rise`} style={{ background: w.tint }}>
                 <div className={s.shot}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={w.image} alt={`${w.name} website homepage`} width={1898} height={965} loading="lazy" />

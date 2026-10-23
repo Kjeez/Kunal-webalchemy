@@ -210,7 +210,7 @@ const webDevelopment: ServiceData = {
     { k: 'Starting at', v: '₹14,999' },
     { k: 'Delivery', v: '7 days' },
     { k: 'Domain & hosting', v: 'Free' },
-    { k: 'PageSpeed', v: '98+' },
+    { k: 'PageSpeed', v: '90+ guaranteed' },
   ],
   glanceCta: { label: 'Build your estimate →', href: '/#estimate' },
   included: {
@@ -219,7 +219,7 @@ const webDevelopment: ServiceData = {
       'We build websites that do more than look good — they load fast, rank on Google, and turn visitors into paying customers. Whether you need a five-page business site on WordPress or a custom React application with user dashboards and API integrations, our Delhi-based team handles the full build from design to deployment. Every project ships with mobile responsiveness, technical SEO and post-launch support included.',
     items: [
       { t: 'Responsive design', d: 'Looks and works right on every phone, tablet and laptop.' },
-      { t: 'Fast performance', d: 'Sites that consistently score 98+ on Google PageSpeed.' },
+      { t: 'Fast performance', d: 'Every site launches with a 90+ mobile PageSpeed score, guaranteed.' },
       { t: 'SEO optimized', d: 'Clean structure, metadata and speed so Google can find you.' },
       { t: 'Clear calls-to-action', d: 'Every page leads visitors to call, WhatsApp or enquire.' },
       { t: 'Contact & analytics', d: 'Contact forms and Google Analytics set up from day one.' },

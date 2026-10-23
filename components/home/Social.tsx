@@ -33,7 +33,7 @@ export function Testimonials() {
           <h2 id="reviews-h" className={`h2 h2-lg rise ${s.tH}`}>
             Don&apos;t just take <span className="serif">our word for it</span>
           </h2>
-          <p className={s.tRating}><span className="stars" aria-hidden="true">★★★★★</span> Rated 4.9/5 by our clients</p>
+          <p className={s.tRating}><span className="stars" aria-hidden="true">★★★★★</span> Rated 5.0 on Google</p>
         </div>
 
         <div className={s.tFeature}>

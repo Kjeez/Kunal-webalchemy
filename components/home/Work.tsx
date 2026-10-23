@@ -128,7 +128,7 @@ export function WhyUs() {
         <div className={`rise ${s.why}`}>
           <div className={s.whyBig} style={{ color: 'var(--green)' }}>99</div>
           <h3 className={s.whyT}>Lightning fast performance</h3>
-          <p className={s.whyD}>Our sites consistently score 98+ on Google PageSpeed, ensuring better SEO and lower bounce rates.</p>
+          <p className={s.whyD}>Every site launches with a 90+ mobile PageSpeed score, guaranteed in writing, for better SEO and fewer visitors bouncing.</p>
         </div>
         <div className={`rise ${s.why}`}>
           <div className={s.whyBig} style={{ color: 'var(--blue)' }}>7 days</div>
