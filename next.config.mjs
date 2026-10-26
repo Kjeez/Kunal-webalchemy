@@ -18,6 +18,9 @@ const BLOG_SLUGS = {
 const nextConfig = {
   async redirects() {
     return [
+      // Old article URLs from a previous version of the site.
+      { source: '/article', destination: '/blog', permanent: true },
+      { source: '/article/:slug', destination: '/blog/:slug', permanent: true },
       ...Object.entries(BLOG_SLUGS).map(([id, slug]) => ({
         source: `/blog/${id}`,
         destination: `/blog/${slug}`,
