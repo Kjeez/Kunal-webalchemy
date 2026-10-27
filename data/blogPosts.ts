@@ -25,7 +25,8 @@ const displayDate = (iso: string) =>
     timeZone: 'UTC',
   });
 
-const today = () => new Date().toISOString().slice(0, 10);
+// Today's date in India (builds run in UTC, which is 5h30m behind IST).
+const today = () => new Date(Date.now() + 330 * 60_000).toISOString().slice(0, 10);
 
 function loadPost(file: string): BlogPost & { featured: boolean; draft: boolean } {
   const slug = file.replace(/\.md$/, '');
